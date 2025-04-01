@@ -2,48 +2,52 @@
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Problemstellung und Motivation}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Zielsetzung der Arbeit}{1}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Methodisches Vorgehen und Struktur der Arbeit}{1}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Grundlagen}{2}{chapter.2}%
-\contentsline {section}{\numberline {2.1}SPS-Technologie und Module im industriellen Umfeld}{2}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Überblick über das FM350-2 Modul}{2}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Vorstellung des TM FAST Moduls}{2}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Einführung in VHDL und FPGA-Technologie}{2}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Grundlagen des TIA Portals und dessen Bedeutung für die Integration}{2}{section.2.5}%
-\contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{3}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Funktionsweise und Limitierungen des FM350-2}{3}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Grundlegende Funktionen der FM 350-2}{3}{subsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.1.1}Steuerung der Baugruppe mit exttt{FC CNT2\_CTR} (FC2)}{3}{subsubsection.3.1.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.1.2}Laden von Zählerständen, Grenz- und Vergleichswerten ( exttt{FC3} / exttt{FB3})}{4}{subsubsection.3.1.1.2}%
-\contentsline {subsubsection}{\numberline {3.1.1.3}Auslesen von Zähl- und Messwerten ( exttt{FC4} / exttt{FB4})}{4}{subsubsection.3.1.1.3}%
-\contentsline {subsubsection}{\numberline {3.1.1.4}Diagnosedaten lesen ( exttt{FC5})}{4}{subsubsection.3.1.1.4}%
-\contentsline {subsection}{\numberline {3.1.2}Einschränkungen der FM 350-2}{4}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}Einsatzgebiete der FM 350-2}{5}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Haupteinsatzgebiete}{5}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Typische Anwendungen}{5}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Anwendungsbeispiel: Kartonabfüllung}{5}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Vorteile und neue Möglichkeiten durch das TM FAST Modul}{6}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Anforderungen an die Neuentwicklung}{6}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{8}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Konzept und Architektur des neuen Applikationsdesigns}{8}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Umsetzung der Funktionalität in VHDL}{8}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Test und Validierung der VHDL-Implementierung}{8}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Vergleich mit der bisherigen Lösung}{8}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Integration in das TIA Portal}{9}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Herausforderungen der Einbindung des TM FAST Moduls}{9}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Anpassungen an die Projektumgebung}{9}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Implementierung und Tests im TIA Portal}{9}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Evaluation der neuen Lösung im industriellen Kontext}{9}{section.5.4}%
-\contentsline {chapter}{\numberline {6}Aspekte des Software Engineerings}{10}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Best Practices in der VHDL-Entwicklung}{10}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Modularisierung und Wiederverwendbarkeit}{10}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Teststrategien und Debugging-Techniken}{10}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Dokumentation und Wartung der Software}{10}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Fazit und Ausblick}{11}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Zusammenfassung der Ergebnisse}{11}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Kritische Reflexion und Herausforderungen}{11}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{11}{section.7.3}%
-\contentsline {chapter}{\numberline {8}Plan}{13}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Fragen}{16}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Tests}{18}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Passwörter}{19}{chapter.11}%
-\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
+\contentsline {section}{\numberline {1.3}Methodisches Vorgehen und Struktur der Arbeit}{2}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Erwarteter Nutzen und Anwendungsbereich}{2}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Grundlagen}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}SPS-Technologie und Module im industriellen Umfeld / Überblick über SIMATIC S7 bei Thomas oder Andreas}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}aufbau eines simatic s7}{4}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Funktionsweise einer Speicherprogrammierbaren Steuerung}{5}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Programmierung einer PLC mit TIA-Portal}{6}{subsection.2.1.3}%
+\contentsline {section}{\numberline {2.2}Überblick über das FM350-2 Modul}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Eigenschaften und Aufbau des TM FAST von Andreas (wichtige sachen für software architektur)}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Einführung in VHDL und FPGA-Technologie (maybe als software zusammenfassen)}{7}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Grundlagen des TIA Portals und dessen Bedeutung für die Integration (maybe als software zusammenfassen)}{8}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Maybe}{8}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{9}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Funktionsweise und Limitierungen des FM350-2}{9}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Grundlegende Funktionen der FM 350-2}{9}{subsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.1}Steuerung der Baugruppe mit FC CNT2\_CTR}{9}{subsubsection.3.1.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.1.2}Laden von Zählerständen, Grenz- und Vergleichswerten ( exttt{FC3} / exttt{FB3})}{10}{subsubsection.3.1.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.1.3}Auslesen von Zähl- und Messwerten ( exttt{FC4} / exttt{FB4})}{10}{subsubsection.3.1.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.1.4}Diagnosedaten lesen (FC5)}{10}{subsubsection.3.1.1.4}%
+\contentsline {subsection}{\numberline {3.1.2}Einschränkungen der FM 350-2}{10}{subsection.3.1.2}%
+\contentsline {section}{\numberline {3.2}Einsatzgebiete der FM 350-2}{11}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Haupteinsatzgebiete}{11}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Typische Anwendungen}{11}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Anwendungsbeispiel: Kartonabfüllung}{11}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Vorteile und neue Möglichkeiten durch das TM FAST Modul}{12}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Anforderungen an die Neuentwicklung}{12}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{14}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Konzept und Architektur des neuen Applikationsdesigns}{14}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Umsetzung der Funktionalität in VHDL}{14}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Test und Validierung der VHDL-Implementierung}{14}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Vergleich mit der bisherigen Lösung}{14}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Integration in das TIA Portal}{15}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Herausforderungen der Einbindung des TM FAST Moduls}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Anpassungen an die Projektumgebung}{15}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Implementierung und Tests im TIA Portal}{15}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Evaluation der neuen Lösung im industriellen Kontext}{15}{section.5.4}%
+\contentsline {chapter}{\numberline {6}Aspekte des Software Engineerings}{16}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Best Practices in der VHDL-Entwicklung}{16}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Modularisierung und Wiederverwendbarkeit}{16}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Teststrategien und Debugging-Techniken}{16}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Dokumentation und Wartung der Software}{16}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Fazit und Ausblick}{17}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Zusammenfassung der Ergebnisse}{17}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Kritische Reflexion und Herausforderungen}{17}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{17}{section.7.3}%
+\contentsline {chapter}{\numberline {8}Plan}{19}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Fragen}{22}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Tests}{24}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Passwörter}{25}{chapter.11}%

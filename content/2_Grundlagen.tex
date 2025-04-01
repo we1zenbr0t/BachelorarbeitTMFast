@@ -1,7 +1,110 @@
 \chapter{Grundlagen} 
 
-\section{SPS-Technologie und Module im industriellen Umfeld} 
-\section{Überblick über das FM350-2 Modul} 
-\section{Vorstellung des TM FAST Moduls} 
-\section{Einführung in VHDL und FPGA-Technologie}
-\section{Grundlagen des TIA Portals und dessen Bedeutung für die Integration} 
+\section{SPS-Technologie und Module im industriellen Umfeld /  Überblick über SIMATIC S7 bei Thomas oder Andreas}  
+\textbf{Ich:}
+
+\textbf{ChatGPT:}
+Speicherprogrammierbare Steuerungen (SPS) sind ein essenzieller Bestandteil der industriellen Automatisierungstechnik. In diesem Abschnitt werden die grundlegenden Prinzipien einer SPS sowie deren Aufbau und Funktionsweise erläutert.  
+Zudem werden verschiedene Modularten vorgestellt, darunter digitale und analoge Ein-/Ausgabemodule, Zählermodule sowie Kommunikationsmodule.  
+Ein weiteres Thema ist die Anbindung von SPS-Systemen an industrielle Netzwerke mittels gängiger Protokolle wie PROFINET, PROFIBUS und Modbus.  
+
+\textbf{Thomas:}
+Speicherprogrammierbare Steuerungen – im Englischen „Programmable Logic Controllers“ 
+(PLCs) – wie die SIMATIC S7-Serie von Siemens steuern und regeln unter anderem Maschinen, 
+Antriebe, Ventile, Pumpen und Sensoren. Diese Steuerungen sind frei programmierbar und 
+dadurch universell einsetzbar [10, S. 146]. Im Folgenden wird ein Überblick über den Aufbau, 
+die Funktionsweise und die Programmierung eines SIMATIC S7-Systems gegeben.
+
+\subsection{aufbau eines simatic s7}
+Ein SIMATIC S7-System ist modular aufgebaut und besteht aus mehreren Komponenten. Im 
+Folgenden werden die Hauptkomponenten und ihre Funktionen erläutert.
+\textbf{Controller (CPU)}
+Die CPU der Steuerung wird auch als Controller bezeichnet und bildet die zentrale Verarbeitungseinheit des Systems. Die Hauptaufgabe der CPU ist es, das Anwenderprogramm auszuführen, das vom Nutzer entwickelt wurde, um spezifische Steuerungs- und Regelungsaufgaben 
+zu übernehmen [11, S. 25]. Die CPU verarbeitet Signale von Ein- und Ausgabemodulen, führt 
+Berechnungen durch und gibt Steuerbefehle an angeschlossene Geräte, wie Sensoren und Aktoren, aus.
+Controller der SIMATIC S7 Serie verfügen über integrierte Kommunikationsschnittstellen, wie 
+Ethernet/PROFINET oder PROFIBUS, die den Datenaustausch mit anderen Steuerungen, 
+Bediengeräten oder übergeordneten Systemen (z. B. SCADA oder MES) ermöglichen [12, S. 
+14]. 
+\textbf{Weitere Baugruppen}
+Um eine Verbindung zu einer Maschine oder Anlage herzustellen, werden Signalbaugruppen
+verwendet, welche es als Ein- bzw. Ausgabebaugruppen sowohl für Digitale als auch analoge 
+Signale gibt wie Spannungen oder Ströme gibt. Technologiebaugruppen sind Signalverarbeitende Baugruppen, welche Eingehende Signale aufbereiten und entweder direkt an den Prozess 
+oder zur weiteren Verarbeitung an die CPU gegeben. Ein möglicher Einsatzzweck ist z.B. das
+ählen von Impulsen, wofür die CPU meist zu langsam ist. Zur Erweiterung der Kommunikationsfähigkeit der CPU bezüglich Protokollen oder Funktionen kommen Kommunikationsbaugruppen zum Einsatz [11, S. 25]. 
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsection{Funktionsweise einer Speicherprogrammierbaren Steuerung}
+Grundsätzlich arbeitet eine Speicherprogrammierbare Steuerung nach dem Eingabe-Verarbeitung-Ausgabe-Prinzip (EVA). Der damit verbunden Prozess erfolgt zyklisch und lässt sich wie 
+folgt darstellen:
+Über Eingangsbaugruppen werden zunächst die Zustände von angeschlossener Sensorik erfasst. 
+Diese Eingangssignale werden anschließend in einem Prozessabbild gespeichert, welches eine 
+Momentaufnahme der aktuellen Signalzustände darstellt. Änderungen der Signale, die während 
+eines laufenden Zyklus auftreten, werden somit ignoriert [10, S. 147], [13, S. 39]. 
+Das Prozessabbild dient nun als Datengrundlage für die Verarbeitung durch das Anwenderprogramm. Das Anwenderprogramm ist modular aufgebaut und arbeitet mit sogenannten Bausteinen. Das Hauptprogramm wird durch den Organisationsbaustein1 (OB1) repräsentiert, welcher 
+aus konkreten Anweisungen aber auch Funktions- oder Unterprogrammaufrufen besteht. Die 
+Abarbeitung des OB1 entspricht einem Verarbeitungszyklus, dessen Dauer üblicherweise im
+zweistelligen Millisekunden Bereich liegt [13, S. 39].
+Nach der Verarbeitung des Anwenderprogramms erstellt die SPS ein neues Prozessabbild, das 
+die Ergebnisse der Programmverarbeitung enthält. Dieses Abbild wird schließlich an die Ausgangsbaugruppen übertragen, woraufhin die angeschlossenen Aktoren angesteuert werden. Mit 
+diesem Schritt ist der Zyklus abgeschlossen, und die SPS beginnt unmittelbar mit der Erfassung 
+der neuen Eingangs-Signalzustände für den nächsten Zyklus [10, S. 147], [13, S. 39].
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\subsection{Programmierung einer PLC mit TIA-Portal}
+Das Totally Integrated Automation Portal (TIA Portal) ist ein Framework für die Projektierung, Programmierung und Inbetriebnahme von SIMATIC S7-Steuerungen und deckt unter 
+anderem Hardware-Konfiguration, Softwareentwicklung und Fehlerdiagnose ab [14, S. 11]. Die 
+Programmierung folgt dabei der internationalen Norm IEC 61131-3, die den Standard für die 
+Softwareentwicklung in speicherprogrammierbaren Steuerungen (SPS) definiert. Diese Norm 
+legt die Struktur und die Programmiersprachen fest, die in Automatisierungsprojekten eingesetzt werden können, um eine einheitliche und herstellerübergreifende Programmierbarkeit zu 
+gewährleisten.
+Nach IEC 61131-3 werden fünf standardisierte Programmiersprachen für SPS definiert:
+KOP (Kontaktplan): Eine grafische Sprache, die sich an elektrischen Schaltplänen orientiert.
+FUP (Funktionsplan): Eine grafische Sprache zur Darstellung von Logik und Funktionen.
+AWL (Anweisungsliste): Eine textbasierte Sprache, die ähnlich wie Assembler arbeitet.
+SCL (Structured Control Language): Eine textbasierte, hochsprachliche Sprache ähnlich zu 
+Pascal.
+AS (Ablaufsprache): Eine grafische Sprache zur Darstellung von Ablaufsteuerungen [10, S. 153].
+Für die Programmierung im Rahmen der Bachelorarbeit sind insbesondere die Sprachen FUP 
+und SCL relevant.
+\textbf{Funktionsplan (FUP)}
+UP ist eine grafische Programmiersprache. Sie basiert auf der Darstellung von Funktionsbausteinen, die durch Verbindungen miteinander verknüpft werden.
+Ein typisches Beispiel in FUP ist die Implementierung von UND-, ODER- oder NICHT-Verknüpfungen, bei denen Ein- und Ausgangssignale miteinander verbunden werden. Die Funktionsbausteine enthalten logische Funktionen, mathematische Operationen oder auch spezifische 
+Steuerungsaufgaben, die als grafische Symbole dargestellt sind [15, S. 91 f.].
+\textbf{Structured Control Language (SCL)}
+SCL ist eine textbasierte Programmiersprache, die der Hochsprache Pascal ähnelt. Sie ist besonders für komplexere Algorithmen und mathematische Berechnungen geeignet. SCL wird in er IEC 61131-3 als Strukturierter Text bezeichnet und unterstützt eine strukturierte Programmierung mit Schleifen, Verzweigungen und Funktionsaufrufen [10, S. 153].
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\section{Überblick über das FM350-2 Modul}  
+ChatGPT:
+Das FM 350-2 Modul ist ein spezielles Zähl- und Messmodul für SPS-Systeme. Hier werden die technischen Spezifikationen und die grundlegende Funktionsweise erläutert.  
+Typische Anwendungen, wie die Messung von Drehzahlen oder das Zählen von Impulsen, werden beschrieben.  
+Darüber hinaus werden die Einbindung in SPS-Systeme, die verfügbaren Steuer- und Leseoperationen sowie die Limitierungen des Moduls thematisiert.  
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\section{Eigenschaften und Aufbau des TM FAST von Andreas (wichtige sachen für software architektur)}  
+ChatGPT:
+Das TM FAST Modul stellt eine Weiterentwicklung gegenüber dem FM 350-2 dar und ist für hochdynamische Anwendungen konzipiert.  
+In diesem Abschnitt werden die technologischen Unterschiede sowie die Vorteile des TM FAST Moduls in Bezug auf Echtzeitfähigkeit und Signalverarbeitung betrachtet.  
+Außerdem wird die Kompatibilität des Moduls mit bestehenden SPS-Systemen analysiert.  
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\section{Einführung in VHDL und FPGA-Technologie (maybe als software zusammenfassen)}  
+ChatGPT:
+FPGAs (Field Programmable Gate Arrays) bieten eine leistungsstarke Alternative zu klassischen SPS-Modulen.  
+Dieser Abschnitt behandelt die Grundlagen der VHDL-Programmierung und die Architektur von FPGAs.  
+Ein besonderer Fokus liegt auf den Unterschieden zwischen FPGAs, Mikrocontrollern und herkömmlichen SPS-Modulen sowie deren jeweiligen Vor- und Nachteilen in der Automatisierungstechnik.  
+Abschließend werden praxisnahe Beispiele für die Implementierung von Zähl- und Messfunktionen mit VHDL vorgestellt.  
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\section{Grundlagen des TIA Portals und dessen Bedeutung für die Integration (maybe als software zusammenfassen)}  
+ChatGPT:
+Das TIA Portal ist eine zentrale Entwicklungsumgebung für SPS-Programmierung und Systemintegration.  
+Hier werden der Aufbau und die Struktur des TIA Portals beschrieben, einschließlich der unterstützten Programmiersprachen wie KOP (Kontaktplan), FUP (Funktionsplan) und SCL (Structured Control Language).  
+Weiterhin wird die Integration von Modulen wie FM 350-2 oder TM FAST erläutert.  
+Schließlich werden Diagnosemöglichkeiten und Optimierungsstrategien für SPS-Programme im TIA Portal vorgestellt.  
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+\section{Maybe}
+-Automatisierungspyramide
+-Echtzeitsysteme? übergang zu was ich mache (ist das wichtig? wahrscheinlich nicht)

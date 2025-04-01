@@ -106,6 +106,10 @@
 	breakautoindent=true
 }
 
+\usepackage{tocloft}
+\renewcommand{\cftsubsecfont}{\small} % Ändert die Schriftgröße der Subsections im Inhaltsverzeichnis
+\renewcommand{\cftsubsecpagefont}{\small} % Ändert die Schriftgröße der Seitenzahlen der Subsections
+
 % page setup
 % \setlength{\topskip}{\ht\strutbox}
 % \geometry{paper=a4paper,left=2.5cm,top=2.5cm,right=2.5,buttom=2.0,bindingoffset=.8cm}
@@ -138,7 +142,7 @@
 \begin{document}
 
 \setcounter{secnumdepth}{3}  % numerate subsections
-\setcounter{tocdepth}{2}  % ...but don't include them in toc
+\setcounter{tocdepth}{1}  % ...but don't include them in toc
 
 \frontmatter
 \include{cover}\cleardoublepage

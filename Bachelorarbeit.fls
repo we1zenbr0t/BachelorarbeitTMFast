@@ -365,6 +365,8 @@ INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\listings\lstmisc
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\listings\listings.cfg
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\listings\listings.cfg
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\listings\listings.cfg
+INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\tocloft\tocloft.sty
+INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\tocloft\tocloft.sty
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\blindtext\blindtext.sty
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\blindtext\blindtext.sty
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex\latex\tools\xspace.sty
@@ -498,10 +500,10 @@ INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ec.e
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\enc\dvips\lm\lm-ts1.enc
 OUTPUT content\0_abstract.aux
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
-INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT .\Bachelorarbeit.toc
 INPUT .\Bachelorarbeit.toc
 INPUT Bachelorarbeit.toc
+INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmbx12.tfm
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr12.tfm
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr8.tfm
 INPUT C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\rm-lmr6.tfm

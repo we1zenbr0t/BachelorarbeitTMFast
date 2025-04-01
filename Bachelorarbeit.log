@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  1 APR 2025 11:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  1 APR 2025 15:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -925,70 +925,131 @@ File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
 File: listings.cfg 2024/09/23 1.10c listings configuration
 ))
 Package: listings 2024/09/23 1.10c (Carsten Heinz)
- (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/blindtext\blindtext.sty
+
+
+Class scrbook Warning: Usage of package `tocloft' together
+(scrbook)              with a KOMA-Script class is not recommended.
+(scrbook)              I'd suggest to use options like `listof=entryprefix',
+(scrbook)              commands like `\listoflofentryname' or
+(scrbook)              `\listoflotentryname', and `\DeclareTOCStyleEntry' or
+(scrbook)              `\RedeclareSectionCommand' instead of this package,
+(scrbook)              because it breaks several KOMA-Script features of
+(scrbook)              the list of figures, list of tables and table of
+(scrbook)              contents, i.e., options like `listof=numbered',
+(scrbook)              `listof=flat or `toc=flat', commands like
+(scrbook)              `\BeforeTOCHead{...}' and `\AfterTOCHead{...}',
+(scrbook)              `\BeforeStartingTOC{...}' and \AfterStartingTOC{...}',
+(scrbook)              all features of `\DeclareTOCStyleEntry',
+(scrbook)              and the ToC entry features of `\DeclareSecionCommand'
+(scrbook)              and `\RedeclareSectionCommand' of levels
+(scrbook)              `part', `section', `subsection',
+(scrbook)              `subsubsection', `paragraph' and `subparagraph'.
+(scrbook)              Nevertheless, using requested
+(scrbook)              package `tocloft' on input line 110.
+
+(C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\tocloft.sty
+Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
+Package tocloft Info: The document has chapter divisions on input line 51.
+\cftparskip=\skip107
+\cftbeforetoctitleskip=\skip108
+\cftaftertoctitleskip=\skip109
+\cftbeforepartskip=\skip110
+\cftpartnumwidth=\skip111
+\cftpartindent=\skip112
+\cftbeforechapskip=\skip113
+\cftchapindent=\skip114
+\cftchapnumwidth=\skip115
+\cftbeforesecskip=\skip116
+\cftsecindent=\skip117
+\cftsecnumwidth=\skip118
+\cftbeforesubsecskip=\skip119
+\cftsubsecindent=\skip120
+\cftsubsecnumwidth=\skip121
+\cftbeforesubsubsecskip=\skip122
+\cftsubsubsecindent=\skip123
+\cftsubsubsecnumwidth=\skip124
+\cftbeforeparaskip=\skip125
+\cftparaindent=\skip126
+\cftparanumwidth=\skip127
+\cftbeforesubparaskip=\skip128
+\cftsubparaindent=\skip129
+\cftsubparanumwidth=\skip130
+\cftbeforeloftitleskip=\skip131
+\cftafterloftitleskip=\skip132
+\cftbeforefigskip=\skip133
+\cftfigindent=\skip134
+\cftfignumwidth=\skip135
+\c@lofdepth=\count379
+\c@lotdepth=\count380
+\cftbeforelottitleskip=\skip136
+\cftafterlottitleskip=\skip137
+\cftbeforetabskip=\skip138
+\cfttabindent=\skip139
+\cfttabnumwidth=\skip140
+) (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/blindtext\blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
  (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/tools\xspace.sty
 Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
 )
-\c@blindtext=\count379
-\c@Blindtext=\count380
-\c@blind@countparstart=\count381
-\blind@countxx=\count382
-\blindtext@numBlindtext=\count383
-\blind@countyy=\count384
-\c@blindlist=\count385
-\c@blindlistlevel=\count386
-\c@blindlist@level=\count387
-\blind@listitem=\count388
-\c@blind@listcount=\count389
-\c@blind@levelcount=\count390
-\blind@mathformula=\count391
-\blind@Mathformula=\count392
-\c@blind@randomcount=\count393
-\c@blind@randommax=\count394
-\c@blind@pangramcount=\count395
-\c@blind@pangrammax=\count396
+\c@blindtext=\count381
+\c@Blindtext=\count382
+\c@blind@countparstart=\count383
+\blind@countxx=\count384
+\blindtext@numBlindtext=\count385
+\blind@countyy=\count386
+\c@blindlist=\count387
+\c@blindlistlevel=\count388
+\c@blindlist@level=\count389
+\blind@listitem=\count390
+\c@blind@listcount=\count391
+\c@blind@levelcount=\count392
+\blind@mathformula=\count393
+\blind@Mathformula=\count394
+\c@blind@randomcount=\count395
+\c@blind@randommax=\count396
+\c@blind@pangramcount=\count397
+\c@blind@pangrammax=\count398
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'ngerman'.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 138.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 142.
  (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/5_Integration.aux) (content/6_Aspekte.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux) (content/11_Other.aux))
 \openout1 = `Bachelorarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 138.
-LaTeX Font Info:    ... okay on input line 138.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
  (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count397
+\scratchcounter=\count399
 \scratchdimen=\dimen303
 \scratchbox=\box83
-\nofMPsegments=\count398
-\nofMParguments=\count399
+\nofMPsegments=\count400
+\nofMParguments=\count401
 \everyMPshowfont=\toks59
-\MPscratchCnt=\count400
+\MPscratchCnt=\count402
 \MPscratchDim=\dimen304
-\MPnumerator=\count401
-\makeMPintoPDFobject=\count402
+\MPnumerator=\count403
+\makeMPintoPDFobject=\count404
 \everyMPtoPDFconversion=\toks60
 ) (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1032,7 +1093,7 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package todonotes Warning: The length marginparwidth is less than 2cm and will most likely cause issues with the appearance of inserted todonotes. The issue can be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to loading the todonotes package. on input line 138.
+Package todonotes Warning: The length marginparwidth is less than 2cm and will most likely cause issues with the appearance of inserted todonotes. The issue can be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to loading the todonotes package. on input line 142.
 
 (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
@@ -1040,7 +1101,7 @@ Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PDF (HO)
 Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 ))
-Package hyperref Info: Link coloring ON on input line 138.
+Package hyperref Info: Link coloring ON on input line 142.
  (Bachelorarbeit.out) (Bachelorarbeit.out)
 \@outlinefile=\write4
 \openout4 = `Bachelorarbeit.out'.
@@ -1052,16 +1113,16 @@ Class scrbook Info: loading recommended package `bookmark'.
 (scrbook)           `bookmarkpackage=false' before \begin{document} and
 (scrbook)           you can avoid this message adding:
 (scrbook)             \usepackage{bookmark}
-(scrbook)           before \begin{document} on input line 138.
+(scrbook)           before \begin{document} on input line 142.
  (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
  (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/bookmark\bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
-\BKM@id=\count403
+\BKM@id=\count405
 ))
-\c@lstlisting=\count404
-Package tocbasic Info: setting babel extension for `lol' on input line 138.
-\scr@dte@lstlisting@maxnumwidth=\skip107
+\c@lstlisting=\count406
+Package tocbasic Info: setting babel extension for `lol' on input line 142.
+\scr@dte@lstlisting@maxnumwidth=\skip141
 \openout2 = `cover.aux'.
 
  (cover.tex
@@ -1139,8 +1200,6 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 
 
-
-
 ])
 \tf@toc=\write5
 \openout5 = `Bachelorarbeit.toc'.
@@ -1152,27 +1211,49 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
  (content/1_Einleitung.tex
 chapter 1.
-)
+
 
 [1
 
 
 
 
-]
+])
+
+[2]
+
+[3]
 \openout2 = `content/2_Grundlagen.aux'.
 
  (content/2_Grundlagen.tex
 chapter 2.
-)
 
-[2
+
+[4
 
 
 
 
 
 ]
+Overfull \hbox (6.5586pt too wide) in paragraph at lines 38--54
+\T1/lmr/m/n/12 Grundsätzlich ar-bei-tet ei-ne Spei-cher-pro-gram-mier-ba-re Steue-rung nach dem Eingabe-
+ []
+
+
+
+[5]
+Overfull \hbox (6.88185pt too wide) in paragraph at lines 55--78
+\T1/lmr/m/n/12 Pro-jek-tie-rung, Pro-gram-mie-rung und In-be-trieb-nah-me von SI-MA-TIC S7-Steuerungen
+ []
+
+
+
+[6]
+
+[7])
+
+[8]
 \openout2 = `content/3_Analyse.aux'.
 
  (content/3_Analyse.tex
@@ -1187,7 +1268,7 @@ Overfull \hbox (41.07994pt too wide) in paragraph at lines 20--21
 
 
 
-[3
+[9
 
 
 
@@ -1200,15 +1281,15 @@ Overfull \hbox (37.66383pt too wide) in paragraph at lines 28--29
 
 
 
-[4]
-<Fotos/Beispiel_fm350-2.png, id=138, 197.538pt x 275.22826pt>
+[10]
+<Fotos/Beispiel_fm350-2.png, id=161, 197.538pt x 275.22826pt>
 File: Fotos/Beispiel_fm350-2.png Graphic file (type png)
 <use Fotos/Beispiel_fm350-2.png>
 Package pdftex.def Info: Fotos/Beispiel_fm350-2.png  used on input line 75.
 (pdftex.def)             Requested size: 333.92206pt x 465.26547pt.
 
 
-[5]
+[11]
 
 Package tabularx Warning: X Columns too narrow (table too wide)
 (tabularx)                 on input line 118.
@@ -2041,16 +2122,16 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 )
 
-[6 <./Fotos/Beispiel_fm350-2.png>]
+[12 <./Fotos/Beispiel_fm350-2.png>]
 
-[7]
+[13]
 \openout2 = `content/4_Entwicklung.aux'.
 
  (content/4_Entwicklung.tex
 chapter 4.
 )
 
-[8
+[14
 
 
 
@@ -2063,7 +2144,7 @@ chapter 4.
 chapter 5.
 )
 
-[9
+[15
 
 
 
@@ -2076,7 +2157,7 @@ chapter 5.
 chapter 6.
 )
 
-[10
+[16
 
 
 
@@ -2089,7 +2170,7 @@ chapter 6.
 chapter 7.
 )
 
-[11
+[17
 
 
 
@@ -2140,7 +2221,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
 )
 
-[12
+[18
 
 
 
@@ -2153,7 +2234,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 chapter 8.
 
 
-[13
+[19
 
 
 
@@ -2161,14 +2242,14 @@ chapter 8.
 
 ]
 
-[14]
+[20]
 Overfull \hbox (2.99683pt too wide) in paragraph at lines 49--51
 []\T1/lmr/m/n/12 Durch die-se struk-tu-rier-te Vor-ge-hens-wei-se kön-nen Sie si-cher-stel-len, dass Ih-re VHDL-
  []
 
 
 
-[15]
+[21]
 chapter 9.
 
 Overfull \hbox (24.32137pt too wide) in paragraph at lines 53--57
@@ -2182,12 +2263,12 @@ Overfull \hbox (12.63663pt too wide) in paragraph at lines 79--80
 
 
 
-[16
+[22
 
 
 ]
 
-[17]
+[23]
 chapter 10.
 
 Overfull \hbox (9.9614pt too wide) in paragraph at lines 111--113
@@ -2196,14 +2277,14 @@ Overfull \hbox (9.9614pt too wide) in paragraph at lines 111--113
 
 
 
-[18
+[24
 
 
 ]
 chapter 11.
 )
 
-[19
+[25
 
 
 ] (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/5_Integration.aux) (content/6_Aspekte.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux) (content/11_Other.aux))
@@ -2215,17 +2296,17 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 37863 strings out of 473522
- 778523 string characters out of 5713157
- 1392393 words of memory out of 5000000
- 60302 multiletter control sequences out of 15000+600000
+ 38142 strings out of 473522
+ 782792 string characters out of 5713157
+ 1398783 words of memory out of 5000000
+ 60567 multiletter control sequences out of 15000+600000
  620083 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,20n,107p,10937b,777s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 108i,20n,107p,10937b,729s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Bachelorarbeit.pdf (22 pages, 321569 bytes).
+Output written on Bachelorarbeit.pdf (28 pages, 338180 bytes).
 PDF statistics:
- 422 PDF objects out of 1000 (max. 8388607)
- 89 named destinations out of 1000 (max. 500000)
- 375 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 443 PDF objects out of 1000 (max. 8388607)
+ 99 named destinations out of 1000 (max. 500000)
+ 351 words of extra memory for PDF output out of 10000 (max. 10000000)
 
