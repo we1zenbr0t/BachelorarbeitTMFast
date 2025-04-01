@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  12 MAR 2025 15:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  25 MAR 2025 16:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2014,7 +2014,7 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
 
 
 [4]
-<Fotos/Beispiel für den Einsatz einer FM 350-2 in der S7-300.png, id=76, 197.538pt x 275.22826pt>
+<Fotos/Beispiel für den Einsatz einer FM 350-2 in der S7-300.png, id=78, 197.538pt x 275.22826pt>
 File: Fotos/Beispiel für den Einsatz einer FM 350-2 in der S7-300.png Graphic file (type png)
 <use Fotos/Beispiel für den Einsatz einer FM 350-2 in der S7-300.png>
 Package pdftex.def Info: Fotos/Beispiel für den Einsatz einer FM 350-2 in der S7-300.png  used on input line 115.
@@ -2040,6 +2040,11 @@ Overfull \hbox (24.32137pt too wide) in paragraph at lines 2--6
  []
 
 
+Overfull \hbox (12.63663pt too wide) in paragraph at lines 28--29
+\T1/lmr/m/n/12 (�ber-lauf f�r coun-ter (jus-tie-rung)) / TMFast er-for-dert Kommunikations-Protokolle 
+ []
+
+
 
 [8
 
@@ -2048,10 +2053,24 @@ Overfull \hbox (24.32137pt too wide) in paragraph at lines 2--6
 
 
 ]
+
+[9]
 chapter 3.
+
+Overfull \hbox (9.9614pt too wide) in paragraph at lines 56--58
+[]\T1/lmr/m/n/12 - 0000_0000_0000_0000_0000_0000_0000_0001 -> FB_IF(0)(0)<='1'; - /->Q0.0
+ []
+
+
+
+[10
+
+
+]
+chapter 4.
 )
 
-[9
+[11
 
 
 ]
@@ -2099,7 +2118,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
 )
 
-[10
+[12
 
 
 
@@ -2114,17 +2133,17 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 37668 strings out of 473522
- 773341 string characters out of 5713157
+ 37672 strings out of 473522
+ 773370 string characters out of 5713157
  1392393 words of memory out of 5000000
- 60184 multiletter control sequences out of 15000+600000
+ 60185 multiletter control sequences out of 15000+600000
  620719 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,19n,107p,10937b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Bachelorarbeit.pdf (12 pages, 304496 bytes).
+Output written on Bachelorarbeit.pdf (14 pages, 308976 bytes).
 PDF statistics:
- 220 PDF objects out of 1000 (max. 8388607)
- 46 named destinations out of 1000 (max. 500000)
- 127 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 235 PDF objects out of 1000 (max. 8388607)
+ 49 named destinations out of 1000 (max. 500000)
+ 135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
