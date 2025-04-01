@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  25 MAR 2025 16:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  1 APR 2025 11:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -956,7 +956,7 @@ Package csquotes Info: Redefining alias 'default' -> 'ngerman'.
 LaTeX Font Info:    Trying to load font information for T1+lmr on input line 138.
  (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/2_data.aux) (content/3_method.aux) (content/4_experiments.aux) (content/10_Inhaltsverzeichnis.aux))
+) (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/5_Integration.aux) (content/6_Aspekte.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux) (content/11_Other.aux))
 \openout1 = `Bachelorarbeit.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 138.
@@ -1127,13 +1127,6 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 2.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 2.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8.
- (C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-))
-\tf@toc=\write5
-\openout5 = `Bachelorarbeit.toc'.
-
 
 
 [2
@@ -1148,858 +1141,50 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 
 
-]
-\openout2 = `content/2_data.aux'.
+])
+\tf@toc=\write5
+\openout5 = `Bachelorarbeit.toc'.
 
- (content/2_data.tex
+
+
+[3]
+\openout2 = `content/1_Einleitung.aux'.
+
+ (content/1_Einleitung.tex
+chapter 1.
+)
 
 [1
 
 
-])
-Overfull \hbox (2.99683pt too wide) in paragraph at lines 49--156
-[]\T1/lmr/m/n/12 Durch die-se struk-tu-rier-te Vor-ge-hens-wei-se kön-nen Sie si-cher-stel-len, dass Ih-re VHDL-
- []
-
-
-
-[2]
-\openout2 = `content/3_method.aux'.
-
- (content/3_method.tex
-chapter 1.
-
-Package tabularx Warning: X Columns too narrow (table too wide)
-(tabularx)                 on input line 32.
-
-
-Overfull \hbox (47.54645pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/bx/n/12 Kriterium| 
- []
-
-
-Overfull \hbox (10.44516pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/bx/n/12 TM
- []
-
-
-Overfull \hbox (22.31914pt too wide) in paragraph at lines 32--32
-\T1/lmr/bx/n/12 FAST| 
- []
-
-
-Overfull \hbox (9.54213pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/bx/n/12 FM
- []
-
-
-Overfull \hbox (13.00017pt too wide) in paragraph at lines 32--32
-\T1/lmr/bx/n/12 350-
- []
-
-
-Overfull \hbox (47.97455pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Architektur| 
- []
-
-
-Overfull \hbox (25.85634pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 FPGA-
- []
-
-
-Overfull \hbox (26.17645pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 basiert,
- []
-
-
-Overfull \hbox (3.91681pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 fle-
- []
-
-
-Overfull \hbox (1.63234pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 xi-
- []
-
-
-Overfull \hbox (3.26413pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ble
- []
-
-
-Overfull \hbox (7.83412pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 und
- []
-
-
-Overfull \hbox (9.13914pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 pro-
- []
-
-
-Overfull \hbox (18.27815pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 gram-
- []
-
-
-Overfull \hbox (15.01416pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 mier-
- []
-
-
-Overfull \hbox (4.56981pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ba-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 re
- []
-
-
-Overfull \hbox (17.94714pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Hard-
- []
-
-
-Overfull \hbox (6.2014pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wa-
- []
-
-
-Overfull \hbox (1.95816pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 re-
- []
-
-
-Overfull \hbox (16.97247pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 platt-
- []
-
-
-Overfull \hbox (12.07674pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 form| 
- []
-
-
-Overfull \hbox (21.76779pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Reines
- []
-
-
-Overfull \hbox (11.75029pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Zäh-
- []
-
-
-Overfull \hbox (5.22215pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ler-
- []
-
-
-Overfull \hbox (7.83383pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 mo-
- []
-
-
-Overfull \hbox (4.57013pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 dul
- []
-
-
-Overfull \hbox (4.56981pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 oh-
- []
-
-
-Overfull \hbox (25.85634pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 FPGA-
- []
-
-
-Overfull \hbox (48.30545pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Technologie| 
- []
-
-
-Overfull \hbox (61.84941pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Funktionalität| 
- []
-
-
-Overfull \hbox (16.31612pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Kann
- []
-
-
-Overfull \hbox (13.70894pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 kom-
- []
-
-
-Overfull \hbox (7.1808pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ple-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 xe
- []
-
-
-Overfull \hbox (84.62991pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Prozesssteuerungs-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-
- []
-
-
-Overfull \hbox (7.83412pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 und
- []
-
-
-Overfull \hbox (17.62053pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Über-
- []
-
-
-Overfull \hbox (6.2014pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wa-
- []
-
-
-Overfull \hbox (26.82964pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 chungs-
- []
-
-
-Overfull \hbox (8.16005pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 auf-
- []
-
-
-Overfull \hbox (3.91681pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ga-
- []
-
-
-Overfull \hbox (6.8545pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ben
- []
-
-
-Overfull \hbox (15.34052pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 über-
- []
-
-
-Overfull \hbox (10.4448pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 neh-
- []
-
-
-Overfull \hbox (9.79214pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 men| 
- []
-
-
-Overfull \hbox (50.00278pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Spezialisiert
- []
-
-
-Overfull \hbox (4.24338pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 auf
- []
-
-
-Overfull \hbox (11.75029pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Zäh-
- []
-
-
-Overfull \hbox (6.52812pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 len,
- []
-
-
-Overfull \hbox (38.34845pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Frequenz-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-
- []
-
-
-Overfull \hbox (7.83412pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 und
- []
-
-
-Overfull \hbox (17.46014pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Dreh-
- []
-
-
-Overfull \hbox (13.05579pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 zahl-
- []
-
-
-Overfull \hbox (11.8155pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 mes-
- []
-
-
-Overfull \hbox (11.8158pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 sung| 
- []
-
-
-Overfull \hbox (82.21481pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Prozessintegration| 
- []
-
-
-Overfull \hbox (16.31612pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Kann
- []
-
-
-Overfull \hbox (1.95882pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 di-
- []
-
-
-Overfull \hbox (8.81233pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 rekt
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 in
- []
-
-
-Overfull \hbox (6.52812pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 den
- []
-
-
-Overfull \hbox (10.60567pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Pro-
- []
-
-
-Overfull \hbox (11.42432pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 duk-
- []
-
-
-Overfull \hbox (9.20448pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ons-
- []
-
-
-Overfull \hbox (9.13914pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 pro-
- []
-
-
-Overfull \hbox (7.96349pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 zess
- []
-
-
-Overfull \hbox (7.1808pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ein-
- []
-
-
-Overfull \hbox (11.09714pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 grei-
- []
-
-
-Overfull \hbox (3.59038pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 fen
- []
-
-
-Overfull \hbox (7.83412pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 und
- []
-
-
-Overfull \hbox (10.60567pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Pro-
- []
-
-
-Overfull \hbox (7.24548pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 zes-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 s-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 a-
- []
-
-
-Overfull \hbox (5.87515pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 lar-
- []
-
-
-Overfull \hbox (3.26416pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 me
- []
-
-
-Overfull \hbox (9.20448pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 aus-
- []
-
-
-Overfull \hbox (1.30582pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 lö-
- []
-
-
-Overfull \hbox (4.63481pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 sen| 
- []
-
-
-Overfull \hbox (22.02855pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Liefert
- []
-
-
-Overfull \hbox (24.8056pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Zähler-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-
- []
-
-
-Overfull \hbox (7.83412pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 und
- []
-
-
-Overfull \hbox (17.42517pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Mess-
- []
-
-
-Overfull \hbox (10.11774pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wer-
- []
-
-
-Overfull \hbox (1.30548pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 te,
- []
-
-
-Overfull \hbox (3.26413pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 die
- []
-
-
-Overfull \hbox (6.52824pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 von
- []
-
-
-Overfull \hbox (4.56947pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 der
- []
-
-
-Overfull \hbox (15.34052pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 über-
- []
-
-
-Overfull \hbox (3.26381pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ge-
- []
-
-
-Overfull \hbox (9.13914pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ord-
- []
-
-
-Overfull \hbox (3.91681pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ne-
- []
-
-
-Overfull \hbox (4.56947pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ten
- []
-
-
-Overfull \hbox (20.23611pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Steue-
- []
-
-
-Overfull \hbox (11.75046pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 rung
- []
-
-
-Overfull \hbox (8.8124pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wei-
- []
-
-
-Overfull \hbox (6.5275pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ter-
- []
-
-
-Overfull \hbox (7.83327pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ver-
- []
-
-
-Overfull \hbox (2.61116pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ar-
- []
-
-
-Overfull \hbox (7.50719pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 bei-
- []
-
-
-Overfull \hbox (2.61082pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 tet
- []
-
-
-Overfull \hbox (10.11774pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wer-
- []
-
-
-Overfull \hbox (6.52812pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 den| 
- []
-
-
-Overfull \hbox (45.20326pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Flexibilität| 
- []
-
-
-Overfull \hbox (14.68312pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Hohe
- []
-
-
-Overfull \hbox (8.32082pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Fle-
- []
-
-
-Overfull \hbox (1.63234pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 xi-
- []
-
-
-Overfull \hbox (1.95882pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 bi-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 li-
- []
-
-
-Overfull \hbox (3.26382pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 tät
- []
-
-
-Overfull \hbox (7.83412pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 und
- []
-
-
-Overfull \hbox (7.50282pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 An-
- []
-
-
-Overfull \hbox (9.20448pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 pas-
- []
-
-
-Overfull \hbox (20.36714pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 sungs-
- []
-
-
-Overfull \hbox (1.63206pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 fä-
- []
-
-
-Overfull \hbox (7.8338pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 hig-
- []
-
-
-Overfull \hbox (7.18059pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 keit
- []
-
-
-Overfull \hbox (17.29904pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 durch
- []
-
-
-Overfull \hbox (25.85634pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 FPGA-
- []
-
-
-Overfull \hbox (47.97455pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Architektur| 
- []
-
-
-Overfull \hbox (44.61426pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Festgelegte
- []
-
-
-Overfull \hbox (18.11316pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Funk-
- []
-
-
-Overfull \hbox (5.87515pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 tio-
- []
-
-
-Overfull \hbox (4.56981pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 na-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 li-
- []
-
-
-Overfull \hbox (6.52782pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 tät,
- []
-
-
-Overfull \hbox (3.26413pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 die
- []
-
-
-Overfull \hbox (13.70865pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 nicht
- []
-
-
-Overfull \hbox (4.56981pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 oh-
- []
-
-
-Overfull \hbox (11.74567pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Wei-
- []
-
-
-Overfull \hbox (1.95816pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 te-
- []
-
-
-Overfull \hbox (2.67616pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 res
- []
-
-
-Overfull \hbox (1.95816pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 er-
- []
-
-
-Overfull \hbox (8.8124pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wei-
- []
-
-
-Overfull \hbox (7.18016pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 tert
- []
-
-
-Overfull \hbox (10.11774pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wer-
- []
-
-
-Overfull \hbox (6.52812pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 den
- []
-
 
-Overfull \hbox (13.38263pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 kann| 
- []
-
-
-Overfull \hbox (65.9316pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Zählfunktionen| 
- []
-
-
-Overfull \hbox (38.34845pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Frequenz-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-
- []
-
-
-Overfull \hbox (7.83412pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 und
- []
-
-
-Overfull \hbox (17.46014pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Dreh-
- []
-
-
-Overfull \hbox (13.05579pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 zahl-
- []
-
-
-Overfull \hbox (11.8155pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 mes-
- []
-
-
-Overfull \hbox (11.8158pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 sung| 
- []
-
-
-Overfull \hbox (47.48915pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Einbindung
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-\T1/lmr/m/n/12 in
- []
-
-
-Overfull \hbox (20.23611pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 Steue-
- []
-
-
-Overfull \hbox (20.3018pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 rungs-
- []
-
-
-Overfull \hbox (2.61116pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 ar-
- []
-
-
-Overfull \hbox (6.8544pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 chi-
- []
-
-
-Overfull \hbox (8.15967pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 tek-
- []
-
-
-Overfull \hbox (3.91682pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 tur| 
- []
-
-
-Overfull \hbox (46.0824pt too wide) in paragraph at lines 32--32
-[]|\T1/lmr/m/n/12 Industrielle
- []
-
 
-Overfull \hbox (7.50282pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 An-
- []
+]
+\openout2 = `content/2_Grundlagen.aux'.
 
+ (content/2_Grundlagen.tex
+chapter 2.
+)
 
-Overfull \hbox (12.07639pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 wen-
- []
+[2
 
 
-Overfull \hbox (11.7508pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 dun-
- []
 
 
-Overfull \hbox (5.87512pt too wide) in paragraph at lines 32--32
-\T1/lmr/m/n/12 gen| 
- []
 
+]
+\openout2 = `content/3_Analyse.aux'.
 
-Overfull \hbox (158.75838pt too wide) in alignment at lines 32--32
-[][][] 
+ (content/3_Analyse.tex
+chapter 3.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 20.
+(C:\Users\z004b0bv\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Overfull \hbox (41.07994pt too wide) in paragraph at lines 20--21
+[]\T1/lmr/m/n/12 Auslesen der Rück-mel-de-si-gna-le und Spei-che-rung in der Struk-tur \T1/lmtt/m/n/12 CHECKBACK_SIGNALS 
  []
-
-
-LaTeX Warning: Float too large for page by 898.86821pt on input line 35.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 61.
 
 
 [3
@@ -2009,42 +1194,861 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 
 
 ]
-LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 89.
+Overfull \hbox (37.66383pt too wide) in paragraph at lines 28--29
+\T1/lmr/m/n/12 Mit der Funk-ti-on extttFC CNT2_WR oder dem Funk-ti-ons-bau-stein extttFB CNT2WRPN
+ []
+
 
 
 [4]
-<Fotos/Beispiel fÃ¼r den Einsatz einer FM 350-2 in der S7-300.png, id=78, 197.538pt x 275.22826pt>
-File: Fotos/Beispiel fÃ¼r den Einsatz einer FM 350-2 in der S7-300.png Graphic file (type png)
-<use Fotos/Beispiel fÃ¼r den Einsatz einer FM 350-2 in der S7-300.png>
-Package pdftex.def Info: Fotos/Beispiel fÃ¼r den Einsatz einer FM 350-2 in der S7-300.png  used on input line 115.
+<Fotos/Beispiel_fm350-2.png, id=138, 197.538pt x 275.22826pt>
+File: Fotos/Beispiel_fm350-2.png Graphic file (type png)
+<use Fotos/Beispiel_fm350-2.png>
+Package pdftex.def Info: Fotos/Beispiel_fm350-2.png  used on input line 75.
 (pdftex.def)             Requested size: 333.92206pt x 465.26547pt.
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+[5]
+
+Package tabularx Warning: X Columns too narrow (table too wide)
+(tabularx)                 on input line 118.
+
+
+Overfull \hbox (47.54645pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/bx/n/12 Kriterium| 
+ []
+
+
+Overfull \hbox (10.44516pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/bx/n/12 TM
+ []
+
+
+Overfull \hbox (22.31914pt too wide) in paragraph at lines 118--118
+\T1/lmr/bx/n/12 FAST| 
+ []
+
+
+Overfull \hbox (9.54213pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/bx/n/12 FM
+ []
+
+
+Overfull \hbox (13.00017pt too wide) in paragraph at lines 118--118
+\T1/lmr/bx/n/12 350-
+ []
+
+
+Overfull \hbox (47.97455pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Architektur| 
+ []
+
+
+Overfull \hbox (25.85634pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 FPGA-
+ []
+
+
+Overfull \hbox (26.17645pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 basiert,
+ []
+
+
+Overfull \hbox (3.91681pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 fle-
+ []
+
+
+Overfull \hbox (1.63234pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 xi-
+ []
+
+
+Overfull \hbox (3.26413pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ble
+ []
+
+
+Overfull \hbox (7.83412pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 und
+ []
+
+
+Overfull \hbox (9.13914pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 pro-
+ []
+
+
+Overfull \hbox (18.27815pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 gram-
+ []
+
+
+Overfull \hbox (15.01416pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 mier-
+ []
+
+
+Overfull \hbox (4.56981pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ba-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 re
+ []
+
+
+Overfull \hbox (17.94714pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Hard-
+ []
+
+
+Overfull \hbox (6.2014pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wa-
+ []
+
+
+Overfull \hbox (1.95816pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 re-
+ []
+
+
+Overfull \hbox (16.97247pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 platt-
+ []
+
+
+Overfull \hbox (12.07674pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 form| 
+ []
+
+
+Overfull \hbox (21.76779pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Reines
+ []
+
+
+Overfull \hbox (11.75029pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Zäh-
+ []
+
+
+Overfull \hbox (5.22215pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ler-
+ []
+
+
+Overfull \hbox (7.83383pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 mo-
+ []
+
+
+Overfull \hbox (4.57013pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 dul
+ []
+
+
+Overfull \hbox (4.56981pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 oh-
+ []
+
+
+Overfull \hbox (25.85634pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 FPGA-
+ []
+
+
+Overfull \hbox (48.30545pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Technologie| 
+ []
+
+
+Overfull \hbox (61.84941pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Funktionalität| 
+ []
+
+
+Overfull \hbox (16.31612pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Kann
+ []
+
+
+Overfull \hbox (13.70894pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 kom-
+ []
+
+
+Overfull \hbox (7.1808pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ple-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 xe
+ []
+
+
+Overfull \hbox (84.62991pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Prozesssteuerungs-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+
+ []
+
+
+Overfull \hbox (7.83412pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 und
+ []
+
+
+Overfull \hbox (17.62053pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Über-
+ []
+
+
+Overfull \hbox (6.2014pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wa-
+ []
+
+
+Overfull \hbox (26.82964pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 chungs-
+ []
+
+
+Overfull \hbox (8.16005pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 auf-
+ []
+
+
+Overfull \hbox (3.91681pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ga-
+ []
+
+
+Overfull \hbox (6.8545pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ben
+ []
+
+
+Overfull \hbox (15.34052pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 über-
+ []
+
+
+Overfull \hbox (10.4448pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 neh-
+ []
+
+
+Overfull \hbox (9.79214pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 men| 
+ []
+
+
+Overfull \hbox (50.00278pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Spezialisiert
+ []
+
+
+Overfull \hbox (4.24338pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 auf
+ []
+
+
+Overfull \hbox (11.75029pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Zäh-
+ []
+
+
+Overfull \hbox (6.52812pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 len,
+ []
+
+
+Overfull \hbox (38.34845pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Frequenz-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+
+ []
+
+
+Overfull \hbox (7.83412pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 und
+ []
+
+
+Overfull \hbox (17.46014pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Dreh-
+ []
+
+
+Overfull \hbox (13.05579pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 zahl-
+ []
+
+
+Overfull \hbox (11.8155pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 mes-
+ []
+
+
+Overfull \hbox (11.8158pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 sung| 
+ []
+
+
+Overfull \hbox (82.21481pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Prozessintegration| 
+ []
+
+
+Overfull \hbox (16.31612pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Kann
+ []
+
+
+Overfull \hbox (1.95882pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 di-
+ []
+
+
+Overfull \hbox (8.81233pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 rekt
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 in
+ []
+
+
+Overfull \hbox (6.52812pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 den
+ []
+
+
+Overfull \hbox (10.60567pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Pro-
+ []
+
+
+Overfull \hbox (11.42432pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 duk-
+ []
+
+
+Overfull \hbox (9.20448pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ons-
+ []
+
+
+Overfull \hbox (9.13914pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 pro-
+ []
+
+
+Overfull \hbox (7.96349pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 zess
+ []
+
+
+Overfull \hbox (7.1808pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ein-
+ []
+
+
+Overfull \hbox (11.09714pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 grei-
+ []
+
+
+Overfull \hbox (3.59038pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 fen
+ []
+
+
+Overfull \hbox (7.83412pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 und
+ []
+
+
+Overfull \hbox (10.60567pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Pro-
+ []
+
+
+Overfull \hbox (7.24548pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 zes-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 s-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 a-
+ []
+
+
+Overfull \hbox (5.87515pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 lar-
+ []
+
+
+Overfull \hbox (3.26416pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 me
+ []
+
+
+Overfull \hbox (9.20448pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 aus-
+ []
+
+
+Overfull \hbox (1.30582pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 lö-
+ []
+
+
+Overfull \hbox (4.63481pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 sen| 
+ []
+
+
+Overfull \hbox (22.02855pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Liefert
+ []
+
+
+Overfull \hbox (24.8056pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Zähler-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+
+ []
+
+
+Overfull \hbox (7.83412pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 und
+ []
+
+
+Overfull \hbox (17.42517pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Mess-
+ []
+
+
+Overfull \hbox (10.11774pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wer-
+ []
+
+
+Overfull \hbox (1.30548pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 te,
+ []
+
+
+Overfull \hbox (3.26413pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 die
+ []
+
+
+Overfull \hbox (6.52824pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 von
+ []
+
+
+Overfull \hbox (4.56947pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 der
+ []
+
+
+Overfull \hbox (15.34052pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 über-
+ []
+
+
+Overfull \hbox (3.26381pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ge-
+ []
+
+
+Overfull \hbox (9.13914pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ord-
+ []
+
+
+Overfull \hbox (3.91681pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ne-
+ []
+
+
+Overfull \hbox (4.56947pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ten
+ []
+
+
+Overfull \hbox (20.23611pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Steue-
+ []
+
+
+Overfull \hbox (11.75046pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 rung
+ []
+
+
+Overfull \hbox (8.8124pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wei-
+ []
+
+
+Overfull \hbox (6.5275pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ter-
+ []
+
+
+Overfull \hbox (7.83327pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ver-
+ []
+
+
+Overfull \hbox (2.61116pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ar-
+ []
+
+
+Overfull \hbox (7.50719pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 bei-
+ []
+
+
+Overfull \hbox (2.61082pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 tet
+ []
+
+
+Overfull \hbox (10.11774pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wer-
+ []
+
+
+Overfull \hbox (6.52812pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 den| 
+ []
+
+
+Overfull \hbox (45.20326pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Flexibilität| 
+ []
+
+
+Overfull \hbox (14.68312pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Hohe
+ []
+
+
+Overfull \hbox (8.32082pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Fle-
+ []
+
+
+Overfull \hbox (1.63234pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 xi-
+ []
+
+
+Overfull \hbox (1.95882pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 bi-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 li-
+ []
+
+
+Overfull \hbox (3.26382pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 tät
+ []
+
+
+Overfull \hbox (7.83412pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 und
+ []
+
+
+Overfull \hbox (7.50282pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 An-
+ []
+
+
+Overfull \hbox (9.20448pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 pas-
+ []
+
+
+Overfull \hbox (20.36714pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 sungs-
+ []
+
+
+Overfull \hbox (1.63206pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 fä-
+ []
+
+
+Overfull \hbox (7.8338pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 hig-
+ []
+
+
+Overfull \hbox (7.18059pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 keit
+ []
+
+
+Overfull \hbox (17.29904pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 durch
+ []
+
+
+Overfull \hbox (25.85634pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 FPGA-
+ []
+
+
+Overfull \hbox (47.97455pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Architektur| 
+ []
+
+
+Overfull \hbox (44.61426pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Festgelegte
+ []
+
+
+Overfull \hbox (18.11316pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Funk-
+ []
+
+
+Overfull \hbox (5.87515pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 tio-
+ []
+
+
+Overfull \hbox (4.56981pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 na-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 li-
+ []
+
+
+Overfull \hbox (6.52782pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 tät,
+ []
+
+
+Overfull \hbox (3.26413pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 die
+ []
+
+
+Overfull \hbox (13.70865pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 nicht
+ []
+
+
+Overfull \hbox (4.56981pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 oh-
+ []
+
+
+Overfull \hbox (11.74567pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Wei-
+ []
+
+
+Overfull \hbox (1.95816pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 te-
+ []
+
+
+Overfull \hbox (2.67616pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 res
+ []
+
+
+Overfull \hbox (1.95816pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 er-
+ []
+
+
+Overfull \hbox (8.8124pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wei-
+ []
+
+
+Overfull \hbox (7.18016pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 tert
+ []
+
+
+Overfull \hbox (10.11774pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wer-
+ []
+
+
+Overfull \hbox (6.52812pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 den
+ []
+
+
+Overfull \hbox (13.38263pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 kann| 
+ []
+
+
+Overfull \hbox (65.9316pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Zählfunktionen| 
+ []
+
+
+Overfull \hbox (38.34845pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Frequenz-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+
+ []
+
+
+Overfull \hbox (7.83412pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 und
+ []
+
+
+Overfull \hbox (17.46014pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Dreh-
+ []
+
+
+Overfull \hbox (13.05579pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 zahl-
+ []
+
+
+Overfull \hbox (11.8155pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 mes-
+ []
+
+
+Overfull \hbox (11.8158pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 sung| 
+ []
+
+
+Overfull \hbox (47.48915pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Einbindung
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 118--118
+\T1/lmr/m/n/12 in
+ []
+
+
+Overfull \hbox (20.23611pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 Steue-
+ []
+
+
+Overfull \hbox (20.3018pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 rungs-
+ []
+
+
+Overfull \hbox (2.61116pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 ar-
+ []
+
+
+Overfull \hbox (6.8544pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 chi-
+ []
+
+
+Overfull \hbox (8.15967pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 tek-
+ []
+
+
+Overfull \hbox (3.91682pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 tur| 
+ []
+
+
+Overfull \hbox (46.0824pt too wide) in paragraph at lines 118--118
+[]|\T1/lmr/m/n/12 Industrielle
+ []
+
+
+Overfull \hbox (7.50282pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 An-
+ []
+
+
+Overfull \hbox (12.07639pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 wen-
+ []
+
+
+Overfull \hbox (11.7508pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 dun-
+ []
+
+
+Overfull \hbox (5.87512pt too wide) in paragraph at lines 118--118
+\T1/lmr/m/n/12 gen| 
+ []
+
+
+Overfull \hbox (158.75838pt too wide) in alignment at lines 118--118
+[][][] 
+ []
+
+
+LaTeX Warning: Float too large for page by 898.86821pt on input line 121.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 )
 
-[5]
-
-[6 <./Fotos/Beispiel fÃ¼r den Einsatz einer FM 350-2 in der S7-300.png>]
+[6 <./Fotos/Beispiel_fm350-2.png>]
 
 [7]
-\openout2 = `content/4_experiments.aux'.
+\openout2 = `content/4_Entwicklung.aux'.
 
- (content/4_experiments.tex
-chapter 2.
-
-Overfull \hbox (24.32137pt too wide) in paragraph at lines 2--6
-\T1/lmr/m/n/12 Hard-wa-re-con-figs von der CPU oder von TMFast ge-hand-habt wer-den? ->hardwareconfig
- []
-
-
-Overfull \hbox (12.63663pt too wide) in paragraph at lines 28--29
-\T1/lmr/m/n/12 (über-lauf für coun-ter (jus-tie-rung)) / TMFast er-for-dert Kommunikations-Protokolle 
- []
-
-
+ (content/4_Entwicklung.tex
+chapter 4.
+)
 
 [8
 
@@ -2053,24 +2057,42 @@ Overfull \hbox (12.63663pt too wide) in paragraph at lines 28--29
 
 
 ]
+\openout2 = `content/5_Integration.aux'.
 
-[9]
-chapter 3.
+ (content/5_Integration.tex
+chapter 5.
+)
 
-Overfull \hbox (9.9614pt too wide) in paragraph at lines 56--58
-[]\T1/lmr/m/n/12 - 0000_0000_0000_0000_0000_0000_0000_0001 -> FB_IF(0)(0)<='1'; - /->Q0.0
- []
+[9
 
 
+
+
+
+]
+\openout2 = `content/6_Aspekte.aux'.
+
+ (content/6_Aspekte.tex
+chapter 6.
+)
 
 [10
 
 
+
+
+
 ]
-chapter 4.
+\openout2 = `content/7_Fazit_und_Ausblick.aux'.
+
+ (content/7_Fazit_und_Ausblick.tex
+chapter 7.
 )
 
 [11
+
+
+
 
 
 ]
@@ -2124,7 +2146,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
 
 
-] (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/2_data.aux) (content/3_method.aux) (content/4_experiments.aux) (content/10_Inhaltsverzeichnis.aux))
+]
+\openout2 = `content/11_Other.aux'.
+
+ (content/11_Other.tex
+chapter 8.
+
+
+[13
+
+
+
+
+
+]
+
+[14]
+Overfull \hbox (2.99683pt too wide) in paragraph at lines 49--51
+[]\T1/lmr/m/n/12 Durch die-se struk-tu-rier-te Vor-ge-hens-wei-se kön-nen Sie si-cher-stel-len, dass Ih-re VHDL-
+ []
+
+
+
+[15]
+chapter 9.
+
+Overfull \hbox (24.32137pt too wide) in paragraph at lines 53--57
+\T1/lmr/m/n/12 Hard-wa-re-con-figs von der CPU oder von TMFast ge-hand-habt wer-den? ->hardwareconfig
+ []
+
+
+Overfull \hbox (12.63663pt too wide) in paragraph at lines 79--80
+\T1/lmr/m/n/12 (über-lauf für coun-ter (jus-tie-rung)) / TMFast er-for-dert Kommunikations-Protokolle 
+ []
+
+
+
+[16
+
+
+]
+
+[17]
+chapter 10.
+
+Overfull \hbox (9.9614pt too wide) in paragraph at lines 111--113
+[]\T1/lmr/m/n/12 - 0000_0000_0000_0000_0000_0000_0000_0001 -> FB_IF(0)(0)<='1'; - /->Q0.0
+ []
+
+
+
+[18
+
+
+]
+chapter 11.
+)
+
+[19
+
+
+] (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/5_Integration.aux) (content/6_Aspekte.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux) (content/11_Other.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
@@ -2133,17 +2215,17 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 37672 strings out of 473522
- 773370 string characters out of 5713157
+ 37863 strings out of 473522
+ 778523 string characters out of 5713157
  1392393 words of memory out of 5000000
- 60185 multiletter control sequences out of 15000+600000
- 620719 words of font info for 84 fonts, out of 8000000 for 9000
+ 60302 multiletter control sequences out of 15000+600000
+ 620083 words of font info for 82 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 108i,19n,107p,10937b,608s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Bachelorarbeit.pdf (14 pages, 308976 bytes).
+ 108i,20n,107p,10937b,777s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
+Output written on Bachelorarbeit.pdf (22 pages, 321569 bytes).
 PDF statistics:
- 235 PDF objects out of 1000 (max. 8388607)
- 49 named destinations out of 1000 (max. 500000)
- 135 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 422 PDF objects out of 1000 (max. 8388607)
+ 89 named destinations out of 1000 (max. 500000)
+ 375 words of extra memory for PDF output out of 10000 (max. 10000000)
 
