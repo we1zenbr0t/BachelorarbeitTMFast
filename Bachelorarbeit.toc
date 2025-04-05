@@ -6,12 +6,12 @@
 \contentsline {section}{\numberline {1.4}Erwarteter Nutzen und Anwendungsbereich}{2}{section.1.4}%
 \contentsline {chapter}{\numberline {2}Grundlagen}{4}{chapter.2}%
 \contentsline {section}{\numberline {2.1}SPS-Technologie und Module im industriellen Umfeld / Überblick über SIMATIC S7 bei Thomas oder Andreas}{4}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}aufbau eines simatic s7}{4}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.1}aufbau eines simatic s7}{5}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Funktionsweise einer Speicherprogrammierbaren Steuerung}{5}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Programmierung einer PLC mit TIA-Portal}{6}{subsection.2.1.3}%
 \contentsline {section}{\numberline {2.2}Überblick über das FM350-2 Modul}{7}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Eigenschaften und Aufbau des TM FAST von Andreas (wichtige sachen für software architektur)}{7}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Einführung in VHDL und FPGA-Technologie (maybe als software zusammenfassen)}{7}{section.2.4}%
+\contentsline {section}{\numberline {2.4}Einführung in VHDL und FPGA-Technologie (maybe als software zusammenfassen)}{8}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Grundlagen des TIA Portals und dessen Bedeutung für die Integration (maybe als software zusammenfassen)}{8}{section.2.5}%
 \contentsline {section}{\numberline {2.6}Maybe}{8}{section.2.6}%
 \contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{9}{chapter.3}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  1 APR 2025 15:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.11)  2 APR 2025 15:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1236,14 +1236,14 @@ chapter 2.
 
 
 ]
-Overfull \hbox (6.5586pt too wide) in paragraph at lines 38--54
+Overfull \hbox (6.5586pt too wide) in paragraph at lines 41--57
 \T1/lmr/m/n/12 Grundsätzlich ar-bei-tet ei-ne Spei-cher-pro-gram-mier-ba-re Steue-rung nach dem Eingabe-
  []
 
 
 
 [5]
-Overfull \hbox (6.88185pt too wide) in paragraph at lines 55--78
+Overfull \hbox (6.88185pt too wide) in paragraph at lines 58--81
 \T1/lmr/m/n/12 Pro-jek-tie-rung, Pro-gram-mie-rung und In-be-trieb-nah-me von SI-MA-TIC S7-Steuerungen
  []
 
@@ -2304,7 +2304,7 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  108i,20n,107p,10937b,729s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/z004b0bv/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on Bachelorarbeit.pdf (28 pages, 338180 bytes).
+Output written on Bachelorarbeit.pdf (28 pages, 338456 bytes).
 PDF statistics:
  443 PDF objects out of 1000 (max. 8388607)
  99 named destinations out of 1000 (max. 500000)
