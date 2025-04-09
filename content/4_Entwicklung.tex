@@ -1,6 +1,30 @@
 \chapter{Entwicklung des VHDL-basierten Applikationsbeispiels}
 
 \section{Konzept und Architektur des neuen Applikationsdesigns}
+
+Byte Zuweisung für FB\_IF (32 Byte)
+    \begin{itemize}
+        \item 3 Byte für Kanalobergrenze = 4095 (Standartventil ist 1 Impuls/ 1 ml -> 4l abfüllung) => bis zu 10 Kanäle möglich
+        \item 4 Byte für Kanalobergrenze = 65535 (65l abfüllung) => nur 8 Kanäle möglich
+    \end{itemize}
+
+Andere Ideen:
+Vieleicht auf TMFASTUserWriteREC ausweichen? (Bis zu 128 Byte)
+asynchron ( was ist wenn daten mitten im ablauf geändert werden?)
+
+Algorithmus, der im ersten Zyklus die Kanalobergrenzen 1–4 von der CPU an das TMFast sendet, im zweiten Zyklus 5–8 usw.
+ist synchron und eignet sich besser
+die Steuerschnittstelle, da über die im Betrieb auch taktsynchron neue Werte geschrieben werden können. Der Nachteil des Write-Records ist die Asynchronität zum Zyklus.
+
+
+Zähler -> Unter- und Obergrenze einstellbar
+
+CPU Stop beachten:
+% /*if CPU_STOP = '1' then
+% 					STATUS_DQ  <= ( others => '0' );
+% 					STATUS_TX  <= ( others => '0' );
+% 				end if;*/
+
 \section{Umsetzung der Funktionalität in VHDL}
 \section{Test und Validierung der VHDL-Implementierung}
 \section{Vergleich mit der bisherigen Lösung}
