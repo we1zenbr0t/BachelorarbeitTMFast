@@ -92,6 +92,45 @@ ES IST KEIN PRAXISBERICHT (KEIN PROZESS BESCHREIBEN) / EVTL: VORNACHTEILANALYSE
 
 Vieleicht auf WR\_REC ausweichen, wenn FB\_IF nicht groß genug?
 
+Muss der Siemens Betreuer einen Bachelor haben? Was kommt auf den Betreuer zu (Organisatorisch)
+
+Steuerung eines Ventils von TMFAST? Über DQ -> Wie und was wird dafür benötigt, reicht es ein signal zu senden?
+
+Ventile
+1. Inkrementalgeber mit zwei Spuren (A/B-Signal):
+Viele Durchflussmesser oder Antriebssysteme (z.B. Drehgeber) geben zwei phasenversetzte Impulssignale aus: Spur A und Spur B.
+
+Anhand der Phasenlage erkennt die CPU die Richtung:
+
+Wenn A vor B kommt → Vorwärts
+
+Wenn B vor A kommt → Rückwärts
+
+Diese Technik nennt sich Quadraturauswertung. 24 V (HTL) sind Standartventil muss aber och andere können:
+
+nur die Anzahl der Impulse wichtig? 12 Kanäle sont nur 6 Alternativen? RS485 ür Impulse -> JA? TTL-Signals Transistor-Transistor-Logik?
+
+Willi: A/B oder A/B/N Geber? RS422? 24V für DI und 5V für CH. Anforderungen: Gleiche Technologie? flexibel (wie umsetzen)? Nur einen Eingang (A) war bei 350-2 mit (A/B) und 24V (DI) als Eingang
+
+Maybe: 
+\begin{itemize}
+    \item A -> 5V * 8 / (DI) 24V * 8 / (DIQ)? 24V * 4
+    \item A/B ->  5V * 4 / (DI) 24V * 4 / (DIQ)? 24V * 2
+    \item A/B/N -> 5V * 2 / (DI+DIQ?) 24V * 3 
+\end{itemize}
+
++-CH0 kann nicht beides verwendet werden -> EIA-485, auch als RS-485, benutzt ein Leitungspaar, um den invertierten und einen nichtinvertierten Pegel eines 1-Bit-Datensignals zu übertragen. Am Empfänger wird aus der Differenz der beiden Spannungspegel das ursprüngliche Datensignal rekonstruiert
+
+\chapter{TODO}
+->A/B einbauen + testfall + andere testfälle (Nur A)
+->Kanalbelegungen nachfragen (erstmal nur DI/DIQ)
+->Grenzwertüberschreitung von enc\_counter, wenn upperlimit < enc\_counter mit in betracht ziehen. Reset wenn wert änderung bei upper\_limit? Muss nicht, ist gewolltes Verhalten, auch nicht prüfen
+
+->Reset über CTRL\_IF (Solle es Upper\_Limit zurücksetzen?)
+->UserWriteREC für die Obergrenzen einbauen
+->Counterreset und Enable auf bits zuweisen (ähnlich wie reset)
+->Test für overflowdetection ist useless
+
 \chapter{Tests}
 
 rückgabe über das (fb\_if) feedback\_interface
@@ -123,10 +162,33 @@ Mathias fragen wenn funktionierendes Programm -> in den Nightly test muss in den
 -adress register verbessern
 
 -quellcode verwaltung?
+
+
+Reaktion auf falsche Parameter
+Verifikation der korrekten Initialisierung des Encoders nach LOAD
+Grundkonfiguration und Initialisierung -> System-Reset wird ausgelöst
+
+Verschiedene Zählmodi oder Edge-Typen?
+
+\begin{itemize}
+    \item Zählen mit A oder A\&B oder A\&B\&N -> nicht nötig
+    \item Betriebsart: periodisches Zählen, einmaliges Zählen, usw. -> nicht nötig
+    \item hoch/runterzählen, Invertieren der Haupzählrichtung -> nicht nötig
+    \item Test des Verhaltens beim Überlauf an Zählgrenzen (oben/unten) -> abhängig von Betriebsart -> Überlauf ist getestet/ Betriebsart ist unwichtig, da nur Hochgezählt wird (B=Low)
+    \item Start nicht mit Wert 0 sondern Startwert -> Machbar aber muss aber nicht
+    \item invertieren der A/B/N Eingangssignale -> ?
+    \item Test der verschiedenen Resetquellen -> Muss
+\end{itemize}
+
 \chapter{Passwörter}
 
 PLC: Siemens123
 
-\href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Masterarbeit_Andreas_Kick.pdf}{Masterarbeit von Andreas Kick}
-\href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Bachelorarbeit_Thomas_Weisel.pdf}{Bachelorarbeit von Thomas Weisel}
-\href{https://th-nuernberg.zoom-x.de/j/2850045758}{Prof. Meitner Zoom Link}
+\begin{itemize}
+    \item \href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Masterarbeit_Andreas_Kick.pdf}{Masterarbeit von Andreas Kick}
+    \item \href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Bachelorarbeit_Thomas_Weisel.pdf}{Bachelorarbeit von Thomas Weisel}
+    \item \href{https://th-nuernberg.zoom-x.de/j/2850045758}{Prof. Meitner Zoom Link}
+\end{itemize}
+
+
+
