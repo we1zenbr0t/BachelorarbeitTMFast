@@ -142,7 +142,7 @@ Vergelichswertübergabe azyklische über UserWriteREC
 CounterReset -> Setze Counter=0
 CounterHold -> Ignoriere Geber-Impulse
 ResetSW -> Setzt MAX\_VALUE=0 und Counter=0
-Load -> Setzt MAX\_VALUE und Counter=0
+Load -> Setzt MAX\_VALUE und Counter=0 (Muss, weil wenn MAX\_VALUE > Counter kein Fehler (Der nutzer darf dafür nict einbüßen))
 
 \begin{itemize}
     \item Es gibt 12 Kanäle. Ich würde jeweils die Eingänge und Ausgänge aus der gleichen Leistungsklasse verknüpfen (DI-DQ; Umschaltbare DIQ; RS485)
