@@ -112,6 +112,8 @@ nur die Anzahl der Impulse wichtig? 12 Kanäle sont nur 6 Alternativen? RS485 ü
 
 Willi: A/B oder A/B/N Geber? RS422? 24V für DI und 5V für CH. Anforderungen: Gleiche Technologie? flexibel (wie umsetzen)? Nur einen Eingang (A) war bei 350-2 mit (A/B) und 24V (DI) als Eingang
 
+
+
 Maybe: 
 \begin{itemize}
     \item A -> 5V * 8 / (DI) 24V * 8 / (DIQ)? 24V * 4
@@ -121,16 +123,73 @@ Maybe:
 
 +-CH0 kann nicht beides verwendet werden -> EIA-485, auch als RS-485, benutzt ein Leitungspaar, um den invertierten und einen nichtinvertierten Pegel eines 1-Bit-Datensignals zu übertragen. Am Empfänger wird aus der Differenz der beiden Spannungspegel das ursprüngliche Datensignal rekonstruiert
 
+wo finde ich noch informationen zum software reset (ResetSW)?
+
+\chapter{Wichtig}
+Effected Interfaces 
+
+Control interface: control interface, direction: from CPU to TM FAST 
+
+Feedback interface: feedback interface, direction: from TM FAST to CPU 
+
+Read record: asynchronous read record data from TM FAST to CPU  
+
+Write record: asynchronous write record data from CPU to TM FAST 
+
+Anforderungen:
+Vergelichswertübergabe azyklische über UserWriteREC
+8x 24V Geber (evtl. auf 12 Upgraden mit DIQ)
+CounterReset -> Setze Counter=0
+CounterHold -> Ignoriere Geber-Impulse
+ResetSW -> Setzt MAX\_VALUE=0 und Counter=0
+Load -> Setzt MAX\_VALUE und Counter=0
+
+\begin{itemize}
+    \item Es gibt 12 Kanäle. Ich würde jeweils die Eingänge und Ausgänge aus der gleichen Leistungsklasse verknüpfen (DI-DQ; Umschaltbare DIQ; RS485)
+    \item Der Sollwert, an dem abgeschaltet werden soll, wird über den Anwenderdatensatz übermittelt, Datensatz mit 32 Byte, 2 Byte Kennung und dann 14 mal der Sollwert als Integer (2 byte). Oder direkt in der Steuerschnittstelle. Der Datensatz kann im Betrieb nachgeladen werden mit allen Werten.
+    \item Die Eingänge zählen jeweils von 0 bis zum eingestellten Sollwert und dann nahtlos wieder bei 0. 
+    \item Die Ausgänge werden mit einer Flanke in einem Bit pro Kanal in der Steuerschnittstelle gestartet und durch das Erreichen des Sollwerts wieder zurückgenommen. Es ist mit einem gemeinsamen Parameter für alle Kanäle einstellbar, ob ein Ausgang mit high aktiv ist oder mit low. Wird vor erreichen des Sollwerts das Bit in der Steuerschnittstelle (SS) zurückgenommen wird auch der Ausgang wieder deaktiviert
+    \item In der Rückmeldeschnittstelle wird der Zustand jedes Ausgangs angezeigt. Zusätzlich für jeden Kanal der aktuelle Zählwert oder die aktuelle Durchflussgeschwindigkeit angezeigt. Der Wert wird über ein Steuerbit in der Steuerschnittstelle ausgewählt. Der Wert für die Durchflussgeschwindigkeit könnte auf Ink/10s hochgerechnet werden, um eine entsprechende Auflösung zu erreichen.
+    Ein bit in der SS zeigt an, welcher Wert gemeldet wird.
+\end{itemize}
+
 \chapter{TODO}
 ->A/B einbauen + testfall + andere testfälle (Nur A)
 ->Kanalbelegungen nachfragen (erstmal nur DI/DIQ)
 ->Grenzwertüberschreitung von enc\_counter, wenn upperlimit < enc\_counter mit in betracht ziehen. Reset wenn wert änderung bei upper\_limit? Muss nicht, ist gewolltes Verhalten, auch nicht prüfen
 
 ->Reset über CTRL\_IF (Solle es Upper\_Limit zurücksetzen?)
-->UserWriteREC für die Obergrenzen einbauen
+->UserWriteREC für die Obergrenzen einbauen (davor über CTRL\_IF0(31 downto 16)/ Neue Anforderungen: Obergrenze muss nicht im Betrieb geändert werden) -> von 2 Byte auf 4 Byte durch mehr Speicher möglich
 ->Counterreset und Enable auf bits zuweisen (ähnlich wie reset)
 ->Test für overflowdetection ist useless
 
+->UserWriteREC simulieren und Testen und mit fsm stabiler machen
+->load,reset,hold logik überarbeiten(wann wird was ausgeführt und wodurch -> Muss nach einem Reset ein Load kommen um upperlimit neu zu laden (schaue beim obrgiegen simulieren)?)
+
+Feedback gespräch
+-Diagramm für Ablauf
+-was hab ich mir gedacht
+-rst einbauen
+-Anforderungen mit aufschreiben
+
+-Fragen dos donts
+->Fault and diagnostic evaluation? -> DQ Force = 0 oder auch noch FB\_IF?
+->asynchronous signal WR\_REC\_NEW to the CLK domain
+->CTRL\_IF Signale auf variable zuweisen oder direkt verwenden? alias verwenden
+
+Antwort:
+->CTRL\_IF für fehler quittieren, wenn overflow zu schnell toggelt
+->ganzes paket ins netzwerklaufwerk des teams und diagramm und link des Product backlog
+->generate für weniger logik (weniger kanäle/flexibel)
+
+tobi berrichten, dass durch test es sich etwas nach hinten verschiebt
+
+->Review des Codes
+->Quartus Compilieren und zum test 
+TGEN (Am Ende)-> Test und angeschlossenden Enc\_Enum (Gerät Geber-Simulation) (Davor evtl mit sich selbst DQ auf DI)
+->Nightly Test einbauen
+
+->wird wr\_rec00 richtig gesetzt? testen
 \chapter{Tests}
 
 rückgabe über das (fb\_if) feedback\_interface
@@ -180,6 +239,8 @@ Verschiedene Zählmodi oder Edge-Typen?
     \item Test der verschiedenen Resetquellen -> Muss
 \end{itemize}
 
+undefinds werden kopiert -> am start muss next\_upper\_limit initalisiert werden mit einer 0, sonst wird bei jedem load bevor WR\_REC\_NEW gemacht wird, next\_upper\_limi auf undefiend gesetzt.
+
 \chapter{Passwörter}
 
 PLC: Siemens123
@@ -188,6 +249,7 @@ PLC: Siemens123
     \item \href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Masterarbeit_Andreas_Kick.pdf}{Masterarbeit von Andreas Kick}
     \item \href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Bachelorarbeit_Thomas_Weisel.pdf}{Bachelorarbeit von Thomas Weisel}
     \item \href{https://th-nuernberg.zoom-x.de/j/2850045758}{Prof. Meitner Zoom Link}
+    \item \href{https://app.diagrams.net/?src=about#G1KCB0fK5aZU5TC9JrZS7IyLcSs2yiIYjS#%7B%22pageId%22%3A%229kRthm-LfoYTc_BfoG3U%22%7D}{Diagramme}
 \end{itemize}
 
 
