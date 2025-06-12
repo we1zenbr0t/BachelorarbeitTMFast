@@ -20,13 +20,18 @@ ist synchron und eignet sich besser
 die Steuerschnittstelle, da über die im Betrieb auch taktsynchron neue Werte geschrieben werden können. Der Nachteil des Write-Records ist die Asynchronität zum Zyklus.
 
 
-Zähler -> Unter- und Obergrenze einstellbar
+Zähler -> Unter- und Obergrenze einstellbar (nur Obergrenze)
 
 CPU Stop beachten:
 % /*if CPU_STOP = '1' then
 % 					STATUS_DQ  <= ( others => '0' );
 % 					STATUS_TX  <= ( others => '0' );
 % 				end if;*/
+
+Das umgesetzte Konzept besteht darus, die Obergrenze aller geladenden Kanäle (im bezug auf "dynamisches" laden der Kanalmänge -> wichtig, da sonst 1400 Logikelemente (16 DWord für 12 Kanäle) zur speicherung nutzlos verbraucht werden) 
+azyklisch über den TMFASTUserWriteREC zu verschicken. Bietet die Möglichkeit 1 bis 32 DWord (4 - 128 Byte) an länge zu verschicken. Ein DWord (ca. 130 Logikelemente) reicht also für einen Kanal um eine 32 Bit zahl zu speichern, 
+die die Obergrenze des Kanals angibt. Eine 32 Bit Zahl ohne Vorzeichen (4294967295) ist für die meisten Anwendungen ausreichend, da sie 4.294.967.295 Impulse (z.B. 1 Impuls = 1 ml) darstellen kann, was 4294967295 ml oder 4294,967295 l entspricht.
+Die Steuerungswerte wie z.B Reset, Load oder Hold werden über die zyklischen Schnittstellen CTRL\_IF über 1 DWord große Bitmuster übertragen und die Statuswerte über die zyklischen Schnittstellen FB\_IF zurückgegeben.
 
 \section{Umsetzung der Funktionalität in VHDL}
 
