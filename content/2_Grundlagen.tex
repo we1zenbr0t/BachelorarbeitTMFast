@@ -1,21 +1,16 @@
 \chapter{Grundlagen} 
 
 Um die technischen Aspekte und die Funktionsweise der in dieser Arbeit behandelten Systeme
-
-zu verstehen, werden im Folgenden die zugrundeliegenden Konzepte und Technologien erläu-
-tert. Relevant sind hierbei die Automatisierungspyramide, der Kommunikationsstandard OPC
-
-UA, Node-RED, sowie SIMATIC S7 und Echtzeitsysteme.
+zu verstehen, werden im Folgenden die zugrundeliegenden Konzepte und Technologien erläutert. 
+Relevant sind hierbei die Automatisierungspyramide, SIMATIC S7, Speicherprogrammierbare Steuerungen, Quartus und Questa sowie 
+TIA Portal und ?Echtzeitsysteme?.
 
 \section{Automatisierungspyramide}
 
+Die Automatisierungspyramide stellt ein Konzept dar, welches die Hierarchie der Automatisierungstechnik von der Prozess- bis hin zur Unternehmensleitebene beschreibt.
 
-Die Automatisierungspyramide stellt ein Konzept dar, welches die Hierarchie der Automatisie-
-rungstechnik von der Prozess- bis hin zur Unternehmensleitebene beschreibt.
-
-Die Automatisierungspyramide besteht aus insgesamt fünf hierarchischen Ebenen. Diese Ebe-
-nen lassen sich in die Systemgruppen IT als Unternehmensleitebene und OT als Fertigungs-
-ebene unterteilen [4, S. 4 f.].
+Die Automatisierungspyramide besteht aus insgesamt fünf hierarchischen Ebenen. Diese Ebenen lassen sich in die Systemgruppen IT als 
+Unternehmensleitebene und OT als Fertigungsebene unterteilen [4, S. 4 f.].
 
 \subsection*{Ebenen der OT}
 
@@ -39,28 +34,25 @@ ebene unterteilen [4, S. 4 f.].
 \end{itemize}
 
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Fotos/Automatisierungpyramide.png}
-    \caption{Abbildung 1: Automatisierungspyramide, Quelle: IPH Hannover, https://www.iph-hannover.de/de/dienstleistun-
-    gen/automatisierungstechnik/automatisierungspyramide/, abgerufen am 26.07.2025}
-    \label{Abbildungspyramide}
+    \caption{Automatisierungspyramide, \cite{iph2024}}
+    \label{Automatisierungpyramide}
 \end{figure}
 
-Das in dieser Arbeit behandelte System findet somit in den Ebenen 1 bis 3 statt. In der Feld-
-ebene befindet sich die Sensorik und Aktorik, deren Signale durch eine Steuerungssoftware auf
-
-der Siemens PLC verarbeitet werden sollen. In der Steuerungsebene findet sowohl die Prozess-
-datenverarbeitung durch die PLC statt als auch die Kommunikation zwischen der PLC und
-
-Node-RED per OPC UA. Die Visualisierung befindet sich in der Prozessleitebene.
+Das in dieser Arbeit behandelte System findet somit in den Ebenen 1 bis 3 statt. In der Feldebene 
+befindet sich die Sensorik und Aktorik, deren Signale durch eine Steuerungssoftware auf
+der TM FAST verarbeitet werden sollen. In der Steuerungsebene findet sowohl die Prozessdatenverarbeitung
+als auch die Kommunikation zwischen dem TM FAST und der PLC statt.
+Die Visualisierung befindet sich in der Prozessleitebene.
 
 \section{Überblick über SIMATIC S7}
 
 Speicherprogrammierbare Steuerungen – im Englischen „Programmable Logic Controllers“
 (PLCs) – wie die SIMATIC S7-Serie von Siemens steuern und regeln unter anderem Maschinen,
 Antriebe, Ventile, Pumpen und Sensoren. Diese Steuerungen sind frei programmierbar und
-dadurch universell einsetzbar [10, S. 146]. Im Folgenden wird ein Überblick über den Aufbau,
+dadurch universell einsetzbar [\cite{babel2024}, S. 146]. Im Folgenden wird ein Überblick über den Aufbau,
 die Funktionsweise und die Programmierung eines SIMATIC S7-Systems gegeben.
 
 \section{Aufbau eines SIMATIC S7-Systems}
@@ -72,10 +64,8 @@ Folgenden werden die Hauptkomponenten und ihre Funktionen erläutert.
 
 Die CPU der Steuerung wird auch als Controller bezeichnet und bildet die zentrale Verarbei-
 tungseinheit des Systems. Die Hauptaufgabe der CPU ist es, das Anwenderprogramm auszu-
-führen, das vom Nutzer entwickelt wurde, um spezifische Steuerungs- und Regelungsaufgaben
-
-zu übernehmen [11, S. 25]. Die CPU verarbeitet Signale von Ein- und Ausgabemodulen, führt
-
+führen, das vom Nutzer entwickelt wurde, um spezifische Steuerungs- und Regelungsaufgaben 
+zu übernehmen [\cite{berger2017}, S. 25]. Die CPU verarbeitet Signale von Ein- und Ausgabemodulen, führt
 Berechnungen durch und gibt Steuerbefehle an angeschlossene Geräte, wie Sensoren und Ak-
 toren, aus.
 
@@ -88,297 +78,104 @@ Bediengeräten oder übergeordneten Systemen (z. B. SCADA oder MES) ermöglichen
 
 Um eine Verbindung zu einer Maschine oder Anlage herzustellen, werden Signalbaugruppen
 verwendet, welche es als Ein- bzw. Ausgabebaugruppen sowohl für Digitale als auch analoge
-
 Signale gibt wie Spannungen oder Ströme gibt. Technologiebaugruppen sind Signalverarbei-
 tende Baugruppen, welche Eingehende Signale aufbereiten und entweder direkt an den Prozess
-
 oder zur weiteren Verarbeitung an die CPU gegeben. Ein möglicher Einsatzzweck ist z.B. das
-
 Zählen von Impulsen, wofür die CPU meist zu langsam ist. Zur Erweiterung der Kommunika-
 tionsfähigkeit der CPU bezüglich Protokollen oder Funktionen kommen Kommunikationsbau-
 gruppen zum Einsatz [\cite{berger2017}, S. 25].
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/Aufbau_S7_System.png}
-    \caption{Abbildung 2: Aufbau SIMATIC S7-System, Quelle: Siemens Industry Online Support, https://www.siemens.com/de/de/produkte/automatisierung/systeme/industrie/sps/simatic-s7-1500/signalbaugruppen.html, abgerufen am 26.07.2025}
-    \label{Abbildungspyramide}
+    \includegraphics[width=0.8\textwidth]{Fotos/AllgemeinerAufbau.png}
+    \caption{Aufbau SIMATIC S7-System, \cite{siemensET200MP}}
+    \label{AllgemeinerAufbau}
 \end{figure}
+
+
 
 \section{Funktionsweise einer Speicherprogrammierbaren Steuerung}
 
-Grundsätzlich arbeitet eine Speicherprogrammierbare Steuerung nach dem Eingabe-Verarbei-
-tung-Ausgabe-Prinzip (EVA). Der damit verbunden Prozess erfolgt zyklisch und lässt sich wie
+Grundsätzlich arbeitet eine Speicherprogrammierbare Steuerung nach dem Eingabe-Verarbeitung-Ausgabe-Prinzip (EVA). Der damit verbunden Prozess erfolgt zyklisch und lässt sich wie folgt darstellen:
 
-folgt darstellen:
-Über Eingangsbaugruppen werden zunächst die Zustände von angeschlossener Sensorik erfasst.
-Diese Eingangssignale werden anschließend in einem Prozessabbild gespeichert, welches eine
-Momentaufnahme der aktuellen Signalzustände darstellt. Änderungen der Signale, die während
-eines laufenden Zyklus auftreten, werden somit ignoriert [\cite{babel2024}, S. 147], [13, S. 39].
+Über Eingangsbaugruppen werden zunächst die Zustände von angeschlossener Sensorik erfasst. Diese Eingangssignale werden anschließend in einem Prozessabbild gespeichert, welches eine Momentaufnahme der aktuellen Signalzustände darstellt. Änderungen der Signale, die während eines laufenden Zyklus auftreten, werden somit ignoriert [\cite{babel2024}, S. 147], [13, S. 39].
 
-Das Prozessabbild dient nun als Datengrundlage für die Verarbeitung durch das Anwenderpro-
-gramm. Das Anwenderprogramm ist modular aufgebaut und arbeitet mit sogenannten Baustei-
-nen. Das Hauptprogramm wird durch den Organisationsbaustein1 (OB1) repräsentiert, welcher
+Das Prozessabbild dient nun als Datengrundlage für die Verarbeitung durch das Anwenderprogramm. Das Anwenderprogramm ist modular aufgebaut und arbeitet mit sogenannten Bausteinen. Das Hauptprogramm wird durch den Organisationsbaustein1 (OB1) repräsentiert, welcher aus konkreten Anweisungen aber auch Funktions- oder Unterprogrammaufrufen besteht. Die Abarbeitung des OB1 entspricht einem Verarbeitungszyklus, dessen Dauer üblicherweise im zweistelligen Millisekunden Bereich liegt [13, S. 39].
+Nach der Verarbeitung des Anwenderprogramms erstellt die SPS ein neues Prozessabbild, das die Ergebnisse der Programmverarbeitung enthält. Dieses Abbild wird schließlich an die Ausgangsbaugruppen übertragen, woraufhin die angeschlossenen Aktoren angesteuert werden. Mit diesem Schritt ist der Zyklus abgeschlossen, und die SPS beginnt unmittelbar mit der Erfassung der neuen Eingangs-Signalzustände für den nächsten Zyklus [\cite{babel2024}, S. 147], [13, S. 39].
 
-aus konkreten Anweisungen aber auch Funktions- oder Unterprogrammaufrufen besteht. Die
-Abarbeitung des OB1 entspricht einem Verarbeitungszyklus, dessen Dauer üblicherweise im
-zweistelligen Millisekunden Bereich liegt [13, S. 39].
-Nach der Verarbeitung des Anwenderprogramms erstellt die SPS ein neues Prozessabbild, das
+\section{Technologiemodule}
 
-die Ergebnisse der Programmverarbeitung enthält. Dieses Abbild wird schließlich an die Aus-
-gangsbaugruppen übertragen, woraufhin die angeschlossenen Aktoren angesteuert werden. Mit
+Die SIMATIC S7-1500 Steuerung ist ein modulares System, das in ihrer Funktionalität frei skalierbar ist. Den Kern der Steuerung bildet die SIMATIC S7-1500 CPU. In ihr wird das Anwenderprogramm ausgeführt und die Verbindung zu anderen Automatisierungskomponenten aufgebaut. Neben der CPU kann das System mit Interface-, Signal-, Kommunikations- und Technologiebaugruppen erweitert werden. Das sogenannte Peripheriesystem ET 200MP ermöglicht den Einsatz
+der S7-1500 IO-Module entweder, wie beschrieben, direkt an der SIMATIC S7-1500 Steuerung oder an einem entsprechend kompatiblen PROFINET-/PROFIBUS-Teilnehmer, wie z.B. dem Interfacemodul IM 155 PN, das die Daten zwischen
+Steuerung und Peripheriemodulen austauscht. Abb. 1 zeigt zum einen auf der
+linken Seite den zentralen Aufbau mit CPU und vier Signalbaugruppen und zum
+anderen auf der rechten Seite den vergleichbaren dezentralen Aufbau mit Interfacemodul. Die Kommunikation erfolgt über PROFINET. Die Bezeichnung Signalbaugruppe fasst die Digital- und Analogbaugruppen zusammen, die der Steuerung
+zusätzliche Ein- und Ausgänge zur Verfügung stellen.[7, 8]
 
-diesem Schritt ist der Zyklus abgeschlossen, und die SPS beginnt unmittelbar mit der Erfassung
-der neuen Eingangs-Signalzustände für den nächsten Zyklus [\cite{babel2024}, S. 147], [13, S. 39].
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Fotos/Aufbau_S7_System.png} % Reduced width to 0.6\textwidth
+    \caption{SIMATIC ET 200MP im zentralen und dezentralen Aufbau \cite{siemensET200MP}}
+    \label{fig:Aufbau_S7_System}
+\end{figure}
+
+Technologiebaugruppen bieten hardwarenahe Signalvorverarbeitung für schnelles Zählen und Messen sowie die genaue Positionserfassung für Inkremental- und SSI-Absolutwertgeber. Bei bisherigen Modulen erfolgt die Parametrierung und Programmierung durch Technologieobjekte oder durch Ansteuerung der IOs im Anwendungsprogramm im TIA Portal. Das aktuelle Portfolio umfasst u.a. das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Ersteres arbeitet mit einem trainierten neuronalen System und es können verschiedene Sensoren über Gigabit-Ethernet oder USB 3.1 angeschlossen werden. Das TM Count 2x24 V ist eine vielseitig einsetzbare Zählerbaugruppe für Zähl- und Messaufgaben sowie die Positionserfassung mit Inkrementalgebern. Ein weiteres Zähl- und Positionserfassungsmodul ist das TM Posinput 2. Dieses bietet zwei Zählkanäle für Differenz-Eingangssignale nach RS422 mit bis zu 1 MHz und ermöglicht die Positionserfassung mit SSI-Absolutwertgebern. Das TM Timer DIDQ 16x24 V wird für Aufgaben eingesetzt, die einen besonderen zeitlichen Anspruch haben, wie z.B. die exakte Einhaltung von Reaktionszeiten. Das PTO 4 Modul wird zur Ansteuerung von Schrittmotor-Antrieben und Servo-Antrieben mit PTI-Schnittstelle verwendet.[9] Das bisherige Portfolio wird nun mit dem TM FAST erweitert. Dies ist ein Modul, das einen frei programmierbaren FPGA beinhaltet. Im nachfolgenden Abschnitt wird das TM FAST genauer vorgestellt.
+
 
 \section{Programmierung einer PLC mit TIA-Portal}
 
-Das Totally Integrated Automation Portal (TIA Portal) ist ein Framework für die Projektie-
-rung, Programmierung und Inbetriebnahme von SIMATIC S7-Steuerungen und deckt unter
+Das Totally Integrated Automation Portal (TIA Portal) ist ein Framework für die Projektierung, Programmierung und Inbetriebnahme von SIMATIC S7-Steuerungen und deckt unter anderem Hardware-Konfiguration, Softwareentwicklung und Fehlerdiagnose ab [14, S. 11]. Die Programmierung folgt dabei der internationalen Norm IEC 61131-3, die den Standard für die Softwareentwicklung in speicherprogrammierbaren Steuerungen (SPS) definiert. Diese Norm legt die Struktur und die Programmiersprachen fest, die in Automatisierungsprojekten eingesetzt werden können, um eine einheitliche und herstellerübergreifende Programmierbarkeit zu gewährleisten.
 
-anderem Hardware-Konfiguration, Softwareentwicklung und Fehlerdiagnose ab [14, S. 11]. Die
-Programmierung folgt dabei der internationalen Norm IEC 61131-3, die den Standard für die
-Softwareentwicklung in speicherprogrammierbaren Steuerungen (SPS) definiert. Diese Norm
+Nach IEC 61131-3 werden fünf standardisierte Programmiersprachen für SPS definiert: KOP (Kontaktplan): Eine grafische Sprache, die sich an elektrischen Schaltplänen orientiert. FUP (Funktionsplan): Eine grafische Sprache zur Darstellung von Logik und Funktionen. AWL (Anweisungsliste): Eine textbasierte Sprache, die ähnlich wie Assembler arbeitet. SCL (Structured Control Language): Eine textbasierte, hochsprachliche Sprache ähnlich zu Pascal. AS (Ablaufsprache): Eine grafische Sprache zur Darstellung von Ablaufsteuerungen [\cite{babel2024}, S. 153].
 
-legt die Struktur und die Programmiersprachen fest, die in Automatisierungsprojekten einge-
-setzt werden können, um eine einheitliche und herstellerübergreifende Programmierbarkeit zu
-
-gewährleisten.
-Nach IEC 61131-3 werden fünf standardisierte Programmiersprachen für SPS definiert:
-KOP (Kontaktplan): Eine grafische Sprache, die sich an elektrischen Schaltplänen orientiert.
-FUP (Funktionsplan): Eine grafische Sprache zur Darstellung von Logik und Funktionen.
-AWL (Anweisungsliste): Eine textbasierte Sprache, die ähnlich wie Assembler arbeitet.
-SCL (Structured Control Language): Eine textbasierte, hochsprachliche Sprache ähnlich zu
-Pascal.
-AS (Ablaufsprache): Eine grafische Sprache zur Darstellung von Ablaufsteuerungen [\cite{babel2024}, S. 153].
-
-Für die Programmierung im Rahmen der Bachelorarbeit sind insbesondere die Sprachen FUP
-und SCL relevant.
+Für die Programmierung im Rahmen der Bachelorarbeit sind insbesondere die Sprachen FUP und SCL relevant.
 
 \textbf{Funktionsplan (FUP)}
 
-FUP ist eine grafische Programmiersprache. Sie basiert auf der Darstellung von Funktionsbau-
-steinen, die durch Verbindungen miteinander verknüpft werden.
+FUP ist eine grafische Programmiersprache. Sie basiert auf der Darstellung von Funktionsbausteinen, die durch Verbindungen miteinander verknüpft werden.
 
-Ein typisches Beispiel in FUP ist die Implementierung von UND-, ODER- oder NICHT-Ver-
-knüpfungen, bei denen Ein- und Ausgangssignale miteinander verbunden werden. Die Funkti-
-onsbausteine enthalten logische Funktionen, mathematische Operationen oder auch spezifische
-
-Steuerungsaufgaben, die als grafische Symbole dargestellt sind [15, S. 91 f.].
+Ein typisches Beispiel in FUP ist die Implementierung von UND-, ODER- oder NICHT-Verknüpfungen, bei denen Ein- und Ausgangssignale miteinander verbunden werden. Die Funktionsbausteine enthalten logische Funktionen, mathematische Operationen oder auch spezifische Steuerungsaufgaben, die als grafische Symbole dargestellt sind [15, S. 91 f.].
 
 \textbf{Structured Control Language (SCL)}
 
-SCL ist eine textbasierte Programmiersprache, die der Hochsprache Pascal ähnelt. Sie ist be-
-sonders für komplexere Algorithmen und mathematische Berechnungen geeignet. SCL wird in der IEC 61131-3 als Strukturierter Text bezeichnet und unterstützt eine strukturierte Program-
-mierung mit Schleifen, Verzweigungen und Funktionsaufrufen [\cite{babel2024}, S. 153].
+SCL ist eine textbasierte Programmiersprache, die der Hochsprache Pascal ähnelt. Sie ist besonders für komplexere Algorithmen und mathematische Berechnungen geeignet. SCL wird in der IEC 61131-3 als Strukturierter Text bezeichnet und unterstützt eine strukturierte Programmierung mit Schleifen, Verzweigungen und Funktionsaufrufen [\cite{babel2024}, S. 153].
 
 \section{Software}
 
-Bei der Erstellung einer Anwendung für das TM FAST werden verschiedene Soft-
-wareprogramme benötigt. Im TIA Portal wird die Hardwarekonfiguration und das
-
-Anwenderprogramm der CPU implementiert. Zudem kann die Firmware über das
-
-Engineering-Framework auf das TM FAST geladen werden. Für die Programmie-
-rung des Intel® FPGA Cyclone 10 LP wird Intel® Quartus® Prime Lite verwendet.
-
-Um die Funktionalität des Hardwareentwurfs vorab zu testen, wird die zugehörige
-Questa-Intel® FPGA Starter Edition genutzt.
+Bei der Erstellung einer Anwendung für das TM FAST werden verschiedene Softwareprogramme benötigt. Im TIA Portal wird die Hardwarekonfiguration und das Anwenderprogramm der CPU implementiert. Zudem kann die Firmware über das Engineering-Framework auf das TM FAST geladen werden. Für die Programmierung des Intel® FPGA Cyclone 10 LP wird Intel® Quartus® Prime Lite verwendet. Um die Funktionalität des Hardwareentwurfs vorab zu testen, wird die zugehörige Questa-Intel® FPGA Starter Edition genutzt.
 
 \subsection{Totally Integrated Automation Portal}
-Das Totally Integrated Automation Portal (TIA Portal) ist ein Engineering-Frame-
-work, das von Siemens für die Anwendung in verschiedensten digitalen Automa-
-tisierungsaufgaben entwickelt wurde. Im TIA Portal kann der vollständige Ent-
-wicklungsprozess von der Planung, über das integrierte Engineering bis hin zum
-
-transparenten Betrieb eines Automatisierungssystems durchgeführt werden. Die
-
-Entwicklungsumgebung umfasst unterschiedliche Softwarepakete, wie z.B. SI-
-MATIC STEP7 für die Programmable Logic Controller (PLC)-Programmierung, SI-
-MATIC WinCC für die Visualisierung von Maschinenprozessen auf Human Ma-
-chine Interfaces (HMIs), SINAMICS Startdrive zur Parametrierung von Antrieben
-
-oder SIMATIC Energy Suite für die Erfassung von Energiedaten und Überwa-
-chung des Energieverbrauchs in der Anlage. In dieser Arbeit wird TIA Portal V20
-
-verwendet.[\cite{siemensTIA}, \cite{siemensEnergy}]
-
-Damit die CPU eine Verbindung zu dem Technologiemodul aufbauen kann, ist ei-
-ne Hardwarekonfiguration im TIA Portal notwendig. Hierfür werden die benötigten
-
-Komponenten anhand ihrer Artikelnummer ausgewählt und miteinander verbun-
-den. Abb. 6 zeigt die Hardwarekonfiguration im TIA Portal mit einem Powermodul
-
-(PM) zur Spannungsversorgung (Slot 0), einer CPU 1516-3 PN/DP (Slot 1) und ei-
-nem TM FAST (Slot 2). Da die drei Komponenten auf einer gemeinsamen Schiene
-
-angebracht sind, können sie über den Rückwandbus kommunizieren. Es ist keine
-zusätzliche Verbindung über PROFINET oder PROFIBUS erforderlich.
+Das Totally Integrated Automation Portal (TIA Portal) ist ein Engineering-Framework, das von Siemens für die Anwendung in verschiedensten digitalen Automatisierungsaufgaben entwickelt wurde. Im TIA Portal kann der vollständige Entwicklungsprozess von der Planung, über das integrierte Engineering bis hin zum transparenten Betrieb eines Automatisierungssystems durchgeführt werden. Die Entwicklungsumgebung umfasst unterschiedliche Softwarepakete, wie z.B. SIMATIC STEP7 für die Programmable Logic Controller (PLC)-Programmierung, SIMATIC WinCC für die Visualisierung von Maschinenprozessen auf Human Machine Interfaces (HMIs), SINAMICS Startdrive zur Parametrierung von Antrieben oder SIMATIC Energy Suite für die Erfassung von Energiedaten und Überwachung des Energieverbrauchs in der Anlage. In dieser Arbeit wird TIA Portal V20 verwendet [\cite{siemensTIA}, \cite{siemensEnergy}]. Damit die CPU eine Verbindung zu dem Technologiemodul aufbauen kann, ist eine Hardwarekonfiguration im TIA Portal notwendig. Hierfür werden die benötigten Komponenten anhand ihrer Artikelnummer ausgewählt und miteinander verbunden. Abb. 6 zeigt die Hardwarekonfiguration im TIA Portal mit einem Powermodul (PM) zur Spannungsversorgung (Slot 0), einer CPU 1516-3 PN/DP (Slot 1) und einem TM FAST (Slot 2). Da die drei Komponenten auf einer gemeinsamen Schiene angebracht sind, können sie über den Rückwandbus kommunizieren. Es ist keine zusätzliche Verbindung über PROFINET oder PROFIBUS erforderlich.
 
 %///////////////////////////////////////////////////////////////////////////////////// 
 Falsches bild
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Fotos/Aufbau_S7_System.png}
-    \caption{Abbildung 3: Hardwarekonfiguration im TIA Portal mit TM FAST}
+    \caption{Hardwarekonfiguration im TIA Portal mit TM FAST}
     \label{Hardwarekonfiguration}
 \end{figure}
-
-Das TM FAST besitzt nach der Hardwarekonfiguration im TIA Portal einen eige-
-nen Eintrag. Hier können unter Online \& Diagnostics allgemeine Informationen
-
-über das Modul ausgelesen, der Diagnose-Status abgefragt und eine neue Firm-
-ware auf das FPGA geladen werden. Unter dem Menüpunkt Commissioning kann
-
-der Status und die aktuelle User-Logik Version abgefragt werden. Zudem gibt
-es die Möglichkeit verschiedene Kommandos an das FPGA zu schicken, wie z.B.
-das Laden der TM FAST-Anwendung aus dem Flash-Speicher oder die Aktivierung
-
-der Debug-Schnittstelle. Die Register der azyklischen Kommunikation können un-
-ter dem Punkt TM FAST user data records manuell beschrieben oder ausgelesen
-
-werden. Die Funktionsmöglichkeiten zur Steuerung der Anwendung, Lesen und
-Schreiben von Daten sowie Laden der Anwendung können entweder im Menü
-des TIA Portals oder als Funktionsbausteine (FB) der TIA-Anweisungsbibliothek
-
-LTMFAST im Programm ausgeführt werden. Die TIA-Library enthält die Anweisun-
-gen LTMFAST ControlREC, LTMFAST UserReadREC und LTMFAST UserWriteREC
-
-und LTMFAST AppDownload.[6, 17] %andere quellen
+Das TM FAST besitzt nach der Hardwarekonfiguration im TIA Portal einen eigenen Eintrag. Hier können unter Online \& Diagnostics allgemeine Informationen über das Modul ausgelesen, der Diagnose-Status abgefragt und eine neue Firmware auf das FPGA geladen werden. Unter dem Menüpunkt Commissioning kann der Status und die aktuelle User-Logik Version abgefragt werden. Zudem gibt es die Möglichkeit, verschiedene Kommandos an das FPGA zu schicken, wie z.B. das Laden der TM FAST-Anwendung aus dem Flash-Speicher oder die Aktivierung der Debug-Schnittstelle. Die Register der azyklischen Kommunikation können unter dem Punkt TM FAST user data records manuell beschrieben oder ausgelesen werden. Die Funktionsmöglichkeiten zur Steuerung der Anwendung, Lesen und Schreiben von Daten sowie Laden der Anwendung können entweder im Menü des TIA Portals oder als Funktionsbausteine (FB) der TIA-Anweisungsbibliothek LTMFAST im Programm ausgeführt werden. Die TIA-Library enthält die Anweisungen LTMFAST ControlREC, LTMFAST UserReadREC, LTMFAST UserWriteREC und LTMFAST AppDownload [6, 17].
 
 \subsection{Intel® Quartus® Prime}
+Die Intel® Quartus® Prime Software ist eine Designumgebung für Intel® FPGAs. Es beinhaltet alle Schritte der Entwicklung von Designerfassung, Synthese bis hin zur Optimierung, Verifizierung und Simulation. Von Intel® werden drei verschiedene Versionen angeboten. Neben der kostenlosen Lite Edition gibt es noch die Standard und Pro Edition. Die Versionen unterscheiden sich teilweise im Funktionsumfang sowie in der Unterstützung der FPGA Board Familien. Das FPGA Cyclone 10 LP, das im TM FAST verbaut ist, kann nur in den Editionen Standard und Lite verwendet werden. Für die Umsetzung der Anwendungen in dieser Arbeit wird die Quartus® Prime Version 22.1std.0 Lite Edition verwendet [18]. Das Quartus Projekt, das zur Programmerstellung für das TM FAST dient, kann in verschiedene Revisionen unterteilt werden. Diese beinhalten unabhängig voneinander eine eigene VHDL-Architektur sowie eine Konfigurationsdatei. Die Architektur bestimmt das Verhalten des Programms. In der Konfiguration können Parameter wie z.B. die Frequenz der User-Clock oder der Schnittstellentyp der acht Channel individuell eingestellt werden. Über einen Multiplexer wird anschließend die ausgewählte Architektur der Top-Entity TFL FAST USER e zugeordnet. Die Aufteilung in verschiedene Revisionen ermöglicht es, mehrere Anwendungen zu implementieren, ohne das Programmgerüst aus System- und User-Logik jedes Mal erneut aufzusetzen.
 
-Die Intel® Quartus® Prime Software ist eine Designumgebung für Intel® FPGAs.
-Es beinhaltet alle Schritte der Entwicklung von Designerfassung, Synthese bis hin
+In der Quartus® Prime Software werden mehrere Schritte durchgeführt, um vom geschriebenen VHDL-Code zum fertigen Bitstream, der die Logik der Anwendung für das Technologiemodul beinhaltet, zu gelangen. Der Kompilationsvorgang beginnt mit der Analyse und Synthese. Es wird die logische Vollständigkeit und Konsistenz des Projektes sowie Syntaxfehler geprüft. Anschließend wird die Logik der Dateien der Design Entity synthetisiert und ein Technologie-Mapping durchgeführt. Das bedeutet, es werden Flipflops, Latches und Zustandsautomaten aus dem VHDL-Code abgeleitet und optimiert, sodass der Ressourcenverbrauch minimiert werden kann. In der Analyse und Synthese werden Algorithmen angewandt, um die Anzahl der Gatter zu reduzieren und redundante Logik zu entfernen. Dadurch wird gewährleistet, dass die Architektur des Geräts so effizient wie möglich genutzt werden kann. Nach der Analyse und Synthese folgt der Fitter. Hier werden die logischen und zeitlichen Anforderungen des Projekts mit den verfügbaren Ressourcen des Zielgeräts abgeglichen. Jeder Logikfunktion wird der beste Logikzellenplatz hinsichtlich des Routings und Timings zugeordnet und geeignete Verbindungspfade und Pinbelegungen ausgewählt [19].
 
-zur Optimierung, Verifizierung und Simulation. Von Intel® werden drei verschie-
-dene Versionen angeboten. Neben der kostenlosen Lite Edition gibt es noch die
+Ein FPGA besteht aus einer großen Anzahl von programmierbaren Logik-Blöcken, die jeweils eine kleine Menge an digitaler Logik und programmierbaren Routing implementieren können. Routing ermöglicht die Verbindung der Ein- und Ausgänge der Logikblöcke zu einer größeren Schaltung. Die Verzögerung einer im FPGA implementierten Schaltung ist hauptsächlich auf die Verzögerung beim Routing zurückzuführen. Zudem wird der größte Anteil der Fläche eines FPGAs dem programmierbaren Routing zugeschrieben [20]. Nach dem Fitter kommt das Assembler-Modul zum Einsatz. Dieses fügt die Post-Fit-Logikpartitionen zusammen. Es entstehen Dateien, die zur Programmierung oder Konfiguration eines FPGAs verwendet werden können. Der Assembler konvertiert automatisch die Baustein-, Logikzellen- und Pin-Zuweisungen des Fitters in ein sogenanntes Programmier-Image in Form eines Programmer Object Files (.pof) oder SRAM Object Files (.sof). Für den Prozess, die Logik auf das TM FAST zu laden, wird ein Raw Binary File (.rbf) benötigt. Dies ist ein Bitstream, der vom Assembler aus den Speicherabbilddateien (Memory Image Files .mif) generiert wird [19]. Die weiteren Schritte des Verfahrens, die in VHDL hinterlegte Anwendungslogik auf das TM FAST zu importieren, wird in Abschnitt 2.3.4 nochmal ausführlicher betrachtet.
 
-Standard und Pro Edition. Die Versionen unterscheiden sich teilweise im Funkti-
-onsumfang sowie in der Unterstützung der FPGA Board Familien. Das FPGA Cy-
-clone 10 LP, das im TM FAST verbaut ist, kann nur in den Editionen Standard und
-
-Lite verwendet werden. Für die Umsetzung der Anwendungen in dieser Arbeit
-wird die Quartus® Prime Version 22.1std.0 Lite Edition verwendet.[18]
-Das Quartus Projekt, das zur Programmerstellung für das TM FAST dient, kann in
-
-verschiedene Revisionen unterteilt werden. Diese beinhalten unabhängig von-
-einander eine eigene VHDL-Architektur sowie eine Konfigurationsdatei. Die Ar-
-chitektur bestimmt das Verhalten des Programms. In der Konfiguration können
-
-Parameter wie z.B. die Frequenz der User-Clock oder der Schnittstellentyp der
-
-acht Channel individuell eingestellt werden. Über einen Multiplexer wird anschlie-
-ßend die ausgewählte Architektur der Top-Entity TFL FAST USER e zugeordnet.
-
-Die Aufteilung in verschiedene Revisionen ermöglicht es, mehrere Anwendun-
-gen zu implementieren, ohne das Programmgerüst aus System- und User-Logik
-
-jedes Mal erneut aufzusetzen.
-In der Quartus® Prime Software werden mehrere Schritte durchgeführt, um vom
-geschriebenen VHDL-Code zum fertigen Bitstream, der die Logik der Anwendung
-
-für das Technologiemodul beinhaltet, zu gelangen. Der Kompilationsvorgang be-
-ginnt mit der Analyse und Synthese. Es wird die logische Vollständigkeit und Kon-
-sistenz des Projektes sowie Syntaxfehler geprüft. Anschließend wird die Logik der
-
-Dateien der Design Entity synthetisiert und ein Technologie-Mapping durchge-
-führt. Das bedeutet, es werden Flipflops, Latches und Zustandsautomaten aus
-dem VHDL-Code abgeleitet und optimiert, sodass der Ressourcenverbrauch mi-
-nimiert werden kann. In der Analyse und Synthese werden Algorithmen ange-
-wandt, um die Anzahl der Gatter zu reduzieren und redundante Logik zu ent-
-fernen. Dadurch wird gewährleistet, dass die Architektur des Geräts so effizient
-
-wie möglich genutzt werden kann. Nach der Analyse und Synthese folgt der Fit-
-ter. Hier werden die logischen und zeitlichen Anforderungen des Projekts mit den
-
-verfügbaren Ressourcen des Zielgeräts abgeglichen. Jeder Logikfunktion wird der
-
-beste Logikzellenplatz hinsichtlich des Routings und Timings zugeordnet und ge-
-eignete Verbindungspfade und Pinbelegungen ausgewählt.[19]
-
-Ein FPGA besteht aus einer großen Anzahl von programmierbaren Logik-Blöcken,
-die jeweils eine kleine Menge an digitaler Logik und programmierbaren Routing
-
-implementieren können. Routing ermöglicht die Verbindung der Ein- und Ausgän-
-ge der Logikblöcke zu einer größeren Schaltung. Die Verzögerung einer im FPGA
-
-implementierten Schaltung ist hauptsächlich auf die Verzögerung beim Routing
-
-zurückzuführen. Zudem wird der größte Anteil der Fläche eines FPGAs dem pro-
-grammierbaren Routing zugeschrieben.[20]
-
-Nach dem Fitter kommt das Assembler-Modul zum Einsatz. Dieses fügt die Post-
-Fit-Logikpartitionen zusammen. Es entstehen Dateien, die zur Programmierung
-
-oder Konfiguration eines FPGAs verwendet werden können. Der Assembler kon-
-vertiert automatisch die Baustein-, Logikzellen- und Pin-Zuweisungen des Fitters
-
-in ein sogenanntes Programmier-Image in Form eines Programmer Object Files
-(.pof) oder SRAM Object Files (.sof). Für den Prozess, die Logik auf das TM FAST
-zu laden, wird ein Raw Binary File (.rbf) benötigt. Dies ist ein Bitstream, der vom
-Assembler aus den Speicherabbilddateien (Memory Image Files .mif) generiert
-
-wird [19]. Die weiteren Schritte des Verfahrens, die in VHDL hinterlegte Anwen-
-dungslogik auf das TM FAST zu importieren, wird in Abschnitt 2.3.4 nochmal aus-
-führlicher betrachtet.
-
-In der Quartus® Prime Software gibt es mit dem Tool Signal Tap Logic Analyzer
-eine Möglichkeit den Hardwareentwurf zu debuggen. Die Software erfasst und
-zeigt das Echtzeit-Signalverhalten in einem Intel® FPGA Design an. Es kann das
-
-Verhalten interner Signale während des Normalbetriebs untersucht werden, oh-
-ne zusätzliche Peripherie anschließen zu müssen. Durch Bedingungen können
-
-der Start und das Ende der Datenerfassung bestimmt werden. Zudem gibt es
-
-die Option eine Triggerbedingung festzulegen. Die aufgenommenen Daten kön-
-nen anschließend abgespeichert und gefiltert werden [21]. Um das Softwaretool
-
-nutzen zu können sind die Hardware-Komponenten Intel® FPGA Download Kabel
-(USB-Blaster) und der TM FAST Debug Connector notwendig. Diese bilden das
-Debug-Interface zwischen PC und TM FAST. Der Connector wird auf dem Modul
-angebracht und stellt somit eine Verbindung zur JTAG-Schnittstelle her [10].
+In der Quartus® Prime Software gibt es mit dem Tool Signal Tap Logic Analyzer eine Möglichkeit den Hardwareentwurf zu debuggen. Die Software erfasst und zeigt das Echtzeit-Signalverhalten in einem Intel® FPGA Design an. Es kann das Verhalten interner Signale während des Normalbetriebs untersucht werden, ohne zusätzliche Peripherie anschließen zu müssen. Durch Bedingungen können der Start und das Ende der Datenerfassung bestimmt werden. Zudem gibt es die Option eine Triggerbedingung festzulegen. Die aufgenommenen Daten können anschließend abgespeichert und gefiltert werden [21]. Um das Softwaretool nutzen zu können sind die Hardware-Komponenten Intel® FPGA Download Kabel (USB-Blaster) und der TM FAST Debug Connector notwendig. Diese bilden das Debug-Interface zwischen PC und TM FAST. Der Connector wird auf dem Modul angebracht und stellt somit eine Verbindung zur JTAG-Schnittstelle her [10].
 
 \subsection{Questa-Intel® FPGA}
 
-Es gibt zwei Software-Editionen zur Simulation von Hardwaredesigns. Die kos-
-tenpflichtige Questa-Intel® FPGA Software und die Questa-Intel® FPGA Starter
-Edition. Beide sind eine Version der Siemens EDA Questa Core Software für In-
-tel® FPGAs [22]. Questa bietet eine Simulations-, Debug- und Verifikationsplatt-
-form zur Validierung von FPGA-Entwürfen [23]. Die Simulation kann entweder
-
-über die Quartus® Prime Software oder direkt in der Questa-Softwareplattform
-
-mit einem Simulationsskript gestartet werden. Um eine VHDL-Architektur tes-
-ten zu können, wird eine Testumgebung, auch Testbench genannt, benötigt. Es
-
-werden die Eingangssignale (Stimuli) nachgebildet, um die infolgedessen gene-
-rierten Ausgangssignale überprüfen zu können. Die Stimuli werden in verschie-
-denen Prozessen generiert und mit der Instanz des zu testenden Modells verbun-
-den [13]. Ein Prozess kann beispielsweise für die Nachbildung des Clock-Signals
-
-zuständig sein. Dies erfolgt durch eine Dauerschleife mit einer Wartezeit, nach
-deren Ablauf der Signalwert getoggelt wird. Dadurch ergibt sich eine Clock mit
-
-der Periode der doppelten Wartezeit. Anschließend kann die Simulation in ei-
-nem Zeitdiagramm analysiert werden. Abb. 7 zeigt den zeitlichen Verlauf einer
-
-Testbench, die den Funktionsablauf der Signum-Funktion überprüft. Eine Signum-
-Funktion gibt bei einer positiven Zahl den Wert “+1“, bei null den Wert “0“ und
-
-bei einer negativen Zahl den Wert “-1“ aus [24]. In der Testbench werden drei si-
-gned Werte im Hexadezimal-Format abwechselnd als Input verwendet. Bei einer
-
-steigenden Flanke der Clock liegt nach einem Wechsel des Eingangssignals das
-Ergebnis am Ausgang an.
+Es gibt zwei Software-Editionen zur Simulation von Hardwaredesigns. Die kostenpflichtige Questa-Intel® FPGA Software und die Questa-Intel® FPGA Starter Edition. Beide sind eine Version der Siemens EDA Questa Core Software für Intel® FPGAs [22]. Questa bietet eine Simulations-, Debug- und Verifikationsplattform zur Validierung von FPGA-Entwürfen [23]. Die Simulation kann entweder über die Quartus® Prime Software oder direkt in der Questa-Softwareplattform mit einem Simulationsskript gestartet werden. Um eine VHDL-Architektur testen zu können, wird eine Testumgebung, auch Testbench genannt, benötigt. Es werden die Eingangssignale (Stimuli) nachgebildet, um die infolgedessen generierten Ausgangssignale überprüfen zu können. Die Stimuli werden in verschiedenen Prozessen generiert und mit der Instanz des zu testenden Modells verbunden [13]. Ein Prozess kann beispielsweise für die Nachbildung des Clock-Signals zuständig sein. Dies erfolgt durch eine Dauerschleife mit einer Wartezeit, nach deren Ablauf der Signalwert getoggelt wird. Dadurch ergibt sich eine Clock mit der Periode der doppelten Wartezeit. Anschließend kann die Simulation in einem Zeitdiagramm analysiert werden. Abb. 7 zeigt den zeitlichen Verlauf einer Testbench, die den Funktionsablauf der Signum-Funktion überprüft. Eine Signum-Funktion gibt bei einer positiven Zahl den Wert “+1“, bei null den Wert “0“ und bei einer negativen Zahl den Wert “-1“ aus [24]. In der Testbench werden drei signed Werte im Hexadezimal-Format abwechselnd als Input verwendet. Bei einer steigenden Flanke der Clock liegt nach einem Wechsel des Eingangssignals das Ergebnis am Ausgang an.
 
 %///////////////////////////////////////////////////////////////////////////////////// 
 Falsches bild
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Fotos/Aufbau_S7_System.png}
-    \caption{Abbildung 4: Zeitdiagramm zur Simulation der Signum-Funktion in einer Test-
+    \caption{Zeitdiagramm zur Simulation der Signum-Funktion in einer Test-
     bench in der Questa-Intel® FPGA Starter Edition}
     \label{fig:Zeitdiagramm}
 \end{figure}
