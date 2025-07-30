@@ -116,14 +116,21 @@ Willi: A/B oder A/B/N Geber? RS422? 24V für DI und 5V für CH. Anforderungen: G
 
 Maybe: 
 \begin{itemize}
-    \item A -> 5V * 8 / (DI) 24V * 8 / (DIQ)? 24V * 4
+    \item A -> 5V (RS-485)* 8 / (DI) 24V * 8 / (DIQ) 24V * 4 / (DQ) 24V * 8
     \item A/B ->  5V * 4 / (DI) 24V * 4 / (DIQ)? 24V * 2
     \item A/B/N -> 5V * 2 / (DI+DIQ?) 24V * 3 
 \end{itemize}
 
 +-CH0 kann nicht beides verwendet werden -> EIA-485, auch als RS-485, benutzt ein Leitungspaar, um den invertierten und einen nichtinvertierten Pegel eines 1-Bit-Datensignals zu übertragen. Am Empfänger wird aus der Differenz der beiden Spannungspegel das ursprüngliche Datensignal rekonstruiert
 
+
 wo finde ich noch informationen zum software reset (ResetSW)?
+
+Wie funktionieren RS422/RS485 im vergelich zu DI in VHDL? 
+Erweiterung auf mehrere Kanäle? In die vorhandenden oder als neue Processe?
+Wie Initalisiert man andere Kanäle dynamisch? Um Speicherpaltz zu sparen. link in logikgruppe
+Gibt es einen Counter/Timer den man auf 1 Sekunde stellen kann? frequenz messer/perioden messung
+
 
 \chapter{Wichtig}
 Effected Interfaces 
@@ -190,6 +197,11 @@ TGEN (Am Ende)-> Test und angeschlossenden Enc\_Enum (Gerät Geber-Simulation) (
 ->Nightly Test einbauen
 
 ->wird wr\_rec00 richtig gesetzt? testen
+
+-FB\_IF Finalform + Steuerbit
+-Load new and better Version
+
+->RS422 für inc\_enc einbauen
 \chapter{Tests}
 
 rückgabe über das (fb\_if) feedback\_interface
@@ -249,8 +261,7 @@ PLC: Siemens123
     \item \href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Masterarbeit_Andreas_Kick.pdf}{Masterarbeit von Andreas Kick}
     \item \href{https://siemens.sharepoint.com/teams/P0000045/Backbone/Abschlussarbeiten/Bachelorarbeit_Thomas_Weisel.pdf}{Bachelorarbeit von Thomas Weisel}
     \item \href{https://th-nuernberg.zoom-x.de/j/2850045758}{Prof. Meitner Zoom Link}
-    \item \href{https://app.diagrams.net/?src=about#G1KCB0fK5aZU5TC9JrZS7IyLcSs2yiIYjS#%7B%22pageId%22%3A%229kRthm-LfoYTc_BfoG3U%22%7D}{Diagramme}
+    \item \href{https://asrdwiki.siemens.com/s7tfwiki/index.php/S7-1500/TM_EncEmu_1_(FPGA)}{Enc\_Emu}
 \end{itemize}
-
 
 

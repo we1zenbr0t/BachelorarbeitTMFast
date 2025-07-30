@@ -33,6 +33,164 @@ azyklisch über den TMFASTUserWriteREC zu verschicken. Bietet die Möglichkeit 1
 die die Obergrenze des Kanals angibt. Eine 32 Bit Zahl ohne Vorzeichen (4294967295) ist für die meisten Anwendungen ausreichend, da sie 4.294.967.295 Impulse (z.B. 1 Impuls = 1 ml) darstellen kann, was 4294967295 ml oder 4294,967295 l entspricht.
 Die Steuerungswerte wie z.B Reset, Load oder Hold werden über die zyklischen Schnittstellen CTRL\_IF über 1 DWord große Bitmuster übertragen und die Statuswerte über die zyklischen Schnittstellen FB\_IF zurückgegeben.
 
+\section{Überlaufkompensation (Dynamic Overflow Compensation)}
+
+Diese Methode wird für präzise Dosierungssysteme verwendet, bei denen der Nachlaufeffekt nach Ventilschließung berücksichtigt werden muss.
+
+\subsection{Vorteile}
+\begin{itemize}
+    \item Berücksichtigung der Systemträgheit (mechanische Nachlaufzeit des Ventils)
+    \item Kompensation des systematischen Fehlers durch den Nachlauf
+    \item Bei konstanten Bedingungen (Druck, Temperatur, Viskosität) sehr genau
+    \item Keine zusätzliche Hardware erforderlich
+    \item Selbstlernend/adaptiv, wenn der letzte Überlauf für die nächste Dosierung verwendet wird
+    \item Gut für kontinuierliche Prozesse geeignet
+\end{itemize}
+
+\subsection{Nachteile}
+\begin{itemize}
+    \item Bei schwankenden Bedingungen (Druck, Temperatur, Viskosität) kann der Überlauf variieren
+    \item Die erste Dosierung nach einem Neustart hat keine Überlaufkompensation
+    \item Bei Störungen (z.B. Luftblasen) wird ein falscher Überlaufwert für die nächste Dosierung verwendet
+    \item Bei Produktwechsel muss das System neu einlernen
+    \item Bei sehr unterschiedlichen Füllmengen muss eventuell mit verschiedenen Überlaufwerten gearbeitet werden
+\end{itemize}
+
+\subsection{Alternative Methoden}
+\begin{enumerate}
+    \item \textbf{Prädiktion des Abschaltzeitpunkts}
+    \begin{itemize}
+        \item Berechnung basierend auf aktueller Durchflussrate
+        \item Berücksichtigung der Ventil-Schließzeit
+    \end{itemize}
+    
+    \item \textbf{Zweistufige Dosierung}
+    \begin{itemize}
+        \item Schnelle Befüllung (ca. 90\%)
+        \item Langsame Präzisionsbefüllung
+    \end{itemize}
+    
+    \item \textbf{PID-geregelte Dosierung}
+    \begin{itemize}
+        \item Kontinuierliche Regelung
+        \item Hohe Präzision
+    \end{itemize}
+    
+    \item \textbf{Massendurchflussmesser}
+    \begin{itemize}
+        \item Direkte Massenmessung
+        \item Höchste Genauigkeit
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Mathematische Beschreibung}
+Für die Überlaufkompensation gilt:
+\begin{equation}
+V_{target} = V_{desired} - V_{overflow\_previous}
+\end{equation}
+
+Wobei:
+\begin{align*}
+V_{target} &= \text{Ziel-Abschaltvolumen} \\
+V_{desired} &= \text{Gewünschtes Endvolumen} \\
+V_{overflow\_previous} &= \text{Gemessener Überlauf der vorherigen Dosierung}
+\end{align*}
+
+\section{Analyse der Überlaufkompensation}
+
+Eine zusätzliche Berechnung der Überlaufkompensation ist nicht vorteilhaft, da das System bereits eine optimale Implementierung aufweist.
+
+\subsection{Aktuelle Implementierung (automatisch)}
+\begin{itemize}
+    \item \textbf{Kontinuierlicher Zählvorgang:} 
+        \begin{equation}
+            Count_{total} = Count_{target} + Count_{overflow}
+        \end{equation}
+    
+    \item \textbf{Ventilsteuerung:}
+        \begin{equation}
+            Valve_{state} = \begin{cases}
+                0 & \text{wenn } Count_{current} \geq Count_{target} \\
+                1 & \text{wenn } Count_{current} < Count_{target}
+            \end{cases}
+        \end{equation}
+    
+    \item \textbf{Automatische Nachlaufkompensation:}
+        \begin{itemize}
+            \item Nachlaufmenge wird direkt zum nächsten Zyklus addiert
+            \item Keine Zwischenspeicherung notwendig
+            \item Keine Berechnungszeit erforderlich
+        \end{itemize}
+\end{itemize}
+
+\subsection{Vorteile der automatischen Implementierung}
+\begin{enumerate}
+    \item \textbf{Effizienz:}
+        \begin{itemize}
+            \item Keine zusätzlichen Berechnungsschritte
+            \item Keine Verzögerungen im Prozessablauf
+            \item Optimale Ressourcennutzung
+        \end{itemize}
+    
+    \item \textbf{Genauigkeit:}
+        \begin{itemize}
+            \item Keine Rundungsfehler durch Berechnungen
+            \item Direkte Messung statt berechneter Werte
+            \item Kontinuierliche Erfassung ohne Unterbrechung
+        \end{itemize}
+    
+    \item \textbf{Zuverlässigkeit:}
+        \begin{itemize}
+            \item Reduzierte Komplexität
+            \item Weniger potenzielle Fehlerquellen
+            \item Robustes Systemverhalten
+        \end{itemize}
+\end{enumerate}
+
+\subsection{Nachteile einer zusätzlichen Berechnung}
+\begin{itemize}
+    \item \textbf{Erhöhte Komplexität:}
+        \begin{itemize}
+            \item Zusätzliche Prozesse und Variablen
+            \item Komplexere Wartung und Debugging
+            \item Schwierigere Systemanalyse
+        \end{itemize}
+    
+    \item \textbf{Potenzielle Fehlerquellen:}
+        \begin{itemize}
+            \item Überläufe bei arithmetischen Operationen
+            \item Timing-Probleme bei Berechnungen
+            \item Synchronisationsfehler zwischen Prozessen
+        \end{itemize}
+    
+    \item \textbf{Ressourcenverbrauch:}
+        \begin{itemize}
+            \item Zusätzlicher Speicherbedarf
+            \item Erhöhte CPU-Last
+            \item Mehr FPGA-Ressourcen benötigt
+        \end{itemize}
+    
+    \item \textbf{Keine Genauigkeitsverbesserung:}
+        \begin{itemize}
+            \item Keine Verbesserung der Messgenauigkeit
+            \item Mögliche Verschlechterung durch Rundungsfehler
+            \item Unnötige Komplexität ohne Mehrwert
+        \end{itemize}
+\end{itemize}
+
+\subsection{Mathematische Betrachtung}
+Die Gesamtmenge einer Dosierung lässt sich beschreiben als:
+\begin{equation}
+    V_{total} = V_{target} + V_{overflow}
+\end{equation}
+
+Wobei im automatischen System gilt:
+\begin{equation}
+    V_{next\_target} = V_{desired} - V_{overflow\_previous}
+\end{equation}
+
+Dies wird implizit durch den kontinuierlich laufenden Zähler realisiert, ohne explizite Berechnung.
+
 \section{Umsetzung der Funktionalität in VHDL}
 
 -\href{https://app.diagrams.net/?src=about#G1KCB0fK5aZU5TC9JrZS7IyLcSs2yiIYjS#%7B%22pageId%22%3A%229kRthm-LfoYTc_BfoG3U%22%7D}{Diagramme} einfügen, beschreiben und analysieren
