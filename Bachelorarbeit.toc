@@ -42,17 +42,17 @@
 \contentsline {subsection}{\numberline {4.3.2}Vorteile der automatischen Implementierung}{35}{subsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.3.3}Nachteile einer zusätzlichen Berechnung}{35}{subsection.4.3.3}%
 \contentsline {subsection}{\numberline {4.3.4}Mathematische Betrachtung}{36}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Umsetzung der Funktionalität in VHDL}{36}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Test und Validierung der VHDL-Implementierung}{36}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Schnittstelle mit dem TIA Portal}{37}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Vergleich mit der bisherigen Lösung}{37}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{38}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Zusammenfassung der Ergebnisse}{38}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Kritische Reflexion und Herausforderungen}{38}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{38}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Plan}{41}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Fragen}{44}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Wichtig}{47}{chapter.8}%
-\contentsline {chapter}{\numberline {9}TODO}{49}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Tests}{51}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Passwörter}{53}{chapter.11}%
+\contentsline {section}{\numberline {4.4}Umsetzung der Funktionalität in VHDL}{37}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Test und Validierung der VHDL-Implementierung}{38}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Schnittstelle mit dem TIA Portal}{38}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Vergleich mit der bisherigen Lösung}{38}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{39}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Zusammenfassung der Ergebnisse}{39}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Kritische Reflexion und Herausforderungen}{39}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{39}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Plan}{42}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Fragen}{45}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Wichtig}{48}{chapter.8}%
+\contentsline {chapter}{\numberline {9}TODO}{50}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Tests}{52}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Passwörter}{54}{chapter.11}%

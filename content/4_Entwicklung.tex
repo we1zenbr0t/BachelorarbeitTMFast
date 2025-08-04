@@ -191,6 +191,28 @@ Wobei im automatischen System gilt:
 
 Dies wird implizit durch den kontinuierlich laufenden Zähler realisiert, ohne explizite Berechnung.
 
+Lassen Sie uns das klären:
+
+RS485 als physikalische Schnittstelle vs. Protokoll:
+RS485 ist ein Standard für die elektrische Übertragung von Signalen über eine differentielle Leitung. Das bedeutet, dass das Signal nicht als Spannung gegen Masse, sondern als Spannungsdifferenz zwischen zwei Leitungen (z.g. A und /A) übertragen wird. Dies macht die Übertragung sehr robust gegenüber elektromagnetischen Störungen, besonders über längere Distanzen.
+Protokolle (wie Modbus RTU, USS, Profibus DP, SSI, EnDat etc.) sind die Regeln, wie Daten über diese physikalische Schnittstelle strukturiert und interpretiert werden.
+Inkrementelle Geber und RS485-ähnliche Signale:
+Viele inkrementelle Geber, insbesondere solche mit HTL-Differentiell (High-Transistor Logic, 24V) oder TTL-Differentiell (Transistor-Transistor Logic, 5V) Ausgängen, nutzen die elektrischen Eigenschaften von RS485 für ihre A/B/N-Spuren. Das bedeutet, sie geben für jede Spur ein differentielles Signalpaar aus (z.B. A und /A, B und /B, N und /N).
+Diese Geber senden jedoch KEIN serielles Kommunikationsprotokoll. Sie senden einfach hochfrequente Rechteckimpulse auf diesen differentiellen Leitungen.
+Wie die TM-FAST (oder EncEmu) das verarbeitet:
+Module wie die TM-FAST oder die EncEmu TM155E sind Hochgeschwindigkeitszähler. Sie sind genau dafür ausgelegt, diese differentiellen Impulse zu empfangen.
+Sie erkennen die Flankenwechsel (z.B. von A > /A auf A < /A und umgekehrt) auf den A- und B-Spuren.
+Durch die Phasenverschiebung zwischen den A- und B-Spuren (typischerweise 90 Grad) können sie nicht nur die Anzahl der Impulse zählen, sondern auch die Drehrichtung des Gebers erkennen.
+Die N-Spur (oder Z-Spur) liefert einen Referenzimpuls pro Umdrehung zum Nullpunkt.
+Es wird kein Software-Protokoll auf der SPS benötigt, um diese Impulse zu interpretieren. Das Modul selbst (TM-FAST, EncEmu) übernimmt das Zählen und die Richtungserkennung auf Hardware-Ebene und stellt der SPS dann den aktuellen Zählerstand zur Verfügung.
+Zusammenfassend:
+
+Ihre Beschreibung "wenn eine 1 anliegt (also 5,9v oder so) wird wie bei den di ein impuls wargenommen und um 1 inkrementiert" passt perfekt zur Funktionsweise eines inkrementellen Gebers, der differentielle Signale liefert. Die 5,9V würden hier die Spannungsdifferenz zwischen den beiden Leitungen des Paares darstellen.
+
+Fazit:
+
+Ja, es ist absolut möglich und der vorgesehene Weg, inkrementelle Geber mit differentiellen Ausgängen (die RS485-ähnliche elektrische Eigenschaften nutzen) an einer SPS mit entsprechenden Hochgeschwindigkeits-Eingangsmodulen wie der TM-FAST oder der EncEmu TM155E zu betreiben. Diese Geber funktionieren über reine Impulsausgabe und nicht über serielle Kommunikationsprotokolle. Protokolle kommen typischerweise bei Absolutwertgebern (z.B. SSI, EnDat, Profinet-Geber) zum Einsatz, die eine absolute Position über eine serielle Datenleitung übertragen.
+
 \section{Umsetzung der Funktionalität in VHDL}
 
 -\href{https://app.diagrams.net/?src=about#G1KCB0fK5aZU5TC9JrZS7IyLcSs2yiIYjS#%7B%22pageId%22%3A%229kRthm-LfoYTc_BfoG3U%22%7D}{Diagramme} einfügen, beschreiben und analysieren
