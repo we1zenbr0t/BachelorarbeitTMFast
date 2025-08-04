@@ -18,41 +18,47 @@
 \contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{15}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Eigenschaften und Aufbau des TM FAST}{15}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Funktionsweise und Limitierungen des FM350-2}{23}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Grundlegende Funktionen der FM 350-2}{25}{subsection.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.2.1.1}Steuerung der Baugruppe mit FC CNT2\_CTR}{25}{subsubsection.3.2.1.1}%
-\contentsline {subsubsection}{\numberline {3.2.1.2}Laden von Zählerständen, Grenz- und Vergleichswerten ( exttt{FC3} / exttt{FB3})}{25}{subsubsection.3.2.1.2}%
-\contentsline {subsubsection}{\numberline {3.2.1.3}Auslesen von Zähl- und Messwerten ( exttt{FC4} / exttt{FB4})}{26}{subsubsection.3.2.1.3}%
-\contentsline {subsubsection}{\numberline {3.2.1.4}Diagnosedaten lesen (FC5)}{26}{subsubsection.3.2.1.4}%
-\contentsline {subsection}{\numberline {3.2.2}Einschränkungen der FM 350-2}{26}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Einsatzgebiete der FM 350-2}{26}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Haupteinsatzgebiete}{26}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Typische Anwendungen}{27}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Anwendungsbeispiel: Kartonabfüllung}{27}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Vorteile und neue Möglichkeiten durch das TM FAST Modul}{28}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Anforderungen an die Neuentwicklung}{29}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{31}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Konzept und Architektur des neuen Applikationsdesigns}{31}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Überlaufkompensation (Dynamic Overflow Compensation)}{32}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Vorteile}{32}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Nachteile}{32}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Alternative Methoden}{33}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Mathematische Beschreibung}{34}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}Analyse der Überlaufkompensation}{34}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Aktuelle Implementierung (automatisch)}{34}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Vorteile der automatischen Implementierung}{35}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Nachteile einer zusätzlichen Berechnung}{35}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Mathematische Betrachtung}{36}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Umsetzung der Funktionalität in VHDL}{38}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Test und Validierung der VHDL-Implementierung}{38}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Schnittstelle mit dem TIA Portal}{38}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Vergleich mit der bisherigen Lösung}{38}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{39}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Zusammenfassung der Ergebnisse}{39}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Kritische Reflexion und Herausforderungen}{39}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{39}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Plan}{42}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Fragen}{45}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Wichtig}{48}{chapter.8}%
-\contentsline {chapter}{\numberline {9}TODO}{50}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Tests}{52}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Passwörter}{54}{chapter.11}%
+\contentsline {subsection}{\numberline {3.2.1}Endloses Zählen bei der FM 350-2}{25}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Einmaliges Zählen bei der FM 350-2}{26}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Periodisches Zählen bei der FM 350-2}{27}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Frequenzmessung mit der FM 350-2}{28}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Drehzahlmessung mit der FM 350-2}{29}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Periodendauermessung mit der FM 350-2}{30}{subsection.3.2.6}%
+\contentsline {subsection}{\numberline {3.2.7}Dosierfunktion der FM 350-2}{31}{subsection.3.2.7}%
+\contentsline {subsection}{\numberline {3.2.8}Torfunktionen der FM 350-2}{32}{subsection.3.2.8}%
+\contentsline {paragraph}{\nonumberline Software-Tor und Hardware-Tor}{32}{paragraph*.4}%
+\contentsline {paragraph}{\nonumberline Internes Tor}{32}{paragraph*.6}%
+\contentsline {paragraph}{\nonumberline Beispiel}{33}{paragraph*.8}%
+\contentsline {subsection}{\numberline {3.2.9}?Einschränkungen der FM 350-2?}{33}{subsection.3.2.9}%
+\contentsline {section}{\numberline {3.3}?Einsatzgebiete der FM 350-2?}{34}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}?Haupteinsatzgebiete?}{34}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Typische Anwendungen}{34}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Anwendungsbeispiel: Kartonabfüllung}{34}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}?Vorteile und neue Möglichkeiten durch das TM FAST Modul?}{35}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Anforderungen an die Neuentwicklung}{37}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{38}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Konzept und Architektur des neuen Applikationsdesigns}{38}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Überlaufkompensation (Dynamic Overflow Compensation)}{39}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Vorteile}{39}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Nachteile}{39}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Alternative Methoden}{40}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Mathematische Beschreibung}{41}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Analyse der Überlaufkompensation}{41}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Aktuelle Implementierung (automatisch)}{41}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Vorteile der automatischen Implementierung}{42}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Nachteile einer zusätzlichen Berechnung}{42}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Mathematische Betrachtung}{43}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Umsetzung der Funktionalität in VHDL}{45}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Test und Validierung der VHDL-Implementierung}{45}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Schnittstelle mit dem TIA Portal}{45}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Vergleich mit der bisherigen Lösung}{45}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{46}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Zusammenfassung der Ergebnisse}{46}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Kritische Reflexion und Herausforderungen}{46}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{46}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Plan}{49}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Fragen}{52}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Wichtig}{55}{chapter.8}%
+\contentsline {chapter}{\numberline {9}TODO}{57}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Tests}{59}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Passwörter}{61}{chapter.11}%

@@ -162,7 +162,7 @@ Neben der festen Parametrierung kann die Verzögerung auch in der TM FAST-Anwend
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.2\textwidth]{Fotos/Frontstecker2.png}
-    \caption{Abbildung 9: Frontstecker des TM FAST \cite{siemensET200MP}}
+    \caption{Frontstecker des TM FAST \cite{siemensET200MP}}
     \label{fig:frontstecker}
 \end{figure}
 
@@ -235,36 +235,220 @@ Auch bei Ausfall der Baugruppenversorgung zeigt die FM 350-2 ein differenziertes
 
 Zusätzlich verfügt die FM 350-2 über umfassende Diagnosefunktionen. Mögliche Fehlerzustände wie fehlerhafte Geberversorgung (NAMUR), fehlende oder fehlerhafte Parametrierung, Zeitüberwachungsfehler (Watchdog), Drahtbruch oder Kurzschluss sowie der Verlust von Prozessalarmen können erkannt und gemeldet werden \cite{fm350_Handbuch}.
 
-\subsection{Grundlegende Funktionen der FM 350-2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Fotos/fm350-2.png}
+    \caption{Hardware der FM-350-2 \cite{fm350_Handbuch}}
+    \label{fig:fm350-2_hardware}
+\end{figure}
 
-Die FM 350-2 bietet eine Vielzahl von Funktionen zur Steuerung und Überwachung von Zählprozessen. Hierzu gehören unter anderem das Initialisieren der Zähler, das Steuern von Digitalausgängen sowie das Laden und Auslesen von Zählwerten.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|l|}
+        \hline
+        \textbf{Nummer} & \textbf{Bezeichnung} \\
+        \hline
+        1 & Frontstecker \\
+        2 & Typenschild \\
+        3 & Busverbinder SIMATIC-Schnittstelle \\
+        4 & Erzeugnisstand \\
+        5 & Bestellnummer \\
+        6 & Beschriftungsstreifen \\
+        7 & Diagnose-LED \\
+        8 & Status-LEDs \\
+        \hline
+    \end{tabular}
+    \caption{Kennzeichnungen und Komponenten der FM 350-2}
+    \label{tab:fm350-2_kennzeichnungen}
+\end{table}
 
-\subsubsection{Steuerung der Baugruppe mit FC CNT2\_CTR} (FC2)
+\subsection{Endloses Zählen bei der FM 350-2}
 
-Die Funktion exttt{FC CNT2\_CTR} ermöglicht die Steuerung der Digitalausgänge der FM 350-2 sowie die Verwaltung der Software-Tore. Zudem können Rückmeldesignale ausgelesen werden.
+Die Betriebsart „Endloses Zählen“ ermöglicht es der FM 350-2, Zählimpulse kontinuierlich zu erfassen, ohne dass der Zähler bei Erreichen einer Grenze stoppt. Wird beim Vorwärtszählen die obere Zählgrenze (\(+2\,147\,483\,647\)) erreicht und ein weiterer Zählimpuls empfangen, springt der Zähler automatisch auf die untere Zählgrenze (\(-2\,147\,483\,648\)) und zählt weiter. Analog dazu springt der Zähler beim Rückwärtszählen von der unteren Zählgrenze auf die obere Zählgrenze, sobald ein weiterer Zählimpuls erfolgt. Dadurch wird ein endloses Zählen innerhalb des 32-Bit-Zählbereichs realisiert.
 
-\textbf{Hauptfunktionen:}
+Der Zählbereich ist fest auf 31 Bit vorzeichenbehaftet (\(-2\,147\,483\,648\) bis \(+2\,147\,483\,647\)) und kann nicht verändert werden. Nach einem Neustart beginnt der Zähler bei 0.
+
+Wurde ein Vergleichswert parametriert, kann bei Erreichen des Vergleichswerts ein Prozessalarm ausgelöst und/oder ein Ausgang geschaltet werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Fotos/EndlosZähler.png}
+    \caption{Endloses Zählen in Hauptzählrichtung vorwärts \cite{fm350_Handbuch}}
+    \label{fig:endlos_zaehlen}
+\end{figure}
+
+\subsection{Einmaliges Zählen bei der FM 350-2}
+
+Die Betriebsart „Einmaliges Zählen“ ermöglicht das Erfassen einer festen Anzahl von Zählimpulsen zwischen einem definierten Start- und Endwert. Über die Parametrierung werden Startwert, Endwert und Hauptzählrichtung festgelegt.
+
+Beim Zählen in Hauptzählrichtung vorwärts beginnt der Zähler bei 0 und zählt einmalig bis zum Endwert. Wird der Wert „Endwert-1“ erreicht und ein weiterer Zählimpuls empfangen, springt der Zähler zurück auf den Zählerstand 0 und bleibt dort stehen, auch wenn weitere Impulse folgen.
+
+Beim Zählen in Hauptzählrichtung rückwärts startet der Zähler beim Startwert und zählt einmalig in Richtung 0. Erreicht der Zähler den Wert 1 und ein weiterer Zählimpuls erfolgt, springt er auf den Startwert zurück und bleibt stehen.
+
+Wird entgegen der gewählten Hauptzählrichtung gezählt und dabei der Startwert unter- oder überschritten, meldet die Baugruppe den aktuellen Zählerstand mit negativem Vorzeichen zurück. Ein Überlauf oder Unterlauf findet in diesem Modus nicht statt.
+
+Ist ein Vergleichswert parametriert, kann bei aktuellem Zählerstand = Vergleichswert ein Prozessalarm ausgelöst und/oder ein Ausgang geschaltet werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Fotos/einmalzähler.png}
+    \caption{Einmaliges Zählen in Hauptzählrichtung vorwärts \cite{fm350_Handbuch}}
+    \label{fig:einmalig_zaehlen}
+\end{figure}
+
+\subsection{Periodisches Zählen bei der FM 350-2}
+
+Die Betriebsart „Periodisches Zählen“ erlaubt das Erfassen von Zählimpulsen innerhalb eines festgelegten Bereichs zwischen Startwert und Endwert. Nach Erreichen des Endwerts springt der Zähler automatisch auf den Startwert zurück und zählt erneut bis zum Endwert. Dieses Verhalten wiederholt sich zyklisch, wodurch eine periodische Zählung realisiert wird.
+
+Beim Zählen in Hauptzählrichtung vorwärts startet der Zähler beim Startwert (meist 0) und zählt bis zum Endwert. Sobald der Endwert erreicht ist und ein weiterer Zählimpuls erfolgt, springt der Zähler zurück auf den Startwert und beginnt erneut zu zählen. Die Zählimpulse werden kontinuierlich erfasst, sodass der Zählvorgang periodisch erfolgt.
+
+Beim Zählen in Hauptzählrichtung rückwärts startet der Zähler am parametrierten Startwert und zählt in Richtung Endwert (meist 0). Wird der Endwert erreicht und ein weiterer Zählimpuls empfangen, springt der Zähler auf den Startwert zurück und zählt erneut rückwärts.
+
+Wird entgegen der gewählten Hauptzählrichtung gezählt und dabei der Startwert unter- oder überschritten, meldet die Baugruppe den aktuellen Zählerstand mit negativem Vorzeichen zurück. Ein Überlauf oder Unterlauf findet in diesem Modus nicht statt; der Ausgangswert bleibt unverändert.
+
+Ist ein Vergleichswert parametriert, kann bei aktuellem Zählerstand = Vergleichswert ein Prozessalarm ausgelöst und/oder ein Ausgang geschaltet werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Fotos/PeriodischZählen.png}
+    \caption{Periodisches Zählen in Hauptzählrichtung vorwärts \cite{fm350_Handbuch}}
+    \label{fig:periodisch_zaehlen}
+\end{figure}
+
+\subsection{Frequenzmessung mit der FM 350-2}
+
+Die FM 350-2 bietet eine integrierte Funktion zur Frequenzmessung, bei der die Anzahl der Impulse innerhalb eines parametrierbaren Zeitfensters gezählt wird. Die Zeitfensterlänge kann zwischen 10 ms und 10 s eingestellt werden. Nach Ablauf des Zeitfensters wird die Frequenz als Anzahl der gezählten Impulse pro Sekunde berechnet und als Wert in Hz ausgegeben.
+
+Die Frequenzmessung kann sowohl über das Anwenderprogramm als auch über externe Signale (Hardware-Tor) gestartet und gestoppt werden. Die Baugruppe unterstützt dabei verschiedene Vergleichswerte, sodass Prozessalarme ausgelöst werden können, wenn die gemessene Frequenz bestimmte Grenzwerte über- oder unterschreitet.
+
+Die wichtigsten Merkmale der Frequenzmessung sind:
 \begin{itemize}
-    \item Initialisierung des Zähler-DBs
-    \item Auslesen der Rückmeldesignale und Speicherung in der Struktur \texttt{CHECKBACK\_SIGNALS}
-    \item Übertragen der Steuersignale aus der Struktur \texttt{CONTROL\_SIGNALS} zur FM 350-2
+    \item Messbereich: 0 Hz bis 9.999.999 Hz (abhängig von Parametrierung und Signalart)
+    \item Einstellbare Zeitfenster für die Messung (10 ms bis 10 s)
+    \item Prozessalarme bei Über- oder Unterschreiten von Grenzwerten
+    \item Start und Ende der Messung über Software- oder Hardware-Tor
+    \item Frequenzvergleich mit parametrierten Sollwerten möglich
 \end{itemize}
 
-Die Funktion muss zyklisch (z. B. im \texttt{OB1} oder im Weckalarm \texttt{OB35} der S7-300) aufgerufen werden, um eine kontinuierliche Überwachung und Steuerung zu gewährleisten.
+Die Frequenzmessung eignet sich besonders für Anwendungen, bei denen die Geschwindigkeit oder Drehzahl von Maschinen und Anlagen überwacht werden muss. Typische Einsatzfälle sind die Überwachung von Förderbändern, Drehtischen oder Antrieben.
 
-\subsubsection{Laden von Zählerständen, Grenz- und Vergleichswerten (	exttt{FC3} / 	exttt{FB3})}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Fotos/frequenzmesser.png}
+    \caption{Prinzip der Frequenzmessung mit Zeitfenster bei der FM 350-2 \cite{fm350_Handbuch}}
+    \label{fig:frequenzmessung_fm350-2}
+\end{figure}
 
-Mit der Funktion 	exttt{FC CNT2\_WR} oder dem Funktionsbaustein 	exttt{FB CNT2WRPN} können Zählerstände und Vergleichswerte neu geladen werden. Diese Funktion sollte nur verwendet werden, wenn im laufenden Betrieb neue Werte in das Modul eingespielt werden müssen.
+\subsection{Drehzahlmessung mit der FM 350-2}
 
-\subsubsection{Auslesen von Zähl- und Messwerten (	exttt{FC4} / 	exttt{FB4})}
+Die Drehzahlmessung ist eine spezielle Betriebsart der FM 350-2, die nahezu identisch mit der Frequenzmessung arbeitet. Neben der Länge des Zeitfensters muss bei der Drehzahlmessung in der Parametermaske die Anzahl der Impulse pro Motor- oder Geberumdrehung angegeben werden.
 
-Die 	exttt{FC CNT2\_RD} / 	exttt{FB CNT2RDPN} Funktion dient zum zyklischen Auslesen der aktuellen Zählwerte. Falls keine Leseaufträge benötigt werden, kann auf diese Funktion verzichtet werden, um die Prozesslast zu minimieren.
+Am Ende jedes Zeitfensters wird der Drehzahlwert aktualisiert. Die ermittelte Drehzahl wird in der Einheit \(1 \times 10^{-3}\) Umdrehungen/Minute ausgegeben.
 
-\subsubsection{Diagnosedaten lesen (FC5)}
+Wird kein gültiger Wert ermittelt, wird \(-1\) zurückgemeldet. Werden in einem Zeitintervall keine Impulse gezählt, liefert die Baugruppe \(0 \times 10^{-3}\) U/min (\(= 0\) U/min).
 
-Im Falle eines Diagnosealarms ermöglicht die Funktion FC DIAG\_RD das Laden der Diagnosealarmdaten in den Zähler-DB, um Fehlerursachen zu analysieren und entsprechende Maßnahmen einzuleiten.
+Über zwei Drehzahlvergleichswerte (unterer und oberer Grenzwert) kann überwacht werden, ob die gemessene Drehzahl im vorgegebenen Bereich liegt. Beim Verlassen dieses Bereichs kann ein Prozessalarm ausgelöst werden. Die FM 350-2 prüft, ob Drehzahlobergrenze \(>\) Drehzahluntergrenze ist und meldet einen Parametrierungsfehler, falls dies nicht der Fall ist.
 
-\subsection{Einschränkungen der FM 350-2}
+Die Drehzahlmessung wird über die Torfunktionen gestartet und beendet. Folgende Prozessalarme sind möglich:
+\begin{itemize}
+    \item Beginn der Drehzahlmessung durch HW-Tor (positive Flanke)
+    \item Ende der Drehzahlmessung durch HW-Tor (negative Flanke)
+    \item Ende der Messwerterfassung (Integrationszeit ist abgelaufen)
+    \item Über- bzw. Unterschreiten der Drehzahlgrenzen
+\end{itemize}
+
+Die Drehzahlmessung eignet sich besonders für Anwendungen, bei denen die Drehzahl von Maschinen oder Antrieben überwacht und geregelt werden muss, wie z.B. bei Förderbändern, Drehtischen oder Motoren.
+
+\subsection{Periodendauermessung mit der FM 350-2}
+
+Bei sehr kleinen Frequenzen wird anstelle der Frequenz die Periodendauer gemessen. Im Betriebsart „Periodendauermessung“ erfasst die FM 350-2 die exakte Zeit zwischen zwei steigenden Flanken eines Eingangssignals. Die Messung wird über Torsignale (Hardware- oder Software-Tor) gestartet und beendet.
+
+Die Periodendauer kann nur in der eingestellten Hauptzählrichtung erfasst werden. Der zulässige Messbereich liegt zwischen 40\,µs und 120\,s (entspricht 25\,000\,Hz bis 0{,}00833\,Hz). Liegt kein gültiger Wert vor, wird \(-1\) zurückgemeldet.
+
+Über die Parametermaske können zwei Periodendauer-Grenzwerte eingestellt werden:
+\begin{itemize}
+    \item Untere Grenze: 0\,µs bis 119\,999{,}999\,µs
+    \item Obere Grenze: 40\,µs bis 120\,000{,}000\,µs
+\end{itemize}
+
+Folgende Prozessalarme sind möglich:
+\begin{itemize}
+    \item Beginn der Periodendauermessung durch HW-Tor (positive Flanke)
+    \item Ende der Periodendauermessung durch HW-Tor (negative Flanke)
+    \item Ende der Messwerterfassung (Integrationszeit ist abgelaufen)
+    \item Über- bzw. Unterschreiten der Periodendauergrenzen
+\end{itemize}
+
+Die Periodendauermessung eignet sich besonders für Anwendungen mit sehr niedrigen Frequenzen, bei denen eine präzise Zeitmessung zwischen zwei Ereignissen erforderlich ist, z.B. bei langsamen Bewegungen oder Taktgebern.
+
+\subsection{Dosierfunktion der FM 350-2}
+
+Die FM 350-2 bietet eine integrierte Dosierfunktion, mit der präzise Mengen von Materialien oder Teilen gesteuert und abgegeben werden können. Im Betriebsmodus „Dosieren“ werden jeweils vier Zählkanäle zu einem Dosierkanal zusammengefasst. Für jeden Dosierkanal können bis zu vier Vergleichswerte festgelegt werden, die einzeln oder gruppenweise verändert werden können.
+
+Der aktuelle Zählerstand wird kontinuierlich mit den Vergleichswerten verglichen. Sobald der Zählerstand einen Vergleichswert erreicht, kann ein zugeordneter Digitalausgang angesteuert und/oder ein Prozessalarm ausgelöst werden. So lassen sich bis zu vier Dosierabschnitte innerhalb eines Dosierzyklus realisieren.
+
+Die Dosierfunktion unterstützt sowohl den Vorwärts- als auch den Rückwärtsbetrieb. Im Rückwärtsbetrieb wird ein Startwert vorgegeben und der Zähler zählt bis zum Endwert (meist 0) herunter. Die Vergleichswerte definieren die einzelnen Dosierabschnitte, in denen jeweils ein Ausgang geschaltet oder ein Alarm ausgelöst werden kann.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Fotos/dosiermodus.png}
+    \caption{Dosierfunktion: Hauptzählrichtung rückwärts mit vier Vergleichswerten und Prozessalarmen \cite{fm350_Handbuch}}
+    \label{fig:dosieren_fm350-2}
+\end{figure}
+
+Mögliche Prozessalarme im Dosierbetrieb sind:
+\begin{itemize}
+    \item Beginn der Dosierung durch Hardware-Tor (positive Flanke)
+    \item Abbruch/Unterbrechung der Dosierung durch Hardware-Tor (negative Flanke)
+    \item Prozessalarm für jeden Vergleichswert (bis zu vier pro Kanal)
+    \item Erreichen der Zählbereichsgrenzen (Endwert/Startwert)
+\end{itemize}
+
+Die Dosierfunktion eignet sich besonders für Anwendungen, bei denen exakte Mengen abgegeben werden müssen, wie z.B. in Abfüllanlagen, Mischprozessen oder bei der Steuerung von Förderbändern. Durch die flexible Parametrierung der Vergleichswerte und die schnelle Reaktion auf Zählereignisse können komplexe Dosieraufgaben zuverlässig und präzise umgesetzt werden.
+
+\subsection{Torfunktionen der FM 350-2}
+
+Viele Anwendungen erfordern, dass der Zählvorgang erst zu einem definierten Zeitpunkt, abhängig von anderen Ereignissen, gestartet oder gestoppt wird. Dieses Starten und Stoppen des Zählvorgangs geschieht bei der FM 350-2 über eine Torfunktion. Wird das Tor geöffnet, können Zählimpulse zum Zähler gelangen, der Zählvorgang wird fortgesetzt. Wird das Tor geschlossen, können keine Zählimpulse mehr zum Zähler gelangen, der Zählvorgang ist gestoppt.
+
+\paragraph{Software-Tor und Hardware-Tor}
+Die FM 350-2 besitzt zwei Torfunktionen:
+\begin{itemize}
+    \item \textbf{Software-Tor (SW-Tor):} Das Software-Tor wird durch das Steuerbit \texttt{SW\_GATE} im Anwenderprogramm gesetzt oder zurückgesetzt. Es kann ausschließlich durch einen Flankenwechsel von 0 auf 1 geöffnet und von 1 auf 0 geschlossen werden.
+    \item \textbf{Hardware-Tor (HW-Tor):} Das Hardware-Tor wird durch ein externes Signal an einem digitalen Eingang der Baugruppe gesteuert. Es wird durch einen Flankenwechsel des Eingangssignals geöffnet oder geschlossen.
+\end{itemize}
+
+\paragraph{Internes Tor}
+Das interne Tor ergibt sich als logische UND-Verknüpfung von HW-Tor und SW-Tor. Ist eines der Tore geschlossen, bleibt das interne Tor ebenfalls geschlossen und der Zählvorgang ist inaktiv. Nur wenn beide Tore offen sind, ist das interne Tor aktiv und der Zählvorgang läuft.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        HW-Tor & SW-Tor & internes Tor & Zählvorgang \\
+        \hline
+        offen & offen & offen & aktiv \\
+        offen & geschlossen & geschlossen & inaktiv \\
+        geschlossen & offen & geschlossen & inaktiv \\
+        geschlossen & geschlossen & geschlossen & inaktiv \\
+        \hline
+    \end{tabular}
+    \caption{Zusammenhang der Torfunktionen und des Zählvorgangs}
+    \label{tab:torfunktionen}
+\end{table}
+
+\paragraph{Beispiel}
+Mit dem Setzen des Torsignals wird das Tor geöffnet und die Zählimpulse werden gezählt. Wird das Torsignal weggenommen, wird das Tor geschlossen und die Zählimpulse werden nicht mehr vom Zähler erfasst. Der Zählerstand bleibt konstant.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Fotos/torfunktion.png}
+    \caption{Öffnen und Schließen eines Tores und das Zählen der Impulse \cite{fm350_Handbuch}}
+    \label{fig:tor_beispiel}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{?Einschränkungen der FM 350-2?}
 
 Trotz ihrer vielseitigen Einsatzmöglichkeiten weist die FM 350-2 einige Limitierungen auf:
 \begin{itemize}
@@ -273,9 +457,9 @@ Trotz ihrer vielseitigen Einsatzmöglichkeiten weist die FM 350-2 einige Limitie
     \item Begrenzte Echtzeitfähigkeit im Vergleich zu modernen Zählmodulen
 \end{itemize}
 
-\section{Einsatzgebiete der FM 350-2}
+\section{?Einsatzgebiete der FM 350-2?}
 
-\subsection{Haupteinsatzgebiete}
+\subsection{?Haupteinsatzgebiete?}
 
 Die FM 350-2 wird hauptsächlich dort eingesetzt, wo Signale gezählt und schnelle Reaktionen auf vorgegebene Zählerstände erforderlich sind. Besonders relevant ist sie für Anwendungen in der Fertigungs- und Automatisierungstechnik.
 
@@ -310,7 +494,7 @@ Ein typisches Beispiel für die Nutzung der FM 350-2 ist die Abfüllung von Teil
 
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Vorteile und neue Möglichkeiten durch das TM FAST Modul} 
+\section{?Vorteile und neue Möglichkeiten durch das TM FAST Modul?} 
 
 Das TM FAST Modul bietet im Vergleich zur FM 350-2 eine Reihe von Vorteilen und neuen Möglichkeiten, die es zu einer attraktiven Alternative machen. In diesem Abschnitt werden die wesentlichen Unterschiede und Vorteile des TM FAST Moduls beschrieben.
 
@@ -329,7 +513,7 @@ RS485, 24V, userwriterec, FB-IF/CTRL und 5v verwendbar. Alle Möglichkeiten zur 
 \section{Anforderungen an die Neuentwicklung} 
 
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|}
@@ -360,131 +544,3 @@ RS485, 24V, userwriterec, FB-IF/CTRL und 5v verwendbar. Alle Möglichkeiten zur 
     \caption{Vergleich zwischen TM FAST und FM 350-2}
     \label{tab:tm_fast_vs_fm350-2}
 \end{table}
-
-
-
-
-\newif\ifdraft
-%\drafttrue 
-\draftfalse
-\ifdraft
-
-\chapter{Analyse der Ablösung des FM350-2 durch das TM FAST Modul}
-
-\section{Funktionsweise und Limitierungen des FM350-2} 
-\section{Vorteile und neue Möglichkeiten durch das TM FAST Modul} 
-\section{Anforderungen an die Neuentwicklung} 
-
-
-
-Unterschiede in der Aufgabe und Softwarearchetektur:
-
-\begin{table}[h]
-    \centering
-    \renewcommand{\arraystretch}{1.3}
-    \begin{tabularx}{\textwidth}{|X|X|X|}
-        \hline
-        \textbf{Kriterium} & \textbf{TM FAST} & \textbf{FM 350-2} \\
-        \hline
-        \multicolumn{3}{|c|}{\textbf{Unterschiede}} \\
-        \hline
-        Architektur & FPGA-basiert, flexible und programmierbare Hardwareplattform & Reines Zählermodul ohne FPGA-Technologie \\
-        \hline
-        Funktionalität & Kann komplexe Prozesssteuerungs- und Überwachungsaufgaben übernehmen & Spezialisiert auf Zählen, Frequenz- und Drehzahlmessung \\
-        \hline
-        Prozessintegration & Kann direkt in den Produktionsprozess eingreifen und Prozessalarme auslösen & Liefert Zähler- und Messwerte, die von der übergeordneten Steuerung weiterverarbeitet werden \\
-        \hline
-        Flexibilität & Hohe Flexibilität und Anpassungsfähigkeit durch FPGA-Architektur & Festgelegte Funktionalität, die nicht ohne Weiteres erweitert werden kann \\
-        \hline
-        \multicolumn{3}{|c|}{\textbf{Gemeinsamkeiten}} \\
-        \hline
-        Zählfunktionen & \multicolumn{2}{c|}{Beide Module bieten Zählfunktionen mit hoher Auflösung (z.B. 32-Bit Zähltiefe)} \\
-        \hline
-        Frequenz- und Drehzahlmessung & \multicolumn{2}{c|}{Beide Module unterstützen die Messung von Frequenzen und Drehzahlen} \\
-        \hline
-        Einbindung in Steuerungsarchitektur & \multicolumn{2}{c|}{Beide Module werden in die übergeordnete Steuerungsarchitektur integriert} \\
-        \hline
-        Industrielle Anwendungen & \multicolumn{2}{c|}{Beide Module finden Einsatz in ähnlichen Industriebereichen wie Verpackung, Sortierung, Dosierung etc.} \\
-        \hline
-    \end{tabularx}
-    \caption{Vergleich zwischen TM FAST und FM 350-2}
-    \label{tab:tm_fast_vs_fm350-2}
-\end{table}
-
-% \begin{table}[h]     funktioniert
-%     \centering
-%     \renewcommand{\arraystretch}{1.3} % Erhöht den Zeilenabstand leicht
-%     \begin{tabularx}{\textwidth}{|X|X|X|}
-%         \hline
-%         \textbf{Kriterium} & \textbf{TM FAST} & \textbf{FM 350-2} \\\multicolumn{3}{|c|}{\textbf{Unterschiede}} \\
-%         \hline
-%         Architektur & FPGA-basiert, flexible und programmierbare Hardwareplattform & Reines Zählermodul ohne FPGA-Technologie \\
-%         \hline
-%         Funktionalität & Kann komplexe Prozesssteuerungs- und Überwachungsaufgaben übernehmen & Spezialisiert auf Zählen, Frequenz- und Drehzahlmessung \\
-%         \hline
-%         Prozessintegration & Kann direkt in den Produktionsprozess eingreifen und Prozessalarme auslösen & Liefert Zähler- und Messwerte, die von der übergeordneten Steuerung weiterverarbeitet werden \\
-%         \hline
-%         Flexibilität & Hohe Flexibilität und Anpassungsfähigkeit durch FPGA-Architektur & Festgelegte Funktionalität, die nicht ohne Weiteres erweitert werden kann \\
-%         \hline
-%     \end{tabularx}
-%     \caption{Vergleich zwischen TM FAST und FM 350-2}
-%     \label{tab:tm_fast_vs_fm350-2}
-% \end{table}
-
-\section{Funktionalität und Schnittstellen des FM350-2-Moduls}
-
-\subsection{Funktionen}
-
-\subsubsection{Die Funktion \texttt{FC CNT2\_CTR} (FC2), Baugruppe steuern}
-
-\begin{itemize}
-    \item \textbf{Aufgabe: } Mit der \texttt{FC CNT2\_CTR} steuern Sie die Digitalausgänge (Freigabe und Sperrung) sowie die Software-Tore der FM 350-2. Außerdem erhalten Sie Rückmeldungen von der FM 350-2.
-    \item \textbf{Aktion: } Die \texttt{FC CNT2\_CTR} führt folgende Aktionen durch: 
-                            \subitem 1. Zähler-DB initialisieren 
-                            \subitem 2. Lesen der Rückmeldesignale. Die gelesenen Werte werden vom FC im Zähler-DB in der 
-                            Struktur CHECKBACK\_SIGNALS abgelegt. 
-                            \subitem 3. Übertragen der Steuersignale aus dem Zähler-DB (Struktur CONTROL\_SIGNALS) zur 
-                            FM 350-2.
-    \item \textbf{Aufruf: } Sie müssen die \texttt{FC CNT2\_CTR} zyklisch (im OB1 oder in den Weckalarmen - nur OB35 in 
-    S7-300) für jede Baugruppe aufrufen. Der Aufruf in einem Alarmprogramm ist nicht zulässig. 
-    Vor dem Aufruf der \texttt{FC CNT2\_CTR} tragen Sie die aktuellen Steuersignale in der Struktur 
-    CONTROL\_SIGNALS im Zähler-DB ein. Nach dem Aufruf der \texttt{FC CNT2\_CTR} sind die 
-    Rückmeldesignale in der Struktur CHECKBACK\_SIGNALS im Zähler-DB aktualisiert und Sie 
-    können diese von dort weiterverarbeiten. 
-    Die Nummer des Zähler-DBs wird beim Aufruf des FC an dem Parameter DB\_NO 
-    angegeben.
-\end{itemize}
-
-\subsubsection{Zählerstände, Grenzwerte und Vergleichswerte laden (\texttt{FC3} / \texttt{FB3})}
-
-Mit der \texttt{FC CNT2\_WR} / \texttt{FB CNT2WRPN} laden Sie die Zähler und Vergleicher der FM 350-2 
-mittels Schreibaufträgen. Dazu müssen Sie die \texttt{FC CNT2\_WR} / \texttt{FB CNT2WRPN} bei Bedarf 
-pro Baugruppe aufrufen.  
-Sie binden die Funktion \texttt{FC CNT2\_WR} / \texttt{FB CNT2WRPN} nur in Ihr Programm ein, wenn Sie 
-die Zähler und Vergleicher der FM 350-2 im Betrieb neu laden müssen.
- 
-\subsection{Zähl- und Messwerte auslesen (\texttt{FC4} / \texttt{FB4})}
-
-Mit der \texttt{FC CNT2\_RD} / \texttt{FB CNT2RDPN} lesen Sie Zähl- und Messwerte von der FM 350-2 
-mit Leseaufträgen. Dazu rufen Sie die \texttt{FC CNT2\_RD} / \texttt{FB CNT2RDPN} zyklisch einmal pro 
-Baugruppe auf.  
-Sie binden die \texttt{FC CNT2\_RD} / \texttt{FB CNT2RDPN} nicht in Ihr Anwenderprogramm ein, wenn 
-Sie keine Leseaufträge bearbeiten.
-
-\subsection{Die Funktion \texttt{FC DIAG\_RD} (FC5), Diagnosedaten lesen}
-
-Mit der \texttt{FC DIAG\_RD} können Sie im Falle eines Diagnosealarms die Diagnosealarmdaten in 
-den Zähler-DB laden.
-
-
-\section{Einsatzgebiete der FM 350-2 / evtl nicht nötig}
-
-\subsection{Haupteinsatzgebiet} Das Haupteinsatzgebiet der FM 350-2 liegt dort, wo Signale gezählt und schnelle Reaktionen auf einen vorgegebenen Zählerstand ausgelöst werden müssen sowie Frequenzen oder Drehzahlen gemessen werden sollen.
-
-\subsection{Beispiele für den Einsatz} Beispiele hierfür sind: \begin{itemize} \item Verpackungsanlagen \item Sortieranlagen \item Dosieranlagen \item Drehzahlregelungen und Überwachung von Gasturbinen \end{itemize}
-
-\subsection{Beispiel für den Einsatz einer FM 350-2} Aus einem Sammelbehälter soll eine bestimmte Anzahl Teile in einen Karton abgefüllt werden. Der Zählkanal 0 zählt die Teile und steuert das Ventil zur Abfüllung. Mit dem Zählkanal 1 wird der Motor zum Transport der Kartons gesteuert und die Anzahl der Kartons gezählt.
-
-Befindet sich der Karton in der richtigen Position wird das Ventil geöffnet und die Teile werden abgefüllt. Ist die vorgegebene Anzahl erreicht, wird das Ventil geschlossen und der Transport des Kartons angestoßen. Nachfallende Teile werden mitgezählt bis ein neuer Karton eintrifft.
-Während des Transports der Kartons ist eine neue Anzahl Teile vorgebbar. Die abgefüllten Teile sowie die Anzahl der Kartons ist beobachtbar. 
-\fi
