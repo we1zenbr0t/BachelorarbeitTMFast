@@ -62,12 +62,11 @@ Folgenden werden die Hauptkomponenten und ihre Funktionen erläutert.
 
 \textbf{Controller (CPU)}
 
-Die CPU der Steuerung wird auch als Controller bezeichnet und bildet die zentrale Verarbei-
-tungseinheit des Systems. Die Hauptaufgabe der CPU ist es, das Anwenderprogramm auszu-
-führen, das vom Nutzer entwickelt wurde, um spezifische Steuerungs- und Regelungsaufgaben 
-zu übernehmen [\cite{berger2017}, S. 25]. Die CPU verarbeitet Signale von Ein- und Ausgabemodulen, führt
-Berechnungen durch und gibt Steuerbefehle an angeschlossene Geräte, wie Sensoren und Ak-
-toren, aus.
+Die CPU der Steuerung wird auch als Controller bezeichnet und bildet die zentrale Verarbeitungseinheit des Systems. 
+Die Hauptaufgabe der CPU ist es, das Anwenderprogramm auszuführen, das vom Nutzer entwickelt wurde, um spezifische 
+Steuerungs- und Regelungsaufgaben 
+zu übernehmen [\cite{babel2024}, S. 146]. Die CPU verarbeitet Signale von Ein- und Ausgabemodulen, führt
+Berechnungen durch und gibt Steuerbefehle an angeschlossene Geräte, wie Sensoren und Aktoren, aus.
 
 Controller der SIMATIC S7 Serie verfügen über integrierte Kommunikationsschnittstellen, wie
 Ethernet/PROFINET oder PROFIBUS, die den Datenaustausch mit anderen Steuerungen,
@@ -76,16 +75,13 @@ Bediengeräten oder übergeordneten Systemen (z. B. SCADA oder MES) ermöglichen
 
 \textbf{Weitere Baugruppen}
 
-Um eine Verbindung zu einer Maschine oder Anlage herzustellen, werden Signalbaugruppen
-verwendet, welche es als Ein- bzw. Ausgabebaugruppen sowohl für Digitale als auch analoge
-Signale gibt wie Spannungen oder Ströme gibt. Technologiebaugruppen sind Signalverarbei-
-tende Baugruppen, welche Eingehende Signale aufbereiten und entweder direkt an den Prozess
-oder zur weiteren Verarbeitung an die CPU gegeben. Ein möglicher Einsatzzweck ist z.B. das
-Zählen von Impulsen, wofür die CPU meist zu langsam ist. Zur Erweiterung der Kommunika-
-tionsfähigkeit der CPU bezüglich Protokollen oder Funktionen kommen Kommunikationsbau-
-gruppen zum Einsatz [\cite{berger2017}, S. 25].
+Um eine Verbindung zur Maschine oder Anlage herzustellen, werden Signalbaugruppen (Eingabe und Ausgabebaugruppen) eingesetzt, die digitale oder analoge Prozesssignale (z.\,B. Spannungen, Ströme) erfassen bzw. ausgeben. Sie stellen selbst keine komplexe Vorverarbeitung bereit, sondern bilden primär die Schnittstelle zwischen Feld und Steuerung.
 
-\begin{figure}[h]
+Technologiebaugruppen (Technologiemodule) gehen darüber hinaus: Es handelt sich um Erweiterungsbaugruppen mit eigener hardwarenaher Logik (z.\,B. FPGA oder Mikrocontroller), die abhängig von ihrer Parametrierung im TIA Portal definierte Funktionen autark und ereignisgesteuert ausführen können, ohne dass für jeden Schritt ein zyklischer Eingriff der CPU (OB1) erforderlich ist. Dadurch entfallen die durch die CPU Zykluszeit bedingten Latenzen und Jitter und zeitkritische Operationen (z.\,B. High Speed Zählen, präzise Zeitstempel, Pulsmessungen und Frequenzmessungen, Positionserfassung, schnelle Reaktionsausgänge) können mit deutlich geringerer Reaktionszeit und höherer Deterministik verarbeitet werden. Die CPU wird entlastet und erhält bereits vorveredelte Daten, was Ressourcen spart und die Gesamtperformance erhöht. Genau dieser Vorteil (schnelle deterministische Reaktion ohne Einfluss der CPU Zykluszeit) motiviert den Einsatz von Technologiemodulen.
+
+Kommunikationsbaugruppen erweitern ergänzend die Protokollfähigkeit oder Schnittstellenfähigkeit einer Steuerung (z.\,B. zusätzliche Feldbusse oder Industrial Ethernet Varianten) und kapseln entsprechende Kommunikationsstacks von der CPU [\cite{babel2024}, S. 146].
+
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Fotos/AllgemeinerAufbau.png}
     \caption{Aufbau SIMATIC S7-System, \cite{siemensET200MP}}
@@ -96,12 +92,15 @@ gruppen zum Einsatz [\cite{berger2017}, S. 25].
 
 \section{Funktionsweise einer Speicherprogrammierbaren Steuerung}
 
-Grundsätzlich arbeitet eine Speicherprogrammierbare Steuerung nach dem Eingabe-Verarbeitung-Ausgabe-Prinzip (EVA). Der damit verbunden Prozess erfolgt zyklisch und lässt sich wie folgt darstellen:
+Grundsätzlich arbeitet eine Speicherprogrammierbare Steuerung nach dem Eingabe-Verarbeitung-Ausgabe-Prinzip (EVA). Der damit verbundene Prozess erfolgt zyklisch und lässt sich wie folgt darstellen:
 
 Über Eingangsbaugruppen werden zunächst die Zustände von angeschlossener Sensorik erfasst. Diese Eingangssignale werden anschließend in einem Prozessabbild gespeichert, welches eine Momentaufnahme der aktuellen Signalzustände darstellt. Änderungen der Signale, die während eines laufenden Zyklus auftreten, werden somit ignoriert [\cite{babel2024}, S. 147], [13, S. 39].
 
-Das Prozessabbild dient nun als Datengrundlage für die Verarbeitung durch das Anwenderprogramm. Das Anwenderprogramm ist modular aufgebaut und arbeitet mit sogenannten Bausteinen. Das Hauptprogramm wird durch den Organisationsbaustein1 (OB1) repräsentiert, welcher aus konkreten Anweisungen aber auch Funktions- oder Unterprogrammaufrufen besteht. Die Abarbeitung des OB1 entspricht einem Verarbeitungszyklus, dessen Dauer üblicherweise im zweistelligen Millisekunden Bereich liegt [13, S. 39].
-Nach der Verarbeitung des Anwenderprogramms erstellt die SPS ein neues Prozessabbild, das die Ergebnisse der Programmverarbeitung enthält. Dieses Abbild wird schließlich an die Ausgangsbaugruppen übertragen, woraufhin die angeschlossenen Aktoren angesteuert werden. Mit diesem Schritt ist der Zyklus abgeschlossen, und die SPS beginnt unmittelbar mit der Erfassung der neuen Eingangs-Signalzustände für den nächsten Zyklus [\cite{babel2024}, S. 147], [13, S. 39].
+Das Prozessabbild dient nun als Datengrundlage für die Verarbeitung durch das Anwenderprogramm. Das Anwenderprogramm ist modular aufgebaut und arbeitet mit sogenannten Bausteinen. Das Hauptprogramm wird durch den Organisationsbaustein OB1 repräsentiert, welcher aus konkreten Anweisungen aber auch Funktions- oder Unterprogrammaufrufen besteht. Die Abarbeitung des OB1 entspricht einem Verarbeitungszyklus (Scan). Dessen Dauer liegt typischerweise im ein- bis zweistelligen Millisekundenbereich, kann aber – abhängig von Programmlogik, umfangreicher Kommunikation, vielen Zugriffen auf Peripherie oder aktivierten Diagnose-/Tracing-Funktionen – auch deutlich ansteigen und in den hohen zweistelligen bis dreistelligen Millisekundenbereich reichen. Überschreitet die Zykluszeit das konfigurierte Watchdog-Limit, wird ein Zeitfehler ausgelöst (Fehler-OB, z. B. OB80) [13, S. 39].
+
+Wichtig ist, dass OB1 nicht strikt ununterbrochen läuft: Er kann durch höher priorisierte Organisationsbausteine (Interrupt-/Alarm-OBs) präemptiv unterbrochen werden. Dazu zählen u. a. zeitgesteuerte Interrupt-OBs (z. B. OB35 für einen zyklischen Zeit-Interrupt), Hardware- bzw. Prozessalarm-OBs (OB40ff) oder bestimmte Kommunikations- und Diagnose-OBs. Die Ausführung dieser höher priorisierten OBs verschiebt das Fertigstellen des aktuellen OB1-Scans nach hinten und verlängert damit die effektive Zykluszeit von OB1; die Bearbeitung der Interrupt-OBs selbst erfolgt jedoch deterministisch gemäß ihrer Priorität.
+
+Nach der (ggf. unterbrochenen und dann fortgesetzten) Verarbeitung des Anwenderprogramms erstellt die SPS ein neues Prozessabbild, das die Ergebnisse der Programmverarbeitung enthält. Dieses Abbild wird schließlich an die Ausgangsbaugruppen übertragen, woraufhin die angeschlossenen Aktoren angesteuert werden. Mit diesem Schritt ist der Zyklus abgeschlossen, und die SPS beginnt unmittelbar mit der Erfassung der neuen Eingangs-Signalzustände für den nächsten Zyklus [\cite{babel2024}, S. 147], [13, S. 39].
 
 \section{Technologiemodule}
 
@@ -112,14 +111,16 @@ linken Seite den zentralen Aufbau mit CPU und vier Signalbaugruppen und zum
 anderen auf der rechten Seite den vergleichbaren dezentralen Aufbau mit Interfacemodul. Die Kommunikation erfolgt über PROFINET. Die Bezeichnung Signalbaugruppe fasst die Digital- und Analogbaugruppen zusammen, die der Steuerung
 zusätzliche Ein- und Ausgänge zur Verfügung stellen.[7, 8]
 
-\begin{figure}[h]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{Fotos/Aufbau_S7_System.png} % Reduced width to 0.6\textwidth
     \caption{SIMATIC ET 200MP im zentralen und dezentralen Aufbau \cite{siemensET200MP}}
     \label{fig:Aufbau_S7_System}
 \end{figure}
 
-Technologiebaugruppen bieten hardwarenahe Signalvorverarbeitung für schnelles Zählen und Messen sowie die genaue Positionserfassung für Inkremental- und SSI-Absolutwertgeber. Bei bisherigen Modulen erfolgt die Parametrierung und Programmierung durch Technologieobjekte oder durch Ansteuerung der IOs im Anwendungsprogramm im TIA Portal. Das aktuelle Portfolio umfasst u.a. das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Ersteres arbeitet mit einem trainierten neuronalen System und es können verschiedene Sensoren über Gigabit-Ethernet oder USB 3.1 angeschlossen werden. Das TM Count 2x24 V ist eine vielseitig einsetzbare Zählerbaugruppe für Zähl- und Messaufgaben sowie die Positionserfassung mit Inkrementalgebern. Ein weiteres Zähl- und Positionserfassungsmodul ist das TM Posinput 2. Dieses bietet zwei Zählkanäle für Differenz-Eingangssignale nach RS422 mit bis zu 1 MHz und ermöglicht die Positionserfassung mit SSI-Absolutwertgebern. Das TM Timer DIDQ 16x24 V wird für Aufgaben eingesetzt, die einen besonderen zeitlichen Anspruch haben, wie z.B. die exakte Einhaltung von Reaktionszeiten. Das PTO 4 Modul wird zur Ansteuerung von Schrittmotor-Antrieben und Servo-Antrieben mit PTI-Schnittstelle verwendet.[9] Das bisherige Portfolio wird nun mit dem TM FAST erweitert. Dies ist ein Modul, das einen frei programmierbaren FPGA beinhaltet. Im nachfolgenden Abschnitt wird das TM FAST genauer vorgestellt.
+Technologiebaugruppen bieten hardwarenahe Signalvorverarbeitung für schnelles Zählen und Messen sowie die genaue Positionserfassung für Inkremental- und SSI-Absolutwertgeber. Bei bisherigen Modulen erfolgt die Parametrierung und Programmierung durch Technologieobjekte oder durch Ansteuerung der IOs im Anwendungsprogramm im TIA Portal. Das aktuelle Portfolio umfasst u.a. das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Ersteres arbeitet mit einem trainierten neuronalen System und es können verschiedene Sensoren über Gigabit-Ethernet oder USB 3.1 angeschlossen werden. Das TM Count 2x24 V ist eine vielseitig einsetzbare Zählerbaugruppe für Zähl- und Messaufgaben sowie die Positionserfassung mit Inkrementalgebern. Ein weiteres Zähl- und Positionserfassungsmodul ist das TM Posinput 2. Dieses bietet zwei Zählkanäle für Differenz-Eingangssignale nach RS422 mit bis zu 1 MHz und ermöglicht die Positionserfassung mit SSI-Absolutwertgebern. Das TM Timer DIDQ 16x24 V wird für Aufgaben eingesetzt, die einen besonderen zeitlichen Anspruch haben, wie z.B. die exakte Einhaltung von Reaktionszeiten. Das PTO 4 Modul wird zur Ansteuerung von Schrittmotor-Antrieben und Servo-Antrieben mit PTI-Schnittstelle verwendet.[9]
+
+Das TM FAST ist bereits seit einiger Zeit im Portfolio und wird kontinuierlich in kurzen Iterationen erweitert. Dabei werden neue, aus konkreten Kunden-Use-Cases abgeleitete Funktionen (z.B. zusätzliche Protokoll‑/Zähl‑/Trigger‑ und Preprocessing-Bausteine) implementiert und als wiederverwendbare Funktionsblöcke bereitgestellt. Auf diese Weise können bestehende Anforderungen schneller abgebildet und künftige Anwendungsfälle flexibel ergänzt werden. Im nachfolgenden Abschnitt wird das TM FAST genauer vorgestellt.
 
 
 \section{Programmierung einer PLC mit TIA-Portal}
@@ -142,16 +143,15 @@ SCL ist eine textbasierte Programmiersprache, die der Hochsprache Pascal ähnelt
 
 \section{Software}
 
-Bei der Erstellung einer Anwendung für das TM FAST werden verschiedene Softwareprogramme benötigt. Im TIA Portal wird die Hardwarekonfiguration und das Anwenderprogramm der CPU implementiert. Zudem kann die Firmware über das Engineering-Framework auf das TM FAST geladen werden. Für die Programmierung des Intel® FPGA Cyclone 10 LP wird Intel® Quartus® Prime Lite verwendet. Um die Funktionalität des Hardwareentwurfs vorab zu testen, wird die zugehörige Questa-Intel® FPGA Starter Edition genutzt.
+Bei der Erstellung einer Anwendung für das TM FAST werden verschiedene Softwareprogramme benötigt. Im TIA Portal wird die Hardwarekonfiguration und das Anwenderprogramm, welches die CPU implementiert und den Part im TM FAST aktiviert, erstellt. Zudem kann die Firmware über das Engineering-Framework auf das TM FAST geladen werden. Für die Programmierung des Intel® FPGA Cyclone 10 LP wird Intel® Quartus® Prime Lite verwendet. Um die Funktionalität des Hardwareentwurfs vorab zu testen, wird die zugehörige Questa-Intel® FPGA Starter Edition genutzt.
 
 \subsection{Totally Integrated Automation Portal}
+
 Das Totally Integrated Automation Portal (TIA Portal) ist ein Engineering-Framework, das von Siemens für die Anwendung in verschiedensten digitalen Automatisierungsaufgaben entwickelt wurde. Im TIA Portal kann der vollständige Entwicklungsprozess von der Planung, über das integrierte Engineering bis hin zum transparenten Betrieb eines Automatisierungssystems durchgeführt werden. Die Entwicklungsumgebung umfasst unterschiedliche Softwarepakete, wie z.B. SIMATIC STEP7 für die Programmable Logic Controller (PLC)-Programmierung, SIMATIC WinCC für die Visualisierung von Maschinenprozessen auf Human Machine Interfaces (HMIs), SINAMICS Startdrive zur Parametrierung von Antrieben oder SIMATIC Energy Suite für die Erfassung von Energiedaten und Überwachung des Energieverbrauchs in der Anlage. In dieser Arbeit wird TIA Portal V20 verwendet [\cite{siemensTIA}, \cite{siemensEnergy}]. Damit die CPU eine Verbindung zu dem Technologiemodul aufbauen kann, ist eine Hardwarekonfiguration im TIA Portal notwendig. Hierfür werden die benötigten Komponenten anhand ihrer Artikelnummer ausgewählt und miteinander verbunden. Abb. 6 zeigt die Hardwarekonfiguration im TIA Portal mit einem Powermodul (PM) zur Spannungsversorgung (Slot 0), einer CPU 1516-3 PN/DP (Slot 1) und einem TM FAST (Slot 2). Da die drei Komponenten auf einer gemeinsamen Schiene angebracht sind, können sie über den Rückwandbus kommunizieren. Es ist keine zusätzliche Verbindung über PROFINET oder PROFIBUS erforderlich.
 
-%///////////////////////////////////////////////////////////////////////////////////// 
-Falsches bild
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/Aufbau_S7_System.png}
+    \includegraphics[width=0.8\textwidth]{Fotos/TIAHardwareAufbau.png}
     \caption{Hardwarekonfiguration im TIA Portal mit TM FAST}
     \label{Hardwarekonfiguration}
 \end{figure}
@@ -166,20 +166,40 @@ Ein FPGA besteht aus einer großen Anzahl von programmierbaren Logik-Blöcken, d
 
 In der Quartus® Prime Software gibt es mit dem Tool Signal Tap Logic Analyzer eine Möglichkeit den Hardwareentwurf zu debuggen. Die Software erfasst und zeigt das Echtzeit-Signalverhalten in einem Intel® FPGA Design an. Es kann das Verhalten interner Signale während des Normalbetriebs untersucht werden, ohne zusätzliche Peripherie anschließen zu müssen. Durch Bedingungen können der Start und das Ende der Datenerfassung bestimmt werden. Zudem gibt es die Option eine Triggerbedingung festzulegen. Die aufgenommenen Daten können anschließend abgespeichert und gefiltert werden [21]. Um das Softwaretool nutzen zu können sind die Hardware-Komponenten Intel® FPGA Download Kabel (USB-Blaster) und der TM FAST Debug Connector notwendig. Diese bilden das Debug-Interface zwischen PC und TM FAST. Der Connector wird auf dem Modul angebracht und stellt somit eine Verbindung zur JTAG-Schnittstelle her [10].
 
+WICHTIG:Einfügen eines Bildes wo die TMFAST Struktur zu sehen ist
+
 \subsection{Questa-Intel® FPGA}
 
 Es gibt zwei Software-Editionen zur Simulation von Hardwaredesigns. Die kostenpflichtige Questa-Intel® FPGA Software und die Questa-Intel® FPGA Starter Edition. Beide sind eine Version der Siemens EDA Questa Core Software für Intel® FPGAs [22]. Questa bietet eine Simulations-, Debug- und Verifikationsplattform zur Validierung von FPGA-Entwürfen [23]. Die Simulation kann entweder über die Quartus® Prime Software oder direkt in der Questa-Softwareplattform mit einem Simulationsskript gestartet werden. Um eine VHDL-Architektur testen zu können, wird eine Testumgebung, auch Testbench genannt, benötigt. Es werden die Eingangssignale (Stimuli) nachgebildet, um die infolgedessen generierten Ausgangssignale überprüfen zu können. Die Stimuli werden in verschiedenen Prozessen generiert und mit der Instanz des zu testenden Modells verbunden [13]. Ein Prozess kann beispielsweise für die Nachbildung des Clock-Signals zuständig sein. Dies erfolgt durch eine Dauerschleife mit einer Wartezeit, nach deren Ablauf der Signalwert getoggelt wird. Dadurch ergibt sich eine Clock mit der Periode der doppelten Wartezeit. Anschließend kann die Simulation in einem Zeitdiagramm analysiert werden. Abb. 7 zeigt den zeitlichen Verlauf einer Testbench, die den Funktionsablauf der Signum-Funktion überprüft. Eine Signum-Funktion gibt bei einer positiven Zahl den Wert “+1“, bei null den Wert “0“ und bei einer negativen Zahl den Wert “-1“ aus [24]. In der Testbench werden drei signed Werte im Hexadezimal-Format abwechselnd als Input verwendet. Bei einer steigenden Flanke der Clock liegt nach einem Wechsel des Eingangssignals das Ergebnis am Ausgang an.
 
-%///////////////////////////////////////////////////////////////////////////////////// 
-Falsches bild
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/Aufbau_S7_System.png}
+    \includegraphics[width=1.1\textwidth]{Fotos/QuestaZeitdiagram.png}
     \caption{Zeitdiagramm zur Simulation der Signum-Funktion in einer Test-
     bench in der Questa-Intel® FPGA Starter Edition}
     \label{fig:Zeitdiagramm}
 \end{figure}
 
+\section{Grundlagen zu Inkrementalgebern}
+
+Inkrementalgeber erzeugen aus einer mechanischen Weg- oder Drehbewegung zwei zueinander um 90° phasenverschobene, rechteckförmige Ausgangssignale (A/B; Quadratur). Bei konstanter Geschwindigkeit entstehen gleichförmige Pulszüge; die Pulsfrequenz ist proportional zur Geschwindigkeit und kann über einen geeigneten Skalenfaktor in Geschwindigkeitswerte umgerechnet werden \cite{sensoray_encoders}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.72\textwidth]{Fotos/Quadrature_Diagram.png}
+    \caption{Zwei Rechteckwellen in Quadratur \cite{encoder_basics}}
+    \label{fig:encoder_quadrature}
+\end{figure}
+
+Rotative Geber realisieren dies typischerweise mit einer Lichtquelle, einer codierten Scheibe auf der Welle und Photodetektoren. Die Bewegungsrichtung wird aus der Phasenlage der Quadratur-Signale bestimmt: In einer Drehrichtung führt A vor B, in der anderen führt B vor A. Für eine höhere Auflösung kann nicht nur pro Puls, sondern auf jeder Flanke gezählt werden (1x-, 2x- oder 4x-Auswertung); dadurch lässt sich die Zählauflösung auf das bis zu Vierfache erhöhen \cite{encoder_basics,sensoray_encoders}. Aufgrund dieser Eigenschaften werden Inkrementalgeber häufig in Anwendungen eingesetzt, die eine präzise Messung und Regelung von Position und Geschwindigkeit erfordern.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.72\textwidth]{Fotos/EncoderWorkings.png}
+    \caption{Funktionsweise eines Inkrementalgebers \cite{encoder_basics}}
+    \label{fig:encoder_workings}
+\end{figure}
+
 \section{Maybe}
 -Echtzeitsysteme? übergang zu was ich mache (ist das wichtig? wahrscheinlich nicht)
--verwendete Software:Questa, Quartus, TIA ... (Bei Umsetzung mit 3 Sätzen)
+-24V und TTL Inkremenatl-Geber erklären?

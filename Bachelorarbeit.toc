@@ -9,56 +9,81 @@
 \contentsline {section}{\numberline {2.3}Aufbau eines SIMATIC S7-Systems}{5}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Funktionsweise einer Speicherprogrammierbaren Steuerung}{6}{section.2.4}%
 \contentsline {section}{\numberline {2.5}Technologiemodule}{7}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Programmierung einer PLC mit TIA-Portal}{8}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Software}{9}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Totally Integrated Automation Portal}{9}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Intel® Quartus® Prime}{11}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Questa-Intel® FPGA}{13}{subsection.2.7.3}%
-\contentsline {section}{\numberline {2.8}Maybe}{14}{section.2.8}%
-\contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{15}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Eigenschaften und Aufbau des TM FAST}{15}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Funktionsweise und Limitierungen des FM350-2}{23}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Endloses Zählen bei der FM 350-2}{25}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Einmaliges Zählen bei der FM 350-2}{26}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Periodisches Zählen bei der FM 350-2}{27}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Frequenzmessung mit der FM 350-2}{28}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}Drehzahlmessung mit der FM 350-2}{29}{subsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.2.6}Periodendauermessung mit der FM 350-2}{30}{subsection.3.2.6}%
-\contentsline {subsection}{\numberline {3.2.7}Dosierfunktion der FM 350-2}{31}{subsection.3.2.7}%
-\contentsline {subsection}{\numberline {3.2.8}Torfunktionen der FM 350-2}{32}{subsection.3.2.8}%
-\contentsline {paragraph}{\nonumberline Software-Tor und Hardware-Tor}{32}{paragraph*.4}%
-\contentsline {paragraph}{\nonumberline Internes Tor}{32}{paragraph*.6}%
-\contentsline {paragraph}{\nonumberline Beispiel}{33}{paragraph*.8}%
-\contentsline {subsection}{\numberline {3.2.9}?Einschränkungen der FM 350-2?}{33}{subsection.3.2.9}%
-\contentsline {section}{\numberline {3.3}?Einsatzgebiete der FM 350-2?}{34}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}?Haupteinsatzgebiete?}{34}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Typische Anwendungen}{34}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Anwendungsbeispiel: Kartonabfüllung}{34}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}?Vorteile und neue Möglichkeiten durch das TM FAST Modul?}{35}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Anforderungen an die Neuentwicklung}{37}{section.3.5}%
-\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{38}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Konzept und Architektur des neuen Applikationsdesigns}{38}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Überlaufkompensation (Dynamic Overflow Compensation)}{39}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Vorteile}{39}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Nachteile}{39}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Alternative Methoden}{40}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Mathematische Beschreibung}{41}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}Analyse der Überlaufkompensation}{41}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Aktuelle Implementierung (automatisch)}{41}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Vorteile der automatischen Implementierung}{42}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Nachteile einer zusätzlichen Berechnung}{42}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Mathematische Betrachtung}{43}{subsection.4.3.4}%
-\contentsline {section}{\numberline {4.4}Umsetzung der Funktionalität in VHDL}{45}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Test und Validierung der VHDL-Implementierung}{45}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Schnittstelle mit dem TIA Portal}{45}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Vergleich mit der bisherigen Lösung}{45}{section.4.7}%
-\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{46}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Zusammenfassung der Ergebnisse}{46}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Kritische Reflexion und Herausforderungen}{46}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{46}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Plan}{49}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Fragen}{52}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Wichtig}{55}{chapter.8}%
-\contentsline {chapter}{\numberline {9}TODO}{57}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Tests}{59}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Passwörter}{61}{chapter.11}%
+\contentsline {section}{\numberline {2.6}Programmierung einer PLC mit TIA-Portal}{9}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Software}{10}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Totally Integrated Automation Portal}{10}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Intel® Quartus® Prime}{12}{subsection.2.7.2}%
+\contentsline {subsection}{\numberline {2.7.3}Questa-Intel® FPGA}{14}{subsection.2.7.3}%
+\contentsline {section}{\numberline {2.8}Grundlagen zu Inkrementalgebern}{14}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Maybe}{16}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{17}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Eigenschaften und Aufbau des TM FAST}{17}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Funktionsweise des FM350-2}{25}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Endloses Zählen bei der FM 350-2}{27}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Einmaliges Zählen bei der FM 350-2}{28}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Periodisches Zählen bei der FM 350-2}{29}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Frequenzmessung mit der FM 350-2}{30}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Drehzahlmessung mit der FM 350-2}{31}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Periodendauermessung mit der FM 350-2}{32}{subsection.3.2.6}%
+\contentsline {subsection}{\numberline {3.2.7}Dosierfunktion der FM 350-2}{33}{subsection.3.2.7}%
+\contentsline {subsection}{\numberline {3.2.8}Torfunktionen der FM 350-2}{34}{subsection.3.2.8}%
+\contentsline {paragraph}{\nonumberline Software-Tor und Hardware-Tor}{34}{paragraph*.4}%
+\contentsline {paragraph}{\nonumberline Internes Tor}{34}{paragraph*.6}%
+\contentsline {paragraph}{\nonumberline Beispiel}{35}{paragraph*.8}%
+\contentsline {subsection}{\numberline {3.2.9}Prozessalarme der FM 350-2}{35}{subsection.3.2.9}%
+\contentsline {paragraph}{\nonumberline Fehlerklassen und -arten}{35}{paragraph*.10}%
+\contentsline {paragraph}{\nonumberline Reaktion der Baugruppe}{36}{paragraph*.12}%
+\contentsline {paragraph}{\nonumberline Sammelfehler-LED (SF)}{36}{paragraph*.14}%
+\contentsline {paragraph}{\nonumberline Diagnosealarme und -daten}{36}{paragraph*.16}%
+\contentsline {paragraph}{\nonumberline Datenfehler und Quittierung}{37}{paragraph*.18}%
+\contentsline {section}{\numberline {3.3}Direkter Vergleich der TM Fast und FM 350-2}{37}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{39}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Anforderungen an die Neuentwicklung}{39}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Modularisierung und Wiederverwendbarkeit}{39}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Flexibilität der Kanalzuordnung}{40}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Ressourcenoptimierung}{41}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Fehler- und Diagnosestrategien}{42}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Erweiterbarkeit für zukünftige Anforderungen}{45}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Testbarkeit und Simulation}{46}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Zyklische und azyklische Kommunikation}{47}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Sicherheit bei CPU\_STOP}{49}{section.4.9}%
+\contentsline {section}{\numberline {4.10}Konzept und Architektur des neuen Applikationsdesigns}{50}{section.4.10}%
+\contentsline {section}{\numberline {4.11}Überlaufkompensation (Dynamic Overflow Compensation)}{51}{section.4.11}%
+\contentsline {subsection}{\numberline {4.11.1}Vorteile}{51}{subsection.4.11.1}%
+\contentsline {subsection}{\numberline {4.11.2}Nachteile}{52}{subsection.4.11.2}%
+\contentsline {subsection}{\numberline {4.11.3}Alternative Methoden}{52}{subsection.4.11.3}%
+\contentsline {subsection}{\numberline {4.11.4}Mathematische Beschreibung}{53}{subsection.4.11.4}%
+\contentsline {section}{\numberline {4.12}Analyse der Überlaufkompensation}{53}{section.4.12}%
+\contentsline {subsection}{\numberline {4.12.1}Aktuelle Implementierung (automatisch)}{53}{subsection.4.12.1}%
+\contentsline {subsection}{\numberline {4.12.2}Vorteile der automatischen Implementierung}{54}{subsection.4.12.2}%
+\contentsline {subsection}{\numberline {4.12.3}Nachteile einer zusätzlichen Berechnung}{54}{subsection.4.12.3}%
+\contentsline {subsection}{\numberline {4.12.4}Mathematische Betrachtung}{55}{subsection.4.12.4}%
+\contentsline {section}{\numberline {4.13}Verteilung von RS485- und DIQ-Kanälen: Flexibilität und Varianten}{56}{section.4.13}%
+\contentsline {section}{\numberline {4.14}Umsetzung der Funktionalität in VHDL}{57}{section.4.14}%
+\contentsline {section}{\numberline {4.15}Test und Validierung der VHDL-Implementierung}{58}{section.4.15}%
+\contentsline {section}{\numberline {4.16}Schnittstelle mit dem TIA Portal}{58}{section.4.16}%
+\contentsline {section}{\numberline {4.17}Vergleich mit der bisherigen Lösung}{58}{section.4.17}%
+\contentsline {chapter}{\numberline {5}Entwicklung des VHDL-basierten Applikationsbeispiels}{59}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Anforderungen und Architektur}{59}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Modularisierung und Flexibilität}{59}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Ressourcenoptimierung}{60}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Fehler- und Diagnosestrategien}{60}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Synchronisation und Zustandsautomaten}{60}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Erweiterbarkeit und Testbarkeit}{61}{section.5.6}%
+\contentsline {section}{\numberline {5.7}Kommunikationskonzept: Zyklisch vs. azyklisch}{61}{section.5.7}%
+\contentsline {section}{\numberline {5.8}Sicherheit bei CPU\_STOP}{61}{section.5.8}%
+\contentsline {section}{\numberline {5.9}Überlaufkompensation}{61}{section.5.9}%
+\contentsline {section}{\numberline {5.10}Flexible Kanalverteilung}{62}{section.5.10}%
+\contentsline {section}{\numberline {5.11}Vergleich mit bisherigen Lösungen}{62}{section.5.11}%
+\contentsline {section}{\numberline {5.12}Test und Validierung}{62}{section.5.12}%
+\contentsline {section}{\numberline {5.13}Fazit}{62}{section.5.13}%
+\contentsline {chapter}{\numberline {6}Fazit und Ausblick}{63}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Zusammenfassung der Ergebnisse}{63}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Kritische Reflexion und Herausforderungen}{63}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{63}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Plan}{66}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Fragen}{69}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Wichtig}{72}{chapter.9}%
+\contentsline {chapter}{\numberline {10}TODO}{74}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Tests}{76}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Passwörter}{78}{chapter.12}%

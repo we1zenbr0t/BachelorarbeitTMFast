@@ -41,7 +41,7 @@ licht.
 
 Das \textbf{Backend-Gerät} realisiert die Verbindung des TM FAST zu anderen SIMATIC
 
-Komponenten über den Rückwandbus der zugehörigen SIMATIC S7-1500 Automatisierungseinheit. Die entsprechende Firmware wird von Siemens bereitgestellt und gewartet. Diese regelt u.a. die Kommunikation mit der S7-1500 Steuerung, den zyklischen und azyklischen Datentransfer sowie den Diagnosestatus. Genaueres zur Kommunikation folgt im späteren Verlauf des Abschnittes. Des Weiteren wird im Backend-Gerät die TM FAST-Applikation aus dem Flash geladen, über die SPI-Schnittstelle auf das FPGA übertragen, validiert und nach Bestätigung aktiviert. Zudem wird das Frontend-Gerät beobachtet, um Fehlverhalten zu erkennen. Sind die Parameter des Modules gesetzt, wird durch die Firmware die Systemlogik entsprechend angepasst. Das Backend-Gerät liest die Temperatur des Moduls über den Temperatursensor via I2C aus und kontrolliert alle LEDs des TM FAST über SPI. [Guillaume: Specification for TM Fast]
+Komponenten über den Rückwandbus der zugehörigen SIMATIC S7-1500 Automatisierungseinheit. Die entsprechende Firmware wird von Siemens bereitgestellt und weiterentwickelt. Diese regelt u.a. die Kommunikation mit der S7-1500 Steuerung, den zyklischen und azyklischen Datentransfer sowie den Diagnosestatus. Genaueres zur Kommunikation folgt im späteren Verlauf des Abschnittes. Des Weiteren wird im Backend-Gerät die TM FAST-Applikation aus dem Flash geladen, über die SPI-Schnittstelle auf das FPGA übertragen, validiert und nach Bestätigung aktiviert. Zudem wird das Frontend-Gerät beobachtet, um Fehlverhalten zu erkennen. Sind die Parameter des Modules gesetzt, wird durch die Firmware die Systemlogik entsprechend angepasst. Das Backend-Gerät liest die Temperatur des Moduls über den Temperatursensor aus und kontrolliert alle LEDs des TM FAST über SPI. [Guillaume: Specification for TM Fast]
 
 Das \textbf{Frontend-Gerät} bildet den Kern des TM FAST. Hier wird die anwendungsspezifische Software abgelegt und ausgeführt. Das FPGA-Programm, bzw. die TM
 
@@ -84,7 +84,7 @@ Der exakte Gerätename lautet 10CL025YU256A7G. Die maximal verfügbaren
 Ein Logikelement (LE) ist die kleinste Logikeinheit in der Intel® Cyclone 10 LP
 
 Gerätearchitektur. Jedes LE hat vier Eingänge, eine Look-Up Tabelle mit vier Eingängen, ein Register und eine Ausgangslogik. Die Look-Up Tabelle ist ein Funktionsgenerator, der jede Funktion mit vier Variablen implementieren kann. Der
-eingebettete Memory-Speicher ist aus M9K Memory-Blöcken aufgebaut. Jederndieser Blöcke stellt 9 Kbit an On-Chip Speicher zur Verfügung. Diese M9K-Blöcke
+eingebettete Memory-Speicher ist aus M9K Memory-Blöcken aufgebaut. Jeder dieser Blöcke stellt 9 Kbit an On-Chip Speicher zur Verfügung. Diese M9K-Blöcke
 können beliebig miteinander verschachtelt und kombiniert werden, um größere Speicherplätze zu generieren. Insgesamt ergibt sich aus den 66 Blöcken ei-
 ne Speicherkapazität von 594 Kbit, das umgerechnet 608256 Bit entspricht. Die Memory-Blöcke können als RAM, FIFO-Puffer oder ROM konfiguriert werden. Jeder eingebettete Multiplizierer-Block kann entweder als einzelner 18x18-Bit oder
 zwei individuelle 9x9-Bit Multiplizierer initialisiert werden. Die Funktionsweise der
@@ -189,7 +189,7 @@ Neben der festen Parametrierung kann die Verzögerung auch in der TM FAST-Anwend
 \end{table}
     
 
-Die \textbf{Kommunikation} zwischen CPU und TM FAST kann, wie bereits erwähnt, entweder zyklisch oder azyklisch erfolgen. Die zyklischen Ein- und Ausgangsdaten
+Die \textbf{Kommunikation} zwischen CPU und TM FAST kann entweder zyklisch oder azyklisch erfolgen. Die zyklischen Ein- und Ausgangsdaten
 sind unterteilt in acht Doppelwörter. Ein Doppelwort besteht aus 32 Bit, sodass in
 Summe mit 32 Byte kommuniziert werden kann. Der zyklische Datenaustausch
 wird in der Regel aus der Sicht der CPU betrachtet. Das bedeutet, dass die Steuerschnittstelle (CTRL IF) die Ausgangsdaten, die von der CPU an das TM gesendet
@@ -205,17 +205,14 @@ ein Register mit der gewählten Größe für den Lese- und Schreibprozess zur Ve
 (Schreibzugriff) und LTMFAST UserReadREC (Lesezugriff) im TIA Portal (Abschnitt
 2.3.1). Es können verschiedene Parameter genutzt werden, die den Ablauf des
 Informationsaustausches koordinieren und steuern.[\cite{Guillaume: Specification for TM Fast}, \cite{TmFast_progrmming_manual}]
-Nach Begutachtung der Eigenschaften des TM FAST, den Aufbau aus verschiedenen Hardwarekomponenten, die entsprechenden technischen Daten und die
-Anbindung an das SIMATIC S7-1500 Automatisierungssystem wird im nächsten
-Abschnitt die benötigte Software zur Programmierung des Technologiemoduls
-genauer betrachtet.
+
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Funktionsweise und Limitierungen des FM350-2}  
+\section{Funktionsweise des FM350-2}  
 
-\textbf{Neu:}
+Die Funktionsbaugruppe FM 350-2 ist eine 8-kanalige Zählerbaugruppe mit integrierter Dosierfunktion für das Automatisierungssystem S7-300. Sie wird vor allem in Bereichen eingesetzt, in denen Signale gezählt und schnelle Reaktionen auf bestimmte Zählerstände notwendig sind. Besonders relevant ist die FM 350-2 für Anwendungen in der Fertigungs- und Automatisierungstechnik, wie beispielsweise in Verpackungs-, Sortier- und Dosieranlagen sowie bei der Drehzahlregelung und Überwachung von Gasturbinen.
 
-Die Funktionsbaugruppe FM 350-2 ist eine 8-kanalige Zählerbaugruppe mit integrierter Dosierfunktion für das Automatisierungssystem S7-300. Sie unterstützt einen maximalen Zählbereich von \(-2^{31}\) bis \(+2^{31} - 1\) (entsprechend \(-2\,147\,483\,648\) bis \(+2\,147\,483\,647\)) und erreicht je nach verwendeter Gebersignale eine maximale Eingangsfrequenz von bis zu 20\,kHz pro Kanal \cite{fm350_Handbuch}.
+Sie unterstützt einen maximalen Zählbereich von \(-2^{31}\) bis \(+2^{31} - 1\) (entsprechend \(-2\,147\,483\,648\) bis \(+2\,147\,483\,647\)) und erreicht je nach verwendeter Gebersignale eine maximale Eingangsfrequenz von bis zu 20\,kHz pro Kanal \cite{fm350_Handbuch}.
 
 Die Baugruppe ermöglicht verschiedene Betriebsarten: endloses, einmaliges sowie periodisches Zählen (jeweils vorwärts oder rückwärts), Frequenzmessung, Drehzahlmessung, Periodendauermessung sowie präzises Dosieren. Der Zählvorgang kann wahlweise über das Anwenderprogramm (Software-Tor) oder über externe Signale (Hardware-Tor) gestartet und gestoppt werden. Dabei können Zähl-, Tor- und Richtungssignale direkt an die Baugruppe angeschlossen werden.
 
@@ -223,9 +220,9 @@ Für jeden Zählkanal ist es möglich, einen Vergleichswert zu definieren. Im Do
 
 Innerhalb der Betriebsarten „Einmalig zählen“, „Periodisch zählen“ und „Dosieren“ lassen sich zusätzlich Zählgrenzen innerhalb des maximalen Zählbereichs festlegen. Im Vorwärtsbetrieb beginnt die Zählung bei 0, der Endwert ist dabei frei wählbar. Im Rückwärtsbetrieb wird der Startwert definiert, während der Endwert bei 0 liegt.
 
-Die FM 350-2 unterstützt pro Zählkanal bis zu vier Prozessalarme. Zwei davon können durch Flankenwechsel am Hardware-Tor ausgelöst werden, zwei weitere sind abhängig von der jeweils eingestellten Betriebsart. Im Dosierbetrieb können bis zu fünf spezifische Alarme erzeugt werden.
+Die FM 350-2 unterstützt pro Zählkanal bis zu vier Prozessalarme. Zwei davon können durch Flankenwechsel am Hardware-Tor ausgelöst werden, zwei weitere sind abhängig von der jeweils eingestellten Betriebsart. Im Dosierbetrieb können bis zu fünf spezifische Alarme erzeugt werden. (Wichtig welche + Arten?)
 
-Für die Zählerfunktion können Signale unterschiedlicher Gebertypen verwendet werden. Zulässig sind ausschließlich prellfreie Geber, darunter 24-V-Inkrementalgeber (Gegentakt oder P-Schalter), 24-V-Impulsgeber mit Richtungspegel, 24-V-Initiatoren ohne Richtungspegel (z.\,B. Lichtschranken oder BERO Typ 2) sowie NAMUR-Geber nach DIN~19234. Die Signaltypen können an den Eingängen in Vierergruppen zwischen 24-V- und NAMUR-Signalen konfiguriert werden. Zu beachten ist, dass an für NAMUR konfigurierte Eingänge keine Signalspannungen über 8{,}2\,V angelegt werden dürfen. An den Tor- und Richtungseingängen sind ausschließlich 24-V-Signale erlaubt.
+Für die Zählerfunktion können Signale unterschiedlicher Gebertypen verwendet werden. Zulässig sind ausschließlich prellfreie Geber, darunter 24-V-Inkrementalgeber (Gegentakt oder P-Schalter), 24-V-Impulsgeber mit Richtungspegel, 24-V-Initiatoren ohne Richtungspegel (z.\,B. Lichtschranken oder BERO Typ 2) sowie NAMUR-Geber nach DIN~19234. Die Signaltypen können an den Eingängen in Vierergruppen zwischen 24-V- und NAMUR-Signalen konfiguriert werden. Zu beachten ist, dass an für NAMUR konfigurierte Eingänge keine Signalspannungen über 8{,}2\,V angelegt werden dürfen. An den Tor- (logische Freigabeeingänge, die den Zählpfad öffnen oder sperren) und Richtungseingängen sind ausschließlich 24-V-Signale erlaubt.
 
 Zum Schutz vor Störungen sind alle Eingänge mit einem einheitlichen Eingangsfilter (RC-Glied) mit einer Filterzeit von 50\,µs versehen. Schnelle Reaktionen auf Zählereignisse sind durch digitale Ausgänge realisierbar, wobei pro Kanal ein Ausgang und im Dosiermodus bis zu vier Ausgänge verfügbar sind. Diese können zählerstandsabhängig oder über Steuerbits angesteuert werden.
 
@@ -446,101 +443,89 @@ Mit dem Setzen des Torsignals wird das Tor geöffnet und die Zählimpulse werden
     \label{fig:tor_beispiel}
 \end{figure}
 
+\subsection{Prozessalarme der FM 350-2}
+
+Im Betrieb der Zählerbaugruppe FM~350-2 können verschiedene Fehler auftreten. Diese entstehen z.\,B. durch Defekte auf der Baugruppe, fehlerhafte Bedienung/Verdrahtung oder widersprüchliche Parametrierung. Zur Erkennung und gezielten Reaktion unterscheidet die Baugruppe Fehlerklassen und löst bei Bedarf Prozessalarme aus.
+
+\paragraph{Fehlerklassen und -arten}
+\begin{itemize}
+    \item Interner Fehler: Defekte oder fehlerhafte Zustände innerhalb der Baugruppe, z.\,B. Ansprechen der Zeitüberwachung (Watchdog).
+    \item Externer Fehler: Probleme in der Peripherie außerhalb der Baugruppe, die keinem einzelnen Kanal zugeordnet werden können.
+    \item Externer Kanalfehler: Kanalspezifische Fehler, z.\,B. Signalfehler durch einen NAMUR-Geber.
+    \item Datenfehler: Unzulässige Aufträge von Automatisierungsgerät (AG) oder Programmiergerät (PG), z.\,B. Vergleichswerte außerhalb des Zählbereichs.
+\end{itemize}
+
+\paragraph{Reaktion der Baugruppe}
+\begin{itemize}
+    \item Interne, externe und externe Kanalfehler: Sammelfehler-LED (SF) leuchtet; es können Diagnosealarme ausgelöst werden (wenn freigegeben).
+    \item Datenfehler: Auftrag wird abgelehnt; Eintrag im Diagnosepuffer; Behebung durch erneute Übertragung mit korrigierten Daten.
+\end{itemize}
+
+\paragraph{Sammelfehler-LED (SF)}
+Leuchtet rot bei internem Baugruppenfehler, fehlerhafter Parametrierung oder Leitungsfehlern. Typische Ursachen: angesprochene Zeitüberwachung, verlorener Prozessalarm, fehlende/fehlerhafte Parametrierung, Probleme der Geberversorgung oder fehlerhafte NAMUR-Gebersignale (z.\,B. Drahtbruch/Kurzschluss).
+
+\paragraph{Diagnosealarme und -daten}
+Diagnosealarme können in der Parametrierung freigegeben werden. Beim Fehler ruft die CPU den Diagnose-OB \texttt{OB 82} auf; das zyklische Programm wird unterbrochen.
+\begin{itemize}
+    \item Diagnosedaten \texttt{DS0}: werden beim Aufruf von \texttt{OB 82} automatisch übertragen.
+    \item Diagnosedaten \texttt{DS1}: detaillierte Kanalinfos, auslesbar über \texttt{FC DIAG\_RD}.
+    \item Inhalt: Hinweise zu intern/extern/Parametrier-/Kanalfehlern, Ansprechen der Zeitüberwachung, verlorene Prozessalarme, Leitungs-/Geberversorgungsfehler.
+    \item Zusätzlich können über \texttt{SFC 52} benutzerdefinierte Meldungen in den Diagnosepuffer der CPU geschrieben werden.
+\end{itemize}
+
+\paragraph{Datenfehler und Quittierung}
+Ergeben sich aus unzulässigen Aufträgen durch PG oder über \texttt{FC CNT2\_WR} bzw. \texttt{FB CNT2WRPN}. Die Baugruppe prüft und lehnt fehlerhafte Aufträge ab; das Bit \texttt{DATA\_ERR} im Zähler-Datenbaustein wird gesetzt. Behebung durch Korrektur und erneute Übertragung des Auftrags. Anzeige im Diagnosepuffer sowie im Menü Test \textgreater{} Fehlerauswertung.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{?Einschränkungen der FM 350-2?}
-
-Trotz ihrer vielseitigen Einsatzmöglichkeiten weist die FM 350-2 einige Limitierungen auf:
-\begin{itemize}
-    \item Begrenzte Flexibilität in der Anpassung an komplexe Steuerungsaufgaben
-    \item Kein FPGA-basierter Aufbau, wodurch individuelle Anpassungen nicht möglich sind
-    \item Begrenzte Echtzeitfähigkeit im Vergleich zu modernen Zählmodulen
-\end{itemize}
-
-\section{?Einsatzgebiete der FM 350-2?}
-
-\subsection{?Haupteinsatzgebiete?}
-
-Die FM 350-2 wird hauptsächlich dort eingesetzt, wo Signale gezählt und schnelle Reaktionen auf vorgegebene Zählerstände erforderlich sind. Besonders relevant ist sie für Anwendungen in der Fertigungs- und Automatisierungstechnik.
-
-\subsection{Typische Anwendungen}
-
-Typische Einsatzbereiche sind:
-\begin{itemize}
-    \item Verpackungsanlagen
-    \item Sortieranlagen
-    \item Dosieranlagen
-    \item Drehzahlregelungen und Überwachung von Gasturbinen
-\end{itemize}
-
-\subsection{Anwendungsbeispiel: Kartonabfüllung}
-
-Ein typisches Beispiel für die Nutzung der FM 350-2 ist die Abfüllung von Teilen in Kartons:
-
-\begin{itemize}
-    \item Kanal 0 zählt die Teile und steuert das Abfüllventil.
-    \item Kanal 1 steuert den Transport der Kartons und erfasst die Anzahl der gefüllten Kartons.
-    \item Das System stellt sicher, dass exakt die vorgegebene Anzahl an Teilen pro Karton abgefüllt wird.
-\end{itemize}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/Beispiel_fm350-2.png}
-    \caption{Beispiel für den Einsatz einer FM 350-2 in der S7-300 \cite{fm350_Handbuch}}
-    \label{fig:fm350-2}
-\end{figure}
-
-
-
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{?Vorteile und neue Möglichkeiten durch das TM FAST Modul?} 
 
-Das TM FAST Modul bietet im Vergleich zur FM 350-2 eine Reihe von Vorteilen und neuen Möglichkeiten, die es zu einer attraktiven Alternative machen. In diesem Abschnitt werden die wesentlichen Unterschiede und Vorteile des TM FAST Moduls beschrieben.
+\section{Direkter Vergleich der TM Fast und FM 350-2}
 
-\begin{itemize}
-    \item \textbf{FPGA-basierte Architektur:} Die flexible und programmierbare Hardwareplattform ermöglicht eine Anpassung an spezifische Anforderungen und komplexe Steuerungsaufgaben.
-    \item \textbf{Echtzeitfähigkeit:} Durch die moderne Architektur bietet das Modul eine verbesserte Echtzeitfähigkeit, die für anspruchsvolle industrielle Anwendungen entscheidend ist.
-    \item \textbf{Erweiterte Funktionalität:} Neben Zähl- und Messfunktionen kann das TM FAST Modul Prozessalarme auslösen und direkt in den Produktionsprozess eingreifen.
-    \item \textbf{Hohe Flexibilität:} Die programmierbare Architektur erlaubt eine einfache Erweiterung und Anpassung der Funktionalität, wodurch das Modul vielseitig einsetzbar ist.
-    \item \textbf{Integration in moderne Steuerungssysteme:} Das Modul ist optimal auf die Anforderungen moderner Automatisierungssysteme abgestimmt und bietet eine nahtlose Integration.
-\end{itemize}
+\begin{longtable}{|p{3cm}|p{6cm}|p{6cm}|}
+    \hline
+    \textbf{Kriterium} & \textbf{TM FAST} & \textbf{FM 350-2} \\
+    \hline
+    \multicolumn{3}{|c|}{\textbf{Unterschiede}} \\
+    \hline
+    Architektur & Intel Cyclone 10 LP FPGA, frei programmierbar (VHDL), Backend/Frontend-Konzept & Feste ASIC-basierte Zählerbaugruppe, keine freie Hardwareprogrammierung \\
+    \hline
+    Zählerkanäle & Bis zu 14 Kanäle (DI, DQ, DIQ, RS422/485, TTL), flexibel konfigurierbar & 8 Kanäle, fest als Zähler ausgelegt \\
+    \hline
+    Zählsignale / Gebereingänge & 24\,V-DI/DIQ, RS422/485, TTL, flexibel konfigurierbar, max. 5\,MHz (DIQ/RS422/485), 200\,kHz (DI/DQ) & Namur (DIN 19234), 24\,V Impulsgeber, Inkrementalgeber, Richtungssignal, max. 20\,kHz (A0...7), 10\,kHz (B0...7)\\
+    \hline
+    Digitaleingänge & 8x 24\,V-DI, 4x 24\,V-DIQ (konfigurierbar), max. 200\,kHz (DI), 1\,kHz (DIQ), Eingangsverzögerung parametrierbar (0--20\,ms) & 8x 24\,V-DI, 0-Signal: -3 bis 5\,V, 1-Signal: 11--30,2\,V, Eingangsstrom: 0-Signal $\leq$ 2\,mA, 1-Signal 9\,mA, Eingangsverzögerung max. 50\,\textmu s \\
+    \hline
+    Digitalausgänge & 8x 24\,V-DQ (0,1\,A, 200\,kHz), 4x DIQ (0,3\,A, 1\,kHz), High-/Low-aktiv, Überlast-/Kurzschlussschutz & Bis zu 4 Ausgänge pro Kanal (Dosiermodus), 24\,V, direkt an Zählerereignisse gekoppelt, Verhalten parametrierbar \\
+    \hline
+    Reaktionszeit & < 1\,\textmu s (laut Gerätehandbuch) & Nicht explizit angegeben \\
+    \hline
+    Zählbereich & 32 Bit, flexibel nutzbar & 32 Bit, fest (\(-2^{31}\) bis \(2^{31}-1\)) \\
+    \hline
+    Betriebsarten & Frei programmierbar (z.B. Rundenzähler, Pulsfolgen, Dosierlogik, benutzerdefiniert) & Endlos, einmalig, periodisch, Dosieren, Frequenz-, Drehzahl-, Periodendauermessung \\
+    \hline
+    Parametrierung & Azyklisch und im laufenden Betrieb über UserWriteREC, flexible Steuerung & Parametrierung über STEP 7, Änderungen meist nur im Stopp-Betrieb \\
+    \hline
+    Ausgangslogik & Pro Kanal High-/Low-aktiv, Steuerbits, Rückmeldung, flexible Reaktion & Feste Zuordnung, Ausgänge direkt an Zählerereignisse gekoppelt \\
+    \hline
+    Diagnose & Umfangreiche Diagnosemöglichkeiten, frei programmierbar & Umfassende Diagnose, fest integriert (z.B. SF-LED, OB82, Diagnosedaten) \\
+    \hline
+    Integration & S7-1500, TIA Portal, flexible Einbindung, Peripherieanbindung & S7-300, STEP 7, klassische Integration \\
+    \hline
+    \multicolumn{3}{|c|}{\textbf{Gemeinsamkeiten}} \\
+    \hline
+    Zählfunktionen & \multicolumn{2}{p{12cm}|}{Hohe Zählauflösung (32 Bit), schnelle Verarbeitung, Einsatz als Zähler in der Automatisierungstechnik} \\
+    \hline
+    Frequenz-/Drehzahlmessung & \multicolumn{2}{p{12cm}|}{Unterstützung von Frequenz- und Drehzahlmessung, Prozessüberwachung} \\
+    \hline
+    Industrielle Anwendungen & \multicolumn{2}{p{12cm}|}{Verpackung, Sortierung, Dosierung, Maschinenbau, Prozessautomatisierung} \\
+    \hline
+    Diagnose & \multicolumn{2}{p{12cm}|}{Umfangreiche Diagnose- und Fehleranzeigen, Unterstützung von Alarmen} \\
+    \hline
+    \caption{Vergleich der Eigenschaften von TM FAST und FM 350-2, insbesondere Zählsignale und Digitalein-/ausgänge (Zeitdaten TM FAST gemäß \cite{TmFast_progrmming_manual,siemensET200MP}, FM 350-2 gemäß Handbuch)}
+    \label{tab:vergleich_tmfast_fm3502}
+\end{longtable}
 
-RS485, 24V, userwriterec, FB-IF/CTRL und 5v verwendbar. Alle Möglichkeiten zur kanalvergabe und Datenübertragung (zyklisch und azyklisch erwähnen)
-
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Anforderungen an die Neuentwicklung} 
 
 
-\begin{table}[H]
-    \centering
-    \renewcommand{\arraystretch}{1.4}
-    \begin{tabular}{|p{3cm}|p{6cm}|p{6cm}|}
-        \hline
-        \textbf{Kriterium} & \textbf{TM FAST} & \textbf{FM 350-2} \\
-        \hline
-        \multicolumn{3}{|c|}{\textbf{Unterschiede}} \\
-        \hline
-        Architektur & FPGA-basiert, flexible und programmierbare Hardwareplattform & Reines Zählermodul ohne FPGA-Technologie \\
-        \hline
-        Funktionalität & Kann komplexe Prozesssteuerungs- und Überwachungsaufgaben übernehmen & Spezialisiert auf Zählen, Frequenz- und Drehzahlmessung \\
-        \hline
-        Prozessintegration & Kann direkt in den Produktionsprozess eingreifen und Prozessalarme auslösen & Liefert Zähler- und Messwerte, die von der übergeordneten Steuerung weiterverarbeitet werden \\
-        \hline
-        Flexibilität & Hohe Flexibilität und Anpassungsfähigkeit durch FPGA-Architektur & Festgelegte Funktionalität, die nicht ohne Weiteres erweitert werden kann \\
-        \hline
-        \multicolumn{3}{|c|}{\textbf{Gemeinsamkeiten}} \\
-        \hline
-        Zählfunktionen & \multicolumn{2}{p{12cm}|}{Beide Module bieten Zählfunktionen mit hoher Auflösung (z.B. 32-Bit Zähltiefe)} \\
-        \hline
-        Frequenz- und Drehzahlmessung & \multicolumn{2}{p{12cm}|}{Beide Module unterstützen die Messung von Frequenzen und Drehzahlen} \\
-        \hline
-        Einbindung in Steuerungsarchitektur & \multicolumn{2}{p{12cm}|}{Beide Module werden in die übergeordnete Steuerungsarchitektur integriert} \\
-        \hline
-        Industrielle Anwendungen & \multicolumn{2}{p{12cm}|}{Beide Module finden Einsatz in ähnlichen Industriebereichen wie Verpackung, Sortierung, Dosierung etc.} \\
-        \hline
-    \end{tabular}
-    \caption{Vergleich zwischen TM FAST und FM 350-2}
-    \label{tab:tm_fast_vs_fm350-2}
-\end{table}
