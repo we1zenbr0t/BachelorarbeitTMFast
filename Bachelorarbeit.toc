@@ -6,84 +6,51 @@
 \contentsline {chapter}{\numberline {2}Grundlagen}{3}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Automatisierungspyramide}{3}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Überblick über SIMATIC S7}{4}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Aufbau eines SIMATIC S7-Systems}{5}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Funktionsweise einer Speicherprogrammierbaren Steuerung}{6}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Technologiemodule}{7}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Programmierung einer PLC mit TIA-Portal}{9}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Software}{10}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Totally Integrated Automation Portal}{10}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Intel® Quartus® Prime}{12}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Questa-Intel® FPGA}{14}{subsection.2.7.3}%
-\contentsline {section}{\numberline {2.8}Grundlagen zu Inkrementalgebern}{14}{section.2.8}%
-\contentsline {section}{\numberline {2.9}Maybe}{16}{section.2.9}%
-\contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{17}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Eigenschaften und Aufbau des TM FAST}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Funktionsweise des FM350-2}{25}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Endloses Zählen bei der FM 350-2}{27}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Einmaliges Zählen bei der FM 350-2}{28}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Periodisches Zählen bei der FM 350-2}{29}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Frequenzmessung mit der FM 350-2}{30}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}Drehzahlmessung mit der FM 350-2}{31}{subsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.2.6}Periodendauermessung mit der FM 350-2}{32}{subsection.3.2.6}%
-\contentsline {subsection}{\numberline {3.2.7}Dosierfunktion der FM 350-2}{33}{subsection.3.2.7}%
-\contentsline {subsection}{\numberline {3.2.8}Torfunktionen der FM 350-2}{34}{subsection.3.2.8}%
-\contentsline {paragraph}{\nonumberline Software-Tor und Hardware-Tor}{34}{paragraph*.4}%
-\contentsline {paragraph}{\nonumberline Internes Tor}{34}{paragraph*.6}%
-\contentsline {paragraph}{\nonumberline Beispiel}{35}{paragraph*.8}%
-\contentsline {subsection}{\numberline {3.2.9}Prozessalarme der FM 350-2}{35}{subsection.3.2.9}%
-\contentsline {paragraph}{\nonumberline Fehlerklassen und -arten}{35}{paragraph*.10}%
-\contentsline {paragraph}{\nonumberline Reaktion der Baugruppe}{36}{paragraph*.12}%
-\contentsline {paragraph}{\nonumberline Sammelfehler-LED (SF)}{36}{paragraph*.14}%
-\contentsline {paragraph}{\nonumberline Diagnosealarme und -daten}{36}{paragraph*.16}%
-\contentsline {paragraph}{\nonumberline Datenfehler und Quittierung}{37}{paragraph*.18}%
-\contentsline {section}{\numberline {3.3}Direkter Vergleich der TM Fast und FM 350-2}{37}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{39}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Anforderungen an die Neuentwicklung}{39}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Modularisierung und Wiederverwendbarkeit}{39}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Flexibilität der Kanalzuordnung}{40}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Ressourcenoptimierung}{41}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Fehler- und Diagnosestrategien}{42}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Erweiterbarkeit für zukünftige Anforderungen}{45}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Testbarkeit und Simulation}{46}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Zyklische und azyklische Kommunikation}{47}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Sicherheit bei CPU\_STOP}{49}{section.4.9}%
-\contentsline {section}{\numberline {4.10}Konzept und Architektur des neuen Applikationsdesigns}{50}{section.4.10}%
-\contentsline {section}{\numberline {4.11}Überlaufkompensation (Dynamic Overflow Compensation)}{51}{section.4.11}%
-\contentsline {subsection}{\numberline {4.11.1}Vorteile}{51}{subsection.4.11.1}%
-\contentsline {subsection}{\numberline {4.11.2}Nachteile}{52}{subsection.4.11.2}%
-\contentsline {subsection}{\numberline {4.11.3}Alternative Methoden}{52}{subsection.4.11.3}%
-\contentsline {subsection}{\numberline {4.11.4}Mathematische Beschreibung}{53}{subsection.4.11.4}%
-\contentsline {section}{\numberline {4.12}Analyse der Überlaufkompensation}{53}{section.4.12}%
-\contentsline {subsection}{\numberline {4.12.1}Aktuelle Implementierung (automatisch)}{53}{subsection.4.12.1}%
-\contentsline {subsection}{\numberline {4.12.2}Vorteile der automatischen Implementierung}{54}{subsection.4.12.2}%
-\contentsline {subsection}{\numberline {4.12.3}Nachteile einer zusätzlichen Berechnung}{54}{subsection.4.12.3}%
-\contentsline {subsection}{\numberline {4.12.4}Mathematische Betrachtung}{55}{subsection.4.12.4}%
-\contentsline {section}{\numberline {4.13}Verteilung von RS485- und DIQ-Kanälen: Flexibilität und Varianten}{56}{section.4.13}%
-\contentsline {section}{\numberline {4.14}Umsetzung der Funktionalität in VHDL}{57}{section.4.14}%
-\contentsline {section}{\numberline {4.15}Test und Validierung der VHDL-Implementierung}{58}{section.4.15}%
-\contentsline {section}{\numberline {4.16}Schnittstelle mit dem TIA Portal}{58}{section.4.16}%
-\contentsline {section}{\numberline {4.17}Vergleich mit der bisherigen Lösung}{58}{section.4.17}%
-\contentsline {chapter}{\numberline {5}Entwicklung des VHDL-basierten Applikationsbeispiels}{59}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Anforderungen und Architektur}{59}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Modularisierung und Flexibilität}{59}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Ressourcenoptimierung}{60}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Fehler- und Diagnosestrategien}{60}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Synchronisation und Zustandsautomaten}{60}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Erweiterbarkeit und Testbarkeit}{61}{section.5.6}%
-\contentsline {section}{\numberline {5.7}Kommunikationskonzept: Zyklisch vs. azyklisch}{61}{section.5.7}%
-\contentsline {section}{\numberline {5.8}Sicherheit bei CPU\_STOP}{61}{section.5.8}%
-\contentsline {section}{\numberline {5.9}Überlaufkompensation}{61}{section.5.9}%
-\contentsline {section}{\numberline {5.10}Flexible Kanalverteilung}{62}{section.5.10}%
-\contentsline {section}{\numberline {5.11}Vergleich mit bisherigen Lösungen}{62}{section.5.11}%
-\contentsline {section}{\numberline {5.12}Test und Validierung}{62}{section.5.12}%
-\contentsline {section}{\numberline {5.13}Fazit}{62}{section.5.13}%
-\contentsline {chapter}{\numberline {6}Fazit und Ausblick}{63}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Zusammenfassung der Ergebnisse}{63}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Kritische Reflexion und Herausforderungen}{63}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{63}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Plan}{66}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Fragen}{69}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Wichtig}{72}{chapter.9}%
-\contentsline {chapter}{\numberline {10}TODO}{74}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Tests}{76}{chapter.11}%
-\contentsline {chapter}{\numberline {12}Passwörter}{78}{chapter.12}%
+\contentsline {subsection}{\numberline {2.2.1}Aufbau eines SIMATIC S7-Systems}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Funktionsweise und Aufbau einer SPS}{6}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Technologiemodule}{7}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Technologiemodule2}{9}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Programmierung einer PLC mit TIA-Portal}{10}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Software}{11}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Totally Integrated Automation Portal}{11}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Intel® Quartus® Prime}{13}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Questa-Intel® FPGA}{15}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}Grundlagen zu Inkrementalgebern}{16}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Analyse der Ablösung des FM350-2 durch das TM FAST Modul}{18}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Eigenschaften und Aufbau des TM FAST}{18}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Funktionsweise des FM350-2}{26}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Endloses Zählen bei der FM 350-2}{28}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Einmaliges Zählen bei der FM 350-2}{29}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Periodisches Zählen bei der FM 350-2}{30}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Frequenzmessung mit der FM 350-2}{31}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Drehzahlmessung mit der FM 350-2}{32}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Periodendauermessung mit der FM 350-2}{33}{subsection.3.2.6}%
+\contentsline {subsection}{\numberline {3.2.7}Dosierfunktion der FM 350-2}{34}{subsection.3.2.7}%
+\contentsline {subsection}{\numberline {3.2.8}Torfunktionen der FM 350-2}{35}{subsection.3.2.8}%
+\contentsline {paragraph}{\nonumberline Software-Tor und Hardware-Tor}{35}{paragraph*.4}%
+\contentsline {paragraph}{\nonumberline Internes Tor}{35}{paragraph*.6}%
+\contentsline {paragraph}{\nonumberline Beispiel}{36}{paragraph*.8}%
+\contentsline {subsection}{\numberline {3.2.9}Prozessalarme der FM 350-2}{36}{subsection.3.2.9}%
+\contentsline {paragraph}{\nonumberline Fehlerklassen und -arten}{36}{paragraph*.10}%
+\contentsline {paragraph}{\nonumberline Reaktion der Baugruppe}{37}{paragraph*.12}%
+\contentsline {paragraph}{\nonumberline Sammelfehler-LED (SF)}{37}{paragraph*.14}%
+\contentsline {paragraph}{\nonumberline Diagnosealarme und -daten}{37}{paragraph*.16}%
+\contentsline {paragraph}{\nonumberline Datenfehler und Quittierung}{38}{paragraph*.18}%
+\contentsline {section}{\numberline {3.3}Direkter Vergleich der TM Fast und FM 350-2}{38}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{40}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Anforderungen an die Neuentwicklung}{40}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Modularisierung und Wiederverwendbarkeit}{40}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Ressourcenoptimierung}{42}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Fehler- und Diagnosestrategien}{43}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Synchronisation und Zustandsautomaten}{44}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Zyklische und azyklische Kommunikation}{46}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Sicherheit bei CPU\_STOP}{49}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Flexibilität der Kanalzuordnung}{51}{section.4.8}%
+\contentsline {section}{\numberline {4.9}Automatische Überlaufkompensation}{52}{section.4.9}%
+\contentsline {section}{\numberline {4.10}Erweiterbarkeit für zukünftige Anforderungen}{54}{section.4.10}%
+\contentsline {section}{\numberline {4.11}Testbarkeit und Simulation}{55}{section.4.11}%
+\contentsline {section}{\numberline {4.12}Vergleich mit bisherigen Lösungen}{56}{section.4.12}%
+\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{57}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Zusammenfassung der Ergebnisse}{57}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Kritische Reflexion und Herausforderungen}{58}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{58}{section.5.3}%

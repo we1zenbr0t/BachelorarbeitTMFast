@@ -1,4 +1,19 @@
 \chapter{Fazit und Ausblick}
+
 \section{Zusammenfassung der Ergebnisse}
+
+Im Rahmen dieser Arbeit konnte gezeigt werden, dass alle für Dosieranlagen relevanten Funktionen erfolgreich in das neue VHDL-Design integriert wurden. Ein wesentliches Ergebnis ist die drastische Verkürzung der Reaktionszeit: Während die bisher eingesetzte Baugruppe FM 350-2 eine Verzögerung von rund 50 µs aufwies, erreicht die neue Implementierung eine Reaktionszeit von 20 ns. Damit wird eine sofortige und deterministische Signalverarbeitung ermöglicht, was insbesondere in zeitkritischen Dosierprozessen erhebliche Vorteile bringt.  
+
+Ein Unterschied zur alten Baugruppe liegt in der Behandlung der Prozessalarme. Viele der in der FM 350-2 implementierten Alarme konnten in der neuen Architektur nicht in gleicher Form umgesetzt werden. Während die FM 350-2 interne, externe und kanalspezifische Fehler durch Prozessalarme meldete und dabei auch eine Sammelfehler-LED (SF) sowie Diagnose-OBs in der SPS nutzte, verfolgt das neue VHDL-Design einen anderen Ansatz.  
+
+Die Fehler- und Diagnosestrategie wurde systematisch auf Kanalebene implementiert. Für jeden Kanal wird ein Signal \texttt{system\_fault(i)} berechnet, das Fehler an Eingängen, Ausgängen, RS485-Schnittstellen oder der Spannungsversorgung überwacht. Erkennt die Logik einen Fehler, wird der betroffene Ausgang unmittelbar in den sicheren Zustand (SAFE State) überführt. Die Details werden über das Feedback-Interface an die SPS zurückgemeldet, sodass dort eine gezielte Reaktion erfolgen kann. Im Fall eines globalen CPU-Stop werden zusätzlich alle Kanäle zurückgesetzt und sämtliche Ausgänge deaktiviert. Auf diese Weise wird sichergestellt, dass sowohl Einzelkanalfehler als auch globale Störungen zuverlässig erkannt und behandelt werden.  
+
 \section{Kritische Reflexion und Herausforderungen}
+
+Ein zentrales Problem bestand darin, dass kein realer Aufbau der alten FM 350-2-Baugruppe verfügbar war. Vergleichsdaten mussten daher ausschließlich aus der Dokumentation und dem Handbuch entnommen werden. Dadurch konnten bestimmte Verhalten nur indirekt nachvollzogen werden, während praktische Messungen oder Tests zum Vergleich der Reaktionszeiten und Fehlerdiagnosen nicht möglich waren. Diese Einschränkung führte dazu, dass die Analyse in Teilen theoretisch blieb und auf Annahmen basierte, die nicht vollständig verifiziert werden konnten.  
+
 \section{Potenzielle Weiterentwicklungen und zukünftige Anwendungen}
+
+Ein wichtiger Ansatzpunkt für zukünftige Arbeiten ist die Integration von Prozessalarmen, wie sie in der FM 350-2 vorgesehen waren. Diese könnten über eine geeignete Erweiterung des azyklischen Datensatzes \texttt{RD\_REC} realisiert werden, um sowohl detaillierte Fehlerinformationen als auch Diagnosehinweise sicher zu übertragen. Ziel sollte es sein, die Vorteile der neuen Architektur – insbesondere die extrem kurze Reaktionszeit und die sichere Fehlerbehandlung – mit der umfangreichen Diagnosetiefe der alten Baugruppe zu kombinieren.  
+
+Darüber hinaus bietet das flexible VHDL-Design eine solide Grundlage für weitere Applikationen. Durch die Anpassung der Kanalzuordnung und die Erweiterung der Kommunikationsschnittstellen können neue Einsatzfelder erschlossen werden, beispielsweise für hochpräzise Dosier- oder Zählsysteme in unterschiedlichen industriellen Bereichen. Auch die Anbindung an moderne Steuerungssysteme über standardisierte Protokolle stellt ein mögliches Entwicklungsfeld dar, um die Integration in komplexe Automatisierungsumgebungen weiter zu vereinfachen.  

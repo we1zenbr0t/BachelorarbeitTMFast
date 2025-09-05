@@ -3,59 +3,43 @@
 Um die technischen Aspekte und die Funktionsweise der in dieser Arbeit behandelten Systeme
 zu verstehen, werden im Folgenden die zugrundeliegenden Konzepte und Technologien erläutert. 
 Relevant sind hierbei die Automatisierungspyramide, SIMATIC S7, Speicherprogrammierbare Steuerungen, Quartus und Questa sowie 
-TIA Portal und ?Echtzeitsysteme?.
+TIA Portal.
 
 \section{Automatisierungspyramide}
 
-Die Automatisierungspyramide stellt ein Konzept dar, welches die Hierarchie der Automatisierungstechnik von der Prozess- bis hin zur Unternehmensleitebene beschreibt.
-
-Die Automatisierungspyramide besteht aus insgesamt fünf hierarchischen Ebenen. Diese Ebenen lassen sich in die Systemgruppen IT als 
-Unternehmensleitebene und OT als Fertigungsebene unterteilen [4, S. 4 f.].
+Die Automatisierungspyramide stellt ein Modell zur Einordnung von Techniken und Systemen in der industriellen Fertigung dar. Sie umfasst die Kommunikation von der Prozessebene bis zur Unternehmensführung und unterscheidet zwischen horizontalen (innerhalb einer Ebene) und vertikalen (zwischen den Ebenen) Kommunikationsstrukturen. Grundlage ist das OSI-Referenzmodell von 1984, erweitert durch IoT-Konzepte seit 1999, die eine durchgängige Vernetzung von Sensoren, Maschinen und Unternehmenssystemen ermöglichen \cite{bable_automatisierungspyramide}.
 
 \subsection*{Ebenen der OT}
-
 \begin{itemize}
-    \item \textbf{Ebene 0 – Prozessebene:} Darstellung eines verfahrenstechnischen oder mechanischen Prozesses als ungeregeltes System.
-    
-    \item \textbf{Ebene 1 – Feldebene:} Interaktion mit der Umgebung, Sensorik und Aktorik eines Systems.
-    
-    \item \textbf{Ebene 2 – Steuerungsebene:} Koordination von Anlagen und Geräten durch Steuereinheiten wie SPS (PLCs).
-    
-    \item \textbf{Ebene 3 – Prozessleitebene:} Überwachung und Ressourcenoptimierung der Gesamtproduktion.
+    \item \textbf{Ebene 1 – Feldebene:} Intelligente Sensoren und Maschinen, die direkt mit der physischen Umgebung interagieren.
+    \item \textbf{Ebene 2 – SPS-Ebene:} Speicherprogrammierbare Steuerungen (SPS) und I/O-Einheiten zur Ansteuerung von Aktoren und Verarbeitung der Sensordaten.
+    \item \textbf{Ebene 3 – SCADA/HMI-Ebene:} Überwachung und Bedienung über SCADA-Systeme oder Human-Machine-Interfaces (Kontrollraum).
 \end{itemize}
-
-\vspace{1em}
 
 \subsection*{Ebenen der IT}
 \begin{itemize}
-    \item \textbf{Ebene 4 – Betriebsleitebene:} Sammlung und Auswertung von Daten der Prozessleitebene mehrerer Gesamtproduktionen. Koordination zwischen mehreren Abteilungen.
-    
-    \item \textbf{Ebene 5 – Unternehmensebene:} Festlegung langfristiger Ziele des Unternehmens mithilfe der erhobenen Daten aus der Betriebsleitebene \cite{iph2024}.
+    \item \textbf{Ebene 4 – MES-Ebene:} Manufacturing Execution Systems (MES) für Echtzeit-Produktionssteuerung und Prozessüberwachung.
+    \item \textbf{Ebene 5 – ERP-Ebene:} Enterprise Resource Planning (ERP) zur Steuerung der gesamten Wertschöpfungskette „vom Kunden zum Kunden“.
 \end{itemize}
-
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/Automatisierungpyramide.png}
-    \caption{Automatisierungspyramide, \cite{iph2024}}
+    \includegraphics[width=0.8\textwidth]{Fotos/AutomatisierungspyramideNeu.png}
+    \caption{Automatisierungspyramide, \cite{bable_automatisierungspyramide}}
     \label{Automatisierungpyramide}
 \end{figure}
 
-Das in dieser Arbeit behandelte System findet somit in den Ebenen 1 bis 3 statt. In der Feldebene 
-befindet sich die Sensorik und Aktorik, deren Signale durch eine Steuerungssoftware auf
-der TM FAST verarbeitet werden sollen. In der Steuerungsebene findet sowohl die Prozessdatenverarbeitung
-als auch die Kommunikation zwischen dem TM FAST und der PLC statt.
-Die Visualisierung befindet sich in der Prozessleitebene.
+Die Automatisierungspyramide verdeutlicht die Trennung zwischen der OT (Operational Technology: Ebenen 1–3) und der IT (Information Technology: Ebenen 4–5). Sämtliche Ebenen sind im Sinne von IoT kommunikationsfähig und nutzen standardisierte Protokolle wie PROFINET, EtherCAT, Modbus TCP, OPC UA oder Ethernet APL. Nicht-Ethernet-basierte Feldbusse wie PROFIBUS oder HART verlieren seit der Einführung von Ethernet APL zunehmend an Bedeutung.
 
 \section{Überblick über SIMATIC S7}
 
 Speicherprogrammierbare Steuerungen – im Englischen „Programmable Logic Controllers“
 (PLCs) – wie die SIMATIC S7-Serie von Siemens steuern und regeln unter anderem Maschinen,
 Antriebe, Ventile, Pumpen und Sensoren. Diese Steuerungen sind frei programmierbar und
-dadurch universell einsetzbar [\cite{babel2024}, S. 146]. Im Folgenden wird ein Überblick über den Aufbau,
+dadurch universell einsetzbar \cite{babel2024}. Im Folgenden wird ein Überblick über den Aufbau,
 die Funktionsweise und die Programmierung eines SIMATIC S7-Systems gegeben.
 
-\section{Aufbau eines SIMATIC S7-Systems}
+\subsection{Aufbau eines SIMATIC S7-Systems}
 
 Ein SIMATIC S7-System ist modular aufgebaut und besteht aus mehreren Komponenten. Im
 Folgenden werden die Hauptkomponenten und ihre Funktionen erläutert.
@@ -65,13 +49,12 @@ Folgenden werden die Hauptkomponenten und ihre Funktionen erläutert.
 Die CPU der Steuerung wird auch als Controller bezeichnet und bildet die zentrale Verarbeitungseinheit des Systems. 
 Die Hauptaufgabe der CPU ist es, das Anwenderprogramm auszuführen, das vom Nutzer entwickelt wurde, um spezifische 
 Steuerungs- und Regelungsaufgaben 
-zu übernehmen [\cite{babel2024}, S. 146]. Die CPU verarbeitet Signale von Ein- und Ausgabemodulen, führt
+zu übernehmen \cite{babel2024}. Die CPU verarbeitet Signale von Ein- und Ausgabemodulen, führt
 Berechnungen durch und gibt Steuerbefehle an angeschlossene Geräte, wie Sensoren und Aktoren, aus.
 
 Controller der SIMATIC S7 Serie verfügen über integrierte Kommunikationsschnittstellen, wie
 Ethernet/PROFINET oder PROFIBUS, die den Datenaustausch mit anderen Steuerungen,
-Bediengeräten oder übergeordneten Systemen (z. B. SCADA oder MES) ermöglichen [12, S.
-14].
+Bediengeräten oder übergeordneten Systemen (z. B. SCADA oder MES) ermöglichen \cite{stephan_prozesstechnik_i}.
 
 \textbf{Weitere Baugruppen}
 
@@ -79,7 +62,7 @@ Um eine Verbindung zur Maschine oder Anlage herzustellen, werden Signalbaugruppe
 
 Technologiebaugruppen (Technologiemodule) gehen darüber hinaus: Es handelt sich um Erweiterungsbaugruppen mit eigener hardwarenaher Logik (z.\,B. FPGA oder Mikrocontroller), die abhängig von ihrer Parametrierung im TIA Portal definierte Funktionen autark und ereignisgesteuert ausführen können, ohne dass für jeden Schritt ein zyklischer Eingriff der CPU (OB1) erforderlich ist. Dadurch entfallen die durch die CPU Zykluszeit bedingten Latenzen und Jitter und zeitkritische Operationen (z.\,B. High Speed Zählen, präzise Zeitstempel, Pulsmessungen und Frequenzmessungen, Positionserfassung, schnelle Reaktionsausgänge) können mit deutlich geringerer Reaktionszeit und höherer Deterministik verarbeitet werden. Die CPU wird entlastet und erhält bereits vorveredelte Daten, was Ressourcen spart und die Gesamtperformance erhöht. Genau dieser Vorteil (schnelle deterministische Reaktion ohne Einfluss der CPU Zykluszeit) motiviert den Einsatz von Technologiemodulen.
 
-Kommunikationsbaugruppen erweitern ergänzend die Protokollfähigkeit oder Schnittstellenfähigkeit einer Steuerung (z.\,B. zusätzliche Feldbusse oder Industrial Ethernet Varianten) und kapseln entsprechende Kommunikationsstacks von der CPU [\cite{babel2024}, S. 146].
+Kommunikationsbaugruppen erweitern ergänzend die Protokollfähigkeit oder Schnittstellenfähigkeit einer Steuerung (z.\,B. zusätzliche Feldbusse oder Industrial Ethernet Varianten) und kapseln entsprechende Kommunikationsstacks von der CPU \cite{berger2017}.
 
 \begin{figure}[H]
     \centering
@@ -88,39 +71,79 @@ Kommunikationsbaugruppen erweitern ergänzend die Protokollfähigkeit oder Schni
     \label{AllgemeinerAufbau}
 \end{figure}
 
+\subsection{Funktionsweise und Aufbau einer SPS}
 
+Eine Speicherprogrammierbare Steuerung (SPS) arbeitet nach dem EVA-Prinzip 
+(Eingabe–Verarbeitung–Ausgabe). Über Eingangsbaugruppen werden die Zustände 
+von Sensoren (z.\,B. Endschalter, Temperaturfühler, Drehzahlsensoren) erfasst und 
+in einem \textit{Prozessabbild der Eingänge} zwischengespeichert. Dieses Abbild 
+dient als Grundlage für die Bearbeitung durch das Anwenderprogramm. Nach der 
+Verarbeitung werden die Ergebnisse in das \textit{Prozessabbild der Ausgänge} 
+geschrieben und an die Ausgangsbaugruppen übertragen, wodurch die Aktoren 
+(z.\,B. Motoren, Ventile) angesteuert werden. Dieser Zyklus wiederholt sich 
+kontinuierlich im Millisekundenbereich \cite{hering_elektronik, babel2024}.
 
-\section{Funktionsweise einer Speicherprogrammierbaren Steuerung}
+Das Anwenderprogramm ist modular aufgebaut und besteht aus 
+\textit{Organisationsbausteinen} (z.\,B. OB1 als Hauptzyklus), 
+\textit{Funktionsbausteinen} (FB), \textit{Funktionen} (FC) und 
+\textit{Datenbausteinen} (DB). OB1 kann durch höher priorisierte Bausteine wie 
+Interrupt- oder Alarm-OBs unterbrochen werden, wodurch sich die Zykluszeit 
+verlängern kann. Überschreitet die Zykluszeit das konfigurierte Watchdog-Limit, 
+geht die SPS in den Stopp-Zustand, und alle Ausgänge werden auf 0 gesetzt 
+\cite{siemens_s7_function_blocks}.
 
-Grundsätzlich arbeitet eine Speicherprogrammierbare Steuerung nach dem Eingabe-Verarbeitung-Ausgabe-Prinzip (EVA). Der damit verbundene Prozess erfolgt zyklisch und lässt sich wie folgt darstellen:
+Eine modulare SPS besteht mindestens aus einem Baugruppenträger, einer 
+Stromversorgung, einer CPU mit Speicher sowie Ein-/Ausgabebaugruppen. 
+Kompakt-SPS vereinen diese Komponenten in einem Gehäuse. Optional können 
+Kommunikations-, Zähler-, Positionier- oder Regelungsmodule ergänzt werden. 
+Mehrere Baugruppenträger werden über Interface-Module verbunden 
+\cite{heinrich_automatisierung}.
 
-Über Eingangsbaugruppen werden zunächst die Zustände von angeschlossener Sensorik erfasst. Diese Eingangssignale werden anschließend in einem Prozessabbild gespeichert, welches eine Momentaufnahme der aktuellen Signalzustände darstellt. Änderungen der Signale, die während eines laufenden Zyklus auftreten, werden somit ignoriert [\cite{babel2024}, S. 147], [13, S. 39].
+Die CPU verfügt über verschiedene Speicherbereiche \cite{heinrich_automatisierung}:
+\begin{itemize}
+  \item \textbf{Arbeitsspeicher (Anwenderspeicher):} Enthält das aktuell 
+  ausgeführte SPS-Programm und die benötigten Datenbausteine. 
+  \item \textbf{Ladespeicher:} Dient als Zwischenspeicher für Programme und kann 
+  über RAM-, EPROM-, FLASH- oder MMC-Karten erweitert werden.
+  \item \textbf{Systemspeicher:} Beinhaltet Operandenbereiche wie Eingänge, 
+  Ausgänge, Merker, Zeiten und Zähler.
+  \item \textbf{Peripherie:} Ermöglicht direkten Zugriff auf reale Ein- und 
+  Ausgänge, auch ohne Prozessabbild. 
+\end{itemize}
 
-Das Prozessabbild dient nun als Datengrundlage für die Verarbeitung durch das Anwenderprogramm. Das Anwenderprogramm ist modular aufgebaut und arbeitet mit sogenannten Bausteinen. Das Hauptprogramm wird durch den Organisationsbaustein OB1 repräsentiert, welcher aus konkreten Anweisungen aber auch Funktions- oder Unterprogrammaufrufen besteht. Die Abarbeitung des OB1 entspricht einem Verarbeitungszyklus (Scan). Dessen Dauer liegt typischerweise im ein- bis zweistelligen Millisekundenbereich, kann aber – abhängig von Programmlogik, umfangreicher Kommunikation, vielen Zugriffen auf Peripherie oder aktivierten Diagnose-/Tracing-Funktionen – auch deutlich ansteigen und in den hohen zweistelligen bis dreistelligen Millisekundenbereich reichen. Überschreitet die Zykluszeit das konfigurierte Watchdog-Limit, wird ein Zeitfehler ausgelöst (Fehler-OB, z. B. OB80) [13, S. 39].
-
-Wichtig ist, dass OB1 nicht strikt ununterbrochen läuft: Er kann durch höher priorisierte Organisationsbausteine (Interrupt-/Alarm-OBs) präemptiv unterbrochen werden. Dazu zählen u. a. zeitgesteuerte Interrupt-OBs (z. B. OB35 für einen zyklischen Zeit-Interrupt), Hardware- bzw. Prozessalarm-OBs (OB40ff) oder bestimmte Kommunikations- und Diagnose-OBs. Die Ausführung dieser höher priorisierten OBs verschiebt das Fertigstellen des aktuellen OB1-Scans nach hinten und verlängert damit die effektive Zykluszeit von OB1; die Bearbeitung der Interrupt-OBs selbst erfolgt jedoch deterministisch gemäß ihrer Priorität.
-
-Nach der (ggf. unterbrochenen und dann fortgesetzten) Verarbeitung des Anwenderprogramms erstellt die SPS ein neues Prozessabbild, das die Ergebnisse der Programmverarbeitung enthält. Dieses Abbild wird schließlich an die Ausgangsbaugruppen übertragen, woraufhin die angeschlossenen Aktoren angesteuert werden. Mit diesem Schritt ist der Zyklus abgeschlossen, und die SPS beginnt unmittelbar mit der Erfassung der neuen Eingangs-Signalzustände für den nächsten Zyklus [\cite{babel2024}, S. 147], [13, S. 39].
+Durch diese Struktur ist die SPS in der Lage, deterministisch und zuverlässig auf 
+geänderte Eingangssignale zu reagieren, Prozesse zu steuern und eine hohe 
+Betriebssicherheit zu gewährleisten \cite{heinrich_automatisierung}.
 
 \section{Technologiemodule}
 
-Die SIMATIC S7-1500 Steuerung ist ein modulares System, das in ihrer Funktionalität frei skalierbar ist. Den Kern der Steuerung bildet die SIMATIC S7-1500 CPU. In ihr wird das Anwenderprogramm ausgeführt und die Verbindung zu anderen Automatisierungskomponenten aufgebaut. Neben der CPU kann das System mit Interface-, Signal-, Kommunikations- und Technologiebaugruppen erweitert werden. Das sogenannte Peripheriesystem ET 200MP ermöglicht den Einsatz
-der S7-1500 IO-Module entweder, wie beschrieben, direkt an der SIMATIC S7-1500 Steuerung oder an einem entsprechend kompatiblen PROFINET-/PROFIBUS-Teilnehmer, wie z.B. dem Interfacemodul IM 155 PN, das die Daten zwischen
-Steuerung und Peripheriemodulen austauscht. Abb. 1 zeigt zum einen auf der
-linken Seite den zentralen Aufbau mit CPU und vier Signalbaugruppen und zum
-anderen auf der rechten Seite den vergleichbaren dezentralen Aufbau mit Interfacemodul. Die Kommunikation erfolgt über PROFINET. Die Bezeichnung Signalbaugruppe fasst die Digital- und Analogbaugruppen zusammen, die der Steuerung
-zusätzliche Ein- und Ausgänge zur Verfügung stellen.[7, 8]
+Die SIMATIC S7-1500 Steuerung ist ein modular aufgebautes System, dessen Funktionalität flexibel skalierbar ist. Das Herzstück bildet die S7-1500 CPU, in der das Anwenderprogramm ausgeführt wird und die zentrale Verbindung zu anderen Automatisierungskomponenten hergestellt wird. Neben der CPU kann das System mit verschiedenen Erweiterungsbaugruppen ausgestattet werden, darunter Interface-, Signal-, Kommunikations- und Technologiemodule. Das Peripheriesystem ET 200MP ermöglicht den Einsatz von S7-1500 IO-Modulen sowohl direkt an der CPU als auch dezentral über ein kompatibles PROFINET-/PROFIBUS-Interface, z.\,B. das Interfacemodul IM 155 PN, das die Daten zwischen Steuerung und Peripheriemodulen überträgt \cite{berger2017, siemensET200MP}.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{Fotos/Aufbau_S7_System.png} % Reduced width to 0.6\textwidth
-    \caption{SIMATIC ET 200MP im zentralen und dezentralen Aufbau \cite{siemensET200MP}}
+    \includegraphics[width=0.6\textwidth]{Fotos/Aufbau_S7_System.png}
+    \caption{Zentraler und dezentraler Aufbau der SIMATIC ET 200MP \cite{siemensET200MP}}
     \label{fig:Aufbau_S7_System}
 \end{figure}
 
-Technologiebaugruppen bieten hardwarenahe Signalvorverarbeitung für schnelles Zählen und Messen sowie die genaue Positionserfassung für Inkremental- und SSI-Absolutwertgeber. Bei bisherigen Modulen erfolgt die Parametrierung und Programmierung durch Technologieobjekte oder durch Ansteuerung der IOs im Anwendungsprogramm im TIA Portal. Das aktuelle Portfolio umfasst u.a. das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Ersteres arbeitet mit einem trainierten neuronalen System und es können verschiedene Sensoren über Gigabit-Ethernet oder USB 3.1 angeschlossen werden. Das TM Count 2x24 V ist eine vielseitig einsetzbare Zählerbaugruppe für Zähl- und Messaufgaben sowie die Positionserfassung mit Inkrementalgebern. Ein weiteres Zähl- und Positionserfassungsmodul ist das TM Posinput 2. Dieses bietet zwei Zählkanäle für Differenz-Eingangssignale nach RS422 mit bis zu 1 MHz und ermöglicht die Positionserfassung mit SSI-Absolutwertgebern. Das TM Timer DIDQ 16x24 V wird für Aufgaben eingesetzt, die einen besonderen zeitlichen Anspruch haben, wie z.B. die exakte Einhaltung von Reaktionszeiten. Das PTO 4 Modul wird zur Ansteuerung von Schrittmotor-Antrieben und Servo-Antrieben mit PTI-Schnittstelle verwendet.[9]
+Technologiebaugruppen bieten eine hardwarenahe Signalvorverarbeitung für schnelle Zähl- und Messaufgaben sowie präzise Positionserfassung bei Inkremental- und SSI-Absolutwertgebern. Bisher erfolgte die Parametrierung und Programmierung dieser Module über Technologieobjekte oder direkt über die Ansteuerung der IOs im Anwenderprogramm im TIA Portal. Zu den aktuellen Modulen zählen unter anderem das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Das TM NPU arbeitet mit einem trainierten neuronalen System und unterstützt die Anbindung verschiedener Sensoren über Gigabit-Ethernet oder USB 3.1. Die Zählerbaugruppen TM Count 2x24 V und TM Posinput 2 ermöglichen vielseitige Zähl- und Messaufgaben sowie die Positionserfassung über Inkrementalgeber oder SSI-Absolutwertgeber. Das TM Timer DIDQ 16x24 V wird für zeitkritische Aufgaben eingesetzt, während das PTO 4 Modul Schrittmotor- und Servo-Antriebe mit PTI-Schnittstelle ansteuert \cite{fm350_Handbuch, TmFast_progrmming_manual, tmfast_featurespec}.
 
-Das TM FAST ist bereits seit einiger Zeit im Portfolio und wird kontinuierlich in kurzen Iterationen erweitert. Dabei werden neue, aus konkreten Kunden-Use-Cases abgeleitete Funktionen (z.B. zusätzliche Protokoll‑/Zähl‑/Trigger‑ und Preprocessing-Bausteine) implementiert und als wiederverwendbare Funktionsblöcke bereitgestellt. Auf diese Weise können bestehende Anforderungen schneller abgebildet und künftige Anwendungsfälle flexibel ergänzt werden. Im nachfolgenden Abschnitt wird das TM FAST genauer vorgestellt.
+Das TM FAST Modul ist bereits länger im Portfolio und wird kontinuierlich erweitert. Neue Funktionen, die sich aus konkreten Kundenanforderungen ergeben, wie zusätzliche Protokoll-, Zähl-, Trigger- oder Preprocessing-Bausteine, werden in kurzen Iterationen implementiert und als wiederverwendbare Funktionsblöcke bereitgestellt. Dies ermöglicht eine schnelle Abbildung bestehender Anforderungen und die flexible Integration zukünftiger Anwendungsfälle \cite{TmFast_progrmming_manual, tmfast_featurespec}.
+
+\section{Technologiemodule2}
+
+Die SIMATIC S7-1500 Steuerung ist ein modular aufgebautes System, dessen Funktionalität flexibel skalierbar ist. Zentraler Bestandteil ist die S7-1500 CPU, in der das Anwenderprogramm ausgeführt wird und die Schnittstellen zu weiteren Automatisierungskomponenten bereitstellt. Neben der CPU lässt sich das System durch verschiedene Module erweitern, darunter Interface-, Signal-, Kommunikations- und Technologiebaugruppen. Das Peripheriesystem ET 200MP ermöglicht den Einsatz der S7-1500 IO-Module entweder direkt an der Steuerung oder über einen kompatiblen PROFINET-/PROFIBUS-Teilnehmer wie das Interfacemodul IM 155 PN, das den Datenaustausch zwischen Steuerung und Peripheriemodulen übernimmt. Abbildung~\ref{fig:Aufbau_S7_System} zeigt links den zentralen Aufbau mit CPU und vier Signalbaugruppen und rechts einen vergleichbaren dezentralen Aufbau mit Interfacemodul. Die Kommunikation erfolgt hierbei über PROFINET. Die Signalbaugruppen umfassen sowohl digitale als auch analoge Ein- und Ausgänge, die der Steuerung zusätzliche Funktionalität bereitstellen \cite{siemensET200MP}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Fotos/Aufbau_S7_System.png}
+    \caption{Zentraler und dezentraler Aufbau der SIMATIC S7-1500 Steuerung mit ET 200MP Peripheriesystem \cite{siemensET200MP}}
+    \label{fig:Aufbau_S7_System}
+\end{figure}
+
+Technologiebaugruppen bieten eine hardwarenahe Signalvorverarbeitung für schnelle Zähl- und Messaufgaben sowie präzise Positionserfassung mittels Inkremental- oder SSI-Absolutwertgebern. Bisherige Module wurden über Technologieobjekte oder direkt im Anwenderprogramm im TIA Portal parametriert und programmiert. Das aktuelle Portfolio beinhaltet unter anderem das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Das TM NPU arbeitet mit einem trainierten neuronalen System und erlaubt den Anschluss verschiedener Sensoren über Gigabit-Ethernet oder USB 3.1. Die Zählerbaugruppe TM Count 2x24 V ist vielseitig einsetzbar für Zähl- und Messaufgaben sowie zur Positionserfassung über Inkrementalgeber. Das TM Posinput 2 Modul stellt zwei Zählkanäle für Differenzeingangssignale nach RS422 mit bis zu 1~MHz bereit und ermöglicht die Positionserfassung mit SSI-Absolutwertgebern. Der TM Timer DIDQ 16x24 V dient zeitkritischen Aufgaben, wie z. B. der präzisen Einhaltung von Reaktionszeiten. Das PTO 4 Modul unterstützt die Ansteuerung von Schrittmotoren und Servoantrieben mit PTI-Schnittstelle \cite{TmFast_progrmming_manual}.
+
+Das TM FAST Modul ist bereits länger Bestandteil des Portfolios und wird kontinuierlich um neue Funktionen erweitert, die aus konkreten Kundenanwendungsfällen abgeleitet werden, wie zusätzliche Protokoll-, Zähl-, Trigger- und Preprocessing-Bausteine. Diese Funktionen werden als wiederverwendbare Funktionsblöcke bereitgestellt, wodurch bestehende Anforderungen schneller umgesetzt und zukünftige Anwendungsfälle flexibel ergänzt werden können \cite{tmfast_featurespec}.
 
 
 \section{Programmierung einer PLC mit TIA-Portal}
@@ -199,7 +222,3 @@ Rotative Geber realisieren dies typischerweise mit einer Lichtquelle, einer codi
     \caption{Funktionsweise eines Inkrementalgebers \cite{encoder_basics}}
     \label{fig:encoder_workings}
 \end{figure}
-
-\section{Maybe}
--Echtzeitsysteme? übergang zu was ich mache (ist das wichtig? wahrscheinlich nicht)
--24V und TTL Inkremenatl-Geber erklären?
