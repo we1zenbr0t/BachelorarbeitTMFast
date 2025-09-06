@@ -254,7 +254,9 @@ Durch diese Maßnahmen wird garantiert, dass das System im Fehlerfall oder bei e
 %///////////////////////////////////////////////////////////////////////////////////////////////////////
 \section{Flexibilität der Kanalzuordnung}
 
-Das VHDL-Design nutzt spezielle Mapping-Arrays, um eine flexible Zuordnung der Ein- und Ausgänge zu den einzelnen Kanälen zu ermöglichen. Die Arrays `CHANNEL\_MAP\_IN\_CH` und `CHANNEL\_MAP\_OUT\_CH` legen für jeden logischen Kanal fest, welcher physikalische Eingang bzw. Ausgang verwendet wird. Dadurch kann das Design einfach an unterschiedliche Hardware-Konfigurationen oder Kundenanforderungen angepasst werden, ohne dass die eigentliche Kanal-Logik verändert werden muss.
+Aufgrund des Designs von Dosieranlagen wird bei ihnen immer nur in eine Richtung abgefüllt. Daher muss bei Inkrementalgebern lediglich auf die A-Flanke, die Impulsflanke, geachtet werden, während das B-Ausgangssignal ignoriert werden kann. Dies ermöglicht, dass für jeden Kanal nur ein digitaler Eingang benötigt wird.  
+
+Das VHDL-Design unterstützt diese Struktur durch spezielle Mapping-Arrays, die eine flexible Zuordnung der Ein- und Ausgänge zu den einzelnen Kanälen erlauben. Die Arrays \texttt{CHANNEL\_MAP\_IN\_CH} und \texttt{CHANNEL\_MAP\_OUT\_CH} definieren für jeden logischen Kanal, welcher physikalische Eingang bzw. Ausgang genutzt wird. Auf diese Weise kann das Design problemlos an verschiedene Hardware-Konfigurationen oder Kundenanforderungen angepasst werden, ohne die eigentliche Kanal-Logik zu ändern.
 
 Im Beispiel werden die ersten acht Kanäle als klassische DI/DQ-Kanäle betrieben, 
 während die weiteren Kanäle flexibel als RS485 oder zusätzliche DIQ-Kanäle

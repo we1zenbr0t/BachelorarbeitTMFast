@@ -7,56 +7,45 @@ zu schaffen.
 
 \section{Eigenschaften und Aufbau des TM FAST}
 
-Das TM FAST bietet die Möglichkeit, eigene Anwendungen in das SIMATIC S7-1500 Technologiemodul einzubetten. Hardwareseitig besteht es aus einem Backend-Baustein, der die Siemens TM FAST-Firmware bereitstellt, und einem Frontend-Baustein (Intel® Cyclone 10 LP FPGA), der die sogenannte TM FAST-Anwendung hostet. Diese Applikation bestimmt die Hardwarefunktionalität des Technologiemoduls und kann durch applikationsspezifisches Programmieren des FPGAs selbst definiert werden. Hierzu wird die externe Software Intel® Quartus® Prime verwendet. Näheres zu den Programmen der Softwareentwicklung und -simulation folgt in Abschnitt 2.3. [Guillaume: Specification for TM Fast, 10]
+Das TM FAST ermöglicht die Integration eigener Anwendungen in das SIMATIC S7-1500 Technologiemodul. Hardwareseitig besteht es aus einem Backend-Baustein, der die Siemens TM FAST-Firmware bereitstellt, und einem Frontend-Baustein, dem Intel® Cyclone 10 LP FPGA, auf dem die TM FAST-Anwendung läuft. Diese Anwendung definiert die Hardwarefunktionalität des Moduls und kann durch applikationsspezifische FPGA-Programmierung mittels Intel® Quartus® Prime angepasst werden \cite{tmfast_featurespec, TmFast_progrmming_manual}.
 
-Eine vergleichbare Baugruppe ist der High Speed Boolean Processor FM352-5 aus dem Automatisierungssystem S7-300. Dieser wird mit einer Zykluszeit von 1 \(\mu\)s für Anwendungen verwendet, die eine schnelle Binärsteuerung sowie Schaltvorgänge benötigen. Die Funktionsbaugruppe wird in STEP 7 mit Kontaktplan (KOP) oder Funktionsplan (FUP) mit einem zur Verfügung stehenden Anweisungssatz programmiert [11]. Durch die Programmierung des FPGAs des TM FAST in der Intel® Quartus® Prime Software ergibt sich eine höhere Flexibilität in der Anwendungsprogrammierung und ermöglicht spezifische und benutzerdefinierte Lösungen. Mit einer Zykluszeit von 20 ns und die somit geringere Verarbeitungs- und Reaktionszeit eröffnen sich neue Einsatzmöglichkeiten. Es können beispielsweise beliebige Pulsmuster an den Ausgängen erzeugt werden, die zeitlich sehr fein aufgelöst werden können (unter 1 \(\mu\)s) und in Abhängigkeit.
-
-Im Gegensatz zur einfachen Verarbeitung digitaler Signale kann mit dem TM FAST auch die Auswertung anderer Signale, wie z.\,B.\ eines Zählstands, erfolgen. Nachfolgend sind weitere Beispiele aufgelistet. [\cite{fm350_Handbuch}, \cite{TmFast_progrmming_manual}]
+Eine ähnliche Baugruppe ist der High Speed Boolean Processor FM352-5 des S7-300 Systems, der mit einer Zykluszeit von 1~\(\mu\)s schnelle Binärsteuerungen ermöglicht \cite{siemens_fm3525}. Das TM FAST FPGA bietet jedoch eine wesentlich höhere Flexibilität, erlaubt Zykluszeiten bis 20~ns und die Erzeugung präziser Pulsmuster. Somit können nicht nur digitale Signale, sondern auch komplexere Aufgaben wie Zählvorgänge, präzise Dosierungen oder pixelgenaue Punktmuster verarbeitet werden \cite{TmFast_progrmming_manual}.
 
 \begin{itemize}
     \item Positionsabhängige Nocken
-    \item Sehr schnelle Reaktionen auf digitale Ereignisse
-    \item Zählen von Signalen bis zu 5\,MHz
-    \item Erfassungslogiken für Inkremental- und Absolutwertgeber mit Ableitung einer unmittelbaren Reaktion
-    \item Präzise Ansteuerung sowie flexible Steuerung von Lasern in verschiedenen Anwendungsfällen
-    \item Pixelgenaue Punktmuster auf mehreren parallelen Spuren
+    \item Schnelle Reaktionen auf digitale Ereignisse
+    \item Zählen von Signalen bis 5\,MHz
+    \item Auswertung von Inkremental- und Absolutwertgebern mit sofortiger Reaktion
+    \item Präzise Steuerung von Lasern
+    \item Pixelgenaue Punktmuster auf parallelen Spuren
     \item Exakte Dosieraufgaben
-    \item Durchführung von Berechnungen und Vorverarbeitungen innerhalb des Moduls, z.\,B.\ zur Fehlerfrüherkennung
+    \item Berechnungen und Vorverarbeitungen im Modul (z.\,B. Fehlerfrüherkennung)
 \end{itemize}
 
-Aufgrund der freien Programmierbarkeit können einzelne Funktionen variabel angepasst und kombiniert werden. Zusammenfassend eignet sich 
-das TM FAST für alle Aufgaben, bei denen die speicherprogrammierbare Steuerung (SPS) mit Peripheriebaugruppe entweder nicht schnell genug 
-ist oder die nicht durch ein vorhandenes Technologiemodul umgesetzt werden können und daher einer speziellen Einzellösung bedürfen.
+Die freie Programmierbarkeit ermöglicht die Kombination und Anpassung einzelner Funktionen. Das TM FAST eignet sich daher besonders für Anwendungen, bei denen die SPS mit Peripheriemodulen nicht ausreichend schnell ist oder spezifische Einzelanwendungen erfordert.
 
-Der \textbf{Aufbau} des TM FAST aus Backend-Gerät, Frontend-Gerät, Prozessschnitt-
-stelle sowie die Anbindung an die CPU und Peripherie wird in Abb. 2 veranschau-
-licht.
+\subsection*{Aufbau des TM FAST}
+Das TM FAST besteht aus einem Backend-Gerät, einem Frontend-Gerät, einer Prozessschnittstelle sowie der Anbindung an CPU und Peripherie (Abb.~\ref{fig:Blockdiagram}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/Blockdiagram.png}
-    \caption{Abbildung 6: Aufbau des TM FAST als Blockdiagramm [Guillaume: Specification for TM Fast]}
+    \includegraphics[width=0.8\textwidth]{Fotos/frontbackend2.png}
+    \caption{Blockdiagramm des TM FAST \cite{tmfast_featurespec}}
     \label{fig:Blockdiagram}
 \end{figure}
 
-Das \textbf{Backend-Gerät} realisiert die Verbindung des TM FAST zu anderen SIMATIC
+\textbf{Backend-Gerät:} Das Backend sorgt für die Kommunikation des TM FAST mit der S7-1500 über den Rückwandbus, regelt zyklischen und azyklischen Datentransfer, überwacht den Diagnosestatus und lädt die TM FAST-Anwendung auf das FPGA. Zudem kontrolliert es die Systemparameter, die Modultemperatur und die Statusanzeigen \cite{TmFast_progrmming_manual}.
 
-Komponenten über den Rückwandbus der zugehörigen SIMATIC S7-1500 Automatisierungseinheit. Die entsprechende Firmware wird von Siemens bereitgestellt und weiterentwickelt. Diese regelt u.a. die Kommunikation mit der S7-1500 Steuerung, den zyklischen und azyklischen Datentransfer sowie den Diagnosestatus. Genaueres zur Kommunikation folgt im späteren Verlauf des Abschnittes. Des Weiteren wird im Backend-Gerät die TM FAST-Applikation aus dem Flash geladen, über die SPI-Schnittstelle auf das FPGA übertragen, validiert und nach Bestätigung aktiviert. Zudem wird das Frontend-Gerät beobachtet, um Fehlverhalten zu erkennen. Sind die Parameter des Modules gesetzt, wird durch die Firmware die Systemlogik entsprechend angepasst. Das Backend-Gerät liest die Temperatur des Moduls über den Temperatursensor aus und kontrolliert alle LEDs des TM FAST über SPI. [Guillaume: Specification for TM Fast]
-
-Das \textbf{Frontend-Gerät} bildet den Kern des TM FAST. Hier wird die anwendungsspezifische Software abgelegt und ausgeführt. Das FPGA-Programm, bzw. die TM
-
-FAST-Anwendung, besteht aus zwei Teilen, die FAST-Systemlogik (TFL FAST SYS) und der User-Logik (TFL FAST USER). Die Programmierung erfolgt in der Hardwarebeschreibungssprache Very High Speed Integrated Circuit Hardware Description Language (VHDL). Der Entwurf der Anwendungslogik ist in das System eingebettet und besitzt eine Schnittstelle zur Systemlogik in der Form der VHDL Top Entity TFL FAST USER e [Guillaume: Specification for TM Fast]. Über diese können die Ein- und Ausgänge abgefragt bzw. gesteuert werden und die Kommunikation mit der CPU stattfinden. Ein VHDL-Programm besteht grundsätzlich aus den eingebundenen Packages bzw. Bibliotheken, der Entity, die als Schnittstellenbeschreibung fungiert, einer Architektur, die das Verhalten des Programmes beschreibt und einer Konfiguration, in der die entsprechende Architektur ausgewählt wird und gegebenenfalls Submodule und Parameter hinzugefügt werden [13]. Das spezifische Anwendungsprogramm wird somit in der VHDL-Architektur mit der Top Entity TFL FAST USER e implementiert. In Abb. 3 wird der Zusammenhang zwischen den beiden Logiken und die Einbindung in das System mit Backend-Gerät und Peripherie veranschaulicht.
+\textbf{Frontend-Gerät:} Im Frontend läuft die anwendungsspezifische TM FAST-Software auf dem Intel® Cyclone 10 LP FPGA. Die Logik ist in zwei Teile unterteilt: FAST-Systemlogik (TFL FAST SYS) und Benutzerlogik (TFL FAST USER). Die Programmierung erfolgt in VHDL über Top-Entity-Strukturen, Architekturen und Bibliotheken. Über diese Schnittstellen können Ein- und Ausgänge gesteuert sowie die Kommunikation mit der CPU realisiert werden (Abb.~\ref{fig:Frontend_Backend}).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Fotos/frontbackend.png}
-    \caption{Abbildung 7: Aufbau aus Backend- und Frontend-Gerät und Zusammensetzung der Logik des TM FAST [Guillaume: Specification for TM Fast]}
+    \caption{Aufbau von Frontend- und Backend-Gerät und Einbindung in das System \cite{tmfast_featurespec}}
     \label{fig:Frontend_Backend}
 \end{figure}
 
-Als Frontend-Gerät wird das Intel® FPGA der Familie Cyclone 10 LP verwendet.
-Der exakte Gerätename lautet 10CL025YU256A7G. Die maximal verfügbaren
-\textbf{Ressourcen des FPGAs} sind in der nachfolgenden Tab. 1 aufgelistet.
+Das FPGA-Modell 10CL025YU256A7G verfügt über 24\,624 Logikelemente, 66 M9K Memory-Blöcke, 66 18×18-Bit-Multiplizierer, vier PLLs, 20 Clock-Leitungen und maximal 150 I/Os (Tab.~\ref{tab:cyclon10l_ressources}) \cite{intelCyclone10}. Jeder Memory-Block bietet 9\,Kbit Speicher, die als RAM, FIFO oder ROM genutzt werden können. Die PLLs sind dynamisch rekonfigurierbar, und die GPIOs bieten Pull-Up-Widerstände und programmierbare Anstiegszeiten.
 
 \begin{table}[H]
     \centering
@@ -68,7 +57,7 @@ Der exakte Gerätename lautet 10CL025YU256A7G. Die maximal verfügbaren
         \hline
         M9K Memory Blöcke & 66 \\
         \hline
-        18\,x\,18 Multiplizierer & 66 \\
+        18×18 Multiplizierer & 66 \\
         \hline
         PLL & 4 \\
         \hline
@@ -77,137 +66,23 @@ Der exakte Gerätename lautet 10CL025YU256A7G. Die maximal verfügbaren
         Maximale I/O & 150 \\
         \hline
     \end{tabular}
-    \caption{Ressourcen des Intel® FPGA Cyclone 10 LP \cite{intelCyclone10}}
+    \caption{Ressourcen des Intel® Cyclone 10 LP FPGA \cite{intelCyclone10}}
     \label{tab:cyclon10l_ressources}
 \end{table}
 
-Ein Logikelement (LE) ist die kleinste Logikeinheit in der Intel® Cyclone 10 LP
-
-Gerätearchitektur. Jedes LE hat vier Eingänge, eine Look-Up Tabelle mit vier Eingängen, ein Register und eine Ausgangslogik. Die Look-Up Tabelle ist ein Funktionsgenerator, der jede Funktion mit vier Variablen implementieren kann. Der
-eingebettete Memory-Speicher ist aus M9K Memory-Blöcken aufgebaut. Jeder dieser Blöcke stellt 9 Kbit an On-Chip Speicher zur Verfügung. Diese M9K-Blöcke
-können beliebig miteinander verschachtelt und kombiniert werden, um größere Speicherplätze zu generieren. Insgesamt ergibt sich aus den 66 Blöcken ei-
-ne Speicherkapazität von 594 Kbit, das umgerechnet 608256 Bit entspricht. Die Memory-Blöcke können als RAM, FIFO-Puffer oder ROM konfiguriert werden. Jeder eingebettete Multiplizierer-Block kann entweder als einzelner 18x18-Bit oder
-zwei individuelle 9x9-Bit Multiplizierer initialisiert werden. Die Funktionsweise der
-Blöcke kann entweder über die Parametrierung bestimmter IP-Cores in der Intel® Quartus® Prime Software definiert werden oder direkt über den VHDL oder
-Verilog HDL Code implementiert werden. Dem FPGA stehen vier Phasenregelschleifen (PLL) und bis zu 20 Clocks zur Verfügung. 
-Die PLLs können dynamisch
-rekonfiguriert werden, wodurch die Phase und Frequenz der Clock geändert werden kann. Die General Purpose I/Os (GPIOs) des FPGAs bieten eine Vielzahl an Einstellmöglichkeiten, wie z.B. einen Pull-Up Widerstand oder eine programmierbare
-Anstiegsgeschwindigkeitsregelung zur Optimierung der Signalintegrität.[14]
-Nach Erläuterung des Aufbau- und Hardwarekonzepts des TM FAST folgt im restlichen Teil des Abschnittes der \textbf{äußere Aufbau} 
-(siehe Abb. 4), die \textbf{Pinbelegung}
-der Klemmen, die die Anbindung von Peripheriegeräten ermöglichen sowie die
-genauere Erklärung der \textbf{Kommunikationsmöglichkeiten} zwischen FPGA und
-CPU.
-Das Modul besteht aus einer Baugruppe der Bauform MP, einem S7-1500 Frontstecker mit 40 Klemmen und vier zusätzlichen Klemmen zur Spannungsversorgung sowie einem TM FAST Debug Connector zur direkten Verbindung mit dem
-
-FPGA. Dieser dient für die Durchführung von Service- und Entwicklungsarbeiten, unabhängig von der Frontstecker-Verdrahtung. Abb. 4 zeigt das Technologiemodul mit Zuordnung der äußeren Kennzeichnungen und Anzeigeeinheiten,
-die Erläuterung erfolgt dazu in Tab. 2. An der Außenseite kann man u.a. den Modultyp sowie -bezeichnung TM FAST, die Artikelnummer 6ES7554-1AA00-0AB0,
-den Funktionsstand und den Firmware-Stand V1.0.0 ablesen. Des Weiteren wird
-mit LEDs der Status der Ein- und Ausgänge, der Versorgungsspannung und der
-Diagnose angezeigt.
+\textbf{Äußerer Aufbau:} Das Modul ist als Baugruppe der Bauform MP mit einem 40-poligen Frontstecker und vier zusätzlichen Klemmen zur Spannungsversorgung ausgeführt (Abb.~\ref{fig:tmfastaufbau}). Ein TM FAST Debug Connector ermöglicht Service- und Entwicklungszugriffe unabhängig vom Frontstecker \cite{TmFast_progrmming_manual}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{Fotos/tmfastaufbau.png}
-    \caption{Abbildung 8: Technologiemodul TM FAST \cite{TmFast_progrmming_manual}}
+    \caption{Technologiemodul TM FAST \cite{TmFast_progrmming_manual}}
     \label{fig:tmfastaufbau}
 \end{figure}
 
-\begin{table}[H]
-    
-    \begin{tabular}{|c|p{10cm}|}
-    \hline
-    \textbf{Num.} & \textbf{Bezeichnung} \\
-    \hline
-    1 & Modultyp und -bezeichnung \\
-    \hline
-    2 & Artikelnummer \\
-    \hline
-    3 & Funktionsstand \\
-    \hline
-    4 & LEDs für Status der Ein- und Ausgänge \\
-    \hline
-    5 & LED für Versorgungsspannung \\
-    \hline
-    6 & LEDs für Diagnose \\
-    \hline
-    7 & Firmware-Stand \\
-    \hline
-    \end{tabular}
-    \caption{Zuordnung der äußeren Kennzeichnungen und Anzeigeeinheiten gemäß Abb.~8}
-    \label{tab:kennzeichnungen}
-\end{table}
+Das Modul bietet je acht 24\,V-Digitaleingänge (DI) und -ausgänge (DQ) mit 0,1\,A Ausgangsstrom sowie vier DIQ-Kanäle mit 0,3\,A und maximal 1\,kHz. Zudem stehen acht RS422/485-Kanäle bereit, die auch als TTL-Signale genutzt werden können. Eingangsverzögerungen für Digitaleingänge und RS422/485/TTL-Kanäle lassen sich sowohl fest parametrieren als auch über die TM FAST-Anwendung programmieren.
 
-Um externe Signalgeber oder -empfänger mit dem TM FAST verbinden zu können, wird am Modul ein \textbf{40-poliger Frontstecker} angebracht. 
-Dieser ist in Abb.~5 dargestellt. In Tab.~\ref{tab:klemmenzuordnung} werden die jeweiligen Klemmen ihrer Funktion zugeordnet.
+\textbf{Kommunikation:} Die Datenübertragung zwischen CPU und TM FAST kann zyklisch oder azyklisch erfolgen. Zyklische Ein- und Ausgangsdaten bestehen aus acht Doppelwörtern (32~Bit je Doppelwort). Die CPU-Schnittstelle betrachtet die Steuer- (CTRL IF) und Rückmeldedaten (FB IF). Azyklische Datenmengen können je nach Anwendungslogik konfiguriert werden (4, 32, 64 oder 128 Byte) und über die TIA Portal-Befehle \texttt{LTMFAST UserWriteREC} bzw. \texttt{LTMFAST UserReadREC} gelesen bzw. geschrieben werden \cite{tmfast_featurespec, TmFast_progrmming_manual}.
 
-Das TM FAST umfasst insgesamt je acht 24\,V-Digitaleingänge (DI) und -ausgänge (DQ) mit einem Ausgangsstrom von 0{,}1\,A und einer 
-maximalen Schaltfrequenz von 200\,kHz. Des Weiteren sind vier 24\,V-Digitalein-/-ausgänge (DIQ) mit 0{,}3\,A Ausgangsstrom und 
-maximal 1\,kHz Schaltfrequenz verfügbar. Diese können in der Software als Ein- oder Ausgang konfiguriert werden. Die Digitalausgänge 
-sind gegen Überlast und Kurzschluss geschützt.
-
-Neben den digitalen Ein- und Ausgängen gibt es acht RS422/485-Kanäle (CH\texttt{+} und CH\texttt{-}), die auch als TTL- (5\,V) Kanäle 
-eingesetzt werden können. Die Richtung ist wie bei den DIQ-Kanälen einstellbar. Wird mit einem RS485-Signal gearbeitet, so wird jeweils 
-ein Leitungspaar verwendet. Bei einem Signal mit TTL-Standard wird nur eine einzelne Leitung benötigt.
-
-Um kurze Störungen oder instabile Signale auf der Leitung zu filtern, kann für die Digitaleingänge und Kanäle eine Eingangsverzögerung 
-parametriert werden. Den DIs kann eine Eingangsverzögerung im Bereich von 0 bis 20\,ms in Schritten von 0{,}001\,ms fest in den 
-Systemlogik-Parametern eingestellt werden. Die gleiche Möglichkeit besteht für die RS422/RS485/TTL-Kanäle. Hier kann die 
-Eingangsverzögerung im Bereich von 0{,}1\,\textmu s bis 1000\,\textmu s festgelegt werden.
-
-Neben der festen Parametrierung kann die Verzögerung auch in der TM FAST-Anwendung frei programmiert werden 
-\cite{TmFast_progrmming_manual}.
-
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.2\textwidth]{Fotos/Frontstecker2.png}
-    \caption{Frontstecker des TM FAST \cite{siemensET200MP}}
-    \label{fig:frontstecker}
-\end{figure}
-
-\begin{table}[H]
-    \centering
-    
-    \label{tab:klemmenzuordnung}
-    \begin{tabular}{|p{6cm}|p{7cm}|}
-    \hline
-    \textbf{Klemmen} & \textbf{Anschlussbelegung} \\
-    \hline
-    1..4,\quad 10..13,\quad 21..24,\quad 30..33 & RS422/RS485/TTL-Ein- oder Ausgangssignal \\
-    \hline
-    5,\quad 6,\quad 14,\quad 15,\quad 25,\quad 26,\quad 34,\quad 35 & Digitalausgang \\
-    \hline
-    7,\quad 8,\quad 16,\quad 17,\quad 27,\quad 28,\quad 36,\quad 37 & Digitaleingang \\
-    \hline
-    9,\quad 18,\quad 29,\quad 38 & Digitalein-/-ausgang \\
-    \hline
-    19,\quad 20,\quad 39,\quad 40 & Masse \\
-    \hline
-    \end{tabular}
-    \caption{Anschlussbelegung des Frontsteckers aus Abb.~9}
-\end{table}
-    
-
-Die \textbf{Kommunikation} zwischen CPU und TM FAST kann entweder zyklisch oder azyklisch erfolgen. Die zyklischen Ein- und Ausgangsdaten
-sind unterteilt in acht Doppelwörter. Ein Doppelwort besteht aus 32 Bit, sodass in
-Summe mit 32 Byte kommuniziert werden kann. Der zyklische Datenaustausch
-wird in der Regel aus der Sicht der CPU betrachtet. Das bedeutet, dass die Steuerschnittstelle (CTRL IF) die Ausgangsdaten, die von der CPU an das TM gesendet
-werden, beinhaltet. Entsprechend werden die Eingangsdaten, die die CPU aus
-dem TM FAST liest, als Rückmeldeschnittstelle (FB IF) bezeichnet. Auf Seiten des
-TMs ist die Verwendung der Schnittstellen folglich genau entgegengesetzt. In der
-Umsetzung der Laser-Scanner-Anwendung in Abschnitt 3.1 erfolgt der Datenaustausch rein über die zyklische Schnittstelle zwischen CPU und Technologiemodul. Der Grund hierfür ist, dass somit der Zeitpunkt des Datentransfers genau
-bestimmt werden kann und mit jedem Zyklus der CPU neue Werte übermittelt
-werden können. Die azyklische Datenmenge kann für eine Anwendungslogik konfiguriert werden. Diese ist dann für diese Logikversion fest hinterlegt und kann
-während der Ausführung nicht mehr geändert werden. Es kann zwischen 4, 32,
-64 und 128 Byte für die azyklische Kommunikation gewählt werden. Es steht je
-ein Register mit der gewählten Größe für den Lese- und Schreibprozess zur Verfügung. Der Datenaustausch erfolgt über die Anweisungen LTMFAST UserWriteREC
-(Schreibzugriff) und LTMFAST UserReadREC (Lesezugriff) im TIA Portal (Abschnitt
-2.3.1). Es können verschiedene Parameter genutzt werden, die den Ablauf des
-Informationsaustausches koordinieren und steuern.[\cite{Guillaume: Specification for TM Fast}, \cite{TmFast_progrmming_manual}]
-
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 \section{Funktionsweise des FM350-2}  
 
 Die Funktionsbaugruppe FM 350-2 ist eine 8-kanalige Zählerbaugruppe mit integrierter Dosierfunktion für das Automatisierungssystem S7-300. Sie wird vor allem in Bereichen eingesetzt, in denen Signale gezählt und schnelle Reaktionen auf bestimmte Zählerstände notwendig sind. Besonders relevant ist die FM 350-2 für Anwendungen in der Fertigungs- und Automatisierungstechnik, wie beispielsweise in Verpackungs-, Sortier- und Dosieranlagen sowie bei der Drehzahlregelung und Überwachung von Gasturbinen.
