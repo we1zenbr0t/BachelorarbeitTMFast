@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.24)  6 SEP 2025 20:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.24)  6 SEP 2025 20:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1380,30 +1380,30 @@ Overfull \hbox (28.1014pt too wide) in paragraph at lines 141--142
 []\T1/lmr/m/n/12 Der Zähl-be-reich ist fest auf 31 Bit vor-zei-chen-be-haf-tet ($\OMS/lmsy/m/n/12 ^^@\OT1/lmr/m/n/12 2 147 483 648$ \T1/lmr/m/n/12 bis $\OT1/lmr/m/n/12 +2 147 483 647$\T1/lmr/m/n/12 )
  []
 
-<Fotos/EndlosZÃ¤hler.png, id=317, 278.2395pt x 93.951pt>
+<Fotos/EndlosZÃ¤hler.png, id=319, 278.2395pt x 93.951pt>
 File: Fotos/EndlosZÃ¤hler.png Graphic file (type png)
 <use Fotos/EndlosZÃ¤hler.png>
 Package pdftex.def Info: Fotos/EndlosZÃ¤hler.png  used on input line 147.
 (pdftex.def)             Requested size: 250.44313pt x 84.56516pt.
-<Fotos/einmalzÃ¤hler.png, id=320, 246.9225pt x 102.3825pt>
+<Fotos/einmalzÃ¤hler.png, id=322, 246.9225pt x 102.3825pt>
 File: Fotos/einmalzÃ¤hler.png Graphic file (type png)
 <use Fotos/einmalzÃ¤hler.png>
 Package pdftex.def Info: Fotos/einmalzÃ¤hler.png  used on input line 166.
 (pdftex.def)             Requested size: 250.44313pt x 103.84137pt.
 [21 <./Fotos/EndlosZÃ¤hler.png>]
-<Fotos/PeriodischZÃ¤hlen.png, id=330, 245.11575pt x 111.41624pt>
+<Fotos/PeriodischZÃ¤hlen.png, id=332, 245.11575pt x 111.41624pt>
 File: Fotos/PeriodischZÃ¤hlen.png Graphic file (type png)
 <use Fotos/PeriodischZÃ¤hlen.png>
 Package pdftex.def Info: Fotos/PeriodischZÃ¤hlen.png  used on input line 185.
 (pdftex.def)             Requested size: 292.17941pt x 132.81989pt.
  [22 <./Fotos/einmalzÃ¤hler.png>]
-<Fotos/frequenzmesser.png, id=341, 278.2395pt x 94.55325pt>
+<Fotos/frequenzmesser.png, id=343, 278.2395pt x 94.55325pt>
 File: Fotos/frequenzmesser.png Graphic file (type png)
 <use Fotos/frequenzmesser.png>
 Package pdftex.def Info: Fotos/frequenzmesser.png  used on input line 209.
 (pdftex.def)             Requested size: 292.17941pt x 99.29681pt.
  [23 <./Fotos/PeriodischZÃ¤hlen.png>] [24 <./Fotos/frequenzmesser.png>] [25]
-<Fotos/dosiermodus.png, id=364, 311.9655pt x 108.405pt>
+<Fotos/dosiermodus.png, id=366, 311.9655pt x 108.405pt>
 File: Fotos/dosiermodus.png Graphic file (type png)
 <use Fotos/dosiermodus.png>
 Package pdftex.def Info: Fotos/dosiermodus.png  used on input line 266.
@@ -1414,7 +1414,7 @@ Overfull \hbox (14.43881pt too wide) in paragraph at lines 288--289
  []
 
 [27]
-<Fotos/torfunktion.png, id=383, 286.671pt x 78.89474pt>
+<Fotos/torfunktion.png, id=387, 286.671pt x 78.89474pt>
 File: Fotos/torfunktion.png Graphic file (type png)
 <use Fotos/torfunktion.png>
 Package pdftex.def Info: Fotos/torfunktion.png  used on input line 316.
@@ -1555,7 +1555,7 @@ Overfull \hbox (61.68167pt too wide) in paragraph at lines 15--16
 \T1/lmr/m/n/12 er-folgt über Mapping-Arrays (`CHAN-NEL_MAP_IN_CH`, `CHAN-NEL_MAP_OUT_CH`),
  []
 
-<Fotos/DosierngAblauf-Seite-3.drawio.png, id=428, 753.81625pt x 984.67876pt>
+<Fotos/DosierngAblauf-Seite-3.drawio.png, id=432, 753.81625pt x 984.67876pt>
 File: Fotos/DosierngAblauf-Seite-3.drawio.png Graphic file (type png)
 <use Fotos/DosierngAblauf-Seite-3.drawio.png>
 Package pdftex.def Info: Fotos/DosierngAblauf-Seite-3.drawio.png  used on input line 19.
@@ -1676,158 +1676,174 @@ chapter 5.
 ]) [50]
 \openout2 = `content/10_Inhaltsverzeichnis.aux'.
 
- (content/10_Inhaltsverzeichnis.tex
-Underfull \hbox (badness 1048) in paragraph at lines 12--13
+ (content/10_Inhaltsverzeichnis.tex (Bachelorarbeit.lof)
+\tf@lof=\write6
+\openout6 = `Bachelorarbeit.lof'.
+
+ [51
+
+
+
+
+
+] (Bachelorarbeit.lot)
+\tf@lot=\write7
+\openout7 = `Bachelorarbeit.lot'.
+
+ [52
+
+
+]
+Underfull \hbox (badness 1048) in paragraph at lines 18--19
 []\T1/lmr/m/n/12 Siemens AG (2023): \T1/lmr/m/it/12 TMFast Pro-gramm-ei-er Hand-buch\T1/lmr/m/n/12 . Ver-füg-bar un-ter:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--13
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
 [][]$\T1/lmtt/m/n/12 https : / / cache . industry . siemens . com / dl / files / 088 / 109816088 / att _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 12--13
+Underfull \hbox (badness 10000) in paragraph at lines 18--19
 \T1/lmtt/m/n/12 1144842 / v2 / s71500 _ tm _ fast _ programming _ manual _ de-[]DE _ de-[]DE . pdf$[][]\T1/lmr/m/n/12 .
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 24--25
+Underfull \hbox (badness 1762) in paragraph at lines 30--31
 \T1/lmr/m/n/12 bar un-ter: [][]$\T1/lmtt/m/n/12 https : / / new . siemens . com / de / de / produkte / automatisierung /
  []
 
 
-Underfull \hbox (badness 7308) in paragraph at lines 24--25
+Underfull \hbox (badness 7308) in paragraph at lines 30--31
 \T1/lmtt/m/n/12 industrie-[]software / automatisierungs-[]software / tia-[]portal . html$[][] \T1/lmr/m/n/12 (ab-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--28
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
 []\T1/lmr/m/n/12 Siemens AG: \T1/lmr/m/it/12 SI-MA-TIC Ener-gy Sui-te\T1/lmr/m/n/12 . sie-mens.com. Ver-füg-bar un-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--28
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
 \T1/lmr/m/n/12 ter: [][]$\T1/lmtt/m/n/12 https : / / www . siemens . com / de / de / produkte / automatisierung /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 27--28
+Underfull \hbox (badness 10000) in paragraph at lines 33--34
 \T1/lmtt/m/n/12 industrie-[]software / automatisierungs-[]software / energiemanagement /
  []
 
-[51
-
+[53
 
 
 
 
 ]
-Underfull \hbox (badness 6708) in paragraph at lines 30--31
+Underfull \hbox (badness 6708) in paragraph at lines 36--37
 []\T1/lmr/m/n/12 Siemens AG: \T1/lmr/m/it/12 SI-MA-TIC ET 200MP\T1/lmr/m/n/12 . sie-mens.com. Ver-füg-bar un-ter:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 30--31
+Underfull \hbox (badness 10000) in paragraph at lines 36--37
 [][]$\T1/lmtt/m/n/12 https : / / new . siemens . com / de / de / produkte / automatisierung / systeme /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--34
+Underfull \hbox (badness 10000) in paragraph at lines 39--40
 \T1/lmr/m/n/12 un-ter: [][]$\T1/lmtt/m/n/12 https : / / www . intel . com / content / www / us / en / docs / programmable /
  []
 
 
-Underfull \hbox (badness 1571) in paragraph at lines 39--40
+Underfull \hbox (badness 1571) in paragraph at lines 45--46
 []\T1/lmr/m/n/12 Encoder Pro-ducts Com-pa-ny: \T1/lmr/m/it/12 The Ba-sics of How an En-co-der Works\T1/lmr/m/n/12 ,
  []
 
 
-Underfull \hbox (badness 2799) in paragraph at lines 39--40
+Underfull \hbox (badness 2799) in paragraph at lines 45--46
 \T1/lmr/m/n/12 Whi-te Pa-per (WP-2011), rev. 15/08/25, 2025. [On-li-ne] Ver-füg-bar un-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--40
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
 \T1/lmr/m/n/12 ter: [][]$\T1/lmtt/m/n/12 https : / / www . encoder . com / hubfs / white-[]papers / WP-[]2011 _ Basics /
  []
 
 
-Underfull \hbox (badness 5817) in paragraph at lines 39--40
+Underfull \hbox (badness 5817) in paragraph at lines 45--46
 \T1/lmtt/m/n/12 wp2011-[]basics-[]how-[]an-[]encoder-[]works . pdf$[][] \T1/lmr/m/n/12 (ab-ge-ru-fen am 15. Au-gust
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 []\T1/lmr/m/n/12 Prof. Dr.-Ing. K. Ste-phan: \T1/lmr/m/it/12 Au-to-ma-ti-sie-rung in der Pro-zess-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 \T1/lmr/m/it/12 tech-nik ^^U Lehr-stoffsamm-lung, Ka-pi-tel I\T1/lmr/m/n/12 . Ver-füg-bar un-ter: [][]$\T1/lmtt/m/n/12 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 \T1/lmtt/m/n/12 / / automatisierung-[]stephan . de / wp-[]content / uploads / 2024 / 07 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--49
+Underfull \hbox (badness 10000) in paragraph at lines 54--55
 \T1/lmtt/m/n/12 Automatisierung-[]in-[]der-[]Prozesstechnik-[]I . pdf$[][] \T1/lmr/m/n/12 (ab-ge-ru-fen am 05.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
 \T1/lmtt/m/n/12 docs . tia . siemens . cloud / r / simatic _ s7 _ 1200 _ manual _ collection _ enus _
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--55
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
 \T1/lmtt/m/n/12 20 / programming-[]concepts / using-[]blocks-[]to-[]structure-[]your-[]program /
  []
 
-[52]
-Underfull \hbox (badness 1092) in paragraph at lines 61--62
+[54]
+Underfull \hbox (badness 1092) in paragraph at lines 67--68
 []\T1/lmr/m/n/12 Siemens AG: \T1/lmr/m/it/12 High Speed Boo-lean Pro-ces-sor FM 352-5\T1/lmr/m/n/12 . Ver-füg-bar un-
  []
 
 
-Underfull \hbox (badness 3219) in paragraph at lines 64--67
+Underfull \hbox (badness 3219) in paragraph at lines 70--73
 []\T1/lmr/m/n/12 Intel$[]$ Cor-po-ra-ti-on: \T1/lmr/m/it/12 In-tel Quar-tus Pri-me Stan-dard Edi-ti-on Hand-book
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 64--67
+Underfull \hbox (badness 5548) in paragraph at lines 70--73
 \T1/lmr/m/it/12 Vo-lu-me 1: De-sign and Com-pi-la-ti-on\T1/lmr/m/n/12 , 2023. [On-li-ne] Ver-füg-bar un-ter:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 64--67
+Underfull \hbox (badness 10000) in paragraph at lines 70--73
 [][]$\T1/lmtt/m/n/12 https : / / www . intel . com / content / www / us / en / docs / programmable / 683082 /
  []
 
 
-Underfull \hbox (badness 4108) in paragraph at lines 69--72
+Underfull \hbox (badness 4108) in paragraph at lines 75--78
 \T1/lmr/m/n/12 ter: [][]$\T1/lmtt/m/n/12 https : / / www . intel . de / content / www / de / de / products / details / fpga /
  []
 
 
-Underfull \hbox (badness 3861) in paragraph at lines 74--77
+Underfull \hbox (badness 3861) in paragraph at lines 80--83
 []\T1/lmr/m/n/12 Intel$[]$ Cor-po-ra-ti-on: \T1/lmr/m/it/12 Questa*-Intel\TS1/lmr/m/it/12 ® \T1/lmr/m/it/12 FPGA Edi-ti-on Soft-wa-re\T1/lmr/m/n/12 . [On-li-ne]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--77
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
 \T1/lmr/m/n/12 Ver-füg-bar un-ter: [][]$\T1/lmtt/m/n/12 https : / / www . intel . de / content / www / de / de / software /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 74--77
+Underfull \hbox (badness 10000) in paragraph at lines 80--83
 \T1/lmtt/m/n/12 programmable / quartus-[]prime / questa-[]edition . html$[][] \T1/lmr/m/n/12 (ab-ge-ru-fen am
  []
 
-) [53] (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux))
+) [55] (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
@@ -1840,17 +1856,17 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 38383 strings out of 474486
- 765586 string characters out of 5743754
+ 38399 strings out of 474486
+ 765948 string characters out of 5743754
  1979542 words of memory out of 5000000
- 59643 multiletter control sequences out of 15000+600000
+ 59651 multiletter control sequences out of 15000+600000
  633397 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,107p,10958b,2167s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Bachelorarbeit.pdf (56 pages, 1459955 bytes).
+Output written on Bachelorarbeit.pdf (58 pages, 1471293 bytes).
 PDF statistics:
- 931 PDF objects out of 1000 (max. 8388607)
- 288 named destinations out of 1000 (max. 500000)
+ 987 PDF objects out of 1000 (max. 8388607)
+ 290 named destinations out of 1000 (max. 500000)
  372 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -716,6 +716,14 @@ OUTPUT content\10_Inhaltsverzeichnis.aux
 INPUT .\content\10_Inhaltsverzeichnis.tex
 INPUT .\content\10_Inhaltsverzeichnis.tex
 INPUT content\10_Inhaltsverzeichnis.tex
+INPUT .\Bachelorarbeit.lof
+INPUT .\Bachelorarbeit.lof
+INPUT Bachelorarbeit.lof
+OUTPUT Bachelorarbeit.lof
+INPUT .\Bachelorarbeit.lot
+INPUT .\Bachelorarbeit.lot
+INPUT Bachelorarbeit.lot
+OUTPUT Bachelorarbeit.lot
 INPUT C:\Users\janer\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmri12.tfm
 INPUT Bachelorarbeit.aux
 INPUT .\cover.aux
