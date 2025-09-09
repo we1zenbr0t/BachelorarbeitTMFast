@@ -1,20 +1,20 @@
 \chapter{Einleitung} 
 
 \section{Problemstellung und Motivation} 
-Die Produktpallete der Firma Siemens im Breich der Industrieautomatisierung hat eine auslaufende Produktserie vom Typ S7-300, insbesondere das FM350-2 Modul, sind nicht mehr in der aktiven Vermarktung und dadurch nicht mehr bestellbar. Das FM350-2 Modul bietet 8 Kanäle für 
+Die Produktpallete der Firma Siemens im Breich der Industrieautomatisierung hat eine auslaufende Produktserie vom Typ SIMATIC S7-300, insbesondere das FM350-2 Modul, sind nicht mehr in der aktiven Vermarktung und dadurch nicht mehr bestellbar. Das FM350-2 Modul bietet 8 Kanäle für 
 hochkanalige Dosieranwendungen und ist nur noch als Ersatzteil verfügbar. Ein alternatives Lösungskonzept ist der Einsatz des TM FAST Moduls, eines freiprogrammierbaren 
 Hochgeschwindigkeits-Moduls, welches eine erweiterte Kanalanzahl von 10 bis 12 Kanälen ermöglicht für die neuere Produktserie vom Typ S7-1500. Ziel dieser Bachelorarbeit ist die Entwicklung eines VHDL-basierten 
 Applikationsbeispiels zur Demonstration der Einsatzmöglichkeiten des TM FAST Moduls in hochkanaligen Dosieranwendungen. Gleichzeitig soll die Integration in das TIA Portal 
 erfolgen, um eine reibungslose Nutzung in industriellen Automatisierungsumgebungen zu gewährleisten. 
 
 Als dualer Student bei Siemens verfüge ich bereits über Erfahrung in der industriellen Automatisierungstechnik. Diese Arbeit bietet mir die Gelegenheit, mein Wissen in den 
-Bereichen Embedded Systems, Industrieautomation und Software Engineering weiter zu vertiefen. Ich bin Motiviert, dieses praxisnahe Thema in Kooperation mit Siemens zu 
+Bereichen Embedded Systems, Industrieautomation und Software Engineering weiter zu vertiefen. Ich bin motiviert, dieses praxisnahe Thema in Kooperation mit Siemens zu 
 bearbeiten und einen wertvollen Beitrag zur Weiterentwicklung industrieller Automatisierungslösungen zu leisten. 
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 \section{Zielsetzung der Arbeit} 
 Ziel dieser Bachelorarbeit ist die Entwicklung eines VHDL-basierten Applikationsbeispiels zur Ablösung des FM350-2 Moduls der alten 
-S7-300-Produktserie durch das TM FAST Modul der neueren S7-1500-Produktserie. Dabei soll die Kanalanzahl von 8 auf 10 oder 12 erhöht 
+SIMATIC S7-300-Produktserie durch das TM FAST Modul der neueren S7-1500-Produktserie. Dabei soll die Kanalanzahl von 8 auf die höchst mögliche Anzahl erhöht 
 werden, um eine flexiblere Nutzung in hochkanaligen Dosieranwendungen zu ermöglichen. Ein wesentlicher Bestandteil der Arbeit ist zudem 
 die Integration des entwickelten Applikationsbeispiels in das TIA Portal, die Programmiersoftware für die industriellen Steuerungen der Firma Siemens, um eine nahtlose Einbindung in bestehende 
 Automatisierungslösungen zu gewährleisten. Neben der Implementierung des VHDL-Codes werden bewährte Methoden des Software Engineerings 
@@ -23,13 +23,11 @@ eine detaillierte Beschreibung der Nutzung und Inbetriebnahme des Moduls umfasst
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 \section{Methodisches Vorgehen und Struktur der Arbeit} 
-Zur Umsetzung der Ziele werden zunächst die bestehenden Funktionalitäten des FM350-2 Moduls analysiert und an den aktuellen Erfordernissen der Kunden gespiegelt. Dabei werden sowohl 
-die Hardware- als auch die Software-Architektur untersucht und relevante Funktionen für die Dosieranwendung identifiziert. Anschließend erfolgt die Entwicklung des VHDL-basierten 
-Applikationsbeispiels, wobei die ausgewählten Funktionen des FM350-2 Moduls in VHDL umgesetzt und die Kanalanzahl auf 10 oder 12 erweitert wird. Danach wird die Integration in das 
-TIA Portal vorgenommen, indem das TM FAST Modul an das Automatisierungssystem angebunden und geeignete Schnittstellen sowie Datenstrukturen entwickelt werden. 
-Qualitätssicherungsmaßnahmen spielen ebenfalls eine zentrale Rolle. Hierbei werden bewährte Entwicklungswerkzeuge wie Intel Quartus Prime und das TIA Portal genutzt, 
-Teststrategien zur Funktionssicherung implementiert und eine modulare Softwarearchitektur entworfen. Abschließend wird die Dokumentation erstellt, die eine umfassende 
-Beschreibung der Implementierung und Nutzung des Moduls sowie Anwendungsbeispiele und Testberichte enthält. Die Ergebnisse werden in einer Abschlusspräsentation vorgestellt. 
+Zur Umsetzung der Ziele werden zunächst die bestehenden Funktionalitäten des FM350-2 Moduls analysiert und mit den aktuellen Anforderungen verglichen. Da das TM FAST Modul bereits verfügbar ist, liegt der Schwerpunkt nicht allein auf einer Nachbildung, sondern auf der Nutzung seiner erweiterten Möglichkeiten. Insbesondere soll die höhere Kanaldichte sowie die zusätzliche Funktionalität und Flexibilität des TM FAST berücksichtigt werden. 
+
+Im nächsten Schritt erfolgt die Entwicklung des VHDL-basierten Applikationsbeispiels, wobei zentrale Funktionen des FM350-2 Moduls in VHDL umgesetzt und die Kanalanzahl auf so viele wie möglich erweitert wird. Anschließend wird die Integration in das TIA Portal vorgenommen, indem das TM FAST Modul an das Automatisierungssystem angebunden und geeignete Schnittstellen sowie Datenstrukturen entwickelt werden. 
+
+Qualitätssicherungsmaßnahmen spielen ebenfalls eine zentrale Rolle. Hierbei werden bewährte Entwicklungswerkzeuge wie Intel Quartus Prime und das TIA Portal genutzt, Teststrategien zur Funktionssicherung implementiert und eine modulare Softwarearchitektur entworfen. Abschließend wird die Dokumentation erstellt, die eine umfassende Beschreibung der Implementierung und Nutzung des Moduls sowie Anwendungsbeispiele und Testberichte enthält. Die Ergebnisse werden in einer Abschlusspräsentation vorgestellt. Im Nachgang wird das entwickelte Applikationsbeispiel Kunden in Form eines Packages zum Download zur Verfügung gestellt.
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 %\section{Erwarteter Nutzen und Anwendungsbereich / Passend?}

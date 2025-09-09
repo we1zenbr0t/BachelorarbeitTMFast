@@ -2,12 +2,19 @@
 
 Um die technischen Aspekte und die Funktionsweise der in dieser Arbeit behandelten Systeme
 zu verstehen, werden im Folgenden die zugrundeliegenden Konzepte und Technologien erläutert. 
-Relevant sind hierbei die Automatisierungspyramide, SIMATIC S7, Speicherprogrammierbare Steuerungen, Quartus und Questa sowie 
+Relevant sind hierbei die Automatisierungspyramide, SIMATIC S7, Speicherprogrammierbare Steuerungen, Quartus und Questa sowie dem
 TIA Portal.
 
 \section{Automatisierungspyramide}
 
 Die Automatisierungspyramide stellt ein Modell zur Einordnung von Techniken und Systemen in der industriellen Fertigung dar. Sie umfasst die Kommunikation von der Prozessebene bis zur Unternehmensführung und unterscheidet zwischen horizontalen (innerhalb einer Ebene) und vertikalen (zwischen den Ebenen) Kommunikationsstrukturen. Grundlage ist das OSI-Referenzmodell von 1984, erweitert durch IoT-Konzepte seit 1999, die eine durchgängige Vernetzung von Sensoren, Maschinen und Unternehmenssystemen ermöglichen \cite{bable_automatisierungspyramide}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Fotos/AutomatisierungspyramideNeu.png}
+    \caption{Automatisierungspyramide, \cite{bable_automatisierungspyramide}}
+    \label{Automatisierungpyramide}
+\end{figure}
 
 \subsection*{Ebenen der OT}
 \begin{itemize}
@@ -22,18 +29,11 @@ Die Automatisierungspyramide stellt ein Modell zur Einordnung von Techniken und 
     \item \textbf{Ebene 5 – ERP-Ebene:} Enterprise Resource Planning (ERP) zur Steuerung der gesamten Wertschöpfungskette „vom Kunden zum Kunden“.
 \end{itemize}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/AutomatisierungspyramideNeu.png}
-    \caption{Automatisierungspyramide, \cite{bable_automatisierungspyramide}}
-    \label{Automatisierungpyramide}
-\end{figure}
-
 Die Automatisierungspyramide verdeutlicht die Trennung zwischen der OT (Operational Technology: Ebenen 1–3) und der IT (Information Technology: Ebenen 4–5). Sämtliche Ebenen sind im Sinne von IoT kommunikationsfähig und nutzen standardisierte Protokolle wie PROFINET, EtherCAT, Modbus TCP, OPC UA oder Ethernet APL. Nicht-Ethernet-basierte Feldbusse wie PROFIBUS oder HART verlieren seit der Einführung von Ethernet APL zunehmend an Bedeutung.
 
 \section{Überblick über SIMATIC S7}
 
-Speicherprogrammierbare Steuerungen (SPS) – im Englischen \textit{Programmable Logic Controllers} (PLC) – wie die SIMATIC S7-Serie von Siemens übernehmen Steuerungs- und Regelungsaufgaben in Maschinen und Anlagen. Sie können unter anderem Antriebe, Ventile, Pumpen und Sensoren ansteuern und zeichnen sich durch ihre freie Programmierbarkeit und damit universelle Einsetzbarkeit aus \cite{babel2024}. Im Folgenden werden Aufbau, Funktionsweise und zentrale Komponenten eines SIMATIC S7-Systems erläutert.
+Speicherprogrammierbare Steuerungen (SPS), im Englischen \textit{Programmable Logic Controllers} (PLC), wie die SIMATIC S7-Serie von Siemens, übernehmen Steuerungs- und Regelungsaufgaben in Maschinen und Anlagen. Sie können unter anderem Antriebe, Ventile, Pumpen und Sensoren ansteuern und zeichnen sich durch ihre freie Programmierbarkeit sowie ihre universelle Einsetzbarkeit aus \cite{babel2024}. Im Folgenden werden Aufbau, Funktionsweise und zentrale Komponenten eines SIMATIC S7-Systems erläutert.
 
 \subsection{Aufbau eines SIMATIC S7-Systems}
 
@@ -78,9 +78,9 @@ Das Anwenderprogramm ist modular aufgebaut und besteht aus
 \textit{Funktionsbausteinen} (FB), \textit{Funktionen} (FC) und 
 \textit{Datenbausteinen} (DB). OB1 kann durch höher priorisierte Bausteine wie 
 Interrupt- oder Alarm-OBs unterbrochen werden, wodurch sich die Zykluszeit 
-verlängern kann. Überschreitet die Zykluszeit das konfigurierte Watchdog-Limit, 
-geht die SPS in den Stopp-Zustand, und alle Ausgänge werden auf 0 gesetzt 
-\cite{siemens_s7_function_blocks}.
+verlängern kann. Überschreitet die Zykluszeit eine definierte maximale Zykluszeit (Watchdog), 
+geht die SPS in einen Fehlerzustand und beendet die Abarbeitung des Programms (Stopp-Zustand), 
+und alle Ausgänge werden auf 0 gesetzt \cite{siemens_s7_function_blocks}.
 
 Eine modulare SPS besteht mindestens aus einem Baugruppenträger, einer 
 Stromversorgung, einer CPU mit Speicher sowie Ein-/Ausgabebaugruppen. 
@@ -90,6 +90,14 @@ Mehrere Baugruppenträger werden über Interface-Module verbunden
 \cite{heinrich_automatisierung}.
 
 Die CPU verfügt über verschiedene Speicherbereiche \cite{heinrich_automatisierung}:
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{Fotos/CPUSpeicherModell.png}
+  \caption{Speicherbereiche einer SIMATIC S7-CPU \cite{s7_memory_manual}}
+  \label{fig:s7_memory_areas}
+\end{figure}
+
 \begin{itemize}
   \item \textbf{Arbeitsspeicher (Anwenderspeicher):} Enthält das aktuell 
   ausgeführte SPS-Programm und die benötigten Datenbausteine. 
@@ -104,6 +112,11 @@ Die CPU verfügt über verschiedene Speicherbereiche \cite{heinrich_automatisier
 Durch diese Struktur ist die SPS in der Lage, deterministisch und zuverlässig auf 
 geänderte Eingangssignale zu reagieren, Prozesse zu steuern und eine hohe 
 Betriebssicherheit zu gewährleisten \cite{heinrich_automatisierung}.
+Die Bearbeitung erfolgt dabei im Wesentlichen 
+zyklisch, indem das Anwenderprogramm in festen Zyklen durchlaufen wird. Ergänzend 
+können azyklische Dienste, beispielsweise ereignis- oder zeitgesteuerte 
+Organisationsbausteine (OBs), spezifische Aufgaben außerhalb des regulären 
+Zyklus übernehmen \cite{berger2017,bee2022}.
 
 \section{Technologiemodule}
 
@@ -118,45 +131,7 @@ Die SIMATIC S7-1500 Steuerung ist ein modular aufgebautes System, dessen Funktio
 
 Technologiebaugruppen bieten eine hardwarenahe Signalvorverarbeitung für schnelle Zähl- und Messaufgaben sowie präzise Positionserfassung mittels Inkremental- oder SSI-Absolutwertgebern. Bisherige Module wurden über Technologieobjekte oder direkt im Anwenderprogramm im TIA Portal parametriert und programmiert. Das aktuelle Portfolio beinhaltet unter anderem das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Das TM NPU arbeitet mit einem trainierten neuronalen System und erlaubt den Anschluss verschiedener Sensoren über Gigabit-Ethernet oder USB 3.1. Die Zählerbaugruppe TM Count 2x24 V ist vielseitig einsetzbar für Zähl- und Messaufgaben sowie zur Positionserfassung über Inkrementalgeber. Das TM Posinput 2 Modul stellt zwei Zählkanäle für Differenzeingangssignale nach RS422 mit bis zu 1~MHz bereit und ermöglicht die Positionserfassung mit SSI-Absolutwertgebern. Der TM Timer DIDQ 16x24 V dient zeitkritischen Aufgaben, wie z. B. der präzisen Einhaltung von Reaktionszeiten. Das PTO 4 Modul unterstützt die Ansteuerung von Schrittmotoren und Servoantrieben mit PTI-Schnittstelle \cite{TmFast_progrmming_manual}.
 
-Das TM FAST Modul ist bereits länger Bestandteil des Portfolios und wird kontinuierlich um neue Funktionen erweitert, die aus konkreten Kundenanwendungsfällen abgeleitet werden, wie zusätzliche Protokoll-, Zähl-, Trigger- und Preprocessing-Bausteine. Diese Funktionen werden als wiederverwendbare Funktionsblöcke bereitgestellt, wodurch bestehende Anforderungen schneller umgesetzt und zukünftige Anwendungsfälle flexibel ergänzt werden können \cite{tmfast_featurespec}.
-
-\section{Programmierung einer PLC mit TIA-Portal}
-
-Das \textit{Totally Integrated Automation Portal} (TIA Portal) ist die zentrale 
-Engineering-Plattform für SIMATIC S7-Steuerungen. Es unterstützt die 
-Projektierung, Programmierung, Inbetriebnahme und Diagnose von Automatisierungsprojekten 
-und deckt damit sowohl die Hardwarekonfiguration als auch die Softwareentwicklung ab 
-\cite{bee2022}. Grundlage bildet die Norm IEC~61131-3, die einen einheitlichen 
-Standard für die Softwareentwicklung in speicherprogrammierbaren Steuerungen (SPS) 
-definiert. Diese Norm legt die Struktur und die fünf standardisierten 
-Programmiersprachen fest, wodurch eine herstellerübergreifende Programmierbarkeit 
-ermöglicht wird \cite{babel2024}.
-
-Die fünf in IEC~61131-3 beschriebenen Sprachen sind: 
-\textit{Kontaktplan} (KOP), eine grafische Darstellung, die sich an Schaltplänen 
-orientiert; \textit{Funktionsplan} (FUP), eine grafische Sprache zur logischen 
-Verknüpfung von Bausteinen; \textit{Anweisungsliste} (AWL), eine textbasierte Sprache 
-ähnlich zu Assembler; \textit{Structured Control Language} (SCL), eine 
-hochsprachähnliche Programmiersprache vergleichbar mit Pascal; sowie die 
-\textit{Ablaufsprache} (AS) zur Modellierung von Ablaufsteuerungen. 
-Für diese Arbeit stehen insbesondere FUP und SCL im Fokus \cite{babel2024}.
-
-\textbf{Funktionsplan (FUP)}  
-
-FUP ist eine grafische Programmiersprache, in der logische Verknüpfungen und 
-Operationen durch Symbole dargestellt und miteinander verbunden werden. Typische 
-Anwendungen sind logische Grundfunktionen wie UND-, ODER- oder NICHT-Verknüpfungen. 
-Darüber hinaus können auch komplexere mathematische Operationen oder 
-steuerungsspezifische Aufgaben umgesetzt werden. FUP eignet sich besonders, um 
-Programme übersichtlich und intuitiv zu strukturieren \cite{berger2017}.  
-
-\textbf{Structured Control Language (SCL)}  
-
-SCL ist eine textbasierte Sprache, die in der IEC~61131-3 als 
-\textit{Strukturierter Text} bezeichnet wird. Sie ähnelt der Hochsprache Pascal 
-und ist besonders für komplexe Algorithmen, Berechnungen und strukturierte 
-Programmabläufe geeignet. Mit Schleifen, Verzweigungen und Funktionsaufrufen 
-ermöglicht SCL eine sehr flexible und modulare Programmierung \cite{babel2024}.  
+Das TM FAST Modul ist eine FPGA und dadurch freiprogrammierbar. Es ist bereits länger Bestandteil des Portfolios und wird kontinuierlich um neue Funktionen erweitert, die aus konkreten Kundenanwendungsfällen abgeleitet werden, wie zusätzliche Protokoll-, Zähl-, Trigger- und Preprocessing-Bausteine. Diese Funktionen werden als wiederverwendbare Funktionsblöcke bereitgestellt, wodurch bestehende Anforderungen schneller umgesetzt und zukünftige Anwendungsfälle flexibel ergänzt werden können \cite{tmfast_featurespec}.
 
 \section{Software}
 
@@ -170,10 +145,11 @@ Zur Simulation und Verifikation des Hardwareentwurfs kommt die Questa-Intel\text
 
 \subsection{Totally Integrated Automation Portal}
 
-Das \textit{Totally Integrated Automation Portal} (TIA Portal) ist die zentrale Engineering-Plattform 
-von Siemens zur Realisierung digitaler Automatisierungsaufgaben. Es unterstützt den gesamten 
-Entwicklungsprozess – von der Projektierung und Parametrierung über die Programmierung bis hin zum 
-Betrieb und zur Diagnose von Automatisierungssystemen. Die Umgebung umfasst u.\,a. 
+Das \textit{Totally Integrated Automation Portal} (TIA Portal) ist die zentrale 
+Engineering-Plattform für SIMATIC S7-Steuerungen. Es ist das zentrale Tool für die 
+Projektierung, Programmierung, Inbetriebnahme und Diagnose von Automatisierungsprojekten 
+und deckt damit sowohl die Hardwarekonfiguration als auch die Softwareentwicklung ab 
+\cite{bee2022}. Die Umgebung umfasst u.\,a. 
 SIMATIC STEP~7 für die SPS-Programmierung, SIMATIC WinCC für HMI-Anwendungen, 
 SINAMICS Startdrive zur Antriebskonfiguration sowie die SIMATIC Energy Suite für 
 Energiemonitoring \cite{siemensTIA, siemensEnergy}.  
@@ -182,7 +158,7 @@ In dieser Arbeit wird TIA Portal~V20 verwendet. Für die Kommunikation zwischen 
 ist eine entsprechende Hardwarekonfiguration erforderlich. Hierbei werden die Komponenten anhand 
 ihrer Artikelnummer ausgewählt und im Projekt verknüpft. Abb.~\ref{Hardwarekonfiguration} zeigt 
 eine Beispielkonfiguration bestehend aus Powermodul (PM), CPU~1516-3~PN/DP und TM~FAST. 
-Die Baugruppen sind über den Rückwandbus verbunden, eine zusätzliche PROFINET- oder PROFIBUS-Verbindung ist nicht notwendig.  
+Die Baugruppen sind über den Rückwandbus verbunden, wodurch eine zusätzliche PROFINET- oder PROFIBUS-Verbindung ist nicht notwendig.  
 
 \begin{figure}[H]
     \centering
@@ -191,14 +167,14 @@ Die Baugruppen sind über den Rückwandbus verbunden, eine zusätzliche PROFINET
     \label{Hardwarekonfiguration}
 \end{figure}
 
-Nach der Konfiguration erhält das TM~FAST im Projekt einen eigenen Eintrag. Unter \textit{Online \& Diagnostics} 
+Nach der Konfiguration erhält das TM~FAST im Projekt eine eigene Ansicht und wird als Teil des gesamten Aufbaus dargestellt. Unter \textit{Online \& Diagnostics} 
 können Modulstatus, Diagnoseinformationen und Firmwareupdates verwaltet werden. 
 Über \textit{Commissioning} lassen sich die aktuelle User-Logik und weitere Kommandos wie das Laden 
 der Anwendung aus dem Flash-Speicher oder die Aktivierung der Debug-Schnittstelle aufrufen.  
 Für die azyklische Kommunikation stehen die TM~FAST User Data Records zur Verfügung, die 
 manuell oder über Funktionsbausteine beschrieben und gelesen werden können. 
 Die dafür bereitgestellte TIA-Bibliothek \texttt{LTMFAST} enthält unter anderem die Anweisungen 
-\texttt{LTMFAST ControlREC}, \texttt{UserReadREC}, \texttt{UserWriteREC} und \texttt{AppDownload} 
+\texttt{LTMFAST ControlREC} (Ist für die Steuerung des TM~FAST zuständig), \texttt{UserReadREC} (Liest Daten aus dem TM~FAST), \texttt{UserWriteREC} (Schreibt Daten in den TM~FAST) und \texttt{AppDownload} (Lädt die Anwendung auf den TM~FAST) 
 \cite{siemensTIA}.  
 
 \subsection{Intel\textsuperscript{\textregistered} Quartus\textsuperscript{\textregistered} Prime}
@@ -237,6 +213,39 @@ Simulation zur Validierung einer Signum-Funktion \cite{questa}.
     \caption{Zeitdiagramm zur Simulation einer Signum-Funktion in der Questa-Intel\textsuperscript{\textregistered} FPGA Starter Edition}
     \label{fig:Zeitdiagramm}
 \end{figure}
+
+\section{Programmierung einer PLC mit TIA-Portal}
+
+Die Grundlage für das \textit{Totally Integrated Automation Portal} (TIA Portal) bildet die Norm IEC~61131-3, die einen einheitlichen 
+Standard für die Softwareentwicklung in speicherprogrammierbaren Steuerungen (SPS) 
+definiert. Diese Norm legt die Struktur und die fünf standardisierten 
+Programmiersprachen fest, wodurch eine herstellerübergreifende Programmierbarkeit 
+ermöglicht wird \cite{babel2024}.
+
+Die fünf in IEC~61131-3 beschriebenen Sprachen sind: 
+\textit{Kontaktplan} (KOP), eine grafische Darstellung, die sich an Schaltplänen 
+orientiert; \textit{Funktionsplan} (FUP), eine grafische Sprache zur logischen 
+Verknüpfung von Bausteinen; \textit{Anweisungsliste} (AWL), eine textbasierte Sprache 
+ähnlich zu Assembler; \textit{Struckturierter Text} (ST), eine 
+hochsprachähnliche Programmiersprache vergleichbar mit Pascal; sowie die 
+\textit{Ablaufsprache} (AS) zur Modellierung von Ablaufsteuerungen \cite{babel2024}.
+
+\textbf{Funktionsplan (FUP)}  
+
+FUP ist eine grafische Programmiersprache, in der logische Verknüpfungen und 
+Operationen durch Symbole dargestellt und miteinander verbunden werden. Typische 
+Anwendungen sind logische Grundfunktionen wie UND-, ODER- oder NICHT-Verknüpfungen. 
+Darüber hinaus können auch komplexere mathematische Operationen oder 
+steuerungsspezifische Aufgaben umgesetzt werden. FUP eignet sich besonders, um 
+Programme übersichtlich und intuitiv zu strukturieren \cite{berger2017}.  
+
+\textbf{Struckturierter Text (ST)}  
+
+SCL ist eine textbasierte Sprache, die in der IEC~61131-3 als 
+\textit{Strukturierter Text} bezeichnet wird. Sie ähnelt der Hochsprache Pascal 
+und ist besonders für komplexe Algorithmen, Berechnungen und strukturierte 
+Programmabläufe geeignet. Mit Schleifen, Verzweigungen und Funktionsaufrufen 
+ermöglicht SCL eine sehr flexible und modulare Programmierung \cite{babel2024}.  
 
 \section{Grundlagen zu Inkrementalgebern}
 

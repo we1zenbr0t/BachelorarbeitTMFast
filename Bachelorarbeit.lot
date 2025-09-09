@@ -2,9 +2,9 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {3.1}{\ignorespaces Ressourcen des Intel® Cyclone 10 LP FPGA \cite {intelCyclone10}}}{16}{table.3.1}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces Kennzeichnungen und Komponenten der FM 350-2 \cite {fm350_Handbuch}}}{20}{table.3.2}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces Zusammenhang der Torfunktionen und des Zählvorgangs \cite {fm350_Handbuch}}}{28}{table.3.3}%
-\contentsline {table}{\numberline {3.4}{Vergleich der Eigenschaften von TM FAST und FM 350-2, insbesondere Zählsignale und Digitalein-/ausgänge (Zeitdaten TM FAST gemäß \cite {TmFast_progrmming_manual,siemensET200MP}, FM 350-2 gemäß Handbuch)}}{31}{table.3.4}%
+\contentsline {table}{\numberline {3.1}{\ignorespaces Kennzeichnungen und Komponenten der FM 350-2 \cite {fm350_Handbuch}}}{18}{table.3.1}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces Zusammenhang der Torfunktionen und des Zählvorgangs \cite {fm350_Handbuch}}}{25}{table.3.2}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces Ressourcen des Intel® Cyclone 10 LP FPGA \cite {intelCyclone10}}}{29}{table.3.3}%
+\contentsline {table}{\numberline {3.4}{Vergleich der Eigenschaften von TM FAST und FM 350-2, insbesondere Zählsignale und Digitalein-/ausgänge (Zeitdaten TM FAST gemäß \cite {TmFast_progrmming_manual,siemensET200MP}, FM 350-2 gemäß Handbuch)}}{32}{table.3.4}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
