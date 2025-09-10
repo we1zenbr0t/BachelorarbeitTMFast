@@ -1,4 +1,4 @@
-schreibe einen text hier zu mit diesem code:use ieee.numeric_std.all;
+use ieee.numeric_std.all;
 
 architecture TFL_FAST_DOSING_APPLICATION of TFL_FAST_USER_e is
 

@@ -388,30 +388,130 @@ Auch die Fehler- und Diagnoselogik ist pro Kanal gekapselt, sodass in der Simula
 
 Durch diese modulare und strukturierte Architektur wird die Erstellung von Testbenches vereinfacht, die Testabdeckung erhöht und die Fehlersuche im Entwicklungsprozess deutlich beschleunigt.
 
-Noch darauf eingehen, wie die aktuelle testbench aussieht?
+Die zuvor beschriebene modulare Architektur in VHDL mit getrennten Steuer- und Datenpfaden 
+lässt sich in der Simulation direkt überprüfen. Mithilfe der in VHDL implementierten 
+Arrays und Schnittstellen (z.B. \texttt{CTRL\_IF}, \texttt{WR\_REC}) können im Testbench 
+gezielt Stimuli gesetzt werden, um das Verhalten einzelner Kanäle zu validieren.  
+
+Die resultierenden Signalverläufe wurden in \textit{Questa} aufgezeichnet. 
+Abbildung~\ref{fig:waveform} zeigt einen Ausschnitt dieser Wellenanalyse, 
+in der sowohl die zyklischen Steuerbits als auch die azyklischen 
+Schnittstellen \texttt{WR\_REC} und \texttt{RD\_REC} sichtbar sind.  
+
+Gut erkennbar ist, dass die zyklischen Steuerbits (z.B. \texttt{CTRL\_IF0}, \texttt{CTRL\_IF1}) 
+in jedem SPS-Zyklus gesetzt und über das Prozessabbild verarbeitet werden. Parallel dazu laufen 
+azyklische Operationen über die \texttt{WR\_REC}- und \texttt{RD\_REC}-Schnittstellen ab, 
+die nur bei Bedarf aktiviert werden.  
+
+Im dargestellten Beispiel wird ein \texttt{LoadRequest} über die \texttt{WR\_REC}-Schnittstelle 
+angestoßen. Dieser führt dazu, dass die entsprechenden Steuerbits aktiv werden und anschließend 
+im Zähler \texttt{j\_enc\_count} Änderungen auftreten. Auf diese Weise lässt sich in der Simulation 
+nachvollziehen, wie deterministisch die zyklischen Steuerbefehle (z.B. \texttt{Load}, \texttt{StartDQ}) 
+verarbeitet und wie azyklische Kommandos synchron eingesteuert werden.  
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.95\textwidth]{Fotos/Bild.png}
+    \caption{Wellenanalyse der CTRL\_IF-, WR\_REC- und RD\_REC-Schnittstellen in Questa}
+    \label{fig:waveform}
+\end{figure}
 
 %///////////////////////////////////////////////////////////////////////////////////////////////////////
 \section{Einbindung in das TIA Portal}
 
-Ist die Einbindung noch wichtig zu erwähnen?
+Die Einbindung der entwickelten Applikationsbausteine in das TIA Portal ist ein wesentlicher Schritt, um die entwickelte Funktionalität praxisnah nutzbar zu machen. Dazu werden Funktionsbausteine erstellt, Schnittstellen mit dem TM~FAST definiert und die Anbindung an die Prozessabbildung umgesetzt. 
 
-Hier könnte auf die spezifischen Schritte zur Integration der Applikationsbausteine im TIA Portal eingegangen werden,
-z.B. die Erstellung von Funktionsbausteinen, die Definition von Schnittstellen mit dem TM FAST 
-(wie die bereits besprochenden im TIA Portal angeschlossen sind) und die Anbindung an die Prozessabbildung.
+Ein zentrales Element ist der Baustein \texttt{LTMFAST\_ControlREC}, der die azyklische Steuerung übernimmt. Er erhält alle notwendigen Informationen von den Funktionsbausteinen \texttt{UserReadREC} und \texttt{UserWriteREC}. Darüber werden beispielsweise Zustände wie „Kommunikation gestartet“, „Kommunikation läuft“, „Kommunikation erfolgreich abgeschlossen“, „Fehler aufgetreten“ sowie die zu übertragenden Nutzdaten abgebildet. Für jeden Funktionsbaustein muss eine Instanz angelegt werden, die im Projekt explizit mitgeführt wird (vgl.~Listing~\ref{Funktionsaufruf}). 
+
+\begin{lstlisting}[language=ST, caption={Funktionsaufruf von \#LTMFAST\_UserWriteREC\_Instance}, label={Funktionsaufruf}]
+#LTMFAST_UserWriteREC_Instance(
+    req              := #loadrequest,
+    busy             => #Busy,
+    done             => #Done,
+    error            => #Error,
+    status           => #Status,
+    userDataContent  := #userDataContent,
+    TMFASTControlREC := 
+    "TestHandler_LTMFAST_ControlREC_DB".LTMFAST_ControlREC_Instance
+);
+\end{lstlisting}
+
+Für die zyklische Kommunikation ist der Baustein \texttt{LTMFAST\_dosing\_application} verantwortlich. Er bildet die Schnittstelle zum TM~FAST-Modul und setzt die Eingangssignale in das vorgesehene Bitmuster um (vgl.~Listing~\ref{bitmuster}). Diese Signale werden über die I/O-Schnittstelle übertragen und mit den Steuerbits \texttt{Hold}, \texttt{Load}, \texttt{CounterReset}, \texttt{StartDQ}, \texttt{Select\_Feedback\_Value}, \texttt{polarity} und \texttt{EnableDQ} abgebildet. 
+
+\begin{lstlisting}[language=ST, caption={Generierung der Steuerbits für die zyklische Kommunikation}, label={bitmuster}]
+FOR #ChannelIdx := 1 TO "Number_of_activ_Channels" DO
+    
+    #AktChannel := #Channels[#ChannelIdx];
+    
+    #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0000;
+    #LoadRequestArray[#ChannelIdx] := FALSE;
+    
+    IF #AktChannel.Hold = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#1000;
+    ELSIF #AktChannel.CounterReset = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0100;
+    ELSIF #AktChannel.Load = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0800;
+        #LoadRequestArray[#ChannelIdx] := TRUE;
+    ELSIF #AktChannel.StartDQ = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#2000;
+    END_IF;
+    
+    IF #AktChannel.EnableDQ = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := 
+        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#0400;
+    END_IF;
+    
+    IF #AktChannel.polarity = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := 
+        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#0200;
+    END_IF;
+    
+    IF #AktChannel.Select_Feedback_Value = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := 
+        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#4000;
+    END_IF;
+    
+END_FOR;
+\end{lstlisting}
+
+Wie in Abbildung~\ref{fig:appbaustein} dargestellt, wird der Funktionsbaustein direkt im OB1 eingebunden und über einen selbst definierten Datentyp (UDT) \texttt{Channels} angesteuert. Dieser Datentyp enthält alle für die zyklische Kommunikation relevanten Steuerungen. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{Fotos/ApplikationsBausteinTIA.png}
-    \caption{Wie der Applikationsbaustein im TIA Portal benutzt wird}
-    \label{fig:tor_beispiel}
+    \caption{Integration des Applikationsbausteins in OB1}
+    \label{fig:appbaustein}
 \end{figure}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Fotos/ApplikationsDB.png}
-    \caption{TIA Portal Datenbausteinen der Dosieranwendung}
-    \label{fig:tor_beispiel}
-\end{figure}
+Eine typische Steuerung des \texttt{LTMFAST\_dosing\_application}-Bausteins besteht darin, azyklische Daten in den zugehörigen Instanzdatenbaustein einzutragen und gleichzeitig die zyklischen Steuerungen der gewünschten Kanäle zu setzen. Ein Anwendungsbeispiel ist in Listing~\ref{app_bsp} gezeigt.
+
+\begin{lstlisting}[language=ST, caption={Beispiel zur Steuerung der zyklischen und azyklischen Kommunikation}, label={app_bsp}]
+IF #LoadFlag = 1 THEN
+    #Channels[1].Load := 0;
+END_IF;
+
+IF #StartDQFlag = 1 THEN
+    #Channels[1].StartDQ := 0;
+END_IF;
+
+IF #Init = 0 THEN
+    #Init := 1;
+    #Channels[1].EnableDQ := 1;
+    "LTMFAST_dosing_application_DB".userDataContent[1] := 
+    16#3E8;
+    "LTMFAST_dosing_application_DB".userDataContent[15] := 
+    16#1;
+    #Channels[1].Load := 1;
+    #LoadFlag := 1;
+END_IF;
+
+IF ("FAST_FB".FB_IF_Channel[1] AND 16#8000) <> 0 THEN
+    #Channels[1].StartDQ := 1;
+    #StartDQFlag := 1;
+END_IF;
+\end{lstlisting}
+
 \section{Vergleich mit bisherigen Lösungen}
 
 ist das Teil der Entwicklung oder ehr Fazit und Ausblick?
