@@ -1,5 +1,5 @@
 \chapter{Grundlagen} 
-
+\label{chap:grundlagen}
 Um die technischen Aspekte und die Funktionsweise der in dieser Arbeit behandelten Systeme
 zu verstehen, werden im Folgenden die zugrundeliegenden Konzepte und Technologien erläutert. 
 Relevant sind hierbei die Automatisierungspyramide, SIMATIC S7, Speicherprogrammierbare Steuerungen, Quartus und Questa sowie dem
@@ -7,13 +7,18 @@ TIA Portal.
 
 \section{Automatisierungspyramide}
 
-Die Automatisierungspyramide stellt ein Modell zur Einordnung von Techniken und Systemen in der industriellen Fertigung dar. Sie umfasst die Kommunikation von der Prozessebene bis zur Unternehmensführung und unterscheidet zwischen horizontalen (innerhalb einer Ebene) und vertikalen (zwischen den Ebenen) Kommunikationsstrukturen. Grundlage ist das OSI-Referenzmodell von 1984, erweitert durch IoT-Konzepte seit 1999, die eine durchgängige Vernetzung von Sensoren, Maschinen und Unternehmenssystemen ermöglichen \cite{bable_automatisierungspyramide}.
+Die Automatisierungspyramide stellt ein Modell zur Einordnung von Techniken und Systemen in der industriellen Fertigung dar. 
+Sie beschreibt die vertikale Kommunikation von der Feld-/Prozessebene bis zur Unternehmensführung und ordnet die verschiedenen 
+Ebenen der Automatisierung, wie Sensoren/Aktoren, Steuerungssysteme, Prozessleitsysteme, Betriebsleit- und Unternehmenssysteme, ein 
+(Abbildung~\ref{fig:Automatisierungpyramide}). 
+Grundlage ist das OSI-Referenzmodell von 1984, erweitert durch IoT-Konzepte seit 1999, die eine durchgängige Vernetzung von Sensoren, 
+Maschinen und Unternehmenssystemen ermöglichen \cite{bable_automatisierungspyramide}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Fotos/AutomatisierungspyramideNeu.png}
     \caption{Automatisierungspyramide, \cite{bable_automatisierungspyramide}}
-    \label{Automatisierungpyramide}
+    \label{fig:Automatisierungpyramide}
 \end{figure}
 
 \subsection*{Ebenen der OT}
@@ -37,7 +42,7 @@ Speicherprogrammierbare Steuerungen (SPS), im Englischen \textit{Programmable Lo
 
 \subsection{Aufbau eines SIMATIC S7-Systems}
 
-Ein SIMATIC S7-System besitzt einen modularen Aufbau und besteht aus mehreren Baugruppen mit spezifischen Funktionen.
+Ein SIMATIC S7-System besitzt einen modularen Aufbau und besteht aus mehreren Baugruppen mit spezifischen Funktionen. In der Abbildung \ref{fig:AllgemeinerAufbau} sind beispielhaft folgende Baugruppen zu erkennen: das **PM/PS-Modul** (Stromversorgung), die **CPU** (Zentraleinheit) sowie mehrere **Ein- und Ausgangsmodule (I/O-Module)** zur Verbindung mit Sensoren und Aktoren.
 
 \textbf{Controller (CPU)}  
 
@@ -58,7 +63,7 @@ Kommunikationsmodule erweitern die Schnittstellen- und Protokollfähigkeit einer
     \centering
     \includegraphics[width=0.8\textwidth]{Fotos/AllgemeinerAufbau.png}
     \caption{Aufbau eines SIMATIC S7-Systems \cite{siemensET200MP}}
-    \label{AllgemeinerAufbau}
+    \label{fig:AllgemeinerAufbau}
 \end{figure}
 
 \subsection{Funktionsweise und Aufbau einer SPS}
@@ -162,7 +167,7 @@ Die Baugruppen sind über den Rückwandbus verbunden, wodurch eine zusätzliche 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/TIAHardwareAufbau.png}
+    \includegraphics[width=0.8\textwidth]{Fotos/bildrail.png}
     \caption{Hardwarekonfiguration im TIA Portal mit TM FAST}
     \label{Hardwarekonfiguration}
 \end{figure}

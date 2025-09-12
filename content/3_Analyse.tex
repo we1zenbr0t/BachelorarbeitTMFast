@@ -1,4 +1,5 @@
-\chapter{Analyse der Ablösung des FM350-2 durch das TM FAST Modul}
+\chapter{Analyse der Fähigkeiten des FM350-2 und dem TM FAST Modul}
+\label{chap:analyse}
 
 In diesem Abschnitt werden die technischen Grundlagen und Eigenschaften der beiden betrachteten Module, FM350-2 und TM FAST, vorgestellt. 
 Es werden deren Aufbau, Funktionsweise, Schnittstellen und typische Einsatzgebiete erläutert. Ziel ist es, die relevanten Technologien 
@@ -356,7 +357,7 @@ Das Modul bietet je acht 24\,V-Digitaleingänge (DI) und -ausgänge (DQ) mit 0,1
 
 \textbf{Kommunikation:} Die Datenübertragung zwischen CPU und TM FAST kann zyklisch oder azyklisch erfolgen. Zyklische Ein- und Ausgangsdaten bestehen aus acht Doppelwörtern (32~Bit je Doppelwort). Die CPU-Schnittstelle betrachtet die Steuer- (CTRL IF) und Rückmeldedaten (FB IF). Azyklische Datenmengen können je nach Anwendungslogik konfiguriert werden (4, 32, 64 oder 128 Byte) und über die TIA Portal-Befehle \texttt{LTMFAST UserWriteREC} bzw. \texttt{LTMFAST UserReadREC} gelesen bzw. geschrieben werden \cite{tmfast_featurespec, TmFast_progrmming_manual}.
 
-\section{Direkter Vergleich der TM Fast und FM 350-2}
+\section{Direkter Vergleich der TM FAST und FM 350-2} 
 
 \begin{longtable}{|p{3cm}|p{6cm}|p{6cm}|}
     \hline
@@ -364,43 +365,30 @@ Das Modul bietet je acht 24\,V-Digitaleingänge (DI) und -ausgänge (DQ) mit 0,1
     \hline
     \multicolumn{3}{|c|}{\textbf{Unterschiede}} \\
     \hline
-    Architektur & Intel Cyclone 10 LP FPGA, frei programmierbar (VHDL), Backend/Frontend-Konzept & Feste ASIC-basierte Zählerbaugruppe, keine freie Hardwareprogrammierung \\
+    Architektur & Intel Cyclone 10 LP FPGA, frei programmierbar (VHDL) & Feste ASIC-basierte Zählerbaugruppe, keine freie Hardwareprogrammierung \\
     \hline
-    Zählerkanäle & Bis zu 14 Kanäle (DI, DQ, DIQ, RS422/485, TTL), flexibel konfigurierbar & 8 Kanäle, fest als Zähler ausgelegt \\
+    Zählerkanäle & Bis zu 14 Kanäle, flexibel konfigurierbar & 8 Kanäle, fest als Zähler ausgelegt \\
     \hline
-    Zählsignale / Gebereingänge & 24\,V-DI/DIQ, RS422/485, TTL, flexibel konfigurierbar, max. 5\,MHz (DIQ/RS422/485), 200\,kHz (DI/DQ) & Namur (DIN 19234), 24\,V Impulsgeber, Inkrementalgeber, Richtungssignal, max. 20\,kHz (A0...7), 10\,kHz (B0...7)\\
+    Geschwindigkeit & Eingangssignale bis zu 5\,MHz (RS422/485/DIQ) & Max. 20\,kHz (A0...7), 10\,kHz (B0...7) \\
     \hline
-    Digitaleingänge & 8x 24\,V-DI, 4x 24\,V-DIQ (konfigurierbar), max. 200\,kHz (DI), 1\,kHz (DIQ), Eingangsverzögerung parametrierbar (0--20\,ms) & 8x 24\,V-DI, 0-Signal: -3 bis 5\,V, 1-Signal: 11--30,2\,V, Eingangsstrom: 0-Signal $\leq$ 2\,mA, 1-Signal 9\,mA, Eingangsverzögerung max. 50\,\textmu s \\
+    Betriebsarten & Frei programmierbar (z.B. Dosierlogik, Pulsfolgen) & Vorgegebene Betriebsarten (Endlos, periodisch, Dosieren etc.) \\
     \hline
-    Digitalausgänge & 8x 24\,V-DQ (0,1\,A, 200\,kHz), 4x DIQ (0,3\,A, 1\,kHz), High-/Low-aktiv, Überlast-/Kurzschlussschutz & Bis zu 4 Ausgänge pro Kanal (Dosiermodus), 24\,V, direkt an Zählerereignisse gekoppelt, Verhalten parametrierbar \\
+    Parametrierung & Änderungen im laufenden Betrieb über UserWriteREC & Parametrierung nur über STEP 7, meist im Stopp-Betrieb \\
     \hline
-    Reaktionszeit & < 1\,\textmu s (laut Gerätehandbuch) & Nicht explizit angegeben \\
-    \hline
-    Zählbereich & 32 Bit, flexibel nutzbar & 32 Bit, fest (\(-2^{31}\) bis \(2^{31}-1\)) \\
-    \hline
-    Betriebsarten & Frei programmierbar (z.B. Rundenzähler, Pulsfolgen, Dosierlogik, benutzerdefiniert) & Endlos, einmalig, periodisch, Dosieren, Frequenz-, Drehzahl-, Periodendauermessung \\
-    \hline
-    Parametrierung & Azyklisch und im laufenden Betrieb über UserWriteREC, flexible Steuerung & Parametrierung über STEP 7, Änderungen meist nur im Stopp-Betrieb \\
-    \hline
-    Ausgangslogik & Pro Kanal High-/Low-aktiv, Steuerbits, Rückmeldung, flexible Reaktion & Feste Zuordnung, Ausgänge direkt an Zählerereignisse gekoppelt \\
-    \hline
-    Diagnose & Umfangreiche Diagnosemöglichkeiten, frei programmierbar & Umfassende Diagnose, fest integriert (z.B. SF-LED, OB82, Diagnosedaten) \\
-    \hline
-    Integration & S7-1500, TIA Portal, flexible Einbindung, Peripherieanbindung & S7-300, STEP 7, klassische Integration \\
+    Integration & S7-1500, TIA Portal & S7-300, STEP 7 \\
     \hline
     \multicolumn{3}{|c|}{\textbf{Gemeinsamkeiten}} \\
     \hline
     Zählfunktionen & \multicolumn{2}{p{12cm}|}{Hohe Zählauflösung (32 Bit), schnelle Verarbeitung, Einsatz als Zähler in der Automatisierungstechnik} \\
     \hline
-    Frequenz-/Drehzahlmessung & \multicolumn{2}{p{12cm}|}{Unterstützung von Frequenz- und Drehzahlmessung, Prozessüberwachung} \\
-    \hline
     Industrielle Anwendungen & \multicolumn{2}{p{12cm}|}{Verpackung, Sortierung, Dosierung, Maschinenbau, Prozessautomatisierung} \\
     \hline
-    Diagnose & \multicolumn{2}{p{12cm}|}{Umfangreiche Diagnose- und Fehleranzeigen, Unterstützung von Alarmen} \\
-    \hline
-    \caption{Vergleich der Eigenschaften von TM FAST und FM 350-2, insbesondere Zählsignale und Digitalein-/ausgänge (Zeitdaten TM FAST gemäß \cite{TmFast_progrmming_manual,siemensET200MP}, FM 350-2 gemäß Handbuch)}
+    \caption{Kompakter Vergleich der Eigenschaften von TM FAST und FM 350-2 (Daten gemäß \cite{TmFast_progrmming_manual,siemensET200MP,fm350_Handbuch}).}
     \label{tab:vergleich_tmfast_fm3502}
 \end{longtable}
 
+Im Vergleich zeigt sich, dass das TM FAST Modul nicht nur mehr Kanäle bietet, sondern auch eine deutlich höhere Signalgeschwindigkeit und Flexibilität in der Programmierung. Damit eignet es sich für moderne, hochkanalige Anwendungen, bei denen sich Anforderungen dynamisch ändern können. Das FM 350-2 ist dagegen fest verdrahtet und deutlich limitierter, war aber für klassische Zähler- und Dosieraufgaben in der S7-300-Umgebung lange Zeit eine etablierte Lösung.
+
+Ein wesentlicher Vorteil des FM 350-2 liegt in der direkten Unterstützung von A-, B- und Z-Signalen pro Kanal für den Betrieb von Inkrementalgebern. Diese Funktionalität ist beim TM FAST prinzipiell ebenfalls umsetzbar, erfordert jedoch eine Mehrfachbelegung einzelner Eingänge, was die effektiv nutzbare Kanalanzahl halbieren oder in manchen Konfigurationen sogar dritteln würde.
 
 

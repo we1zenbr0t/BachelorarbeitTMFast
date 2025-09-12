@@ -1,36 +1,39 @@
 \chapter{Einleitung} 
 
-\section{Problemstellung und Motivation} 
-Die Produktpallete der Firma Siemens im Breich der Industrieautomatisierung hat eine auslaufende Produktserie vom Typ SIMATIC S7-300, insbesondere das FM350-2 Modul, sind nicht mehr in der aktiven Vermarktung und dadurch nicht mehr bestellbar. Das FM350-2 Modul bietet 8 Kanäle für 
-hochkanalige Dosieranwendungen und ist nur noch als Ersatzteil verfügbar. Ein alternatives Lösungskonzept ist der Einsatz des TM FAST Moduls, eines freiprogrammierbaren 
-Hochgeschwindigkeits-Moduls, welches eine erweiterte Kanalanzahl von 10 bis 12 Kanälen ermöglicht für die neuere Produktserie vom Typ S7-1500. Ziel dieser Bachelorarbeit ist die Entwicklung eines VHDL-basierten 
-Applikationsbeispiels zur Demonstration der Einsatzmöglichkeiten des TM FAST Moduls in hochkanaligen Dosieranwendungen. Gleichzeitig soll die Integration in das TIA Portal 
-erfolgen, um eine reibungslose Nutzung in industriellen Automatisierungsumgebungen zu gewährleisten. 
+Die Produktpalette der Firma Siemens im Bereich der Industrieautomatisierung umfasst verschiedene Steuerungs- und Erweiterungsmodule, 
+von denen die Produktserie SIMATIC S7-300 schrittweise abgekündigt wurde \cite{siemens_S7_300}. Insbesondere das FM350-2 Modul, das für 
+Dosier- und Zählanwendungen entwickelt wurde, ist nicht mehr in der aktiven Vermarktung und lediglich als Ersatzteil verfügbar. 
+Das FM350-2 Modul bietet 8 Kanäle für hochkanalige Dosieranwendungen. Unter hochkanaligen Dosieranwendungen versteht man Systeme, 
+bei denen viele unterschiedliche Materialströme (z. B. Flüssigkeiten, Pulver oder Granulate) gleichzeitig präzise gesteuert, verwogen 
+und dosiert werden müssen. Solche Systeme finden vor allem in der Chemie-, Pharma- oder Lebensmittelindustrie Anwendung, da dort eine 
+große Anzahl paralleler Dosierstellen eine hohe Effizienz und Flexibilität erfordert \cite{chemart}.
 
-Als dualer Student bei Siemens verfüge ich bereits über Erfahrung in der industriellen Automatisierungstechnik. Diese Arbeit bietet mir die Gelegenheit, mein Wissen in den 
-Bereichen Embedded Systems, Industrieautomation und Software Engineering weiter zu vertiefen. Ich bin motiviert, dieses praxisnahe Thema in Kooperation mit Siemens zu 
-bearbeiten und einen wertvollen Beitrag zur Weiterentwicklung industrieller Automatisierungslösungen zu leisten. 
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Ein alternatives Lösungskonzept ist der Einsatz des TM FAST Moduls, eines freiprogrammierbaren Hochgeschwindigkeits-Moduls, das eine 
+erweiterte Kanalanzahl von bis zu 14 Kanälen ermöglicht und für die neuere Produktserie SIMATIC S7-1500 ausgelegt ist \cite{TmFast_progrmming_manual}. 
+Ziel dieser Bachelorarbeit ist die Entwicklung eines VHDL-basierten Applikationsbeispiels zur Demonstration der Einsatzmöglichkeiten des 
+TM FAST Moduls in hochkanaligen Dosieranwendungen. Gleichzeitig soll die Integration in das TIA Portal erfolgen, um eine reibungslose 
+Nutzung in industriellen Automatisierungsumgebungen zu gewährleisten. 
+
+\section{Herausforderung}
+
+In der Automatisierungstechnik ist es entscheidend, dass hochkanalige Dosierprozesse zuverlässig, präzise und mit minimaler Verzögerung 
+gesteuert werden können. Für das hier betrachtete System, bestehend aus dem TM FAST Modul in Verbindung mit einer SIMATIC S7-1500 PLC, 
+ist jedoch unklar, ob die bestehenden Anforderungen des FM350-2 Moduls hinsichtlich Genauigkeit, Zykluszeit und Synchronisation vollständig 
+erfüllt werden können. Dies betrifft insbesondere die Fähigkeit, mehrere Dosierkanäle gleichzeitig mit hoher Geschwindigkeit und minimalen 
+Verzögerungen zu verarbeiten, sowie die effiziente Nutzung der verfügbaren FPGA-Ressourcen bei gleichzeitig erweiterter Kanalanzahl.
+
 \section{Zielsetzung der Arbeit} 
-Ziel dieser Bachelorarbeit ist die Entwicklung eines VHDL-basierten Applikationsbeispiels zur Ablösung des FM350-2 Moduls der alten 
-SIMATIC S7-300-Produktserie durch das TM FAST Modul der neueren S7-1500-Produktserie. Dabei soll die Kanalanzahl von 8 auf die höchst mögliche Anzahl erhöht 
-werden, um eine flexiblere Nutzung in hochkanaligen Dosieranwendungen zu ermöglichen. Ein wesentlicher Bestandteil der Arbeit ist zudem 
-die Integration des entwickelten Applikationsbeispiels in das TIA Portal, die Programmiersoftware für die industriellen Steuerungen der Firma Siemens, um eine nahtlose Einbindung in bestehende 
-Automatisierungslösungen zu gewährleisten. Neben der Implementierung des VHDL-Codes werden bewährte Methoden des Software Engineerings 
-angewendet, um die Codequalität und Skalierbarkeit sicherzustellen. Schließlich soll eine umfassende Dokumentation erstellt werden, die 
-eine detaillierte Beschreibung der Nutzung und Inbetriebnahme des Moduls umfasst.
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Methodisches Vorgehen und Struktur der Arbeit} 
-Zur Umsetzung der Ziele werden zunächst die bestehenden Funktionalitäten des FM350-2 Moduls analysiert und mit den aktuellen Anforderungen verglichen. Da das TM FAST Modul bereits verfügbar ist, liegt der Schwerpunkt nicht allein auf einer Nachbildung, sondern auf der Nutzung seiner erweiterten Möglichkeiten. Insbesondere soll die höhere Kanaldichte sowie die zusätzliche Funktionalität und Flexibilität des TM FAST berücksichtigt werden. 
+Ziel dieser Bachelorarbeit ist die Entwicklung eines VHDL-basierten Applikationsbeispiels, das das FM350-2 Modul der SIMATIC S7-300 durch das TM FAST Modul der S7-1500 ersetzt. 
 
-Im nächsten Schritt erfolgt die Entwicklung des VHDL-basierten Applikationsbeispiels, wobei zentrale Funktionen des FM350-2 Moduls in VHDL umgesetzt und die Kanalanzahl auf so viele wie möglich erweitert wird. Anschließend wird die Integration in das TIA Portal vorgenommen, indem das TM FAST Modul an das Automatisierungssystem angebunden und geeignete Schnittstellen sowie Datenstrukturen entwickelt werden. 
+Die Arbeit verfolgt insbesondere folgende Ziele:
 
-Qualitätssicherungsmaßnahmen spielen ebenfalls eine zentrale Rolle. Hierbei werden bewährte Entwicklungswerkzeuge wie Intel Quartus Prime und das TIA Portal genutzt, Teststrategien zur Funktionssicherung implementiert und eine modulare Softwarearchitektur entworfen. Abschließend wird die Dokumentation erstellt, die eine umfassende Beschreibung der Implementierung und Nutzung des Moduls sowie Anwendungsbeispiele und Testberichte enthält. Die Ergebnisse werden in einer Abschlusspräsentation vorgestellt. Im Nachgang wird das entwickelte Applikationsbeispiel Kunden in Form eines Packages zum Download zur Verfügung gestellt.
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-%//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-%\section{Erwarteter Nutzen und Anwendungsbereich / Passend?}
-%Das entwickelte Applikationsbeispiel bietet eine zukunftssichere Alternative zur Ablösung des FM350-2 Moduls und ermöglicht eine flexible Anpassung an industrielle Anforderungen. 
-%Ein konkretes Anwendungsbeispiel ist die Nachrüstung bestehender Anlagen, um eine Umstellung auf neue Hardware und Software zu erleichtern. Dies könnte insbesondere für Hersteller 
-%von Lebensmitteln oder pharmazeutischen Produkten von Interesse sein, die eine präzise Dosierung von Zutaten wie Aromen, Farbstoffen oder Vitaminen erfordern. 
+\begin{itemize}
+    \item Umsetzung der bekannten FM350-2-Funktionalitäten auf dem TM FAST Modul.
+    \item Erhöhung der Kanalanzahl von 8 auf die höchstmögliche Anzahl für flexible Dosieranwendungen.
+    \item Optimierung der Implementierung hinsichtlich \textbf{Performance} und \textbf{Ressourcenschonung}, z.\,B. Reduktion der Logikelemente um 23\,\% und Senkung der Zykluszeit von 50\,µs auf 20\,ns.
+    \item Integration des Applikationsbeispiels in das TIA Portal zur nahtlosen Nutzung in industriellen Automatisierungslösungen.
+    \item Anwendung bewährter Methoden des Software Engineerings, um Codequalität und Skalierbarkeit sicherzustellen.
+\end{itemize}
+
+Die erfolgreiche Umsetzung dieser Ziele soll die Grundlage für den Einsatz des TM FAST Moduls in hochkanaligen Dosieranwendungen schaffen und die Vorteile moderner FPGA-Technologie in der industriellen Automatisierung demonstrieren.
+
