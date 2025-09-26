@@ -389,7 +389,6 @@ channel_gen : for i in 0 to CHANNEL_COUNT-1 generate
     -- and clearing/releasing the output latch.
     ------------------------------------------------------------------------------
 	 
-	 
     process(CLK, RST)
     begin
         -- Asynchronous reset: clear all logic

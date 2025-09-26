@@ -8,38 +8,397 @@ Ressourcenoptimierung, Fehlerbehandlung und Kommunikationsstrategien im Vordergr
 stehen. Darüber hinaus werden Mechanismen zur sicheren Betriebsführung, flexible 
 Kanalzuordnungen sowie Strategien zur Überlaufkompensation erläutert.
 
-\section{Anforderungen an die Neuentwicklung} 
+\section{Anforderungen an die Neuentwicklung 2}
 
-Für die Neuentwicklung des Zählermoduls auf Basis des TM FAST ergeben sich verschiedene Anforderungen, die sich aus den funktionalen und technischen Zielen ableiten. Das Modul soll mindestens acht unabhängige Zählerkanäle, die Anzahl der unabhängigen Zählerkanäle des FM 350-2, bereitstellen, die flexibel als Digitaleingänge, Digitalausgänge oder RS485/TTL-Kanäle genutzt werden können. Jeder Kanal arbeitet mit einer ausreichend breiten Zählvariable, typischerweise 32 Bit, um auch große Wertebereiche abzudecken. Die Übergabe von Sollwerten und Parametern muss effizient und im laufenden Betrieb möglich sein, sodass der Prozess nicht unterbrochen wird. Verschiedene Betriebsmodi wie Rundenzähler, Reset, Hold und Start/Stop-Funktionen sind zu unterstützen. Für jeden Kanal werden Statusinformationen und Prozesswerte, etwa der aktuelle Zählerstand oder die Geschwindigkeit, rückgemeldet. Fehler müssen erkannt, sicher behandelt und an die Steuerung gemeldet werden. Die Lösung ist so zu gestalten, dass sie vollständig mit dem TIA Portal integrierbar und den Funkltionsumfang der FM350-2 hat. Zudem ist auf eine ressourcenschonende Implementierung zu achten, um FPGA-Ressourcen effizient zu nutzen und eine einfache Erweiterbarkeit zu ermöglichen.
+Die Arbeit verfolgt insbesondere folgende Ziele:
+\begin{itemize}
+    \item Umsetzung der bekannten FM350-2-Funktionalitäten für Dosieranwendungen auf dem TM FAST Modul.
+    \item Erhöhung der Kanalanzahl von 8 auf die höchstmögliche Anzahl für flexible Dosieranwendungen.
+    \item Optimierung der Implementierung hinsichtlich Performance und Ressourcenschonung.
+    \item Integration des Applikationsbeispiels in das TIA Portal zur nahtlosen Nutzung in industriellen Automatisierungslösungen.
+    \item Anwendung bewährter Methoden des Software Engineerings, um Codequalität und Skalierbarkeit sicherzustellen.
+\end{itemize}
 
-Die konkrete Umsetzung dieser Anforderungen wird in den folgenden Abschnitten detailliert beschrieben.
+Daraus bilden sich folgenden funktionale und nichtfunktionale Anforderungen:
 
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Modularisierung und Wiederverwendbarkeit}
+\subsection{Funktionale Anforderungen}
 
-Die Architektur des VHDL-Designs ist konsequent modular aufgebaut und nutzt Generics, Arrays und Generate-Statements, um eine hohe Wiederverwendbarkeit und Erweiterbarkeit zu gewährleisten. 
+\begin{enumerate}[label=F\arabic*]
+    \item Das Modul stellt mindestens acht unabhängige Zählerkanäle bereit.
+    \item Jeder Kanal kann flexibel als Digitaleingang, Digitalausgang oder RS485/TTL-Kanal genutzt werden.
+    \item Jeder Kanal verwendet eine 32-Bit-Zählvariable.
+    \item Die Übergabe von Sollwerten und Parametern ist im laufenden Betrieb möglich.
+    \item Das Modul unterstützt die Betriebsmodi Rundenzähler, Reset, Hold und Start/Stop.
+    \item Für jeden Kanal werden Statusinformationen und Prozesswerte rückgemeldet.
+    \item Fehler werden erkannt, sicher behandelt und an die Steuerung gemeldet.
+\end{enumerate}
 
-Ein Beispiel aus dem Code:
-\begin{lstlisting}[language=VHDL, basicstyle=\ttfamily\footnotesize,label={lst:array_generate},captionpos=b,caption={Array-Struktur und Generate-Schleife zur Kanalinstanziierung}]
-type t_enc_count_array is array (0 to CHANNEL_COUNT-1) 
-of std_logic_vector(31 downto 0);
-signal enc_count, upper_Limit, next_upper_limit : 
-t_enc_count_array 
-:= (others => (others => '0'));
-...
+\subsection{Nichtfunktionale Anforderungen}
+
+\begin{enumerate}[label=N\arabic*]
+    \item Die Lösung ist vollständig in das TIA Portal integrierbar.
+    \item Die Funktionalität entspricht mindestens dem Umfang der FM350-2, den es braucht, um eine Dosieranwendung umzusetzen.
+    \item Ressourcenschonende Implementierung (FPGA-Auslastung < 70\% bei 14 Kanälen).
+    \item Verbesserte Reaktionszeit (FPGA-Reaktionszeit < 50 µs).
+    \item Erweiterbarkeit auf zusätzliche Kanäle ohne Anpassung der Grundarchitektur.
+\end{enumerate}
+
+\section{Umsetzung der funktionalen Anforderungen}
+
+In diesem Abschnitt werden die zuvor spezifizierten funktionalen Anforderungen systematisch umgesetzt und im Detail beschrieben.  
+Ziel ist es, die theoretisch definierten Anforderungen in ein praxisnahes und nachvollziehbares VHDL-Design zu überführen. Dabei werden die einzelnen Funktionen nicht nur auf ihre technische Realisierung hin erläutert, sondern auch in Bezug auf ihre Relevanz für den Gesamtkontext der Dosieranwendung eingeordnet. 
+
+\subsection*{F1 – mindestens Acht unabhängige Zählerkanäle und Modularisierung}
+
+Die Umsetzung erfolgt durch den Einsatz von Arrays und \texttt{generate}-Blöcken in VHDL, wodurch jeder Kanal logisch getrennt und unabhängig voneinander betrieben werden kann.
+Dadurch ist die Anzahl der Kanäle nur durch die physischen Eingänge und die Anzahl der verfügbaren Logikelemente begrenzt.
+
+\begin{lstlisting}[language=VHDL, caption={Generate-Struktur für mehrere Kanäle}, label={lst:generate}]
 channel_gen : for i in 0 to CHANNEL_COUNT-1 generate
-    ...
+    -- Kanal-Logik
 end generate;
 \end{lstlisting}
 
-So wird z.B. die Anzahl der Kanäle über das Generic `CHANNEL\_COUNT` zentral festgelegt. Für alle kanalbezogenen Signale und Zustände werden Array-Typen verwendet, sodass die Logik für jeden Kanal identisch und unabhängig voneinander instanziiert werden kann.
+Darüber hinaus ist die Architektur des VHDL-Designs konsequent modular aufgebaut und nutzt Generics, Arrays und Generate-Statements, um eine hohe Wiederverwendbarkeit und Erweiterbarkeit zu gewährleisten. 
 
-Durch die Verwendung von Generate-Blöcken (`channel\_gen : for i in 0 to CHANNEL\_COUNT-1 generate`) wird die komplette Zähler- und Frequenzmesslogik pro Kanal automatisch erzeugt. Neue Kanäle können einfach durch Erhöhen von `CHANNEL\_COUNT` und Anpassen der Mapping-Arrays hinzugefügt werden, ohne dass das Gesamtdesign oder die Prozesslogik angepasst werden muss.
+So wird z.B. die Anzahl der Kanäle über das Generic \texttt{CHANNEL\_COUNT} zentral festgelegt. Für alle kanalbezogenen Signale und Zustände werden Array-Typen verwendet, sodass die Logik für jeden Kanal identisch und unabhängig voneinander instanziiert werden kann.
 
-Auch die Kanalzuordnung (z.B. für unterschiedliche Hardware-Konfigurationen) erfolgt über Mapping-Arrays (`CHANNEL\_MAP\_IN\_CH`, `CHANNEL\_MAP\_OUT\_CH`), die flexibel anpassbar sind. Die Modularisierung erleichtert zudem die Wartung, das Testen und die Erweiterung um neue Funktionen, wie zusätzliche Diagnosemechanismen oder alternative Betriebsmodi, ohne tiefgreifende Änderungen an der bestehenden Architektur.
+Durch die Verwendung von Generate-Blöcken (\texttt{channel\_gen : for i in 0 to CHANNEL\_COUNT-1 generate}) wird die komplette Zähler- und Frequenzmesslogik pro Kanal automatisch erzeugt. Neue Kanäle können einfach durch Erhöhen von \texttt{CHANNEL\_COUNT} und Anpassen der Mapping-Arrays hinzugefügt werden, ohne dass das Gesamtdesign oder die Prozesslogik angepasst werden muss.
 
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Ressourcenoptimierung}
+\subsection*{F2 – Flexible Kanalnutzung und Zuordnung}
+
+Die physikalischen Schnittstellen des TM FAST erlauben eine flexible Nutzung der Kanäle als Digitaleingänge, Digitalausgänge oder RS485/TTL-Schnittstellen. Die logische Kanalzuordnung erfolgt über Mapping-Arrays, wodurch die Kanalbelegung ohne Änderung der eigentlichen Zählerlogik an verschiedene Hardwarekonfigurationen angepasst werden kann.
+
+\begin{lstlisting}[language=VHDL, caption={Beispiel einer Kanalzuordnung}, label={lst:kanalzuordnung}]
+type t_channel_map is array (0 to 13) of integer;
+constant CHANNEL_MAP_IN_CH  : t_channel_map 
+:= (0, 1, 3, 4, 6, 7, 9, 10, 0, 1, 2, 3, 4, 5);
+constant CHANNEL_MAP_OUT_CH : t_channel_map 
+:= (0, 1, 3, 4, 6, 7, 9, 10, 2, 5, 8, 11, 6, 7);
+\end{lstlisting}
+
+Im Beispiel \ref{lst:kanalzuordnung} sind die ersten acht Kanäle als klassische DI/DQ-Kanäle definiert. Die übrigen Eingänge werden flexibel als RS485 genutzt, während die Ausgänge auf DIQ- sowie zusätzliche RS485-Kanäle verteilt sind. Über die Arrays \texttt{CHANNEL\_MAP\_IN\_CH} und \texttt{CHANNEL\_MAP\_OUT\_CH} kann die Belegung zentral geändert werden, ohne dass die Prozesslogik angepasst werden muss.
+
+Ein praktischer Vorteil für Dosieranwendungen ist, dass bei Inkrementalgebern häufig nur die A-Flanke ausgewertet werden muss, da die Förderrichtung fix ist. Dadurch genügt pro Kanal ein Eingang und ein Ausgang, sodass sich alle 28 physischen Schnittstellen (\cite{TmFast_progrmming_manual}) optimal auf 14 logische Kanäle aufteilen lassen. 
+
+Diese Architektur erhöht nicht nur die Flexibilität, sondern auch die Wiederverwendbarkeit und Wartbarkeit des Designs: Änderungen der Verdrahtung oder neue Anforderungen können allein durch Anpassung der Mapping-Arrays umgesetzt werden.
+
+\subsection*{F3 – 32-Bit-Zählvariable}
+Jeder Kanal verwendet eine \texttt{std\_logic\_vector(31 downto 0)}, um ausreichend Zählbereich für industrielle Anwendungen sicherzustellen.
+
+\subsection*{F4 – Übergabe von Sollwerten im laufenden Betrieb}
+
+Für die Übergabe von Sollwerten und Parametern im laufenden Betrieb wird die azyklische Schnittstelle \texttt{WR\_REC} genutzt. Eine rein zyklische Übertragung über \texttt{CTRL\_IF} wäre auf acht Doppelwörter beschränkt und würde nicht für 14 Kanäle ausreichen. Mit \texttt{WR\_REC} stehen dagegen 64~Byte (16 Doppelwörter) zur Verfügung, was alle 14 Kanäle mit je 32~Bit Sollwert abdeckt und noch Platz für zusätzliche Steuerbits lässt.  
+
+\textbf{Kommunikationsaufteilung:}  
+Das Design trennt klar zwischen zyklischer und azyklischer Kommunikation:
+- \emph{Zyklische Steuerung (\texttt{CTRL\_IF}, \texttt{FB\_IF})} überträgt zeitkritische Steuer- und Statusinformationen in jedem SPS-Zyklus. Dazu gehören z. B. \texttt{CounterReset}, \texttt{EnableDQ}, \texttt{Load}, \texttt{Hold}, \texttt{StartDQ}, \texttt{Polarity} und die Auswahl der Rückmeldedaten (\texttt{FBIF\_Control}).
+- \emph{Azyklische Sollwertübertragung (\texttt{WR\_REC}, \texttt{RD\_REC})} erlaubt das Setzen neuer Obergrenzen (Sollwerte) oder globaler Steuerparameter (\texttt{WR\_REC\_Control}) während des Betriebs. Änderungen werden zunächst gepuffert und erst durch ein zyklisches Steuersignal aktiviert.
+
+\begin{lstlisting}[language=VHDL, basicstyle=\ttfamily\footnotesize,
+caption={Übernahme azyklischer Sollwerte in den Puffer}, 
+label={lst:wrrec_buffer}, captionpos=b]
+if WR_REC_NEW = '1' then
+    next_upper_limit(i) <= WR_RECxx;
+end if;
+
+if Load(i) = '1' then
+    upper_Limit(i) <= next_upper_limit(i);
+end if;
+\end{lstlisting}
+
+\textbf{Synchronisation und Zustandsautomat:}  
+Um Race Conditions zu vermeiden, steuert ein einfacher Zustandsautomat die Sollwertübernahme:  
+1. Bei einer Flanke auf \texttt{WR\_REC\_NEW} wird der neue Sollwert in \texttt{next\_upper\_limit(i)} gespeichert.  
+2. Erst wenn \texttt{Load(i)} aktiv wird, übernimmt der Kanal den Wert in \texttt{upper\_Limit(i)}.  
+3. Gleichzeitig wird geprüft, ob das Limit bereits erreicht wurde, und ggf. \texttt{LimitReached(i)} gesetzt.  
+4. Nach Loslassen von \texttt{Load(i)} geht der Automat in den Grundzustand zurück.  
+
+\begin{lstlisting}[language=VHDL, basicstyle=\ttfamily\footnotesize,
+caption={Zustandsautomat zur synchronisierten Sollwertübernahme},
+captionpos=b, label={lst:state_machine_load_limit}]
+case load_delay_cnt(i) is
+    when 0 =>
+        if Load(i) = '1' then
+            upper_Limit(i)    <= next_upper_limit(i);
+            load_delay_cnt(i) <= 1;
+            if unsigned(enc_count(i)) >= unsigned(next_upper_limit(i)) then
+                LimitReached(i) <= '1';
+            else
+                LimitReached(i) <= '0';
+            end if;
+        end if;
+    when 1 =>
+        if Load(i) = '0' then
+            load_delay_cnt(i) <= 0;
+        end if;
+    when others =>
+        load_delay_cnt(i) <= 0;
+end case;
+\end{lstlisting}
+
+Dieses Zusammenspiel von zyklischer Steuerung und azyklischer Sollwertübertragung stellt sicher, dass Änderungen nur gezielt und deterministisch wirksam werden. Das System bleibt flexibel für Sollwertänderungen im Betrieb und gleichzeitig robust gegen undefinierte Zustände oder Wettlaufschaltungen.
+
+\subsection*{F5 – Unterstützte Betriebsmodi und Überlaufkompensation}
+
+Für Dosieranwendungen ist der zentrale Betriebsmodus das \emph{periodische Zählen}.  
+Andere Modi wie \emph{einmaliges Zählen} (benötigt zusätzliche Logik zur Überlaufkorrektur) oder \emph{endloses Zählen} (keine Sollwerte) erfüllen die Anforderungen nicht.  
+
+\textbf{Notwendigkeit der Überlaufkompensation:}  
+Beim Dosieren treten stets Verzögerungen durch mechanische Trägheit auf, etwa durch die Ventil-Schließzeit. Dadurch wird mehr Material als geplant eingefüllt (Nachlauf). Ohne Kompensation würden systematische Abweichungen entstehen \cite{jumo_regelungstechnik}.  
+Zur Korrektur existieren verschiedene Ansätze:
+\begin{enumerate}
+    \item Prädiktion des Abschaltzeitpunkts (basierend auf Durchflussrate und Ventil-Schließzeit),
+    \item zweistufige Dosierung (grob + fein),
+    \item PID-geregelte Dosierung,
+    \item direkte Messung über Massendurchflussmesser.
+\end{enumerate}
+
+\textbf{Implementierte Lösung: automatische Überlaufkompensation}  
+Im FPGA-Design wird eine ressourcenschonende, adaptive Überlaufkompensation umgesetzt. Jeder Kanal besitzt einen 32-Bit-Zähler.  
+Beim Start einer Dosierung wird das Sollwert-Limit geladen.  
+Wird es erreicht, setzt das Signal \texttt{LimitReached} den Ausgang zurück.  
+Der Nachlauf, der dennoch gezählt wird, geht in die Berechnung des nächsten Zyklus ein.  
+
+Die Logik lässt sich wie folgt beschreiben:
+
+\[
+V_\text{total} = V_\text{target} + V_\text{current\_overflow}
+\]
+
+für die erste Abfüllung, und für nachfolgende Zyklen:
+
+\[
+V_\text{total} = V_\text{target} + V_\text{current\_overflow} - V_\text{last\_overflow}
+\]
+
+Unter stabilen Bedingungen (\(V_\text{current\_overflow} = V_\text{last\_overflow}\)) ergibt sich eine konstante Genauigkeit, da der Ventilnachlauf automatisch berücksichtigt wird.
+
+\textbf{Vor- und Nachteile:}  
+Die Methode kompensiert zuverlässig die Systemträgheit,  
+erfordert keine zusätzliche Hardware,  
+ist adaptiv, da der jeweils letzte Überlaufwert genutzt wird,  
+und eignet sich besonders für kontinuierliche Prozesse mit konstanten Bedingungen.  
+
+Grenzen treten auf bei stark schwankenden Parametern (Druck, Temperatur, Viskosität) oder bei Produktwechseln, da das System nachgelernt werden muss. Auch bei sehr unterschiedlichen Füllmengen können mehrere Überlaufwerte erforderlich sein, um präzise zu bleiben.  
+
+Damit stellt die Überlaufkompensation eine robuste und effiziente Lösung dar, die die Genauigkeit in typischen Dosierprozessen deutlich verbessert.
+
+\subsection*{F6 – Rückmeldungen}
+  
+Das Feedback-Interface (FB\_IF) liefert in jedem SPS-Zyklus aktuelle Status- und Prozesswerte für alle Kanäle.  
+Jeder Kanal stellt ein 16-Bit-Wort bereit. Die Bitstruktur ist wie folgt:
+
+\begin{itemize}
+    \item Bit 0–14: aktueller Prozesswert (z.\,B. Zählerstand oder Frequenz),
+    \item Bit 15: Spiegelung des \texttt{Select\_Feedback\_Value}-Flags (Diagnose/Rückmeldung),
+    \item Bit 16 (MSB): Status des Ventilausgangs (1 = Ausgang aktiv, 0 = Ausgang inaktiv).
+\end{itemize}
+
+Zusätzlich werden über das FB\_IF-Interface Fehler- und Statussignale übertragen:
+
+\begin{itemize}
+    \item ErrorChannelNumber: Nummer des letzten Kanals mit Fehler (0 = kein Fehler),
+    \item DI\_DQ\_BAD: Bit-codierter Fehlerstatus für Digitaleingänge und -ausgänge,
+    \item RS485\_LP\_BAD: Bit-codierter Fehlerstatus für RS485 oder L+,
+    \item StatusCode: Applikations-Fehlercode und Aktivitätsanzeige.
+\end{itemize}
+
+Durch diese Rückmeldungen ist eine kontinuierliche Überwachung und Diagnose aller Kanäle durch die SPS möglich.
+
+\subsection*{F7 – Fehlerbehandlung}
+
+Fehlerfälle werden durch gezielte Rücksetzung aller Signale behandelt. Ein Beispiel ist das Verhalten bei \texttt{CPU\_STOP}.
+
+\textbf{Fehler- und Diagnosestrategien:}  
+Das VHDL-Design implementiert eine systematische Fehlererkennung und sichere Fehlerbehandlung auf Kanalebene.  
+Für jeden Kanal wird das Signal \texttt{system\_fault(i)} berechnet, das verschiedene Fehlerquellen überwacht:
+
+\begin{itemize}
+    \item DI\_QI\_BAD: Fehler am zugeordneten Digitaleingang (z.\,B. Drahtbruch, Kurzschluss),
+    \item DQ\_QI\_BAD: Fehler am zugeordneten Digitalausgang,
+    \item RS485\_QI\_BAD: Fehler an den RS485-Ein- und Ausgängen (z.\,B. Kommunikationsfehler, Pegelstörung),
+    \item LP\_QI\_BAD: Fehler in der Spannungsversorgung (Low Power).
+\end{itemize}
+
+Die Fehler werden im Prozess \texttt{fault\_dq\_proc} für jeden Kanal individuell ausgewertet.  
+Sobald ein Fehler erkannt wird (\texttt{system\_fault(i) = '1'}), wird der entsprechende Ausgang (DQ oder RS485) automatisch in einen definierten Zustand (SAFE State) überführt. Der SAFE State ist abhängig von der konfigurierten Polarität und verhindert unkontrollierte Aktionen im Fehlerfall.
+
+Die Fehlerdetails werden über das Feedback-Interface (z.\,B. \texttt{FB\_IF7}) an die SPS rückgemeldet. Hierbei werden die Fehlerbits für DI, DQ, RS485 und die Kanalnummer gesetzt, sodass die Steuerung gezielt auf den Fehler reagieren kann. Ist kein Fehler vorhanden, werden die Fehlerbits explizit gelöscht.
+
+Zusätzlich wird im Fehlerfall der Ausgang sofort deaktiviert und der Status \texttt{StartDQ\_active} zurückgesetzt, um einen sicheren Anlagenzustand zu gewährleisten. Im Fall eines globalen CPU-Stop (\texttt{CPU\_STOP = '1'} und \texttt{WR\_REC\_Control = x"00000000"}) werden alle Ausgänge in den SAFE State gesetzt und alle Statusregister zurückgesetzt.  
+Dieses Konzept stellt sicher, dass sowohl Einzelkanalfehler als auch globale Fehler jederzeit erkannt und sicher behandelt werden. Die SPS erhält über die Rückmeldebits eine detaillierte Diagnose und kann gezielt Maßnahmen einleiten.
+
+\textbf{Sicherheit bei CPU\_STOP:}  
+Im Fehlerfall oder bei einem CPU\_STOP muss das System in einen definierten Zustand übergehen, um unkontrollierte Aktionen und Gefährdungen zu verhindern. Dies wird durch gezielte Abfragen und Rücksetzungen aller relevanten Steuer- und Ausgangssignale erreicht.
+
+\begin{itemize}
+    \item Bei \texttt{WR\_REC\_Control = x"00000000"} werden alle Ausgänge sofort ausgeschaltet und alle Werte aller Kanäle zurückgesetzt (Abort Mode).
+    \item Bei \texttt{WR\_REC\_Control = x"00000001"} läuft der Continue Mode. Die Kanäle setzen ihre aktuelle Operation fort und gehen nach deren Ende in einen definierten Zustand über, aus dem die Operation bei einem CPU-Start wieder aufgenommen werden kann.
+\end{itemize}
+
+Ein Auszug aus dem Code illustriert das Verhalten:
+
+\begin{lstlisting}[language=VHDL, basicstyle=\ttfamily\footnotesize,  
+  label={lst:cpu_stop_safe},captionpos=b,caption={Rücksetzen aller Ausgänge und Register im CPU\_STOP-Fall}]
+StartDQ(i) <= '0';  -- always 0 when CPU-STOP
+if WR_REC_Control = x"00000000" then
+    -- Abort mode
+    CounterReset(i) <= '1';
+    polarity(i)     <= '0';
+    EnableDQ(i)     <= '0';
+    Load(i)         <= '0';
+    HoldSW(i)       <= '0';
+    FBIF_Control(i) <= '0';
+else
+    -- Continue mode
+    if StartDQ_active(i) = '1' then
+        EnableDQ(i) <= '1'; 
+    end if;
+end if;
+\end{lstlisting}
+
+Durch diese Maßnahmen wird sichergestellt, dass das System im Fehlerfall oder bei einem CPU\_STOP deterministisch und zuverlässig in einen definierten Zustand übergeht. Dabei handelt es sich jedoch nicht um eine SIL-Klassifizierung oder funktionale Sicherheit im engeren Sinne, sondern um die Gewährleistung eines stabilen Prozesses mit klar definierten Zuständen. Unerwünschte Schalthandlungen oder undefinierte Zustände werden verhindert.  
+Für funktionale Sicherheit im industriellen Maßstab sind spezielle F-CPUs und Safety-Module vorgesehen, wie sie im Rahmen von SIMATIC Safety Integrated angeboten werden \cite{simatic_safety_integrated}.
+
+\section{Umsetzung der nicht-funktionalen Anforderungen}
+
+\subsection*{N1 – Integration in das TIA Portal}
+
+Die Einbindung der entwickelten Applikationsbausteine in das TIA Portal ist ein zentraler Schritt, um die Funktionalität praxisnah nutzbar zu machen.  
+Dazu werden Funktionsbausteine erstellt, Schnittstellen mit dem TM FAST definiert und die Anbindung an die Prozessabbildung realisiert.
+
+Ein wesentlicher Baustein ist \texttt{LTMFAST\_ControlREC}, der die azyklische Steuerung übernimmt. Er erhält die notwendigen Informationen von den Funktionsbausteinen \texttt{UserReadREC} und \texttt{UserWriteREC}. Darüber werden Zustände wie „Kommunikation gestartet“, „Kommunikation läuft“, „Kommunikation erfolgreich abgeschlossen“ oder „Fehler aufgetreten“ sowie die zu übertragenden Nutzdaten abgebildet.  
+Für jeden Funktionsbaustein muss eine Instanz angelegt und im Projekt mitgeführt werden (vgl.~Listing~\ref{Funktionsaufruf}).
+
+\begin{lstlisting}[language=Pascal, label={Funktionsaufruf},captionpos=b,caption={Funktionsaufruf von \#LTMFAST\_UserWriteREC\_Instance}]
+#LTMFAST_UserWriteREC_Instance(
+    req              := #loadrequest,
+    busy             => #Busy,
+    done             => #Done,
+    error            => #Error,
+    status           => #Status,
+    userDataContent  := #userDataContent,
+    TMFASTControlREC := 
+        "TestHandler_LTMFAST_ControlREC_DB".
+        LTMFAST_ControlREC_Instance
+);
+\end{lstlisting}
+
+Für die Steuerung des TM FAST dient der Baustein \texttt{LTMFAST\_dosing\_application}.  
+Er bildet die Schnittstelle zum TM FAST-Modul und setzt die Eingangssignale in das vorgesehene Bitmuster um (vgl.~Listing~\ref{bitmuster}).  
+Die Signale werden über die I/O-Schnittstelle übertragen und mit den Steuerbits \texttt{Hold}, \texttt{Load}, \texttt{CounterReset}, \texttt{StartDQ}, \texttt{Select\_Feedback\_Value}, \texttt{polarity} und \texttt{EnableDQ} umgesetzt.
+
+\begin{lstlisting}[language=Pascal, label={bitmuster},captionpos=b,caption={Generierung der Steuerbits für die zyklische Kommunikation}]
+FOR #ChannelIdx := 1 TO "Number_of_activ_Channels" DO
+    
+    #AktChannel := #Channels[#ChannelIdx];
+    #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0000;
+    #LoadRequestArray[#ChannelIdx] := FALSE;
+    
+    IF #AktChannel.Hold = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#1000;
+    ELSIF #AktChannel.CounterReset = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0100;
+    ELSIF #AktChannel.Load = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0800;
+        #LoadRequestArray[#ChannelIdx] := TRUE;
+    ELSIF #AktChannel.StartDQ = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#2000;
+    END_IF;
+    
+    IF #AktChannel.EnableDQ = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] :=
+        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#0400;
+    END_IF;
+    
+    IF #AktChannel.polarity = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] :=
+        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#0200;
+    END_IF;
+    
+    IF #AktChannel.Select_Feedback_Value = TRUE THEN
+        #Temp_CTRL_Bits[#ChannelIdx] :=
+        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#4000;
+    END_IF;
+    
+END_FOR;
+\end{lstlisting}
+
+Wie in Abbildung~\ref{fig:appbaustein} gezeigt, wird der Funktionsbaustein direkt im OB1 eingebunden und über den selbst definierten Datentyp (UDT) \texttt{Channels} angesteuert.  
+Dieser Datentyp enthält alle für die zyklische Kommunikation relevanten Steuerungen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Fotos/ApplikationsBausteinTIA.png}
+    \caption{Integration des Applikationsbausteins in OB1}
+    \label{fig:appbaustein}
+\end{figure}
+
+Die typische Steuerung des \texttt{LTMFAST\_dosing\_application}-Bausteins erfolgt durch das Eintragen azyklischer Daten in den zugehörigen Instanzdatenbaustein und das gleichzeitige Setzen der zyklischen Steuerungen für die gewünschten Kanäle.  
+Ein Anwendungsbeispiel ist in Listing~\ref{app_bsp} dargestellt.
+
+\begin{lstlisting}[language=Pascal, label={app_bsp},captionpos=b,caption={Beispiel zur Steuerung der zyklischen und azyklischen Kommunikation}]
+IF #LoadFlag = 1 THEN
+    #Channels[1].Load := 0;
+END_IF;
+
+IF #StartDQFlag = 1 THEN
+    #Channels[1].StartDQ := 0;
+END_IF;
+
+IF #Init = 0 THEN
+    #Init := 1;
+    #Channels[1].EnableDQ := 1;
+    "LTMFAST_dosing_application_DB".userDataContent[1] :=
+    16#3E8;
+    "LTMFAST_dosing_application_DB".userDataContent[15] :=
+    16#1;
+    #Channels[1].Load := 1;
+    #LoadFlag := 1;
+END_IF;
+
+IF ("FAST_FB".FB_IF_Channel[1] AND 16#8000) <> 0 THEN
+    #Channels[1].StartDQ := 1;
+    #StartDQFlag := 1;
+END_IF;
+\end{lstlisting}
+
+\subsection*{N2 – Funktionsumfang im Vergleich zur FM350-2}
+
+Alle für das Applikationsbeispiel \emph{Dosieranwendung} relevanten Funktionen wurden erfolgreich umgesetzt. Einschränkungen ergeben sich lediglich bei einzelnen Funktionen wie der Drehzahlmessung, die zusätzliche Eingänge am Inkrementalgeber erfordert und daher in dieser Architektur nicht vorgesehen ist.  
+
+Tabelle~\ref{tab:fm350_vergleich} zeigt eine Übersicht der implementierten und nicht implementierten Funktionen im Vergleich zur FM350-2.  
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{Funktion} & \textbf{Umsetzungsstatus} \\
+        \hline
+        Torfunktionen der FM350-2 & umgesetzt \\
+        \hline
+        Frequenzmessung & umgesetzt \\
+        \hline
+        Periodisches Zählen & umgesetzt \\
+        \hline
+        Einmaliges Zählen & nicht umgesetzt \\
+        \hline
+        Endloses Zählen & teilweise (nicht relevant für Dosierung) \\
+        \hline
+        Prozessalarme & teilweise umgesetzt, relevant \\
+        \hline
+        Drehzahlmessung & nicht umgesetzt \\
+        \hline
+    \end{tabular}
+    \caption{Vergleich des Funktionsumfangs mit der FM350-2}
+    \label{tab:fm350_vergleich}
+\end{table}
+
+Damit wird deutlich, dass alle für die Dosieranwendung notwendigen Kernfunktionen abgedeckt sind. Die teilweise umgesetzten Prozessalarme sind für die Anwendung relevant, werden jedoch in einem reduzierten Umfang realisiert. Nicht umgesetzte Funktionen wie das einmalige Zählen oder die Drehzahlmessung betreffen dagegen Bereiche, die für die Dosierung keine wesentliche Rolle spielen.
+
+\subsection*{N3 – Ressourcenschonung}
+Die FPGA-Auslastung wird durch Optimierungen reduziert. Abbildung \ref{fig:logikelemente_kanal} zeigt den Trend des Ressourcenverbrauchs.
 
 Das VHDL-Design nutzt gezielt Arrays und Bitfelder, um den Ressourcenverbrauch im FPGA zu minimieren. Die Anzahl der tatsächlich verwendeten Kanäle wird zentral über das Generic `CHANNEL\_COUNT` festgelegt (Lst. \ref{lst:array_generate}). Alle kanalbezogenen Signale (wie Zählerstände, Statusflags, Steuerbits) werden als Arrays der Länge `CHANNEL\_COUNT` deklariert. Dadurch werden nur so viele Flipflops und Logikelemente instanziiert, wie für die aktivierten Kanäle tatsächlich benötigt werden.
 
@@ -63,342 +422,76 @@ Auch die Steuer- und Feedbackschnittstellen werden als Bitfelder (`std\_logic\_v
             width=0.9\textwidth,
             height=7cm,
             xlabel={Anzahl der Kanäle},
-            ylabel={Verbrauchte Logikelemente},
+            ylabel={Verbrauchte Logikelemente [\%]},
             xmin=1, xmax=14,
-            ymin=12000, ymax=20000,
-            xtick={1,2,...,16},
-            ytick={12000,13000,...,20000},
+            ymin=50, ymax=80,
+            xtick={1,2,...,14},
+            ytick={50,55,...,80},
             grid=both,
             grid style={dashed,gray!30},
             legend style={at={(0.5,-0.2)},anchor=north,legend columns=-1},
             ]
             
-            % Messwerte
+            % Messwerte in Prozent umgerechnet (Wert / 24624 * 100)
             \addplot[
                 color=blue,
                 mark=*,
                 thick
             ] coordinates {
-                (1,12928)
-                (2,13378.33)
-                (3,13828.67)
-                (4,14299.00)
-                (5,14729.33)
-                (6,15179.67)
-                (7,15630.00)
-                (8,16018)
-                (9,16468.33)
-                (10,16989.67)
-                (11,17369.00)
-                (12,17858.33)
-                (13,18269.67)
-                (14,18720)
+                (1,52.5)
+                (2,54.3)
+                (3,56.2)
+                (4,58.1)
+                (5,59.8)
+                (6,61.6)
+                (7,63.5)
+                (8,65.1)
+                (9,66.9)
+                (10,69.0)
+                (11,70.5)
+                (12,72.5)
+                (13,74.2)
+                (14,76.0)
             };
             \addlegendentry{Messwerte}
         \end{axis}
     \end{tikzpicture}
-    \caption{Verbrauchte Logikelemente in Abhängigkeit von der Kanalanzahl}
-    \label{fig:logikelemente_kanal}
+    \caption{Prozentualer Verbrauch der Logikelemente in Abhängigkeit von der Kanalanzahl (Maximal 24\,624 LEs)}
+    \label{fig:logikelemente_prozent}
 \end{figure}
 
-Durch diese konsequente Nutzung von Arrays, Bitfeldern und Generate-Strukturen
-wird der FPGA optimal ausgelastet und der Ressourcenverbrauch auf das tatsächlich
-benötigte Minimum reduziert. Für jeden nicht benutzten Kanal werden dabei im
-Mittel etwa 450 Logikelemente (ca. 1,83\%) eingespart. 
+Durch die konsequente Nutzung von Arrays, Bitfeldern und Generate-Strukturen wird der FPGA optimal ausgelastet und der Ressourcenverbrauch auf das tatsächlich benötigte Minimum reduziert. Für jeden nicht genutzten Kanal werden im Mittel etwa 450 Logikelemente eingespart, was rund 1,8\% der Gesamtkapazität entspricht.
 
-Im Diagramm \ref{fig:logikelemente_kanal} ist erkennbar, dass bei nur einem Kanal bereits
-12\,928 Logikelemente (etwa 53\,\% der verfügbaren Ressourcen) belegt sind. Mit jedem
-zusätzlichen Kanal steigt der Verbrauch linear um ca. 450 Logikelemente an. Dieser
-lineare Trend verdeutlicht, dass die Architektur eine sehr gute Skalierbarkeit aufweist
-und der Ressourcenverbrauch pro Kanal vergleichsweise gering bleibt. Dadurch können
-auch Konfigurationen mit einer hohen Kanalanzahl effizient realisiert werden, ohne
-die FPGA-Grenzen frühzeitig auszuschöpfen.
+In Abbildung~\ref{fig:logikelemente_prozent} ist erkennbar, dass bereits bei nur einem Kanal etwa 12 928 Logikelemente belegt sind, was rund 53\% der verfügbaren Ressourcen entspricht. Mit jedem zusätzlichen Kanal steigt die Auslastung linear um ungefähr 1,8\%. Dieser lineare Trend verdeutlicht die gute Skalierbarkeit der Architektur: Der Ressourcenverbrauch pro Kanal bleibt vergleichsweise gering, sodass auch Konfigurationen mit einer hohen Kanalanzahl effizient umgesetzt werden können, ohne die FPGA-Grenzen frühzeitig zu erreichen.
 
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Fehler- und Diagnosestrategien}
-Das VHDL-Design implementiert eine systematische Fehlererkennung und sichere Fehlerbehandlung auf Kanalebene. Für jeden Kanal wird das Signal `system\_fault(i)` berechnet, das verschiedene Fehlerquellen überwacht:
+\subsection*{N4 – Verbesserte Reaktionszeit}
 
-\begin{itemize}
-    \item \textbf{DI\_QI\_BAD}: Fehler am zugeordneten Digitaleingang (z.B. Drahtbruch, Kurzschluss)
-    \item \textbf{DQ\_QI\_BAD}: Fehler am zugeordneten Digitalausgang
-    \item \textbf{RS485\_QI\_BAD}: Fehler an den RS485-Ein-/Ausgängen (z.B. Kommunikationsfehler, Pegelstörung)
-    \item \textbf{LP\_QI\_BAD}: Fehler in der Spannungsversorgung (Low Power)
-\end{itemize}
+Aufgrund der parallelen Verarbeitung in einem FPGA ist es möglich mehrere Funktionen gleichzeitig abzuarbeiten. Einziger limitierender Faktor ist die maximale
+I/O-Belegung der physischen Schnittstelle und die Anzahl der verfügbaren Logikelemente. Dadurch ist die Verarbeitungs- und Reaktionszeit der TM Fast, mit 20ns, deutlich schneller als die der FM-350/2, mit 50 µs.
 
-Die Fehler werden im Prozess `fault\_dq\_proc` für jeden Kanal individuell ausgewertet. Sobald ein Fehler erkannt wird (`system\_fault(i) = '1'`), wird der entsprechende Ausgang (DQ oder RS485) automatisch in einen definierten Zustand (SAFE State) überführt. Der SAFE State ist abhängig von der konfigurierten Polarität und sorgt dafür, dass im Fehlerfall keine unkontrollierten Aktionen ausgelöst werden.
+\subsection*{N5 – Erweiterbarkeit}
 
-Die Fehlerdetails werden über das Feedback-Interface (z.B. `FB\_IF7`) an die SPS rückgemeldet. Hierbei werden die Fehlerbits für DI, DQ, RS485 und die Kanalnummer gesetzt, sodass die Steuerung gezielt auf den Fehler reagieren kann. Ist kein Fehler vorhanden, werden die Fehlerbits explizit gelöscht.
+Die modulare Architektur des Designs erlaubt eine einfache Erweiterung über die aktuell umgesetzten 14 Kanäle hinaus. Durch die Erhöhung der verfügbaren I/O-Schnittstellen kann die Kanalanzahl ohne Anpassung der Grundstruktur auf bis zu 25 Kanäle skaliert werden. Dabei bleibt der Ressourcenverbrauch dank des konstanten Aufwands von etwa 450 Logikelementen pro Kanal gut kalkulierbar.  
 
-Zusätzlich wird im Fehlerfall der Ausgang sofort deaktiviert und der Status `StartDQ\_active` zurückgesetzt, um einen sicheren Anlagenzustand zu gewährleisten. Im Fall eines globalen CPU-Stop (z.B. durch `CPU\_STOP = '1'` und `WR\_REC\_Control = x"00000000"`), werden alle Ausgänge ebenfalls in den SAFE State gesetzt und alle Statusregister zurückgesetzt.
+Das vorgestellte VHDL-Design wurde gezielt mit Blick auf Erweiterbarkeit entwickelt. Zentrale Konzepte wie Generics, Array-Typen und Generate-Blöcke ermöglichen es, zusätzliche Kanäle oder neue Funktionalitäten einzubinden, ohne die bestehende Logik verändern zu müssen. Die Anzahl der Kanäle wird ausschließlich über die Konstante \texttt{CHANNEL\_COUNT} festgelegt. Ein einfaches Anpassen dieses Werts sowie der Mapping-Arrays (\texttt{CHANNEL\_MAP\_IN\_CH}, \texttt{CHANNEL\_MAP\_OUT\_CH}) reicht aus, um das System auf eine größere Kanalanzahl zu erweitern.  
 
-Dieses Konzept stellt sicher, dass sowohl Einzelkanalfehler als auch globale Fehler jederzeit erkannt und sicher behandelt werden. Die SPS erhält über die Rückmeldebits eine detaillierte Diagnose und kann gezielt Maßnahmen einleiten.
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Synchronisation und Zustandsautomaten}
+Darüber hinaus ist die Architektur auch für funktionale Erweiterungen vorbereitet. Neue Messverfahren wie Frequenz- oder Impulsbreitenmessung können modular als zusätzliche Komponenten (z.\,B. \texttt{FB82\_Freq32\_e}) pro Kanal eingebunden werden. Die Steuer- und Feedbackschnittstellen sind als Bitfelder und Arrays ausgelegt, sodass weitere Steuerbits oder Statusinformationen ohne tiefgreifende Änderungen ergänzt werden können. Auch die Fehler- und Diagnoselogik ist pro Kanal gekapselt und lässt sich flexibel um zusätzliche Überwachungsmechanismen erweitern.  
 
-Die Synchronisation der Ladevorgänge und die Überwachung der Zählergrenzen erfolgt im VHDL-Design über einen einfachen, aber effektiven Zustandsautomaten pro Kanal, der durch das Signal \texttt{load\_delay\_cnt(i)} realisiert wird. Dieser Zustandsautomat steuert, wann ein neuer Sollwert (Obergrenze) aus dem azyklisch übertragenen \texttt{WR\_REC} übernommen wird und wie auf synchrone Steuerbefehle wie \texttt{Load} oder \texttt{StartDQ} reagiert wird.
+Durch die klare Trennung von Steuer-, Daten- und Diagnosepfaden sowie die konsequente Nutzung von Generate-Strukturen bleibt das Design flexibel, wartbar und zukunftssicher. Dies ermöglicht eine nachhaltige Weiterentwicklung der Applikation, ohne dass grundlegende Architekturänderungen erforderlich sind.  
 
-Der Ablauf ist wie folgt:
-\begin{itemize}
-    \item Bei einer Flanke auf \texttt{WR\_REC\_NEW} wird der neue Sollwert für den jeweiligen Kanal in \texttt{next\_upper\_limit(i)} zwischengespeichert.
-    \item Erst wenn das synchrone Steuersignal \texttt{Load(i)} gesetzt wird, übernimmt der Zustandsautomat im Zustand \texttt{load\_delay\_cnt(i) = 0} den neuen Wert in \texttt{upper\_Limit(i)} und prüft sofort, ob der aktuelle Zählerstand bereits das Limit erreicht hat.
-    \item Der Automat wechselt in den Zustand \texttt{1}, solange \texttt{Load(i)} aktiv ist, und kehrt nach Loslassen des Signals wieder in den Grundzustand zurück.
-    \item Das Limit-Flag \texttt{LimitReached(i)} wird gesetzt, sobald der Zählerstand die Obergrenze erreicht oder ein Überlauf erkannt wird. Mit dem Steuersignal \texttt{StartDQ(i)} kann dieses Flag zurückgesetzt und ein neuer Dosierzyklus gestartet werden.
-\end{itemize}
+\section{Validierung und Tests}
 
-Durch diese Trennung von asynchroner Sollwertübertragung (über \texttt{WR\_REC}) und synchroner Steuerung (über \texttt{CTRL\_IF}/\texttt{Load}) wird sichergestellt, dass Werteänderungen nur gezielt und deterministisch übernommen werden. Gleichzeitig verhindert der Zustandsautomat Race Conditions und garantiert, dass keine Sollwertänderung während eines laufenden Zyklus unbemerkt bleibt.
+Die Funktionalität des entwickelten VHDL-Designs wurde durch Simulationen und Tests umfassend nachgewiesen. Wellenformanalysen bestätigen die deterministische und zeitgenaue Arbeitsweise des Systems.  
 
-Ein Auszug aus dem VHDL-Code illustriert dieses Prinzip:
-\begin{lstlisting}[language=VHDL, basicstyle=\ttfamily\footnotesize, caption={Zustandsautomat zur synchronisierten Sollwertübernahme und Limitüberwachung}, captionpos=b, label={lst:state_machine_load_limit}]
-case load_delay_cnt(i) is
-    when 0 =>
-        if Load(i) = '1' then
-            upper_Limit(i)    <= next_upper_limit(i);
-            load_delay_cnt(i) <= 1;
-            if unsigned(enc_count(i)) >= 
-            unsigned(next_upper_limit(i)) then
-                LimitReached(i) <= '1';
-            else
-                LimitReached(i) <= '0';
-            end if;
-        end if;
-    when 1 =>
-        if Load(i) = '0' then
-            load_delay_cnt(i) <= 0;
-        end if;
-    when others =>
-        load_delay_cnt(i) <= 0;
-end case;
-\end{lstlisting}
+Die Architektur ist gezielt auf eine hohe Testbarkeit ausgelegt. Durch die konsequente Trennung von Steuer- und Datenpfaden sowie die Nutzung von Arrays und Generate-Blöcken kann jeder Kanal unabhängig simuliert und überprüft werden. Alle kanalbezogenen Signale sind als Arrays deklariert, sodass im Test gezielt einzelne Kanäle adressiert werden können, ohne unbeabsichtigte Seiteneffekte auf andere Kanäle auszulösen.  
 
-Dieses Konzept sorgt für eine robuste, deterministische und synchronisierte Steuerung aller Zähl- und Dosierprozesse im FPGA.
+Die Steuer- und Feedbackschnittstellen sind klar voneinander getrennt und als Bitfelder organisiert. Dadurch lassen sich in der Simulation gezielt Steuerbits (z.\,B. \texttt{Load}, \texttt{StartDQ}, \texttt{CounterReset}) für einzelne Kanäle setzen und deren Reaktion im Design beobachten. Auch die Fehler- und Diagnoselogik ist pro Kanal gekapselt, sodass Fehlerbedingungen (z.\,B. \texttt{DI\_QI\_BAD}, \texttt{DQ\_QI\_BAD}) gezielt getestet werden können.  
 
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Zyklische und azyklische Kommunikation}
+Die resultierenden Signalverläufe wurden in \textit{Questa} aufgezeichnet. Abbildung~\ref{fig:waveform} zeigt einen Ausschnitt dieser Wellenanalyse, in der sowohl die zyklischen Steuerbits als auch die azyklischen Schnittstellen \texttt{WR\_REC} und \texttt{RD\_REC} sichtbar sind.  
 
-Das VHDL-Design trennt klar zwischen zyklischer und azyklischer Kommunikation, um Prozesssicherheit und Flexibilität zu maximieren. Die gesamte Kommunikation erfolgt über drei Schnittstellen: CTRL\_IF (zyklische Steuerung), FB\_IF (zyklisches Feedback), WR\_REC (azyklische Sollwertübertragung) und RD\_REC (azyklisches Auslesen).
+Gut erkennbar ist, dass die zyklischen Steuerbits (z.\,B. \texttt{CTRL\_IF0}, \texttt{CTRL\_IF1}) in jedem SPS-Zyklus gesetzt und über das Prozessabbild verarbeitet werden. Parallel dazu laufen azyklische Operationen über die \texttt{WR\_REC}- und \texttt{RD\_REC}-Schnittstellen ab, die nur bei Bedarf aktiviert werden.  
 
-Die zyklischen Schnittstellen sind für zeitkritische Steuerungsaufgaben konzipiert und haben jeweils eine Datenmenge von 8 Doppelwörter mit jeweils 64 Bit. Bei einer Kanalanzahl von 14 bleibt dadurch nur 1 Word pro Kanal und 1 Doppelwort für zusätzliche Parameter übrig. Dies ist ausreichend für die Übertragung von Steuer- und Statusinformationen, jedoch nicht für umfangreiche Sollwertänderungen.
-
-Dafür ist die azyklische Kommunikation geeignet, da Sollwerte nur selten im laufenden Prozess geändert werden sollen und die azyklische Kommunikation eine einstellbare Datenmenge hat. Sie wurde auf 64 Byte, also 16 Doppelwörter, eingestellt. 
-Dadurch ist es möglich, alle Sollwerte der 14 Kanäle in einem einzigen azyklischen Transfer zu übertragen und noch 2 Doppelwörter für zukünftige Erweiterungen oder zusätzliche Parameter zu reservieren.
-
-\textbf{Zyklische Steuerung (CTRL\_IF):}  
-Zyklische Steuerbefehle werden über die CTRL\_IF-Schnittstelle übertragen und steuern in jedem SPS-Zyklus zentrale Funktionen wie Reset, Load, Hold, StartDQ oder EnableDQ für jeden Kanal. Diese Steuerbits werden im Prozess \texttt{ctrl\_fb\_mapping\_proc} aus den CTRL\_IF-Worten extrahiert und auf die internen Steuersignale der jeweiligen Kanäle gemappt. Dadurch ist eine deterministische, taktsynchrone Steuerung aller Kanäle gewährleistet.
-
-Die einzelnen Steuerbits haben dabei folgende Funktionen:  
-
-\begin{itemize}
-    \item \textbf{CounterReset:} Setzt den Zähler des jeweiligen Kanals manuell zurück (Software-Reset für den Encoder).
-    \item \textbf{EnableDQ:} Aktiviert den Digitalausgang des Kanals. Ist das Signal auf \texttt{0}, bleibt der Ausgang in einem definierten Zustand (abhängig von der Polarity-Einstellung). Für den Normalbetrieb wirkt es mit \texttt{StartDQ\_active} zusammen.
-    \item \textbf{Load:} Löst das Laden des Sollwertes aus \texttt{UserDataContent} über  den azyklischen Befehl \texttt{WR\_REC} in den Zähler aus. Dabei wird überprüft, ob das neue Limit direkt erreicht wurde (falls der neue Sollwert kleiner als der aktuelle Zählerstand ist, wird der Zähler auf 0 gesetzt).
-    \item \textbf{Hold:} Friert den aktuellen Zählerstand ein und verhindert, dass der Encoder weiter hoch- oder herunterzählt.
-    \item \textbf{StartDQ:} Löscht das \texttt{LimitReached}-Latch und startet einen neuen Zähl- bzw. Ausgabzyklus. Der Ausgang bleibt aktiv, bis \texttt{StartDQ} erneut getriggert wird.
-    \item \textbf{FBIF\_Control:} Bestimmt die Rückmeldung an die SPS. Bei \texttt{1} wird die Frequenzmessung (\texttt{frequency\_speed}, in Impulsen pro Sekunde) ausgegeben, bei \texttt{0} der Encoderzählerstand (\texttt{enc\_count}).
-    \item \textbf{Polarity:} Legt die Polarität des Ausgangs fest. Bei \texttt{0} bedeutet dies: aktiver Zustand = \texttt{1}, sicherer Zustand = \texttt{0}. Bei \texttt{1} kehrt sich dies um. Diese Einstellung wirkt sich sowohl auf den Normalbetrieb als auch auf den Fehlerfall aus.
-\end{itemize}
-
-\textbf{Zyklisches Feedback (FB\_IF):}  
-Das Feedback-Interface (FB\_IF) liefert in jedem SPS-Zyklus aktuelle Status- und Prozesswerte für alle Kanäle. Jeder Kanal stellt ein 16-Bit-Wort bereit, dessen Bitstruktur wie folgt aufgebaut ist:
-\begin{itemize}
-    \item \textbf{Bit 0--14:} Aktueller Prozesswert (z.B. Zählerstand oder Frequenz).
-    \item \textbf{Bit 15:} Spiegelung des \texttt{Select\_Feedback\_Value}-Flags (Diagnose/Rückmeldung).
-    \item \textbf{Bit 16 (MSB):} Status des Ventilausgangs (1 = Ausgang ein, 0 = Ausgang aus).
-\end{itemize}
-Zusätzlich werden über FB\_IF Fehler- und Statussignale übertragen:
-\begin{itemize}
-    \item \textbf{ErrorChannelNumber:} Nummer des letzten Kanals mit Fehler (0 = kein Fehler).
-    \item \textbf{DI\_DQ\_BAD:} Bit-codierter Fehlerstatus für Digitaleingänge/-ausgänge.
-    \item \textbf{RS485\_LP\_BAD:} Bit-codierter Fehlerstatus für RS485 oder L+.
-    \item \textbf{StatusCode:} Applikations-Fehlercode und Aktivitätsanzeige.
-\end{itemize}
-Damit ist eine kontinuierliche Überwachung und Diagnose aller Kanäle durch die SPS möglich.
-
-\textbf{Azyklische Sollwertübertragung (WR\_REC):}  
-Azyklische Sollwertübertragungen erfolgen über die WR\_REC-Schnittstelle. Neue Obergrenzen (Sollwerte) für die Zählerkanäle werden als 32-Bit-Werte übertragen und im Prozesszyklus bei einer Flanke auf \texttt{WR\_REC\_NEW} in die Buffer-Variable \texttt{next\_upper\_limit(i)} übernommen. Erst wenn das zyklische Steuersignal \texttt{Load(i)} gesetzt wird, übernimmt der Kanal den neuen Sollwert in die aktive Obergrenze (\texttt{upper\_Limit(i)}). Dadurch wird verhindert, dass Sollwertänderungen während eines laufenden Dosierzyklus unbemerkt übernommen werden.
-
-Dieses Zusammenspiel sorgt für hohe Prozesssicherheit: Azyklische Änderungen werden gepuffert und erst durch ein gezieltes, zyklisches Steuersignal wirksam. Gleichzeitig bleibt das System flexibel, da Sollwerte jederzeit aktualisiert werden können, ohne den laufenden Betrieb zu stören. Die klare Trennung der Kommunikationswege und die Synchronisation über Steuersignale verhindern Wettlaufschaltung (Race Conditions), das Auslösen von undefinierten Zuständen aufgrund von Zeitverhalten und ermöglichen eine deterministische, fehlertolerante Steuerung aller Kanäle.
-
-Desweiteren wird über den WR\_REC das folgende Signal übertragen:
-
-\begin{itemize}
-    \item \textbf{WR\_REC\_Control:} Globales Steuersignal, das das Verhalten bei CPU-Stopp festlegt. Bei \texttt{x"00000000"} wird ein \emph{Abort Mode} aktiviert (Ausgänge sofort ausgeschaltet, alle Kanäle zurückgesetzt). In allen anderen Fällen läuft der \emph{Continue Mode}, bei dem die Kanäle ihre aktuelle Operation fortsetzen.
-\end{itemize}
-
-
-Ein Auszug aus dem VHDL-Code illustriert das Prinzip:
-\begin{lstlisting}[language=VHDL, basicstyle=\ttfamily\footnotesize, 
-  label={lst:wrrec_buffer},captionpos=b,caption={Übernahme azyklischer Sollwerte aus WR\_REC in die Kanalpuffer}]
-if WR_REC_NEW = '1' then
-    next_upper_limit(i) <= 
-    std_logic_vector(unsigned(WR_RECxx) - 1);
-end if;
-...
-if Load(i) = '1' then
-    upper_Limit(i) <= next_upper_limit(i);
-end if;
-\end{lstlisting}
-
-Das Design trennt klar zwischen zyklischer (CTRL\_IF) und azyklischer (WR\_REC) Kommunikation. Zyklische Steuerbefehle steuern zentrale Funktionen wie Reset, Load, Hold, StartDQ oder EnableDQ. Azyklische Sollwertübertragungen werden gepuffert und erst durch ein zyklisches Steuersignal wirksam. Dadurch bleibt das System flexibel und prozesssicher.
-Jeder Kanal stellt ein 16-Bit-Wort bereit, das Prozesswert, Diagnose- und Statusinformationen enthält. Fehler- und Statussignale sind klar codiert und ermöglichen eine gezielte Diagnose durch die SPS.
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Sicherheit bei CPU\_STOP}
-
-Im Fehlerfall oder bei einem CPU\_STOP muss das System in einen definierten Zustand übergehen, um unkontrollierte Aktionen und potenzielle Gefährdungen zu verhindern. Dies wird im VHDL-Design durch gezielte Abfragen und Rücksetzungen aller relevanten Steuer- und Ausgangssignale realisiert.
-
-Im gezeigten Code wird der sichere Zustand insbesondere durch die Abfrage von \texttt{CPU\_STOP} und \texttt{WR\_REC\_Control = x"00000000"} sichergestellt:
-
-\begin{itemize}
-    \item Bei \texttt{WR\_REC\_Control = x"00000000"} werden alle Ausgänge sofort ausgeschaltet und alle Werte aller Kanäle zurückgesetzt.
-    \item Bei \texttt{WR\_REC\_Control = x"00000001"} wird der \emph{Continue Mode} aktiviert, bei dem die Kanäle ihre aktuelle Operation fortsetzen und nach dem Beenden der Operation in einen definierten Zustand übergehen, aus dem die Operation bei einem CPU-Start wieder aufgenommen werden kann.
-\end{itemize}
-
-So werden im Fehlerfall oder bei CPU\_STOP alle Status- und Ausgangssignale gezielt zurückgesetzt, sodass bei einem Neustart des Systems keine unerwünschten Zustände mehr vorhanden sind.
-
-Ein Auszug aus dem Code illustriert das Verhalten:
-\begin{lstlisting}[language=VHDL, basicstyle=\ttfamily\footnotesize,  
-  label={lst:cpu_stop_safe},captionpos=b,caption={Rücksetzen aller Ausgänge und Register im CPU\_STOP-Fall}]
-StartDQ(i) <= '0'; -- always 0 when CPU-STOP
-    if WR_REC_Control = x"00000000" then
-            -- Abort mode: Immediately switch outputs off, 
-            -- reset all state
-            CounterReset(i) <= '1';
-            polarity(i) <= '0';
-            EnableDQ(i) <= '0';
-            Load(i) <= '0';
-            HoldSW(i) <= '0';
-            FBIF_Control(i) <= '0';
-    else
-        -- Continue mode: Group continues working as if 
-        -- nothing happened until upper_limit is reached
-            if StartDQ_active(i) = '1' then
-            EnableDQ(i) <= '1'; 
-            end if;
-    end if;
-\end{lstlisting}
-
-Durch diese Maßnahmen wird garantiert, dass das System im Fehlerfall oder bei einem CPU\_STOP deterministisch und zuverlässig in einen definierten Zustand übergeht. Dabei handelt es sich jedoch nicht um eine SIL-Klassifizierung oder funktionale Sicherheit im engeren Sinne, sondern vielmehr um die Gewährleistung eines stabilen Prozesses mit klar definierten Zuständen im Fehlerfall. Auf diese Weise werden ungewollte Schalthandlungen oder undefinierte Zustände verhindert. Im Gegensatz dazu sind für funktionale Sicherheit spezielle F-CPUs und Safety-Module vorgesehen, wie sie im Rahmen von SIMATIC Safety Integrated angeboten werden \cite{simatic_safety_integrated}.
-
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Flexibilität der Kanalzuordnung}
-
-Aufgrund des Designs von Dosieranlagen wird bei ihnen immer nur in eine Richtung abgefüllt. Daher muss bei Inkrementalgebern lediglich auf die A-Flanke, die Impulsflanke, geachtet werden, während das B-Ausgangssignal ignoriert werden kann. Dies ermöglicht, dass für jeden Kanal nur ein digitaler Eingang benötigt wird.  
-
-Das VHDL-Design unterstützt diese Struktur durch spezielle Mapping-Arrays, die eine flexible Zuordnung der Ein- und Ausgänge zu den einzelnen Kanälen erlauben. Die Arrays \texttt{CHANNEL\_MAP\_IN\_CH} und \texttt{CHANNEL\_MAP\_OUT\_CH} definieren für jeden logischen Kanal, welcher physikalische Eingang bzw. Ausgang genutzt wird. Auf diese Weise kann das Design problemlos an verschiedene Hardware-Konfigurationen oder Kundenanforderungen angepasst werden, ohne die eigentliche Kanal-Logik zu ändern.
-
-Im Beispiel werden die ersten acht Kanäle als klassische DI/DQ-Kanäle betrieben, 
-während die weiteren Kanäle flexibel als RS485 oder zusätzliche DIQ-Kanäle
-genutzt werden.
-
-Standardmäßig werden die ersten acht Kanäle als klassische DI/DQ-Kanäle betrieben, während die weiteren Kanäle flexibel als RS485 oder zusätzliche DIQ-Kanäle genutzt werden können. Die Auswahl des Eingangstyps erfolgt dynamisch im Code.
-
-Jeder Kanal greift über diese Mapping-Arrays auf die korrekten Ein- und Ausgänge zu:
-\begin{lstlisting}[language=VHDL,caption={Eingangs- und Ausgangszuordnung mithilfe von Mapping-Arrays},label={lst:io_mapping},captionpos=b]
-input_selector(i) <= RS485_RX(CHANNEL_MAP_IN_CH(i)) when 
-i > 8 else DI(CHANNEL_MAP_IN_CH(i));
-...
-DQ(CHANNEL_MAP_OUT_CH(i)) <= out_val;
-\end{lstlisting}
-
-
-Dadurch ist es möglich, die Kanalbelegung zentral zu ändern, etwa um bestimmte Kanäle als RS485, Digitaleingang oder Digitalausgang zu nutzen. Auch bei Änderungen der Hardware (z.B. andere Verdrahtung oder Erweiterung der Kanäle) muss lediglich das Mapping angepasst werden, ohne dass die restliche Kanal- oder Prozesslogik betroffen ist. Dies erhöht die Wartbarkeit und Wiederverwendbarkeit des Designs erheblich und erlaubt eine schnelle Anpassung an neue Anforderungen.
-
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Automatische Überlaufkompensation}
-
-Beim Verlassen auf Hardware kommt es stets zu einem zeitlichen Verzug, der durch Auswerten und physikalisches Schalten entsteht. 
-Dies betrifft auch die Abfüllung von Flüssigkeiten, da trotz schneller Reaktionszeiten immer ein gewisser Verzug, bis das Ventil mechanisch oder hydraulisch vollständig geschlossen ist \cite{jumo_regelungstechnik}.
-
-Um den beschriebenen Nachlaufeffekt zu kompensieren und eine präzise Dosierung zu gewährleisten, existieren verschiedene Lösungsansätze: 
-\begin{enumerate}
-    \item \textbf{Prädiktion des Abschaltzeitpunkts} \\
-    Der optimale Zeitpunkt für das Schließen des Ventils wird berechnet. Grundlage bilden die aktuelle Durchflussrate sowie die bekannte Ventil-Schließzeit. So lässt sich der Nachlauf berücksichtigen und die Zielmenge genauer erreichen.
-    
-    \item \textbf{Zweistufige Dosierung} \\
-    Das Produkt wird zunächst mit hoher Geschwindigkeit bis auf etwa 90\% der Zielmenge eingefüllt, anschließend erfolgt eine langsame, präzise Befüllung, um die gewünschte Endmenge exakt zu erreichen.
-    
-    \item \textbf{PID-geregelte Dosierung} \\
-    Ein PID-Regler sorgt durch kontinuierliche Anpassung an die Abweichung zwischen Soll- und Ist-Wert für hohe Genauigkeit, insbesondere bei dynamischen Prozessen.
-    
-    \item \textbf{Massendurchflussmesser} \\
-    Die direkte Messung der eingefüllten Masse ermöglicht besonders präzise Dosierung, da Schwankungen im Volumenstrom oder Materialeigenschaften automatisch berücksichtigt werden.
-\end{enumerate}
-
-\subsection*{Implementierte automatische Überlaufkompensation}
-
-In der Implementierung wird eine automatische Überlaufkompensation realisiert, um die Dosiergenauigkeit trotz Nachlauf- und Verzögerungseffekten zu gewährleisten. 
-Jeder Kanal besitzt einen 32-Bit-Zähler, dessen oberes Limit beim Start einer Dosierung aus den Sollwerten übernommen wird. Sobald der aktuelle Zählerwert das Limit erreicht oder überschreitet, wird das Signal \texttt{LimitReached} gesetzt und der Ausgang deaktiviert.  
-
-Nach Erreichen des Sollwertes wird der Zähler zurückgesetzt, und der Nachlauf, der weiterhin vom Encoder erfasst wird, wird auf den Zähler addiert. Somit ergibt sich bei der ersten Abfüllung:
-
-\[
-V_\text{total} = V_\text{target} + V_\text{current\_overflow}
-\]
-
-In den nachfolgenden Zyklen gilt:
-
-\[
-V_\text{total} = V_\text{target} + V_\text{current\_overflow} - V_\text{last\_overflow}
-\]
-
-Mit konstantem Überlauf:
-
-\[
-V_\text{current\_overflow} = V_\text{last\_overflow}
-\]
-
-wird die Nachlaufmenge aus dem vorherigen Zyklus berücksichtigt und im nächsten Zyklus nicht erneut abgefüllt, da sie bei kontinuierlichem Abfüllen durch den Ventilnachlauf automatisch hinzugefügt wird. Dies ermöglicht eine konstante Dosiergenauigkeit.
-
-\subsection*{Vor- und Nachteile der Überlaufkompensation}
-
-Die Überlaufkompensation bietet den Vorteil, dass sie die Systemträgheit, insbesondere die mechanische Nachlaufzeit des Ventils, berücksichtigt und so systematische Fehler durch den Nachlauf kompensiert. Unter konstanten Bedingungen wie gleichbleibendem Druck, konstanter Temperatur und gleichbleibender Viskosität arbeitet das Verfahren sehr genau. Außerdem wird keine zusätzliche Hardware benötigt, und die Methode ist selbstlernend beziehungsweise adaptiv, da jeweils der zuletzt gemessene Überlaufwert für die nächste Dosierung verwendet wird. Dadurch eignet sich die Überlaufkompensation besonders gut für kontinuierliche Prozesse. 
-
-Nachteilig ist, dass bei schwankenden Bedingungen, beispielsweise Änderungen von Druck, Temperatur oder Viskosität, die Genauigkeit der Kompensation beeinträchtigt werden kann. Nach einem Neustart steht für die erste Dosierung kein Überlaufwert zur Verfügung. Störungen wie Luftblasen im System können zu falschen Überlaufwerten führen, und bei einem Produktwechsel muss das System zunächst neu eingelernt werden, um wieder präzise zu arbeiten. Bei stark unterschiedlichen Füllmengen kann es zudem erforderlich sein, mit verschiedenen Überlaufwerten zu arbeiten, um weiterhin eine genaue Dosierung sicherzustellen.
-
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Erweiterbarkeit für zukünftige Anforderungen}
-
-Das vorgestellte VHDL-Design ist gezielt auf Erweiterbarkeit ausgelegt, um zukünftige Anforderungen wie zusätzliche Messmodi, neue Schnittstellen oder komplexere Diagnosemechanismen einfach integrieren zu können. Dies wird durch die konsequente Nutzung von Generics, Array-Typen und Generate-Blöcken erreicht. Die zentrale Konstante `CHANNEL\_COUNT` legt die Anzahl der Kanäle fest, sodass durch einfaches Erhöhen dieses Werts und Anpassen der Mapping-Arrays (`CHANNEL\_MAP\_IN\_CH`, `CHANNEL\_MAP\_OUT\_CH`) weitere Kanäle hinzugefügt werden können, ohne die bestehende Logik zu verändern.
-
-Neue Funktionen wie alternative Messverfahren (z.B. Frequenzmessung, Impulsbreitenmessung) lassen sich modular als zusätzliche Komponenten (wie `FB82\_Freq32\_e`) pro Kanal einbinden. Die Steuer- und Feedbackschnittstellen sind als Bitfelder und Arrays organisiert, sodass weitere Steuerbits oder Statusinformationen problemlos ergänzt werden können. Auch die Fehler- und Diagnoselogik ist pro Kanal gekapselt und kann durch zusätzliche Überwachungsmechanismen erweitert werden.
-
-Durch die klare Trennung von Steuer-, Daten- und Diagnosepfaden sowie die Nutzung von Generate-Strukturen ist das Design flexibel anpassbar und für zukünftige Erweiterungen vorbereitet. Dies ermöglicht eine nachhaltige Weiterentwicklung der Applikation, ohne dass grundlegende Architekturänderungen erforderlich sind.
-
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Testbarkeit und Simulation}
-
-Die Architektur des VHDL-Designs ist gezielt auf eine hohe Testbarkeit und einfache Simulation ausgelegt. Durch die konsequente Trennung von Steuer- und Datenpfaden sowie die Verwendung von Arrays und Generate-Blöcken kann jeder Kanal unabhängig simuliert und getestet werden. Die zentrale Steuerung erfolgt über klar definierte Schnittstellen (CTRL\_IF, WR\_REC), sodass gezielte Stimuli für einzelne Kanäle oder Funktionen einfach im Testbench gesetzt werden können.
-
-Im gezeigten Code werden alle kanalbezogenen Signale als Arrays deklariert.
-Dadurch lassen sich im Test gezielt einzelne Kanäle ansprechen, ohne Seiteneffekte auf andere Kanäle zu verursachen.
-
-Die Steuer- und Feedbackschnittstellen sind ebenfalls klar voneinander getrennt und als Bitfelder organisiert. Dies ermöglicht es, in der Simulation gezielt Steuerbits (z.B. \texttt{Load}, \texttt{StartDQ}, \texttt{CounterReset}) für einzelne Kanäle zu setzen und die Reaktion des Designs zu beobachten.
-
-Die Verwendung von Generate-Blöcken erlaubt es, die Logik für jeden Kanal separat zu simulieren und zu validieren. Fehlerfälle, Grenzwerte oder spezielle Betriebsmodi können so gezielt für einzelne Kanäle getestet werden.
-
-Auch die Fehler- und Diagnoselogik ist pro Kanal gekapselt, sodass in der Simulation gezielt Fehlerbedingungen (z.B. \texttt{DI\_QI\_BAD}, \texttt{DQ\_QI\_BAD}) für einzelne Kanäle gesetzt und die Reaktion des Systems überprüft werden kann.
-
-Durch diese modulare und strukturierte Architektur wird die Erstellung von Testbenches vereinfacht, die Testabdeckung erhöht und die Fehlersuche im Entwicklungsprozess deutlich beschleunigt.
-
-Die zuvor beschriebene modulare Architektur in VHDL mit getrennten Steuer- und Datenpfaden 
-lässt sich in der Simulation direkt überprüfen. Mithilfe der in VHDL implementierten 
-Arrays und Schnittstellen (z.B. \texttt{CTRL\_IF}, \texttt{WR\_REC}) können im Testbench 
-gezielt Stimuli gesetzt werden, um das Verhalten einzelner Kanäle zu validieren.  
-
-Die resultierenden Signalverläufe wurden in \textit{Questa} aufgezeichnet. 
-Abbildung~\ref{fig:waveform} zeigt einen Ausschnitt dieser Wellenanalyse, 
-in der sowohl die zyklischen Steuerbits als auch die azyklischen 
-Schnittstellen \texttt{WR\_REC} und \texttt{RD\_REC} sichtbar sind.  
-
-Gut erkennbar ist, dass die zyklischen Steuerbits (z.B. \texttt{CTRL\_IF0}, \texttt{CTRL\_IF1}) 
-in jedem SPS-Zyklus gesetzt und über das Prozessabbild verarbeitet werden. Parallel dazu laufen 
-azyklische Operationen über die \texttt{WR\_REC}- und \texttt{RD\_REC}-Schnittstellen ab, 
-die nur bei Bedarf aktiviert werden.  
-
-Im dargestellten Beispiel wird ein \texttt{LoadRequest} über die \texttt{WR\_REC}-Schnittstelle 
-angestoßen. Dieser führt dazu, dass die entsprechenden Steuerbits aktiv werden und anschließend 
-im Zähler \texttt{j\_enc\_count} Änderungen auftreten. Auf diese Weise lässt sich in der Simulation 
-nachvollziehen, wie deterministisch die zyklischen Steuerbefehle (z.B. \texttt{Load}, \texttt{StartDQ}) 
-verarbeitet und wie azyklische Kommandos synchron eingesteuert werden.  
+Im dargestellten Beispiel wird ein \texttt{LoadRequest} über die \texttt{WR\_REC}-Schnittstelle angestoßen. Dieser führt dazu, dass die entsprechenden Steuerbits aktiv werden und anschließend im Zähler \texttt{j\_enc\_count} Änderungen auftreten. Auf diese Weise lässt sich in der Simulation nachvollziehen, wie deterministisch die zyklischen Steuerbefehle verarbeitet und wie azyklische Kommandos synchron eingesteuert werden.  
 
 \begin{figure}[H]
     \centering
@@ -406,228 +499,3 @@ verarbeitet und wie azyklische Kommandos synchron eingesteuert werden.
     \caption{Wellenanalyse der CTRL\_IF-, WR\_REC- und RD\_REC-Schnittstellen in Questa}
     \label{fig:waveform}
 \end{figure}
-
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-\section{Einbindung in das TIA Portal}
-
-Die Einbindung der entwickelten Applikationsbausteine in das TIA Portal ist ein wesentlicher Schritt, um die entwickelte Funktionalität praxisnah nutzbar zu machen. Dazu werden Funktionsbausteine erstellt, Schnittstellen mit dem TM~FAST definiert und die Anbindung an die Prozessabbildung umgesetzt. 
-
-Ein zentrales Element ist der Baustein \texttt{LTMFAST\_ControlREC}, der die azyklische Steuerung übernimmt. Er erhält alle notwendigen Informationen von den Funktionsbausteinen \texttt{UserReadREC} und \texttt{UserWriteREC}. Darüber werden beispielsweise Zustände wie „Kommunikation gestartet“, „Kommunikation läuft“, „Kommunikation erfolgreich abgeschlossen“, „Fehler aufgetreten“ sowie die zu übertragenden Nutzdaten abgebildet. Für jeden Funktionsbaustein muss eine Instanz angelegt werden, die im Projekt explizit mitgeführt wird (vgl.~Listing~\ref{Funktionsaufruf}). 
-
-\begin{lstlisting}[language=Pascal, label={Funktionsaufruf},captionpos=b,caption={Funktionsaufruf von \#LTMFAST\_UserWriteREC\_Instance}]
-#LTMFAST_UserWriteREC_Instance(
-    req              := #loadrequest,
-    busy             => #Busy,
-    done             => #Done,
-    error            => #Error,
-    status           => #Status,
-    userDataContent  := #userDataContent,
-    TMFASTControlREC := 
-        "TestHandler_LTMFAST_ControlREC_DB".
-        LTMFAST_ControlREC_Instance
-);
-\end{lstlisting}
-
-Für die Steuerung des TM FAST ist der Baustein \texttt{LTMFAST\_dosing\_application} verantwortlich. Er bildet die Schnittstelle zum TM~FAST-Modul und setzt die Eingangssignale in das vorgesehene Bitmuster um (vgl.~Listing~\ref{bitmuster}). Diese Signale werden über die I/O-Schnittstelle übertragen und mit den Steuerbits \texttt{Hold}, \texttt{Load}, \texttt{CounterReset}, \texttt{StartDQ}, \texttt{Select\_Feedback\_Value}, \texttt{polarity} und \texttt{EnableDQ} abgebildet. 
-
-\begin{lstlisting}[language=Pascal, label={bitmuster},captionpos=b,caption={Generierung der Steuerbits für die zyklische Kommunikation}]
-FOR #ChannelIdx := 1 TO "Number_of_activ_Channels" DO
-    
-    #AktChannel := #Channels[#ChannelIdx];
-    
-    #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0000;
-    #LoadRequestArray[#ChannelIdx] := FALSE;
-    
-    IF #AktChannel.Hold = TRUE THEN
-        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#1000;
-    ELSIF #AktChannel.CounterReset = TRUE THEN
-        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0100;
-    ELSIF #AktChannel.Load = TRUE THEN
-        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#0800;
-        #LoadRequestArray[#ChannelIdx] := TRUE;
-    ELSIF #AktChannel.StartDQ = TRUE THEN
-        #Temp_CTRL_Bits[#ChannelIdx] := WORD#16#2000;
-    END_IF;
-    
-    IF #AktChannel.EnableDQ = TRUE THEN
-        #Temp_CTRL_Bits[#ChannelIdx] := 
-        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#0400;
-    END_IF;
-    
-    IF #AktChannel.polarity = TRUE THEN
-        #Temp_CTRL_Bits[#ChannelIdx] := 
-        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#0200;
-    END_IF;
-    
-    IF #AktChannel.Select_Feedback_Value = TRUE THEN
-        #Temp_CTRL_Bits[#ChannelIdx] := 
-        #Temp_CTRL_Bits[#ChannelIdx] OR WORD#16#4000;
-    END_IF;
-    
-END_FOR;
-\end{lstlisting}
-
-Wie in Abbildung~\ref{fig:appbaustein} dargestellt, wird der Funktionsbaustein direkt im OB1 eingebunden und über einen selbst definierten Datentyp (UDT) \texttt{Channels} angesteuert. Dieser Datentyp enthält alle für die zyklische Kommunikation relevanten Steuerungen. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Fotos/ApplikationsBausteinTIA.png}
-    \caption{Integration des Applikationsbausteins in OB1}
-    \label{fig:appbaustein}
-\end{figure}
-
-Eine typische Steuerung des \texttt{LTMFAST\_dosing\_application}-Bausteins besteht darin, azyklische Daten in den zugehörigen Instanzdatenbaustein einzutragen und gleichzeitig die zyklischen Steuerungen der gewünschten Kanäle zu setzen. Ein Anwendungsbeispiel ist in Listing~\ref{app_bsp} gezeigt.
-
-\begin{lstlisting}[language=Pascal, label={app_bsp},captionpos=b,caption={Beispiel zur Steuerung der zyklischen und azyklischen Kommunikation}]
-IF #LoadFlag = 1 THEN
-    #Channels[1].Load := 0;
-END_IF;
-
-IF #StartDQFlag = 1 THEN
-    #Channels[1].StartDQ := 0;
-END_IF;
-
-IF #Init = 0 THEN
-    #Init := 1;
-    #Channels[1].EnableDQ := 1;
-    "LTMFAST_dosing_application_DB".userDataContent[1] := 
-    16#3E8;
-    "LTMFAST_dosing_application_DB".userDataContent[15] := 
-    16#1;
-    #Channels[1].Load := 1;
-    #LoadFlag := 1;
-END_IF;
-
-IF ("FAST_FB".FB_IF_Channel[1] AND 16#8000) <> 0 THEN
-    #Channels[1].StartDQ := 1;
-    #StartDQFlag := 1;
-END_IF;
-\end{lstlisting}
-
-\section{Vergleich mit bisherigen Lösungen}
-
-ist das Teil der Entwicklung oder ehr Fazit und Ausblick?
-
-Im Vergleich zur FM350-2 bietet das neue Design eine höhere Flexibilität, bessere Ressourcenausnutzung und einfachere Erweiterbarkeit. Die klare Trennung von Steuer-, Daten- und Diagnosepfaden sowie die flexible Kanalzuordnung ermöglichen eine optimale Anpassung an unterschiedliche Applikationen.
-%///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-\textbf(Implementierung des Frequenzmessers / Vergleich von FM350-2 (ist im Handbuch gut erklärt) und TMFAST)
-
-
-\section{Anforderungen an die Neuentwicklung 2}
-
-Die Arbeit verfolgt insbesondere folgende Ziele:
-\begin{itemize}
-    \item Umsetzung der bekannten FM350-2-Funktionalitäten auf dem TM FAST Modul.
-    \item Erhöhung der Kanalanzahl von 8 auf die höchstmögliche Anzahl für flexible Dosieranwendungen.
-    \item Optimierung der Implementierung hinsichtlich Performance und Ressourcenschonung.
-    \item Integration des Applikationsbeispiels in das TIA Portal zur nahtlosen Nutzung in industriellen Automatisierungslösungen.
-    \item Anwendung bewährter Methoden des Software Engineerings, um Codequalität und Skalierbarkeit sicherzustellen.
-\end{itemize}
-
-\subsection{Funktionale Anforderungen}
-
-\begin{enumerate}[label=F\arabic*]
-    \item Das Modul stellt mindestens acht unabhängige Zählerkanäle bereit.
-    \item Jeder Kanal kann flexibel als Digitaleingang, Digitalausgang oder RS485/TTL-Kanal genutzt werden.
-    \item Jeder Kanal verwendet eine 32-Bit-Zählvariable.
-    \item Die Übergabe von Sollwerten und Parametern ist im laufenden Betrieb möglich.
-    \item Das Modul unterstützt die Betriebsmodi Rundenzähler, Reset, Hold und Start/Stop.
-    \item Für jeden Kanal werden Statusinformationen und Prozesswerte rückgemeldet.
-    \item Fehler werden erkannt, sicher behandelt und an die Steuerung gemeldet.
-\end{enumerate}
-
-\subsection{Nichtfunktionale Anforderungen}
-
-\begin{enumerate}[label=N\arabic*]
-    \item Die Lösung ist vollständig in das TIA Portal integrierbar.
-    \item Die Funktionalität entspricht mindestens dem Umfang der FM350-2.
-    \item Ressourcenschonende Implementierung (FPGA-Auslastung < 70\% bei 14 Kanälen).
-    \item Erweiterbarkeit auf zusätzliche Kanäle ohne Anpassung der Grundarchitektur.
-\end{enumerate}
-
-\section{Umsetzung der funktionalen Anforderungen}
-
-\subsection*{F1 – Acht unabhängige Zählerkanäle}
-Die Umsetzung erfolgt durch den Einsatz von Arrays und \texttt{generate}-Blöcken in VHDL, wodurch jeder Kanal logisch getrennt und unabhängig voneinander betrieben werden kann.
-
-\begin{lstlisting}[language=VHDL, caption={Generate-Struktur für mehrere Kanäle}, label={lst:generate}]
-channel_gen : for i in 0 to CHANNEL_COUNT-1 generate
-    -- Kanal-Logik
-end generate;
-\end{lstlisting}
-
-\subsection*{F2 – Flexible Kanalnutzung}
-Die Kanäle können wahlweise als Digitaleingang, -ausgang oder RS485/TTL-Kanal genutzt werden. Dies wird durch eine flexible Kanalzuordnung mittels Mappings erreicht:
-
-\begin{lstlisting}[language=VHDL, caption={Flexible Kanalzuordnung}, label={lst:kanalzuordnung}]
-input_selector(i) <= RS485_RX(CHANNEL_MAP_IN_CH(i)) 
-                     when i > 8 else DI(CHANNEL_MAP_IN_CH(i));
-DQ(CHANNEL_MAP_OUT_CH(i)) <= out_val;
-\end{lstlisting}
-
-\subsection*{F3 – 32-Bit-Zählvariable}
-Jeder Kanal verwendet eine \texttt{std\_logic\_vector(31 downto 0)}, um ausreichend Zählbereich für industrielle Anwendungen sicherzustellen.
-
-\subsection*{F4 – Übergabe von Sollwerten im laufenden Betrieb}
-Über die azyklische Kommunikation (\texttt{UserWriteREC}) können Sollwerte und Parameter im Betrieb gesetzt werden. Dies erlaubt dynamische Anpassungen ohne Neustart.
-
-\subsection*{F5 – Unterstützte Betriebsmodi}
-Durch State Machines und Steuerbits werden Rundenzähler, Reset, Hold und Start/Stop realisiert.
-
-\subsection*{F6 – Rückmeldungen}
-Statusbits (z. B. \texttt{Load}, \texttt{StartDQ}, \texttt{CounterReset}) werden gezielt rückgemeldet, sodass die Steuerung stets die Prozesswerte erhält.
-
-\subsection*{F7 – Fehlerbehandlung}
-Fehlerfälle werden durch gezielte Rücksetzung aller Signale behandelt. Beispiel: Verhalten bei CPU\_STOP.
-
-\begin{lstlisting}[language=VHDL, caption={Rücksetzen im CPU\_STOP-Fall}, label={lst:cpu_stop}]
-if WR_REC_Control = x"00000000" then
-    CounterReset(i) <= '1';
-    EnableDQ(i)     <= '0';
-    Load(i)         <= '0';
-else
-    if StartDQ_active(i) = '1' then
-        EnableDQ(i) <= '1'; 
-    end if;
-end if;
-\end{lstlisting}
-
-\section{Umsetzung der nicht-funktionalen Anforderungen}
-
-\subsection*{N1 – Integration in das TIA Portal}
-Die TM FAST-Lösung wird vollständig im TIA Portal eingebunden und nutzt standardisierte Schnittstellen.
-
-\subsection*{N2 – Funktionsumfang wie FM350-2}
-Der Vergleich in Tabelle \ref{tab:vergleich_tmfast_fm3502} zeigt, dass die TM FAST-Lösung alle Funktionen der FM350-2 erfüllt und übertrifft.
-
-\subsubsection*{N3 – Ressourcenschonung}
-Die FPGA-Auslastung wird durch Optimierungen reduziert. Abbildung \ref{fig:logikelemente_kanal} zeigt den Trend des Ressourcenverbrauchs.
-
-\begin{figure}[H]
-    \centering
-    \begin{tikzpicture}
-        \begin{axis}[
-            width=0.9\textwidth,
-            height=7cm,
-            xlabel={Anzahl der Kanäle},
-            ylabel={Verbrauchte Logikelemente},
-            xmin=1, xmax=16,
-            ymin=12000, ymax=20000,
-            grid=both,
-            grid style={dashed,gray!30},
-            ]
-            \addplot[color=blue, mark=*] coordinates {
-                (1,12928) (8,16018) (14,18720)
-            };
-        \end{axis}
-    \end{tikzpicture}
-    \caption{Verbrauchte Logikelemente in Abhängigkeit von der Kanalanzahl}
-    \label{fig:logikelemente_kanal}
-\end{figure}
-
-\subsection*{N4 – Erweiterbarkeit}
-Die modulare Architektur erlaubt eine Erweiterung auf mehr als 14 Kanäle ohne Anpassung der Grundstruktur.
-
-\section{Validierung und Tests}
-Die Funktionalität wurde durch Simulationen und Tests nachgewiesen. Wellenformanalysen bestätigen die deterministische und zeitgenaue Arbeitsweise.

@@ -15,15 +15,13 @@
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Einmaliges Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{18}{figure.caption.14}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Periodisches Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{19}{figure.caption.15}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Prinzip der Frequenzmessung mit Zeitfenster bei der FM 350-2 \cite {fm350_Handbuch}}}{20}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Dosierfunktion: Hauptzählrichtung rückwärts mit vier Vergleichswerten und Prozessalarmen \cite {fm350_Handbuch}}}{23}{figure.caption.17}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Öffnen und Schließen eines Tores und das Zählen der Impulse \cite {fm350_Handbuch}}}{24}{figure.caption.25}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Blockdiagramm des TM FAST \cite {tmfast_featurespec}}}{27}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Aufbau von Frontend- und Backend-Gerät und Einbindung in das System \cite {tmfast_featurespec}}}{28}{figure.caption.38}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Technologiemodul TM FAST \cite {TmFast_progrmming_manual}}}{29}{figure.caption.40}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Öffnen und Schließen eines Tores und das Zählen der Impulse \cite {fm350_Handbuch}}}{21}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Blockdiagramm des TM FAST \cite {tmfast_featurespec}}}{24}{figure.caption.36}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Aufbau von Frontend- und Backend-Gerät und Einbindung in das System \cite {tmfast_featurespec}}}{25}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Technologiemodul TM FAST \cite {TmFast_progrmming_manual}}}{26}{figure.caption.39}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Anzahl der Logikelemente bei einem Kanal}}{34}{figure.caption.41}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Verbrauchte Logikelemente in Abhängigkeit von der Kanalanzahl}}{35}{figure.caption.42}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Wellenanalyse der CTRL\_IF-, WR\_REC- und RD\_REC-Schnittstellen in Questa}}{48}{figure.caption.45}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Integration des Applikationsbausteins in OB1}}{50}{figure.caption.46}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Verbrauchte Logikelemente in Abhängigkeit von der Kanalanzahl}}{56}{figure.caption.57}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Integration des Applikationsbausteins in OB1}}{41}{figure.caption.48}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Anzahl der Logikelemente bei einem Kanal}}{43}{figure.caption.52}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Prozentualer Verbrauch der Logikelemente in Abhängigkeit von der Kanalanzahl (Maximal 24\,624 LEs)}}{44}{figure.caption.53}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Wellenanalyse der CTRL\_IF-, WR\_REC- und RD\_REC-Schnittstellen in Questa}}{47}{figure.caption.56}%
 \addvspace {10\p@ }

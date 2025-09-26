@@ -20,42 +20,25 @@
 \contentsline {subsection}{\numberline {3.1.2}Einmaliges Zählen bei der FM 350-2}{18}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}Periodisches Zählen bei der FM 350-2}{18}{subsection.3.1.3}%
 \contentsline {subsection}{\numberline {3.1.4}Frequenzmessung mit der FM 350-2}{19}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Drehzahlmessung mit der FM 350-2}{20}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}Periodendauermessung mit der FM 350-2}{21}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Dosierfunktion der FM 350-2}{22}{subsection.3.1.7}%
-\contentsline {subsection}{\numberline {3.1.8}Torfunktionen der FM 350-2}{23}{subsection.3.1.8}%
-\contentsline {paragraph}{\nonumberline Software-Tor und Hardware-Tor}{24}{paragraph*.19}%
-\contentsline {paragraph}{\nonumberline Internes Tor}{24}{paragraph*.21}%
-\contentsline {paragraph}{\nonumberline Beispiel}{24}{paragraph*.24}%
-\contentsline {subsection}{\numberline {3.1.9}Prozessalarme der FM 350-2}{25}{subsection.3.1.9}%
-\contentsline {paragraph}{\nonumberline Fehlerklassen und -arten}{25}{paragraph*.27}%
-\contentsline {paragraph}{\nonumberline Reaktion der Baugruppe}{25}{paragraph*.29}%
-\contentsline {paragraph}{\nonumberline Sammelfehler-LED (SF)}{25}{paragraph*.31}%
-\contentsline {paragraph}{\nonumberline Diagnosealarme und -daten}{26}{paragraph*.33}%
-\contentsline {paragraph}{\nonumberline Datenfehler und Quittierung}{26}{paragraph*.35}%
-\contentsline {section}{\numberline {3.2}Eigenschaften und Aufbau des TM FAST}{26}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Direkter Vergleich der TM FAST und FM 350-2}{30}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{32}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Anforderungen an die Neuentwicklung}{32}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Modularisierung und Wiederverwendbarkeit}{33}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Ressourcenoptimierung}{34}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Fehler- und Diagnosestrategien}{35}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Synchronisation und Zustandsautomaten}{36}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Zyklische und azyklische Kommunikation}{38}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Sicherheit bei CPU\_STOP}{41}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Flexibilität der Kanalzuordnung}{42}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Automatische Überlaufkompensation}{44}{section.4.9}%
-\contentsline {section}{\numberline {4.10}Erweiterbarkeit für zukünftige Anforderungen}{46}{section.4.10}%
-\contentsline {section}{\numberline {4.11}Testbarkeit und Simulation}{47}{section.4.11}%
-\contentsline {section}{\numberline {4.12}Einbindung in das TIA Portal}{48}{section.4.12}%
-\contentsline {section}{\numberline {4.13}Vergleich mit bisherigen Lösungen}{51}{section.4.13}%
-\contentsline {section}{\numberline {4.14}Anforderungen an die Neuentwicklung 2}{52}{section.4.14}%
-\contentsline {subsection}{\numberline {4.14.1}Funktionale Anforderungen}{52}{subsection.4.14.1}%
-\contentsline {subsection}{\numberline {4.14.2}Nichtfunktionale Anforderungen}{53}{subsection.4.14.2}%
-\contentsline {section}{\numberline {4.15}Umsetzung der funktionalen Anforderungen}{53}{section.4.15}%
-\contentsline {section}{\numberline {4.16}Umsetzung der nicht-funktionalen Anforderungen}{55}{section.4.16}%
-\contentsline {section}{\numberline {4.17}Validierung und Tests}{56}{section.4.17}%
-\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{57}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Zusammenfassung der Ergebnisse}{57}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Kritische Reflexion und Herausforderungen}{58}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{58}{section.5.3}%
+\contentsline {subsection}{\numberline {3.1.5}Torfunktionen der FM 350-2}{20}{subsection.3.1.5}%
+\contentsline {paragraph}{\nonumberline Software-Tor und Hardware-Tor}{21}{paragraph*.18}%
+\contentsline {paragraph}{\nonumberline Internes Tor}{21}{paragraph*.20}%
+\contentsline {paragraph}{\nonumberline Beispiel}{21}{paragraph*.23}%
+\contentsline {subsection}{\numberline {3.1.6}Prozessalarme der FM 350-2}{22}{subsection.3.1.6}%
+\contentsline {paragraph}{\nonumberline Fehlerklassen und -arten}{22}{paragraph*.26}%
+\contentsline {paragraph}{\nonumberline Reaktion der Baugruppe}{22}{paragraph*.28}%
+\contentsline {paragraph}{\nonumberline Sammelfehler-LED (SF)}{22}{paragraph*.30}%
+\contentsline {paragraph}{\nonumberline Diagnosealarme und -daten}{23}{paragraph*.32}%
+\contentsline {paragraph}{\nonumberline Datenfehler und Quittierung}{23}{paragraph*.34}%
+\contentsline {section}{\numberline {3.2}Eigenschaften und Aufbau des TM FAST}{23}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Direkter Vergleich der TM FAST und FM 350-2}{27}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Entwicklung des VHDL-basierten Applikationsbeispiels}{29}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Anforderungen an die Neuentwicklung 2}{29}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Funktionale Anforderungen}{30}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Nichtfunktionale Anforderungen}{30}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Umsetzung der funktionalen Anforderungen}{31}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Umsetzung der nicht-funktionalen Anforderungen}{38}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Validierung und Tests}{45}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Fazit und Ausblick}{48}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Kritische Reflexion und Herausforderungen}{49}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{49}{section.5.2}%

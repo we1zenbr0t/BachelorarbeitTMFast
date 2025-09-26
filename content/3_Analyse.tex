@@ -7,16 +7,17 @@ und Unterschiede beider Systeme darzustellen, um die Basis für die spätere Ana
 zu schaffen.
 
 \section{Funktionsweise des FM350-2}  
+\label{chap:fm3502}
 
 Die Funktionsbaugruppe FM 350-2 ist eine 8-kanalige Zählerbaugruppe mit integrierter Dosierfunktion für das Automatisierungssystem S7-300. Sie wird vor allem in Bereichen eingesetzt, in denen Signale gezählt und schnelle Reaktionen auf bestimmte Zählerstände notwendig sind. Besonders relevant ist die FM 350-2 für Anwendungen in der Fertigungs- und Automatisierungstechnik, wie beispielsweise in Verpackungs-, Sortier- und Dosieranlagen sowie bei der Drehzahlregelung und Überwachung von Gasturbinen.
 
 Sie unterstützt einen maximalen Zählbereich von \(-2^{31}\) bis \(+2^{31} - 1\) (entsprechend \(-2\,147\,483\,648\) bis \(+2\,147\,483\,647\)) und erreicht je nach verwendeter Gebersignale eine maximale Eingangsfrequenz von bis zu 20\,kHz pro Kanal \cite{fm350_Handbuch}.
 
-Die Baugruppe ermöglicht verschiedene Betriebsarten: endloses, einmaliges sowie periodisches Zählen (jeweils vorwärts oder rückwärts), Frequenzmessung, Drehzahlmessung, Periodendauermessung sowie präzises Dosieren. Der Zählvorgang kann wahlweise über das Anwenderprogramm (Software-Tor) oder über externe Signale (Hardware-Tor) gestartet und gestoppt werden. Dabei können Zähl-, Tor- und Richtungssignale direkt an die Baugruppe angeschlossen werden.
+Die Baugruppe ermöglicht verschiedene Betriebsarten: endloses, einmaliges sowie periodisches Zählen (jeweils vorwärts oder rückwärts) und Frequenzmessung. Der Zählvorgang kann wahlweise über das Anwenderprogramm (Software-Tor) oder über externe Signale (Hardware-Tor) gestartet und gestoppt werden. Dabei können Zähl-, Tor- und Richtungssignale direkt an die Baugruppe angeschlossen werden.
 
 Für jeden Zählkanal ist es möglich, einen Vergleichswert zu definieren. Im Dosiermodus lassen sich bis zu vier Vergleichswerte je Kanal verwenden. Wird der definierte Vergleichswert erreicht, kann automatisch ein zugeordneter Ausgang gesetzt oder zurückgesetzt werden, um direkt steuerungsrelevante Aktionen auszulösen oder Prozessalarme zu generieren.
 
-Innerhalb der Betriebsarten „Einmalig zählen“, „Periodisch zählen“ und „Dosieren“ lassen sich zusätzlich Zählgrenzen innerhalb des maximalen Zählbereichs festlegen. Im Vorwärtsbetrieb beginnt die Zählung bei 0, der Endwert ist dabei frei wählbar. Im Rückwärtsbetrieb wird der Startwert definiert, während der Endwert bei 0 liegt.
+Innerhalb der Betriebsarten „Einmalig zählen“ und „Periodisch zählen“lassen sich zusätzlich Zählgrenzen innerhalb des maximalen Zählbereichs festlegen. Im Vorwärtsbetrieb beginnt die Zählung bei 0, der Endwert ist dabei frei wählbar. Im Rückwärtsbetrieb wird der Startwert definiert, während der Endwert bei 0 liegt.
 
 Die FM 350-2 unterstützt pro Zählkanal bis zu vier Prozessalarme. Zwei davon können durch Flankenwechsel am Hardware-Tor ausgelöst werden, zwei weitere sind abhängig von der jeweils eingestellten Betriebsart. Im Dosierbetrieb können bis zu fünf spezifische Alarme erzeugt werden.
 
@@ -134,73 +135,6 @@ Die Frequenzmessung eignet sich besonders für Anwendungen, bei denen die Geschw
     \label{fig:frequenzmessung_fm350-2}
 \end{figure}
 
-\subsection{Drehzahlmessung mit der FM 350-2}
-
-Die Drehzahlmessung ist eine spezielle Betriebsart der FM 350-2, die nahezu identisch mit der Frequenzmessung arbeitet. Neben der Länge des Zeitfensters muss bei der Drehzahlmessung in der Parametermaske die Anzahl der Impulse pro Motor- oder Geberumdrehung angegeben werden.
-
-Am Ende jedes Zeitfensters wird der Drehzahlwert aktualisiert. Die ermittelte Drehzahl wird in der Einheit \(1 \times 10^{-3}\) Umdrehungen/Minute ausgegeben.
-
-Wird kein gültiger Wert ermittelt, wird \(-1\) zurückgemeldet. Werden in einem Zeitintervall keine Impulse gezählt, liefert die Baugruppe \(0 \times 10^{-3}\) U/min (\(= 0\) U/min).
-
-Über zwei Drehzahlvergleichswerte (unterer und oberer Grenzwert) kann überwacht werden, ob die gemessene Drehzahl im vorgegebenen Bereich liegt. Beim Verlassen dieses Bereichs kann ein Prozessalarm ausgelöst werden. Die FM 350-2 prüft, ob Drehzahlobergrenze \(>\) Drehzahluntergrenze ist und meldet einen Parametrierungsfehler, falls dies nicht der Fall ist.
-
-Die Drehzahlmessung wird über die Torfunktionen gestartet und beendet. Folgende Prozessalarme sind möglich:
-\begin{itemize}
-    \item Beginn der Drehzahlmessung durch HW-Tor (positive Flanke)
-    \item Ende der Drehzahlmessung durch HW-Tor (negative Flanke)
-    \item Ende der Messwerterfassung (Integrationszeit ist abgelaufen)
-    \item Über- bzw. Unterschreiten der Drehzahlgrenzen
-\end{itemize}
-
-Die Drehzahlmessung eignet sich besonders für Anwendungen, bei denen die Drehzahl von Maschinen oder Antrieben überwacht und geregelt werden muss, wie z.B. bei Förderbändern, Drehtischen oder Motoren.
-
-\subsection{Periodendauermessung mit der FM 350-2}
-
-Bei sehr kleinen Frequenzen wird anstelle der Frequenz die Periodendauer gemessen. Im Betriebsart „Periodendauermessung“ erfasst die FM 350-2 die exakte Zeit zwischen zwei steigenden Flanken eines Eingangssignals. Die Messung wird über Torsignale (Hardware- oder Software-Tor) gestartet und beendet.
-
-Die Periodendauer kann nur in der eingestellten Hauptzählrichtung erfasst werden. Der zulässige Messbereich liegt zwischen 40\,µs und 120\,s (entspricht 25\,000\,Hz bis 0{,}00833\,Hz). Liegt kein gültiger Wert vor, wird \(-1\) zurückgemeldet.
-
-Über die Parametermaske können zwei Periodendauer-Grenzwerte eingestellt werden:
-\begin{itemize}
-    \item Untere Grenze: 0\,µs bis 119\,999{,}999\,µs
-    \item Obere Grenze: 40\,µs bis 120\,000{,}000\,µs
-\end{itemize}
-
-Folgende Prozessalarme sind möglich:
-\begin{itemize}
-    \item Beginn der Periodendauermessung durch HW-Tor (positive Flanke)
-    \item Ende der Periodendauermessung durch HW-Tor (negative Flanke)
-    \item Ende der Messwerterfassung (Integrationszeit ist abgelaufen)
-    \item Über- bzw. Unterschreiten der Periodendauergrenzen
-\end{itemize}
-
-Die Periodendauermessung eignet sich besonders für Anwendungen mit sehr niedrigen Frequenzen, bei denen eine präzise Zeitmessung zwischen zwei Ereignissen erforderlich ist, z.B. bei langsamen Bewegungen oder Taktgebern.
-
-\subsection{Dosierfunktion der FM 350-2}
-
-Die FM 350-2 bietet eine integrierte Dosierfunktion, mit der präzise Mengen von Materialien oder Teilen gesteuert und abgegeben werden können. Im Betriebsmodus „Dosieren“ werden jeweils vier Zählkanäle zu einem Dosierkanal zusammengefasst. Für jeden Dosierkanal können bis zu vier Vergleichswerte festgelegt werden, die einzeln oder gruppenweise verändert werden können.
-
-Der aktuelle Zählerstand wird kontinuierlich mit den Vergleichswerten verglichen. Sobald der Zählerstand einen Vergleichswert erreicht, kann ein zugeordneter Digitalausgang angesteuert und/oder ein Prozessalarm ausgelöst werden. So lassen sich bis zu vier Dosierabschnitte innerhalb eines Dosierzyklus realisieren.
-
-Die Dosierfunktion unterstützt sowohl den Vorwärts- als auch den Rückwärtsbetrieb. Im Rückwärtsbetrieb wird ein Startwert vorgegeben und der Zähler zählt bis zum Endwert (meist 0) herunter. Die Vergleichswerte definieren die einzelnen Dosierabschnitte, in denen jeweils ein Ausgang geschaltet oder ein Alarm ausgelöst werden kann.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/dosiermodus.png}
-    \caption{Dosierfunktion: Hauptzählrichtung rückwärts mit vier Vergleichswerten und Prozessalarmen \cite{fm350_Handbuch}}
-    \label{fig:dosieren_fm350-2}
-\end{figure}
-
-Mögliche Prozessalarme im Dosierbetrieb sind:
-\begin{itemize}
-    \item Beginn der Dosierung durch Hardware-Tor (positive Flanke)
-    \item Abbruch/Unterbrechung der Dosierung durch Hardware-Tor (negative Flanke)
-    \item Prozessalarm für jeden Vergleichswert (bis zu vier pro Kanal)
-    \item Erreichen der Zählbereichsgrenzen (Endwert/Startwert)
-\end{itemize}
-
-Die Dosierfunktion eignet sich besonders für Anwendungen, bei denen exakte Mengen abgegeben werden müssen, wie z.B. in Abfüllanlagen, Mischprozessen oder bei der Steuerung von Förderbändern. Durch die flexible Parametrierung der Vergleichswerte und die schnelle Reaktion auf Zählereignisse können komplexe Dosieraufgaben zuverlässig und präzise umgesetzt werden.
-
 \subsection{Torfunktionen der FM 350-2}
 
 Viele Anwendungen erfordern, dass der Zählvorgang erst zu einem definierten Zeitpunkt, abhängig von anderen Ereignissen, gestartet oder gestoppt wird. Dieses Starten und Stoppen des Zählvorgangs geschieht bei der FM 350-2 über eine Torfunktion. Wird das Tor geöffnet, können Zählimpulse zum Zähler gelangen, der Zählvorgang wird fortgesetzt. Wird das Tor geschlossen, können keine Zählimpulse mehr zum Zähler gelangen, der Zählvorgang ist gestoppt.
@@ -280,7 +214,7 @@ Ergeben sich aus unzulässigen Aufträgen durch PG oder über \texttt{FC CNT2\_W
 %//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 \section{Eigenschaften und Aufbau des TM FAST}
-
+\label{chap:TMFAST}
 Das TM FAST ermöglicht die Integration eigener Anwendungen in das SIMATIC S7-1500 Technologiemodul. Hardwareseitig besteht es aus einem Backend-Baustein, der die Siemens TM FAST-Firmware bereitstellt, und einem Frontend-Baustein, dem Intel® Cyclone 10 LP FPGA, auf dem die TM FAST-Anwendung läuft. Diese Anwendung definiert die Hardwarefunktionalität des Moduls und kann durch applikationsspezifische FPGA-Programmierung mittels Intel® Quartus® Prime angepasst werden \cite{tmfast_featurespec, TmFast_progrmming_manual}.
 
 Eine ähnliche Baugruppe ist der High Speed Boolean Processor FM352-5 des SIMATIC S7-300 Systems, der mit einer Zykluszeit von 1~\(\mu\)s schnelle Binärsteuerungen ermöglicht \cite{siemens_fm3525}. Das TM FAST FPGA bietet jedoch eine wesentlich höhere Flexibilität, erlaubt Zykluszeiten bis 20~ns und die Erzeugung präziser Pulsmuster. Somit können nicht nur digitale Signale, sondern auch komplexere Aufgaben wie Zählvorgänge, präzise Dosierungen oder pixelgenaue Punktmuster verarbeitet werden \cite{TmFast_progrmming_manual}.
@@ -291,14 +225,13 @@ Eine ähnliche Baugruppe ist der High Speed Boolean Processor FM352-5 des SIMATI
     \item Zählen von Signalen bis 5\,MHz
     \item Auswertung von Inkremental- und Absolutwertgebern mit sofortiger Reaktion
     \item Präzise Steuerung von Lasern
-    \item Pixelgenaue Punktmuster auf parallelen Spuren
-    \item Exakte Dosieraufgaben
     \item Berechnungen und Vorverarbeitungen im Modul (z.\,B. Fehlerfrüherkennung)
 \end{itemize}
 
 Die freie Programmierbarkeit ermöglicht die Kombination und Anpassung einzelner Funktionen. Das TM FAST eignet sich daher besonders für Anwendungen, bei denen die SPS mit Peripheriemodulen nicht ausreichend schnell ist oder spezifische Einzelanwendungen erfordert.
 
 \subsection*{Aufbau des TM FAST}
+\label{Aufbau des TM FAST}
 Das TM FAST besteht aus einem Backend-Gerät, einem Frontend-Gerät, einer Prozessschnittstelle sowie der Anbindung an CPU und Peripherie (Abb.~\ref{fig:Blockdiagram}).
 
 \begin{figure}[H]
@@ -371,6 +304,8 @@ Das Modul bietet je acht 24\,V-Digitaleingänge (DI) und -ausgänge (DQ) mit 0,1
     \hline
     Geschwindigkeit & Eingangssignale bis zu 5\,MHz (RS422/485/DIQ) & Max. 20\,kHz (A0...7), 10\,kHz (B0...7) \\
     \hline
+    Zykluszeit & 20\,ns FPGA-Takt (hohe Parallelität) & 50\,\textmu s typische Verarbeitungszeit \\
+    \hline
     Betriebsarten & Frei programmierbar (z.B. Dosierlogik, Pulsfolgen) & Vorgegebene Betriebsarten (Endlos, periodisch, Dosieren etc.) \\
     \hline
     Parametrierung & Änderungen im laufenden Betrieb über UserWriteREC & Parametrierung nur über STEP 7, meist im Stopp-Betrieb \\
@@ -387,8 +322,18 @@ Das Modul bietet je acht 24\,V-Digitaleingänge (DI) und -ausgänge (DQ) mit 0,1
     \label{tab:vergleich_tmfast_fm3502}
 \end{longtable}
 
-Im Vergleich zeigt sich, dass das TM FAST Modul nicht nur mehr Kanäle bietet, sondern auch eine deutlich höhere Signalgeschwindigkeit und Flexibilität in der Programmierung. Damit eignet es sich für moderne, hochkanalige Anwendungen, bei denen sich Anforderungen dynamisch ändern können. Das FM 350-2 ist dagegen fest verdrahtet und deutlich limitierter, war aber für klassische Zähler- und Dosieraufgaben in der S7-300-Umgebung lange Zeit eine etablierte Lösung.
+Im Vergleich zeigt sich, dass das TM FAST Modul nicht nur mehr Kanäle bietet, 
+sondern auch eine deutlich höhere Signalgeschwindigkeit und Flexibilität in der 
+Programmierung. Durch die FPGA-Architektur wird zudem eine extrem kurze Zykluszeit 
+von nur 20\,ns erreicht, während das FM 350-2 mit typischen 50\,\textmu s 
+deutlich langsamer arbeitet. Damit eignet sich das TM FAST insbesondere für moderne, 
+hochkanalige Anwendungen, bei denen sich Anforderungen dynamisch ändern können. 
+Das FM 350-2 ist dagegen fest verdrahtet und limitierter, war aber für klassische 
+Zähler- und Dosieraufgaben in der S7-300-Umgebung lange Zeit eine etablierte Lösung.
 
-Ein wesentlicher Vorteil des FM 350-2 liegt in der direkten Unterstützung von A-, B- und Z-Signalen pro Kanal für den Betrieb von Inkrementalgebern. Diese Funktionalität ist beim TM FAST prinzipiell ebenfalls umsetzbar, erfordert jedoch eine Mehrfachbelegung einzelner Eingänge, was die effektiv nutzbare Kanalanzahl halbieren oder in manchen Konfigurationen sogar dritteln würde.
-
+Ein wesentlicher Vorteil des FM 350-2 liegt in der direkten Unterstützung von 
+A- und B-Signalen pro Kanal für den Betrieb von Inkrementalgebern. Diese 
+Funktionalität ist beim TM FAST prinzipiell ebenfalls umsetzbar, erfordert jedoch 
+eine Mehrfachbelegung einzelner Eingänge, was die effektiv nutzbare Kanalanzahl 
+halbieren würde.
 

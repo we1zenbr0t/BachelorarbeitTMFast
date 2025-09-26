@@ -1,8 +1,6 @@
 \chapter{Fazit und Ausblick}
 \label{chap:fazit}
 
-\section{Zusammenfassung der Ergebnisse}
-
 Im Rahmen dieser Arbeit konnte gezeigt werden, dass alle für Dosieranlagen relevanten Funktionen erfolgreich in das neue VHDL-Design integriert wurden. Ein wesentliches Ergebnis ist die drastische Verkürzung der Reaktionszeit: Während die bisher eingesetzte Baugruppe FM 350-2 eine Verzögerung von rund 50 µs aufwies, erreicht die neue Implementierung eine Reaktionszeit von 20 ns. Damit wird eine sofortige und deterministische Signalverarbeitung ermöglicht, was insbesondere in zeitkritischen Dosierprozessen erhebliche Vorteile bringt.  
 
 Ein Unterschied zur alten Baugruppe liegt in der Behandlung der Prozessalarme. Viele der in der FM 350-2 implementierten Alarme konnten in der neuen Architektur nicht in gleicher Form umgesetzt werden. Während die FM 350-2 interne, externe und kanalspezifische Fehler durch Prozessalarme meldete und dabei auch eine Sammelfehler-LED (SF) sowie Diagnose-OBs in der SPS nutzte, verfolgt das neue VHDL-Design einen anderen Ansatz.  
