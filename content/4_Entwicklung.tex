@@ -8,7 +8,7 @@ Ressourcenoptimierung, Fehlerbehandlung und Kommunikationsstrategien im Vordergr
 stehen. Darüber hinaus werden Mechanismen zur sicheren Betriebsführung, flexible 
 Kanalzuordnungen sowie Strategien zur Überlaufkompensation erläutert.
 
-\section{Anforderungen an die Neuentwicklung 2}
+\section{Anforderungen an die Neuentwicklung}
 
 Die Arbeit verfolgt insbesondere folgende Ziele:
 \begin{itemize}
@@ -25,7 +25,7 @@ Daraus bilden sich folgenden funktionale und nichtfunktionale Anforderungen:
 
 \begin{enumerate}[label=F\arabic*]
     \item Das Modul stellt mindestens acht unabhängige Zählerkanäle bereit.
-    \item Jeder Kanal kann flexibel als Digitaleingang, Digitalausgang oder RS485/TTL-Kanal genutzt werden.
+    \item Jeder Kanal kann flexibel als Digitaleingang, Digitalausgang oder RS485/TTL-Schnittstelle verwendet werden.
     \item Jeder Kanal verwendet eine 32-Bit-Zählvariable.
     \item Die Übergabe von Sollwerten und Parametern ist im laufenden Betrieb möglich.
     \item Das Modul unterstützt die Betriebsmodi Rundenzähler, Reset, Hold und Start/Stop.
@@ -37,7 +37,7 @@ Daraus bilden sich folgenden funktionale und nichtfunktionale Anforderungen:
 
 \begin{enumerate}[label=N\arabic*]
     \item Die Lösung ist vollständig in das TIA Portal integrierbar.
-    \item Die Funktionalität entspricht mindestens dem Umfang der FM350-2, den es braucht, um eine Dosieranwendung umzusetzen.
+    \item Die Funktionalität entspricht mindestens dem Umfang der FM350-2, der für die Umsetzung einer Dosieranwendung erforderlich ist.
     \item Ressourcenschonende Implementierung (FPGA-Auslastung < 70\% bei 14 Kanälen).
     \item Verbesserte Reaktionszeit (FPGA-Reaktionszeit < 50 µs).
     \item Erweiterbarkeit auf zusätzliche Kanäle ohne Anpassung der Grundarchitektur.
@@ -77,7 +77,7 @@ constant CHANNEL_MAP_OUT_CH : t_channel_map
 := (0, 1, 3, 4, 6, 7, 9, 10, 2, 5, 8, 11, 6, 7);
 \end{lstlisting}
 
-Im Beispiel \ref{lst:kanalzuordnung} sind die ersten acht Kanäle als klassische DI/DQ-Kanäle definiert. Die übrigen Eingänge werden flexibel als RS485 genutzt, während die Ausgänge auf DIQ- sowie zusätzliche RS485-Kanäle verteilt sind. Über die Arrays \texttt{CHANNEL\_MAP\_IN\_CH} und \texttt{CHANNEL\_MAP\_OUT\_CH} kann die Belegung zentral geändert werden, ohne dass die Prozesslogik angepasst werden muss.
+Im Beispiel \ref{lst:kanalzuordnung} sind die ersten acht Kanäle als klassische DI/DQ-Kanäle definiert. Die übrigen Eingänge werden flexibel als RS485 verwendet, während die Ausgänge auf DIQ- sowie zusätzliche RS485-Kanäle verteilt sind. Über die Arrays \texttt{CHANNEL\_MAP\_IN\_CH} und \texttt{CHANNEL\_MAP\_OUT\_CH} kann die Belegung zentral geändert werden, ohne dass die Prozesslogik angepasst werden muss.
 
 Ein praktischer Vorteil für Dosieranwendungen ist, dass bei Inkrementalgebern häufig nur die A-Flanke ausgewertet werden muss, da die Förderrichtung fix ist. Dadurch genügt pro Kanal ein Eingang und ein Ausgang, sodass sich alle 28 physischen Schnittstellen (\cite{TmFast_progrmming_manual}) optimal auf 14 logische Kanäle aufteilen lassen. 
 
@@ -88,7 +88,7 @@ Jeder Kanal verwendet eine \texttt{std\_logic\_vector(31 downto 0)}, um ausreich
 
 \subsection*{F4 – Übergabe von Sollwerten im laufenden Betrieb}
 
-Für die Übergabe von Sollwerten und Parametern im laufenden Betrieb wird die azyklische Schnittstelle \texttt{WR\_REC} genutzt. Eine rein zyklische Übertragung über \texttt{CTRL\_IF} wäre auf acht Doppelwörter beschränkt und würde nicht für 14 Kanäle ausreichen. Mit \texttt{WR\_REC} stehen dagegen 64~Byte (16 Doppelwörter) zur Verfügung, was alle 14 Kanäle mit je 32~Bit Sollwert abdeckt und noch Platz für zusätzliche Steuerbits lässt.  
+Für die Übergabe von Sollwerten und Parametern im laufenden Betrieb wird die azyklische Schnittstelle \texttt{WR\_REC} verwendet. Eine rein zyklische Übertragung über \texttt{CTRL\_IF} wäre auf acht Doppelwörter beschränkt und würde nicht für 14 Kanäle ausreichen. Mit \texttt{WR\_REC} stehen dagegen 64~Byte (16 Doppelwörter) zur Verfügung, was alle 14 Kanäle mit je 32~Bit Sollwert abdeckt und noch Platz für zusätzliche Steuerbits lässt.  
 
 \textbf{Kommunikationsaufteilung:}  
 Das Design trennt klar zwischen zyklischer und azyklischer Kommunikation:
@@ -177,7 +177,7 @@ Unter stabilen Bedingungen (\(V_\text{current\_overflow} = V_\text{last\_overflo
 \textbf{Vor- und Nachteile:}  
 Die Methode kompensiert zuverlässig die Systemträgheit,  
 erfordert keine zusätzliche Hardware,  
-ist adaptiv, da der jeweils letzte Überlaufwert genutzt wird,  
+ist adaptiv, da der jeweils letzte Überlaufwert verwendet wird,  
 und eignet sich besonders für kontinuierliche Prozesse mit konstanten Bedingungen.  
 
 Grenzen treten auf bei stark schwankenden Parametern (Druck, Temperatur, Viskosität) oder bei Produktwechseln, da das System nachgelernt werden muss. Auch bei sehr unterschiedlichen Füllmengen können mehrere Überlaufwerte erforderlich sein, um präzise zu bleiben.  
@@ -286,7 +286,7 @@ Für jeden Funktionsbaustein muss eine Instanz angelegt und im Projekt mitgefüh
 \end{lstlisting}
 
 Für die Steuerung des TM FAST dient der Baustein \texttt{LTMFAST\_dosing\_application}.  
-Er bildet die Schnittstelle zum TM FAST-Modul und setzt die Eingangssignale in das vorgesehene Bitmuster um (vgl.~Listing~\ref{bitmuster}).  
+Er bildet die Schnittstelle zum TM FAST Modul und setzt die Eingangssignale in das vorgesehene Bitmuster um (vgl.~Listing~\ref{bitmuster}).  
 Die Signale werden über die I/O-Schnittstelle übertragen und mit den Steuerbits \texttt{Hold}, \texttt{Load}, \texttt{CounterReset}, \texttt{StartDQ}, \texttt{Select\_Feedback\_Value}, \texttt{polarity} und \texttt{EnableDQ} umgesetzt.
 
 \begin{lstlisting}[language=Pascal, label={bitmuster},captionpos=b,caption={Generierung der Steuerbits für die zyklische Kommunikation}]
@@ -366,17 +366,16 @@ END_IF;
 
 \subsection*{N2 – Funktionsumfang im Vergleich zur FM350-2}
 
-Alle für das Applikationsbeispiel \emph{Dosieranwendung} relevanten Funktionen wurden erfolgreich umgesetzt. Einschränkungen ergeben sich lediglich bei einzelnen Funktionen wie der Drehzahlmessung, die zusätzliche Eingänge am Inkrementalgeber erfordert und daher in dieser Architektur nicht vorgesehen ist.  
+Alle für das Applikationsbeispiel \emph{Dosieranwendung} relevanten Funktionen wurden erfolgreich umgesetzt. Einschränkungen bestehen lediglich bei einzelnen Funktionen wie der Drehzahlmessung, die zusätzliche Eingänge am Inkrementalgeber erfordert und daher in dieser Architektur nicht vorgesehen ist.
 
-Tabelle~\ref{tab:fm350_vergleich} zeigt eine Übersicht der implementierten und nicht implementierten Funktionen im Vergleich zur FM350-2.  
-
+Tabelle~\ref{tab:fm350_vergleich} gibt eine Übersicht der implementierten und nicht implementierten Funktionen im Vergleich zur FM350-2. Dabei agieren \texttt{EnableDQ}, \texttt{Hold} und \texttt{StartDQ} als Software-Tore und stellen sicher, dass Zählimpulse zum Zähler gelangen oder gestoppt werden.
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|c|}
         \hline
         \textbf{Funktion} & \textbf{Umsetzungsstatus} \\
         \hline
-        Torfunktionen der FM350-2 & umgesetzt \\
+        Torfunktionen der FM350-2 & teilweise umgesetzt \\
         \hline
         Frequenzmessung & umgesetzt \\
         \hline
@@ -384,9 +383,9 @@ Tabelle~\ref{tab:fm350_vergleich} zeigt eine Übersicht der implementierten und 
         \hline
         Einmaliges Zählen & nicht umgesetzt \\
         \hline
-        Endloses Zählen & teilweise (nicht relevant für Dosierung) \\
+        Endloses Zählen & nicht umgesetzt \\
         \hline
-        Prozessalarme & teilweise umgesetzt, relevant \\
+        Prozessalarme & teilweise umgesetzt \\
         \hline
         Drehzahlmessung & nicht umgesetzt \\
         \hline
@@ -395,14 +394,14 @@ Tabelle~\ref{tab:fm350_vergleich} zeigt eine Übersicht der implementierten und 
     \label{tab:fm350_vergleich}
 \end{table}
 
-Damit wird deutlich, dass alle für die Dosieranwendung notwendigen Kernfunktionen abgedeckt sind. Die teilweise umgesetzten Prozessalarme sind für die Anwendung relevant, werden jedoch in einem reduzierten Umfang realisiert. Nicht umgesetzte Funktionen wie das einmalige Zählen oder die Drehzahlmessung betreffen dagegen Bereiche, die für die Dosierung keine wesentliche Rolle spielen.
+Damit wird deutlich, dass alle für die Dosieranwendung notwendigen Kernfunktionen abgedeckt sind. Die teilweise umgesetzten Prozessalarme sind für die Anwendung relevant, werden jedoch in einem reduzierten Umfang realisiert. Nicht umgesetzte Funktionen wie das einmalige Zählen, endlose Zählen oder die Drehzahlmessung betreffen dagegen Bereiche, die für die Dosierung keine wesentliche Rolle spielen.
 
 \subsection*{N3 – Ressourcenschonung}
-Die FPGA-Auslastung wird durch Optimierungen reduziert. Abbildung \ref{fig:logikelemente_kanal} zeigt den Trend des Ressourcenverbrauchs.
+Die FPGA-Auslastung wird durch Optimierungen reduziert. Abbildung \ref{fig:Logikelemente} zeigt den Trend des Ressourcenverbrauchs.
 
-Das VHDL-Design nutzt gezielt Arrays und Bitfelder, um den Ressourcenverbrauch im FPGA zu minimieren. Die Anzahl der tatsächlich verwendeten Kanäle wird zentral über das Generic `CHANNEL\_COUNT` festgelegt (Lst. \ref{lst:array_generate}). Alle kanalbezogenen Signale (wie Zählerstände, Statusflags, Steuerbits) werden als Arrays der Länge `CHANNEL\_COUNT` deklariert. Dadurch werden nur so viele Flipflops und Logikelemente instanziiert, wie für die aktivierten Kanäle tatsächlich benötigt werden.
+Das VHDL-Design nutzt gezielt Arrays und Bitfelder, um den Ressourcenverbrauch im FPGA zu minimieren. Die Anzahl der tatsächlich verwendeten Kanäle wird zentral über das Generic `CHANNEL\_COUNT` festgelegt (Lst. \ref{lst:generate}). Alle kanalbezogenen Signale (wie Zählerstände, Statusflags, Steuerbits) werden als Arrays der Länge `CHANNEL\_COUNT` deklariert. Dadurch werden nur so viele Flipflops und Logikelemente instanziiert, wie für die aktivierten Kanäle tatsächlich benötigt werden.
 
-Nicht genutzte Kanäle belegen somit keine unnötigen Ressourcen, da die Generate-Blöcke und Prozesse ausschließlich für die Indizes `0` bis `CHANNEL\_COUNT-1` erzeugt werden. Auch die Kanalzuordnung erfolgt über Mapping-Arrays, sodass keine redundante Logik für ungenutzte Ein-/Ausgänge entsteht.
+Nicht verwendete Kanäle belegen somit keine unnötigen Ressourcen, da die Generate-Blöcke und Prozesse ausschließlich für die Indizes `0` bis `CHANNEL\_COUNT-1` erzeugt werden. Auch die Kanalzuordnung erfolgt über Mapping-Arrays, sodass keine redundante Logik für ungenutzte Ein-/Ausgänge entsteht.
 
 Auch die Steuer- und Feedbackschnittstellen werden als Bitfelder (`std\_logic\_vector`) organisiert, sodass mehrere Steuer- und Statusinformationen platzsparend in einem einzigen Datenwort übertragen werden können. Dies reduziert den Bedarf an separaten Signalen und vereinfacht die Schnittstellenanbindung.
 
@@ -460,14 +459,14 @@ Auch die Steuer- und Feedbackschnittstellen werden als Bitfelder (`std\_logic\_v
     \label{fig:logikelemente_prozent}
 \end{figure}
 
-Durch die konsequente Nutzung von Arrays, Bitfeldern und Generate-Strukturen wird der FPGA optimal ausgelastet und der Ressourcenverbrauch auf das tatsächlich benötigte Minimum reduziert. Für jeden nicht genutzten Kanal werden im Mittel etwa 450 Logikelemente eingespart, was rund 1,8\% der Gesamtkapazität entspricht.
+Durch die konsequente Nutzung von Arrays, Bitfeldern und Generate-Strukturen wird der FPGA optimal ausgelastet und der Ressourcenverbrauch auf das tatsächlich benötigte Minimum reduziert. Für jeden nicht verwendeten Kanal werden im Mittel etwa 450 Logikelemente eingespart, was rund 1,8\,\% der Gesamtkapazität entspricht.
 
-In Abbildung~\ref{fig:logikelemente_prozent} ist erkennbar, dass bereits bei nur einem Kanal etwa 12 928 Logikelemente belegt sind, was rund 53\% der verfügbaren Ressourcen entspricht. Mit jedem zusätzlichen Kanal steigt die Auslastung linear um ungefähr 1,8\%. Dieser lineare Trend verdeutlicht die gute Skalierbarkeit der Architektur: Der Ressourcenverbrauch pro Kanal bleibt vergleichsweise gering, sodass auch Konfigurationen mit einer hohen Kanalanzahl effizient umgesetzt werden können, ohne die FPGA-Grenzen frühzeitig zu erreichen.
+In Abbildung~\ref{fig:logikelemente_prozent} ist erkennbar, dass bereits bei nur einem Kanal etwa 12 928 Logikelemente belegt sind, was rund 53\,\% der verfügbaren Ressourcen entspricht. Mit jedem zusätzlichen Kanal steigt die Auslastung linear um ungefähr 1,8\,\%. Dieser lineare Trend verdeutlicht die gute Skalierbarkeit der Architektur: Der Ressourcenverbrauch pro Kanal bleibt vergleichsweise gering, sodass auch Konfigurationen mit einer hohen Kanalanzahl effizient umgesetzt werden können, ohne die FPGA-Grenzen frühzeitig zu erreichen.
 
 \subsection*{N4 – Verbesserte Reaktionszeit}
 
 Aufgrund der parallelen Verarbeitung in einem FPGA ist es möglich mehrere Funktionen gleichzeitig abzuarbeiten. Einziger limitierender Faktor ist die maximale
-I/O-Belegung der physischen Schnittstelle und die Anzahl der verfügbaren Logikelemente. Dadurch ist die Verarbeitungs- und Reaktionszeit der TM Fast, mit 20ns, deutlich schneller als die der FM-350/2, mit 50 µs.
+I/O-Belegung der physischen Schnittstelle und die Anzahl der verfügbaren Logikelemente. Dadurch ist die Verarbeitungs- und Reaktionszeit der TM Fast mit 20ns deutlich schneller als die der FM 350-2 mit 50 µs.
 
 \subsection*{N5 – Erweiterbarkeit}
 
@@ -481,7 +480,7 @@ Durch die klare Trennung von Steuer-, Daten- und Diagnosepfaden sowie die konseq
 
 \section{Validierung und Tests}
 
-Die Funktionalität des entwickelten VHDL-Designs wurde durch Simulationen und Tests umfassend nachgewiesen. Wellenformanalysen bestätigen die deterministische und zeitgenaue Arbeitsweise des Systems.  
+Die Funktionalität des entwickelten VHDL-Designs wurde durch Simulationen und Tests umfassend nachgewiesen. Wellenformanalysen bestätigen die deterministische und zeitgenaue Funktionsweise des Systems.  
 
 Die Architektur ist gezielt auf eine hohe Testbarkeit ausgelegt. Durch die konsequente Trennung von Steuer- und Datenpfaden sowie die Nutzung von Arrays und Generate-Blöcken kann jeder Kanal unabhängig simuliert und überprüft werden. Alle kanalbezogenen Signale sind als Arrays deklariert, sodass im Test gezielt einzelne Kanäle adressiert werden können, ohne unbeabsichtigte Seiteneffekte auf andere Kanäle auszulösen.  
 
@@ -491,7 +490,7 @@ Die resultierenden Signalverläufe wurden in \textit{Questa} aufgezeichnet. Abbi
 
 Gut erkennbar ist, dass die zyklischen Steuerbits (z.\,B. \texttt{CTRL\_IF0}, \texttt{CTRL\_IF1}) in jedem SPS-Zyklus gesetzt und über das Prozessabbild verarbeitet werden. Parallel dazu laufen azyklische Operationen über die \texttt{WR\_REC}- und \texttt{RD\_REC}-Schnittstellen ab, die nur bei Bedarf aktiviert werden.  
 
-Im dargestellten Beispiel wird ein \texttt{LoadRequest} über die \texttt{WR\_REC}-Schnittstelle angestoßen. Dieser führt dazu, dass die entsprechenden Steuerbits aktiv werden und anschließend im Zähler \texttt{j\_enc\_count} Änderungen auftreten. Auf diese Weise lässt sich in der Simulation nachvollziehen, wie deterministisch die zyklischen Steuerbefehle verarbeitet und wie azyklische Kommandos synchron eingesteuert werden.  
+Im dargestellten Beispiel wird ein \texttt{LoadRequest} über die \texttt{WR\_REC}-Schnittstelle angestoßen. Dieser führt dazu, dass die entsprechenden Steuerbits aktiv werden und anschließend im Zähler \texttt{j\_enc\_count} Änderungen auftreten. Auf diese Weise lässt sich in der Simulation nachvollziehen, wie deterministisch die zyklischen Steuerbefehle verarbeitet und die azyklische Kommandos synchron eingesteuert werden.  
 
 \begin{figure}[H]
     \centering

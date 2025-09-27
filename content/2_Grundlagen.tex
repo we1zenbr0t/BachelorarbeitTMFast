@@ -2,39 +2,8 @@
 \label{chap:grundlagen}
 Um die technischen Aspekte und die Funktionsweise der in dieser Arbeit behandelten Systeme
 zu verstehen, werden im Folgenden die zugrundeliegenden Konzepte und Technologien erläutert. 
-Relevant sind hierbei die Automatisierungspyramide, SIMATIC S7, Speicherprogrammierbare Steuerungen, Quartus und Questa sowie dem
+Relevant sind hierbei die SIMATIC S7, Speicherprogrammierbare Steuerungen, Quartus und Questa sowie dem
 TIA Portal.
-
-\section{Automatisierungspyramide}
-
-Die Automatisierungspyramide stellt ein Modell zur Einordnung von Techniken und Systemen in der industriellen Fertigung dar. 
-Sie beschreibt die vertikale Kommunikation von der Feld-/Prozessebene bis zur Unternehmensführung und ordnet die verschiedenen 
-Ebenen der Automatisierung, wie Sensoren/Aktoren, Steuerungssysteme, Prozessleitsysteme, Betriebsleit- und Unternehmenssysteme, ein 
-(Abbildung~\ref{fig:Automatisierungpyramide}). 
-Grundlage ist das OSI-Referenzmodell von 1984, erweitert durch IoT-Konzepte seit 1999, die eine durchgängige Vernetzung von Sensoren, 
-Maschinen und Unternehmenssystemen ermöglichen \cite{bable_automatisierungspyramide}.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Fotos/AutomatisierungspyramideNeu.png}
-    \caption{Automatisierungspyramide, \cite{bable_automatisierungspyramide}}
-    \label{fig:Automatisierungpyramide}
-\end{figure}
-
-\subsection*{Ebenen der OT}
-\begin{itemize}
-    \item \textbf{Ebene 1 – Feldebene:} Intelligente Sensoren und Maschinen, die direkt mit der physischen Umgebung interagieren.
-    \item \textbf{Ebene 2 – SPS-Ebene:} Speicherprogrammierbare Steuerungen (SPS) und I/O-Einheiten zur Ansteuerung von Aktoren und Verarbeitung der Sensordaten.
-    \item \textbf{Ebene 3 – SCADA/HMI-Ebene:} Überwachung und Bedienung über SCADA-Systeme oder Human-Machine-Interfaces (Kontrollraum).
-\end{itemize}
-
-\subsection*{Ebenen der IT}
-\begin{itemize}
-    \item \textbf{Ebene 4 – MES-Ebene:} Manufacturing Execution Systems (MES) für Echtzeit-Produktionssteuerung und Prozessüberwachung.
-    \item \textbf{Ebene 5 – ERP-Ebene:} Enterprise Resource Planning (ERP) zur Steuerung der gesamten Wertschöpfungskette „vom Kunden zum Kunden“.
-\end{itemize}
-
-Die Automatisierungspyramide verdeutlicht die Trennung zwischen der OT (Operational Technology: Ebenen 1–3) und der IT (Information Technology: Ebenen 4–5). Sämtliche Ebenen sind im Sinne von IoT kommunikationsfähig und nutzen standardisierte Protokolle wie PROFINET, EtherCAT, Modbus TCP, OPC UA oder Ethernet APL. Nicht-Ethernet-basierte Feldbusse wie PROFIBUS oder HART verlieren seit der Einführung von Ethernet APL zunehmend an Bedeutung.
 
 \section{Überblick über SIMATIC S7}
 
@@ -42,7 +11,7 @@ Speicherprogrammierbare Steuerungen (SPS), im Englischen \textit{Programmable Lo
 
 \subsection{Aufbau eines SIMATIC S7-Systems}
 
-Ein SIMATIC S7-System besitzt einen modularen Aufbau und besteht aus mehreren Baugruppen mit spezifischen Funktionen. In der Abbildung \ref{fig:AllgemeinerAufbau} sind beispielhaft folgende Baugruppen zu erkennen: das **PM/PS-Modul** (Stromversorgung), die **CPU** (Zentraleinheit) sowie mehrere **Ein- und Ausgangsmodule (I/O-Module)** zur Verbindung mit Sensoren und Aktoren.
+Ein SIMATIC S7-System besitzt einen modularen Aufbau und besteht aus mehreren Baugruppen mit spezifischen Funktionen. In der Abbildung \ref{fig:AllgemeinerAufbau} sind beispielhaft folgende Baugruppen zu erkennen: das PM/PS-Modul (Stromversorgung), die CPU (Zentraleinheit) sowie mehrere Ein- und Ausgangsmodule (I/O-Module) zur Verbindung mit Sensoren und Aktoren.
 
 \textbf{Controller (CPU)}  
 
@@ -93,26 +62,6 @@ Kompakt-SPS vereinen diese Komponenten in einem Gehäuse. Optional können
 Kommunikations-, Zähler-, Positionier- oder Regelungsmodule ergänzt werden. 
 Mehrere Baugruppenträger werden über Interface-Module verbunden 
 \cite{heinrich_automatisierung}.
-
-Die CPU verfügt über verschiedene Speicherbereiche \cite{heinrich_automatisierung}:
-
-\begin{figure}[H]
-  \centering
-  \includegraphics[width=0.6\textwidth]{Fotos/CPUSpeicherModell.png}
-  \caption{Speicherbereiche einer SIMATIC S7-CPU \cite{s7_memory_manual}}
-  \label{fig:s7_memory_areas}
-\end{figure}
-
-\begin{itemize}
-  \item \textbf{Arbeitsspeicher (Anwenderspeicher):} Enthält das aktuell 
-  ausgeführte SPS-Programm und die benötigten Datenbausteine. 
-  \item \textbf{Ladespeicher:} Dient als Zwischenspeicher für Programme und kann 
-  über RAM-, EPROM-, FLASH- oder MMC-Karten erweitert werden.
-  \item \textbf{Systemspeicher:} Beinhaltet Operandenbereiche wie Eingänge, 
-  Ausgänge, Merker, Zeiten und Zähler.
-  \item \textbf{Peripherie:} Ermöglicht direkten Zugriff auf reale Ein- und 
-  Ausgänge, auch ohne Prozessabbild. 
-\end{itemize}
 
 Durch diese Struktur ist die SPS in der Lage, deterministisch und zuverlässig auf 
 geänderte Eingangssignale zu reagieren, Prozesse zu steuern und eine hohe 
@@ -188,7 +137,7 @@ Intel\textsuperscript{\textregistered} Quartus\textsuperscript{\textregistered} 
 für FPGAs. Sie deckt den gesamten Prozess von der Designerfassung über die Synthese und Optimierung 
 bis hin zur Simulation und Programmerstellung ab. Es existieren drei Editionen – Lite, Standard und Pro – 
 die sich im Funktionsumfang und in der Geräteunterstützung unterscheiden. Für das Cyclone~10~LP im 
-TM~FAST wird in dieser Arbeit die Version~22.1std.0 Lite Edition eingesetzt \cite{quartus}.  
+TM~FAST wird in dieser Arbeit die Version~25.1.1 Lite Edition eingesetzt \cite{quartus}.  
 
 Ein Quartus-Projekt kann in mehrere Revisionen aufgeteilt werden, die jeweils eine eigene VHDL-Architektur 
 und Konfigurationsdateien beinhalten. Diese Struktur erlaubt es, verschiedene Anwendungen unabhängig 
@@ -207,7 +156,7 @@ Beide basieren auf der Siemens EDA Questa Core Software und bieten umfangreiche 
 zur Simulation, Verifikation und zum Debugging von FPGA-Designs \cite{questa}.  
 
 Die Simulation erfolgt entweder direkt aus Quartus oder über Simulationsskripte in Questa. 
-Hierzu wird eine Testbench erstellt, die Eingabesignale (Stimuli) bereitstellt und die resultierenden 
+Hierzu wird eine Testbench erstellt, die Eingabesignale bereitstellt und die resultierenden 
 Ausgangssignale überprüft. Typischerweise werden dabei Prozesse definiert, die z.\,B. ein Taktsignal 
 generieren oder Signalwechsel nachbilden. Abb.~\ref{fig:Zeitdiagramm} zeigt eine beispielhafte 
 Simulation zur Validierung einer Signum-Funktion \cite{questa}.  
@@ -231,7 +180,7 @@ Die fünf in IEC~61131-3 beschriebenen Sprachen sind:
 \textit{Kontaktplan} (KOP), eine grafische Darstellung, die sich an Schaltplänen 
 orientiert; \textit{Funktionsplan} (FUP), eine grafische Sprache zur logischen 
 Verknüpfung von Bausteinen; \textit{Anweisungsliste} (AWL), eine textbasierte Sprache 
-ähnlich zu Assembler; \textit{Struckturierter Text} (ST), eine 
+ähnlich zu Assembler; \textit{Strukturierter Text} (ST), eine 
 hochsprachähnliche Programmiersprache vergleichbar mit Pascal; sowie die 
 \textit{Ablaufsprache} (AS) zur Modellierung von Ablaufsteuerungen \cite{babel2024}.
 
@@ -244,7 +193,7 @@ Darüber hinaus können auch komplexere mathematische Operationen oder
 steuerungsspezifische Aufgaben umgesetzt werden. FUP eignet sich besonders, um 
 Programme übersichtlich und intuitiv zu strukturieren \cite{berger2017}.  
 
-\textbf{Struckturierter Text (ST)}  
+\textbf{Strukturierter Text (ST)}  
 
 SCL ist eine textbasierte Sprache, die in der IEC~61131-3 als 
 \textit{Strukturierter Text} bezeichnet wird. Sie ähnelt der Hochsprache Pascal 

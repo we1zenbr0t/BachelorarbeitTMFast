@@ -1,27 +1,25 @@
 \babel@toc {ngerman}{}\relax 
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Automatisierungspyramide, \cite {bable_automatisierungspyramide}}}{3}{figure.caption.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Aufbau eines SIMATIC S7-Systems \cite {siemensET200MP}}}{6}{figure.caption.4}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Speicherbereiche einer SIMATIC S7-CPU \cite {s7_memory_manual}}}{7}{figure.caption.5}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Zentraler und dezentraler Aufbau der SIMATIC S7-1500 Steuerung mit ET 200MP Peripheriesystem \cite {siemensET200MP}}}{8}{figure.caption.6}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Hardwarekonfiguration im TIA Portal mit TM FAST}}{10}{figure.caption.7}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Zeitdiagramm zur Simulation einer Signum-Funktion in der Questa-Intel\textsuperscript {\textregistered } FPGA Starter Edition}}{12}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Zwei Rechteckwellen in Quadratur \cite {encoder_basics}}}{13}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Funktionsweise eines Inkrementalgebers \cite {encoder_basics}}}{13}{figure.caption.10}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Aufbau eines SIMATIC S7-Systems \cite {siemensET200MP}}}{4}{figure.caption.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Zentraler und dezentraler Aufbau der SIMATIC S7-1500 Steuerung mit ET 200MP Peripheriesystem \cite {siemensET200MP}}}{6}{figure.caption.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Hardwarekonfiguration im TIA Portal mit TM FAST}}{8}{figure.caption.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Zeitdiagramm zur Simulation einer Signum-Funktion in der Questa-Intel\textsuperscript {\textregistered } FPGA Starter Edition}}{10}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Zwei Rechteckwellen in Quadratur \cite {encoder_basics}}}{11}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Funktionsweise eines Inkrementalgebers \cite {encoder_basics}}}{11}{figure.caption.6}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Hardware der FM-350-2 \cite {fm350_Handbuch}}}{16}{figure.caption.11}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Endloses Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{17}{figure.caption.13}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Einmaliges Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{18}{figure.caption.14}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Periodisches Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{19}{figure.caption.15}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Prinzip der Frequenzmessung mit Zeitfenster bei der FM 350-2 \cite {fm350_Handbuch}}}{20}{figure.caption.16}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Öffnen und Schließen eines Tores und das Zählen der Impulse \cite {fm350_Handbuch}}}{21}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Blockdiagramm des TM FAST \cite {tmfast_featurespec}}}{24}{figure.caption.36}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Aufbau von Frontend- und Backend-Gerät und Einbindung in das System \cite {tmfast_featurespec}}}{25}{figure.caption.37}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Technologiemodul TM FAST \cite {TmFast_progrmming_manual}}}{26}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Hardware der FM-350-2 \cite {fm350_Handbuch}}}{14}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Endloses Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{15}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Einmaliges Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{16}{figure.caption.10}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Periodisches Zählen in Hauptzählrichtung vorwärts \cite {fm350_Handbuch}}}{17}{figure.caption.11}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Prinzip der Frequenzmessung mit Zeitfenster bei der FM 350-2 \cite {fm350_Handbuch}}}{18}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Öffnen und Schließen eines Tores und das Zählen der Impulse \cite {fm350_Handbuch}}}{19}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Blockdiagramm des TM FAST \cite {tmfast_featurespec}}}{22}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Aufbau von Frontend- und Backend-Gerät und Einbindung in das System \cite {tmfast_featurespec}}}{23}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Technologiemodul TM FAST \cite {TmFast_progrmming_manual}}}{24}{figure.caption.35}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Integration des Applikationsbausteins in OB1}}{41}{figure.caption.48}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Anzahl der Logikelemente bei einem Kanal}}{43}{figure.caption.52}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Prozentualer Verbrauch der Logikelemente in Abhängigkeit von der Kanalanzahl (Maximal 24\,624 LEs)}}{44}{figure.caption.53}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Wellenanalyse der CTRL\_IF-, WR\_REC- und RD\_REC-Schnittstellen in Questa}}{47}{figure.caption.56}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Integration des Applikationsbausteins in OB1}}{39}{figure.caption.44}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Anzahl der Logikelemente bei einem Kanal}}{41}{figure.caption.48}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Prozentualer Verbrauch der Logikelemente in Abhängigkeit von der Kanalanzahl (Maximal 24\,624 LEs)}}{42}{figure.caption.49}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Wellenanalyse der CTRL\_IF-, WR\_REC- und RD\_REC-Schnittstellen in Questa}}{45}{figure.caption.52}%
 \addvspace {10\p@ }

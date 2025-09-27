@@ -610,13 +610,6 @@ OUTPUT content\2_Grundlagen.aux
 INPUT .\content\2_Grundlagen.tex
 INPUT .\content\2_Grundlagen.tex
 INPUT content\2_Grundlagen.tex
-INPUT .\Fotos\AutomatisierungspyramideNeu.png
-INPUT .\Fotos\AutomatisierungspyramideNeu.png
-INPUT .\Fotos\AutomatisierungspyramideNeu.png
-INPUT .\Fotos\AutomatisierungspyramideNeu.png
-INPUT .\Fotos\AutomatisierungspyramideNeu.png
-INPUT .\Fotos\AutomatisierungspyramideNeu.png
-INPUT .\Fotos\AutomatisierungspyramideNeu.png
 INPUT C:\Users\janer\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmri12.tfm
 INPUT .\Fotos\AllgemeinerAufbau.png
 INPUT .\Fotos\AllgemeinerAufbau.png
@@ -625,13 +618,6 @@ INPUT .\Fotos\AllgemeinerAufbau.png
 INPUT .\Fotos\AllgemeinerAufbau.png
 INPUT .\Fotos\AllgemeinerAufbau.png
 INPUT .\Fotos\AllgemeinerAufbau.png
-INPUT .\Fotos\CPUSpeicherModell.png
-INPUT .\Fotos\CPUSpeicherModell.png
-INPUT .\Fotos\CPUSpeicherModell.png
-INPUT .\Fotos\CPUSpeicherModell.png
-INPUT .\Fotos\CPUSpeicherModell.png
-INPUT .\Fotos\CPUSpeicherModell.png
-INPUT .\Fotos\CPUSpeicherModell.png
 INPUT .\Fotos\Aufbau_S7_System.png
 INPUT .\Fotos\Aufbau_S7_System.png
 INPUT .\Fotos\Aufbau_S7_System.png

@@ -4,12 +4,12 @@ Die Produktpalette der Firma Siemens im Bereich der Industrieautomatisierung umf
 von denen die Produktserie SIMATIC S7-300 schrittweise abgekündigt wurde \cite{siemens_S7_300}. Insbesondere das FM350-2 Modul, das für 
 Dosier- und Zählanwendungen entwickelt wurde, ist nicht mehr in der aktiven Vermarktung und lediglich als Ersatzteil verfügbar. 
 Das FM350-2 Modul bietet 8 Kanäle für hochkanalige Dosieranwendungen. Unter hochkanaligen Dosieranwendungen versteht man Systeme, 
-bei denen viele unterschiedliche Materialströme (z. B. Flüssigkeiten, Pulver oder Granulate) gleichzeitig präzise gesteuert, verwogen 
+bei denen zahlreiche unterschiedliche Materialströme (z. B. Flüssigkeiten, Pulver oder Granulate) gleichzeitig präzise gesteuert, verwogen 
 und dosiert werden müssen. Solche Systeme finden vor allem in der Chemie-, Pharma- oder Lebensmittelindustrie Anwendung, da dort eine 
 große Anzahl paralleler Dosierstellen eine hohe Effizienz und Flexibilität erfordert \cite{chemart}.
 
 Ein alternatives Lösungskonzept ist der Einsatz des TM FAST Moduls, eines freiprogrammierbaren Hochgeschwindigkeits-Moduls, das eine 
-erweiterte Kanalanzahl von bis zu 14 Kanälen ermöglicht und für die neuere Produktserie SIMATIC S7-1500 ausgelegt ist \cite{TmFast_progrmming_manual}. 
+erweiterte Kanalanzahl ermöglichen kann und für die neuere Produktserie SIMATIC S7-1500 ausgelegt ist \cite{TmFast_progrmming_manual}. 
 Ziel dieser Bachelorarbeit ist die Entwicklung eines VHDL-basierten Applikationsbeispiels zur Demonstration der Einsatzmöglichkeiten des 
 TM FAST Moduls in hochkanaligen Dosieranwendungen. Gleichzeitig soll die Integration in das TIA Portal erfolgen, um eine reibungslose 
 Nutzung in industriellen Automatisierungsumgebungen zu gewährleisten. 
@@ -30,7 +30,7 @@ Die Arbeit verfolgt insbesondere folgende Ziele:
 \begin{itemize}
     \item Umsetzung der bekannten FM350-2-Funktionalitäten auf dem TM FAST Modul.
     \item Erhöhung der Kanalanzahl von 8 auf die höchstmögliche Anzahl für flexible Dosieranwendungen.
-    \item Optimierung der Implementierung hinsichtlich \textbf{Performance} und \textbf{Ressourcenschonung}, z.\,B. Reduktion der Logikelemente um 23\,\% und Senkung der Zykluszeit von 50\,µs auf 20\,ns.
+    \item Optimierung der Implementierung hinsichtlich \textbf{Performance} und \textbf{Ressourcenschonung}, z.\,B. Maximalauslastung der Logikelemente von 80\,\% und Senkung der Zykluszeit von 50\,µs auf 20\,ns.
     \item Integration des Applikationsbeispiels in das TIA Portal zur nahtlosen Nutzung in industriellen Automatisierungslösungen.
 \end{itemize}
 

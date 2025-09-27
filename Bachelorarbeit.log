@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.24)  26 SEP 2025 22:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.24)  27 SEP 2025 08:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1117,13 +1117,7 @@ File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 LaTeX Warning: Label `chap:grundlagen' multiply defined.
 
 
-LaTeX Warning: Label `fig:Automatisierungpyramide' multiply defined.
-
-
 LaTeX Warning: Label `fig:AllgemeinerAufbau' multiply defined.
-
-
-LaTeX Warning: Label `fig:s7_memory_areas' multiply defined.
 
 
 LaTeX Warning: Label `fig:Aufbau_S7_System' multiply defined.
@@ -1335,114 +1329,103 @@ chapter 1.
 
  (content/2_Grundlagen.tex
 chapter 2.
-<Fotos/AutomatisierungspyramideNeu.png, id=85, 368.577pt x 142.73325pt>
-File: Fotos/AutomatisierungspyramideNeu.png Graphic file (type png)
-<use Fotos/AutomatisierungspyramideNeu.png>
-Package pdftex.def Info: Fotos/AutomatisierungspyramideNeu.png  used on input line 19.
-(pdftex.def)             Requested size: 333.92206pt x 129.31682pt.
+
+Overfull \hbox (9.62633pt too wide) in paragraph at lines 10--11
+\T1/lmr/m/it/12 Con-trol-lers \T1/lmr/m/n/12 (PLC), wie die SI-MA-TIC S7-Serie von Sie-mens, über-neh-men Steuerungs-
+ []
+
 [3
 
 
 
 
 
- <./Fotos/AutomatisierungspyramideNeu.png>]
-Overfull \hbox (9.62633pt too wide) in paragraph at lines 41--42
-\T1/lmr/m/it/12 Con-trol-lers \T1/lmr/m/n/12 (PLC), wie die SI-MA-TIC S7-Serie von Sie-mens, über-neh-men Steuerungs-
- []
-
-[4]
-<Fotos/AllgemeinerAufbau.png, id=109, 349.90726pt x 157.7895pt>
+]
+<Fotos/AllgemeinerAufbau.png, id=95, 349.90726pt x 157.7895pt>
 File: Fotos/AllgemeinerAufbau.png Graphic file (type png)
 <use Fotos/AllgemeinerAufbau.png>
-Package pdftex.def Info: Fotos/AllgemeinerAufbau.png  used on input line 64.
+Package pdftex.def Info: Fotos/AllgemeinerAufbau.png  used on input line 33.
 (pdftex.def)             Requested size: 333.92206pt x 150.58054pt.
- [5]
-Overfull \hbox (24.96849pt too wide) in paragraph at lines 90--96
+ [4 <./Fotos/AllgemeinerAufbau.png>]
+Overfull \hbox (24.96849pt too wide) in paragraph at lines 59--65
 \T1/lmr/m/n/12 SPS ver-ei-nen die-se Kom-po-nen-ten in ei-nem Ge-häu-se. Op-tio-nal kön-nen Kommunikations-
  []
 
-[6 <./Fotos/AllgemeinerAufbau.png>]
-<Fotos/CPUSpeicherModell.png, id=135, 557.08125pt x 432.86719pt>
-File: Fotos/CPUSpeicherModell.png Graphic file (type png)
-<use Fotos/CPUSpeicherModell.png>
-Package pdftex.def Info: Fotos/CPUSpeicherModell.png  used on input line 101.
-(pdftex.def)             Requested size: 250.44313pt x 194.59688pt.
 
-Overfull \hbox (8.3332pt too wide) in paragraph at lines 128--129
+Overfull \hbox (8.3332pt too wide) in paragraph at lines 77--78
 \T1/lmr/m/n/12 durch ver-schie-de-ne Mo-du-le er-wei-tern, dar-un-ter Interface-, Signal-, Kommunikations-
  []
 
-[7 <./Fotos/CPUSpeicherModell.png>]
-<Fotos/Aufbau_S7_System.png, id=152, 1003.75pt x 691.58376pt>
+[5]
+<Fotos/Aufbau_S7_System.png, id=125, 1003.75pt x 691.58376pt>
 File: Fotos/Aufbau_S7_System.png Graphic file (type png)
 <use Fotos/Aufbau_S7_System.png>
-Package pdftex.def Info: Fotos/Aufbau_S7_System.png  used on input line 132.
+Package pdftex.def Info: Fotos/Aufbau_S7_System.png  used on input line 81.
 (pdftex.def)             Requested size: 250.44313pt x 172.54727pt.
 
-Overfull \hbox (4.68579pt too wide) in paragraph at lines 137--138
+Overfull \hbox (4.68579pt too wide) in paragraph at lines 86--87
 []\T1/lmr/m/n/12 Technologiebaugruppen bie-ten ei-ne hard-wa-re-na-he Si-gnal-vor-ver-ar-bei-tung für schnel-
  []
 
-[8 <./Fotos/Aufbau_S7_System.png>]
-Overfull \hbox (3.30925pt too wide) in paragraph at lines 153--161
+[6 <./Fotos/Aufbau_S7_System.png>]
+Overfull \hbox (3.30925pt too wide) in paragraph at lines 102--110
 \T1/lmr/m/n/12 Das \T1/lmr/m/it/12 To-tal-ly In-te-gra-ted Au-to-ma-ti-on Por-tal \T1/lmr/m/n/12 (TIA Por-tal) ist die zen-tra-le Engineering-
  []
 
-[9]
-<Fotos/bildrail.png, id=174, 509.905pt x 274.02374pt>
+[7]
+<Fotos/bildrail.png, id=147, 509.905pt x 274.02374pt>
 File: Fotos/bildrail.png Graphic file (type png)
 <use Fotos/bildrail.png>
-Package pdftex.def Info: Fotos/bildrail.png  used on input line 170.
+Package pdftex.def Info: Fotos/bildrail.png  used on input line 119.
 (pdftex.def)             Requested size: 333.92206pt x 179.45969pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 181.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 130.
  (C:\Users\janer\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 185.
+(Font)              <14.4> on input line 134.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 185.
+(Font)              <10> on input line 134.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 185.
- [10 <./Fotos/bildrail.png>]
-<Fotos/QuestaZeitdiagram.png, id=189, 406.51875pt x 40.35075pt>
+(Font)              <7> on input line 134.
+ [8 <./Fotos/bildrail.png>]
+<Fotos/QuestaZeitdiagram.png, id=162, 406.51875pt x 40.35075pt>
 File: Fotos/QuestaZeitdiagram.png Graphic file (type png)
 <use Fotos/QuestaZeitdiagram.png>
-Package pdftex.def Info: Fotos/QuestaZeitdiagram.png  used on input line 217.
+Package pdftex.def Info: Fotos/QuestaZeitdiagram.png  used on input line 166.
 (pdftex.def)             Requested size: 459.14363pt x 45.5761pt.
 
-Overfull \hbox (41.74265pt too wide) in paragraph at lines 217--218
+Overfull \hbox (41.74265pt too wide) in paragraph at lines 166--167
  [][] 
  []
 
 
-Underfull \hbox (badness 1910) in paragraph at lines 218--218
+Underfull \hbox (badness 1910) in paragraph at lines 167--167
 [][][]|\T1/lmr/m/n/12 Zeit-dia-gramm zur Si-mu-la-ti-on ei-ner Signum-Funktion in der
  []
 
-[11]
-Overfull \hbox (2.90538pt too wide) in paragraph at lines 240--246
+[9]
+Overfull \hbox (2.90538pt too wide) in paragraph at lines 189--195
 \T1/lmr/m/n/12 sche An-wen-dun-gen sind lo-gi-sche Grund-funk-tio-nen wie UND-, ODER- oder NICHT-
  []
 
-[12 <./Fotos/QuestaZeitdiagram.png>]
-<Fotos/Quadrature_Diagram.png, id=212, 501.875pt x 167.62625pt>
+[10 <./Fotos/QuestaZeitdiagram.png>]
+<Fotos/Quadrature_Diagram.png, id=184, 501.875pt x 167.62625pt>
 File: Fotos/Quadrature_Diagram.png Graphic file (type png)
 <use Fotos/Quadrature_Diagram.png>
-Package pdftex.def Info: Fotos/Quadrature_Diagram.png  used on input line 261.
+Package pdftex.def Info: Fotos/Quadrature_Diagram.png  used on input line 210.
 (pdftex.def)             Requested size: 300.5292pt x 100.38213pt.
-<Fotos/EncoderWorkings.png, id=217, 242.70676pt x 136.71075pt>
+<Fotos/EncoderWorkings.png, id=189, 242.70676pt x 136.71075pt>
 File: Fotos/EncoderWorkings.png Graphic file (type png)
 <use Fotos/EncoderWorkings.png>
-Package pdftex.def Info: Fotos/EncoderWorkings.png  used on input line 270.
+Package pdftex.def Info: Fotos/EncoderWorkings.png  used on input line 219.
 (pdftex.def)             Requested size: 300.5292pt x 169.29218pt.
-) [13 <./Fotos/Quadrature_Diagram.png> <./Fotos/EncoderWorkings.png>]
+) [11 <./Fotos/Quadrature_Diagram.png> <./Fotos/EncoderWorkings.png>]
 \openout2 = `content/3_Analyse.aux'.
 
  (content/3_Analyse.tex
 chapter 3.
-[14
+[12
 
 
 
@@ -1458,83 +1441,77 @@ Overfull \hbox (11.99203pt too wide) in paragraph at lines 24--25
 \T1/lmr/m/n/12 (Ge-gen-takt oder P-Schalter), 24-V-Impulsgeber mit Rich-tungs-pe-gel, 24-V-Initiatoren
  []
 
-[15]
-<Fotos/fm350-2.png, id=244, 323.40825pt x 347.49825pt>
+[13]
+<Fotos/fm350-2.png, id=217, 323.40825pt x 347.49825pt>
 File: Fotos/fm350-2.png Graphic file (type png)
 <use Fotos/fm350-2.png>
 Package pdftex.def Info: Fotos/fm350-2.png  used on input line 36.
 (pdftex.def)             Requested size: 250.44313pt x 269.09624pt.
- [16 <./Fotos/fm350-2.png>]
+ [14 <./Fotos/fm350-2.png>]
 Overfull \hbox (28.1014pt too wide) in paragraph at lines 65--66
 []\T1/lmr/m/n/12 Der Zähl-be-reich ist fest auf 31 Bit vor-zei-chen-be-haf-tet ($\OMS/lmsy/m/n/12 ^^@\OT1/lmr/m/n/12 2 147 483 648$ \T1/lmr/m/n/12 bis $\OT1/lmr/m/n/12 +2 147 483 647$\T1/lmr/m/n/12 )
  []
 
-<Fotos/EndlosZÃ¤hler.png, id=255, 278.2395pt x 93.951pt>
+<Fotos/EndlosZÃ¤hler.png, id=228, 278.2395pt x 93.951pt>
 File: Fotos/EndlosZÃ¤hler.png Graphic file (type png)
 <use Fotos/EndlosZÃ¤hler.png>
 Package pdftex.def Info: Fotos/EndlosZÃ¤hler.png  used on input line 71.
 (pdftex.def)             Requested size: 250.44313pt x 84.56516pt.
-[17 <./Fotos/EndlosZÃ¤hler.png>]
-<Fotos/einmalzÃ¤hler.png, id=267, 246.9225pt x 102.3825pt>
+[15 <./Fotos/EndlosZÃ¤hler.png>]
+<Fotos/einmalzÃ¤hler.png, id=239, 246.9225pt x 102.3825pt>
 File: Fotos/einmalzÃ¤hler.png Graphic file (type png)
 <use Fotos/einmalzÃ¤hler.png>
 Package pdftex.def Info: Fotos/einmalzÃ¤hler.png  used on input line 90.
 (pdftex.def)             Requested size: 250.44313pt x 103.84137pt.
- [18 <./Fotos/einmalzÃ¤hler.png>]
-<Fotos/PeriodischZÃ¤hlen.png, id=278, 245.11575pt x 111.41624pt>
+ [16 <./Fotos/einmalzÃ¤hler.png>]
+<Fotos/PeriodischZÃ¤hlen.png, id=250, 245.11575pt x 111.41624pt>
 File: Fotos/PeriodischZÃ¤hlen.png Graphic file (type png)
 <use Fotos/PeriodischZÃ¤hlen.png>
 Package pdftex.def Info: Fotos/PeriodischZÃ¤hlen.png  used on input line 109.
 (pdftex.def)             Requested size: 292.17941pt x 132.81989pt.
- [19 <./Fotos/PeriodischZÃ¤hlen.png>]
-<Fotos/frequenzmesser.png, id=288, 278.2395pt x 94.55325pt>
+ [17 <./Fotos/PeriodischZÃ¤hlen.png>]
+<Fotos/frequenzmesser.png, id=261, 278.2395pt x 94.55325pt>
 File: Fotos/frequenzmesser.png Graphic file (type png)
 <use Fotos/frequenzmesser.png>
 Package pdftex.def Info: Fotos/frequenzmesser.png  used on input line 133.
 (pdftex.def)             Requested size: 292.17941pt x 99.29681pt.
- [20 <./Fotos/frequenzmesser.png>]
+ [18 <./Fotos/frequenzmesser.png>]
 Overfull \hbox (14.43881pt too wide) in paragraph at lines 145--146
 []\T1/lmr/bx/n/12 Software-Tor (SW-Tor): \T1/lmr/m/n/12 Das Software-Tor wird durch das Steu-er-bit \T1/lmtt/m/n/12 SW_GATE
  []
 
-<Fotos/torfunktion.png, id=300, 286.671pt x 78.89474pt>
+<Fotos/torfunktion.png, id=273, 286.671pt x 78.89474pt>
 File: Fotos/torfunktion.png Graphic file (type png)
 <use Fotos/torfunktion.png>
 Package pdftex.def Info: Fotos/torfunktion.png  used on input line 173.
 (pdftex.def)             Requested size: 250.44313pt x 68.92677pt.
-[21 <./Fotos/torfunktion.png>] [22]
+[19 <./Fotos/torfunktion.png>] [20]
 Overfull \hbox (28.5225pt too wide) in paragraph at lines 204--205
 \T1/lmr/m/n/12 der Zeit-über-wa-chung, ver-lo-re-ne Pro-zes-s-a-lar-me, Leitungs-/Geberversorgungsfehler. 
  []
 
-
-Overfull \hbox (3.45952pt too wide) in paragraph at lines 218--219
-\T1/lmr/m/n/12 durch ap-pli-ka-ti-onss-pe-zi-fi-sche FPGA-Programmierung mit-tels In-tel\TS1/lmr/m/n/12 ® \T1/lmr/m/n/12 Quar-tus\TS1/lmr/m/n/12 ® \T1/lmr/m/n/12 Pri-
+[21{C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
+Overfull \hbox (0.52719pt too wide) in paragraph at lines 235--236
+\T1/lmr/m/n/12 Pro-zess-schnitt-stel-le so-wie der An-bin-dung an CPU und Pe-ri-phe-rie (vgl. Abb. [][]3.7[][]). 
  []
 
-[23{C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}]
-<Fotos/frontbackend2.png, id=343, 634.16925pt x 250.536pt>
+<Fotos/frontbackend2.png, id=315, 634.16925pt x 250.536pt>
 File: Fotos/frontbackend2.png Graphic file (type png)
 <use Fotos/frontbackend2.png>
 Package pdftex.def Info: Fotos/frontbackend2.png  used on input line 239.
 (pdftex.def)             Requested size: 333.92206pt x 131.91946pt.
-
-Overfull \hbox (7.94104pt too wide) in paragraph at lines 246--247
-[]\T1/lmr/bx/n/12 Frontend-Gerät: \T1/lmr/m/n/12 Im Fron-tend läuft die an-wen-dungs-spe-zi-fi-sche TM FAST-Software
- []
-
-[24 <./Fotos/frontbackend2.png>]
-<Fotos/frontbackend.png, id=355, 483.0045pt x 168.63pt>
+[22 <./Fotos/frontbackend2.png>]
+<Fotos/frontbackend.png, id=327, 483.0045pt x 168.63pt>
 File: Fotos/frontbackend.png Graphic file (type png)
 <use Fotos/frontbackend.png>
 Package pdftex.def Info: Fotos/frontbackend.png  used on input line 250.
 (pdftex.def)             Requested size: 333.92206pt x 116.58124pt.
-<Fotos/tmfastaufbau.png, id=364, 254.1495pt x 337.26pt>
+<Fotos/tmfastaufbau.png, id=336, 254.1495pt x 337.26pt>
 File: Fotos/tmfastaufbau.png Graphic file (type png)
 <use Fotos/tmfastaufbau.png>
 Package pdftex.def Info: Fotos/tmfastaufbau.png  used on input line 284.
 (pdftex.def)             Requested size: 208.70049pt x 276.95639pt.
- [25 <./Fotos/frontbackend.png>]
+ [23 <./Fotos/frontbackend.png>]
 Underfull \hbox (badness 1292) in paragraph at lines 301--302
 []|\T1/lmr/m/n/12 Feste ASIC-basierte Zäh-ler-bau-
  []
@@ -1564,12 +1541,12 @@ Overfull \hbox (46.9903pt too wide) in alignment at lines 295--323
  [] [] [] 
  []
 
-[26 <./Fotos/tmfastaufbau.png>] [27]) [28]
+[24 <./Fotos/tmfastaufbau.png>] [25]) [26]
 \openout2 = `content/4_Entwicklung.aux'.
 
  (content/4_Entwicklung.tex
 chapter 4.
-[29
+[27
 
 
 
@@ -1580,11 +1557,11 @@ Overfull \hbox (9.79749pt too wide) in paragraph at lines 28--29
 []\T1/lmr/m/n/12 Jeder Ka-nal kann fle-xi-bel als Di-gi-tal-ein-gang, Di-gi-tal-aus-gang oder RS485/TTL-
  []
 
-[30] (C:\Users\janer\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+[28] (C:\Users\janer\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on input line 56.
- [31] [32]
+ [29] [30]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 101.
 
@@ -1592,78 +1569,76 @@ Overfull \hbox (55.10382pt too wide) in paragraph at lines 125--126
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[33] [34] [35]
+[31] [32] [33]
 Overfull \hbox (1.03143pt too wide) in paragraph at lines 202--203
 []\T1/lmr/m/n/12 DI_DQ_BAD: Bit-codierter Feh-l-er-sta-tus für Di-gi-tal-ein-gän-ge und -ausgänge, 
  []
 
-[36]
+[34]
 Overfull \hbox (46.446pt too wide) in paragraph at lines 229--231
 []\T1/lmr/m/n/12 Zusätzlich wird im Feh-ler-fall der Aus-gang so-fort de-ak-ti-viert und der Sta-tus \T1/lmtt/m/n/12 StartDQ_active
  []
 
-[37] [38] (C:\Users\janer\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
+[35] [36] (C:\Users\janer\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 Overfull \hbox (7.93956pt too wide) in paragraph at lines 288--291
 []\T1/lmr/m/n/12 Für die Steue-rung des TM FAST dient der Bau-stein \T1/lmtt/m/n/12 LTMFAST_dosing_application\T1/lmr/m/n/12 .
  []
 
-[39]
-<Fotos/ApplikationsBausteinTIA.png, id=561, 334.24875pt x 180.675pt>
+[37]
+<Fotos/ApplikationsBausteinTIA.png, id=534, 334.24875pt x 180.675pt>
 File: Fotos/ApplikationsBausteinTIA.png Graphic file (type png)
 <use Fotos/ApplikationsBausteinTIA.png>
 Package pdftex.def Info: Fotos/ApplikationsBausteinTIA.png  used on input line 333.
 (pdftex.def)             Requested size: 250.44313pt x 135.37909pt.
- [40]
+ [38]
 Overfull \hbox (1.25336pt too wide) in paragraph at lines 338--340
 []\T1/lmr/m/n/12 Die ty-pi-sche Steue-rung des \T1/lmtt/m/n/12 LTMFAST_dosing_application\T1/lmr/m/n/12 -Bausteins er-folgt durch
  []
 
-[41 <./Fotos/ApplikationsBausteinTIA.png>]
+[39 <./Fotos/ApplikationsBausteinTIA.png>] [40]
+Overfull \hbox (10.92303pt too wide) in paragraph at lines 404--405
+[]\T1/lmr/m/n/12 Nicht ver-wen-de-te Kanä-le be-le-gen so-mit kei-ne un-nö-ti-gen Res-sour-cen, da die Generate-
+ []
 
-LaTeX Warning: Reference `fig:logikelemente_kanal' on page 42 undefined on input line 401.
 
-
-LaTeX Warning: Reference `lst:array_generate' on page 42 undefined on input line 403.
-
-[42]
-Overfull \hbox (14.32729pt too wide) in paragraph at lines 407--408
+Overfull \hbox (14.32729pt too wide) in paragraph at lines 406--407
 []\T1/lmr/m/n/12 Auch die Steuer- und Feed-back-schnitt-stel-len wer-den als Bit-fel-der (`std_logic_vector`)
  []
 
-<Fotos/logikelemente1.png, id=628, 627.5445pt x 231.86626pt>
+<Fotos/logikelemente1.png, id=601, 627.5445pt x 231.86626pt>
 File: Fotos/logikelemente1.png Graphic file (type png)
 <use Fotos/logikelemente1.png>
-Package pdftex.def Info: Fotos/logikelemente1.png  used on input line 411.
+Package pdftex.def Info: Fotos/logikelemente1.png  used on input line 410.
 (pdftex.def)             Requested size: 333.92206pt x 123.3803pt.
-[43 <./Fotos/logikelemente1.png>] [44] [45]
-<Fotos/Bild.png, id=648, 689.57625pt x 335.75438pt>
+[41 <./Fotos/logikelemente1.png>] [42] [43]
+<Fotos/Bild.png, id=623, 689.57625pt x 335.75438pt>
 File: Fotos/Bild.png Graphic file (type png)
 <use Fotos/Bild.png>
-Package pdftex.def Info: Fotos/Bild.png  used on input line 498.
+Package pdftex.def Info: Fotos/Bild.png  used on input line 497.
 (pdftex.def)             Requested size: 396.52965pt x 193.07263pt.
 
-Underfull \hbox (badness 4505) in paragraph at lines 499--499
+Underfull \hbox (badness 4505) in paragraph at lines 498--498
 [][][]|\T1/lmr/m/n/12 Wel-len-ana-ly-se der CTRL_IF-, WR_REC- und RD_REC-
  []
 
-) [46] [47 <./Fotos/Bild.png>]
+) [44] [45 <./Fotos/Bild.png>]
 \openout2 = `content/7_Fazit_und_Ausblick.aux'.
 
  (content/7_Fazit_und_Ausblick.tex
 chapter 5.
-[48
+[46
 
 
 
 
 
-]) [49]
+]) [47]
 \openout2 = `content/10_Inhaltsverzeichnis.aux'.
 
  (content/10_Inhaltsverzeichnis.tex (Bachelorarbeit.lof
-Overfull \hbox (23.80055pt too wide) in paragraph at lines 26--26
+Overfull \hbox (23.80055pt too wide) in paragraph at lines 24--24
  [][] []\T1/lmr/m/n/12 Wellenanalyse der CTRL_IF-, WR_REC- und RD_REC-Schnittstellen 
  []
 
@@ -1671,7 +1646,7 @@ Overfull \hbox (23.80055pt too wide) in paragraph at lines 26--26
 \tf@lof=\write6
 \openout6 = `Bachelorarbeit.lof'.
 
- [50
+ [48
 
 
 
@@ -1681,7 +1656,7 @@ Overfull \hbox (23.80055pt too wide) in paragraph at lines 26--26
 \tf@lot=\write7
 \openout7 = `Bachelorarbeit.lot'.
 
- [51
+ [49
 
 
 ]
@@ -1724,7 +1699,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 33--34
 \T1/lmtt/m/n/12 industrie-[]software / automatisierungs-[]software / energiemanagement /
  []
 
-[52
+[50
 
 
 
@@ -1794,7 +1769,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 60--61
 \T1/lmtt/m/n/12 20 / programming-[]concepts / using-[]blocks-[]to-[]structure-[]your-[]program /
  []
 
-[53]
+[51]
 Underfull \hbox (badness 1092) in paragraph at lines 67--68
 []\T1/lmr/m/n/12 Siemens AG: \T1/lmr/m/it/12 High Speed Boo-lean Pro-ces-sor FM 352-5\T1/lmr/m/n/12 . Ver-füg-bar un-
  []
@@ -1879,14 +1854,11 @@ Underfull \hbox (badness 1681) in paragraph at lines 92--93
 \T1/lmtt/m/n/12 automatisierung / systeme / industrie / sps / simatic-[]s7-[]300 . html$[][] \T1/lmr/m/n/12 (ab-ge-ru-
  []
 
-[54]) [55] (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux))
+[52]) [53] (Bachelorarbeit.aux (cover.aux) (content/0_abstract.aux) (content/1_Einleitung.aux) (content/2_Grundlagen.aux) (content/3_Analyse.aux) (content/4_Entwicklung.aux) (content/7_Fazit_und_Ausblick.aux) (content/10_Inhaltsverzeichnis.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
@@ -1895,17 +1867,17 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 50675 strings out of 474486
- 1154961 string characters out of 5743754
+ 50649 strings out of 474486
+ 1154235 string characters out of 5743754
  1969542 words of memory out of 5000000
- 71741 multiletter control sequences out of 15000+600000
+ 71722 multiletter control sequences out of 15000+600000
  637729 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,117p,10958b,2374s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Bachelorarbeit.pdf (57 pages, 1575471 bytes).
+Output written on Bachelorarbeit.pdf (55 pages, 1363017 bytes).
 PDF statistics:
- 1006 PDF objects out of 1200 (max. 8388607)
- 317 named destinations out of 1000 (max. 500000)
- 302 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 975 PDF objects out of 1000 (max. 8388607)
+ 310 named destinations out of 1000 (max. 500000)
+ 284 words of extra memory for PDF output out of 10000 (max. 10000000)
 
