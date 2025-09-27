@@ -1,11 +1,18 @@
 \chapter{Fazit und Ausblick}
 \label{chap:fazit}
 
-Im Rahmen dieser Arbeit konnte gezeigt werden, dass alle für Dosieranlagen relevanten Funktionen erfolgreich in das neue VHDL-Design integriert wurden. Ein wesentliches Ergebnis ist die drastische Verkürzung der Reaktionszeit: Während die bisher eingesetzte Baugruppe FM 350-2 eine Verzögerung von rund 50 µs aufwies, erreicht die neue Implementierung eine Reaktionszeit von 20 ns. Damit wird eine sofortige und deterministische Signalverarbeitung ermöglicht, was insbesondere in zeitkritischen Dosierprozessen erhebliche Vorteile bringt.  
+Im Rahmen dieser Arbeit konnte gezeigt werden, dass das FM350-2 Modul der SIMATIC S7-300 erfolgreich durch ein VHDL-basiertes Applikationsbeispiel auf dem TM FAST Modul der SIMATIC S7-1500 ersetzt werden kann.  
+Alle für Dosieranlagen relevanten Funktionen wurden umgesetzt und in das neue Design integriert.  
 
-Ein Unterschied zur alten Baugruppe liegt in der Behandlung der Prozessalarme. Viele der in der FM 350-2 implementierten Alarme konnten in der neuen Architektur nicht in gleicher Form umgesetzt werden. Während die FM 350-2 interne, externe und kanalspezifische Fehler durch Prozessalarme meldete und dabei auch eine Sammelfehler-LED (SF) sowie Diagnose-OBs in der SPS nutzte, verfolgt das neue VHDL-Design einen anderen Ansatz.  
+Ein zentrales Ergebnis ist die signifikante Verkürzung der Reaktionszeit: Während die FM350-2 Baugruppe eine Verzögerung von rund 50\,µs aufwies, erreicht die neue Implementierung eine Zykluszeit von 20\,ns. Dadurch wird eine sofortige und deterministische Signalverarbeitung ermöglicht, was die Eignung für zeitkritische Dosierprozesse deutlich erhöht.  
 
-Die Fehler- und Diagnosestrategie wurde systematisch auf Kanalebene implementiert. Für jeden Kanal wird ein Signal \texttt{system\_fault(i)} berechnet, das Fehler an Eingängen, Ausgängen, RS485-Schnittstellen oder der Spannungsversorgung überwacht. Erkennt die Logik einen Fehler, wird der betroffene Ausgang unmittelbar in den sicheren Zustand (SAFE State) überführt. Die Details werden über das Feedback-Interface an die SPS zurückgemeldet, sodass dort eine gezielte Reaktion erfolgen kann. Im Fall eines globalen CPU-Stop werden zusätzlich alle Kanäle zurückgesetzt und sämtliche Ausgänge deaktiviert. Auf diese Weise wird sichergestellt, dass sowohl Einzelkanalfehler als auch globale Störungen zuverlässig erkannt und behandelt werden.  
+Darüber hinaus konnte die Kanalanzahl von ursprünglich 8 auf 14 im TM FAST Modul erweitert werden. Dies eröffnet neue Möglichkeiten für den parallelen Betrieb mehrerer Dosierkanäle und steigert sowohl die Flexibilität als auch die Effizienz der Anwendung.  
+
+Auch die Ressourcennutzung wurde optimiert: Durch gezielte Anpassungen im VHDL-Design konnte die Auslastung der FPGA-Logikelemente auf maximal 80\,\% begrenzt werden, sodass Reserven für zukünftige Erweiterungen bestehen.  
+
+Schließlich wurde das Applikationsbeispiel vollständig in das TIA Portal integriert. Damit steht eine nahtlose Einbindung in bestehende Engineering-Umgebungen zur Verfügung, was die Inbetriebnahme und Diagnose im industriellen Einsatz erheblich erleichtert.  
+
+Insgesamt belegt die Arbeit, dass das TM FAST Modul eine leistungsfähige und zukunftssichere Alternative zum FM350-2 darstellt. Die erfolgreiche Umsetzung der funktionalen und nicht-funktionalen Anforderungen schafft die Grundlage für den Einsatz moderner FPGA-Technologie in hochkanaligen Dosieranwendungen und verdeutlicht deren Potenzial für die industrielle Automatisierung.
 
 \section{Kritische Reflexion und Herausforderungen}
 

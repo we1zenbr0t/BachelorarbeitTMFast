@@ -263,6 +263,12 @@ Für funktionale Sicherheit im industriellen Maßstab sind spezielle F-CPUs und 
 
 \section{Umsetzung der nicht-funktionalen Anforderungen}
 
+In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderungen systematisch berücksichtigt und in das Gesamtdesign integriert.  
+Der Fokus liegt hierbei weniger auf der konkreten Abbildung einzelner Funktionen, sondern auf der Gewährleistung übergreifender Qualitätsmerkmale wie Performance, Ressourcenschonung, Erweiterbarkeit und Funktionsumfang.  
+
+Neben der technischen Realisierung werden die Maßnahmen jeweils in Bezug auf ihre Bedeutung für die Gesamtanwendung eingeordnet.  
+Dadurch wird deutlich, inwiefern die nicht-funktionalen Anforderungen die Leistungsfähigkeit, Stabilität und langfristige Nutzbarkeit der Lösung im industriellen Kontext sicherstellen.  
+
 \subsection*{N1 – Integration in das TIA Portal}
 
 Die Einbindung der entwickelten Applikationsbausteine in das TIA Portal ist ein zentraler Schritt, um die Funktionalität praxisnah nutzbar zu machen.  
@@ -368,7 +374,8 @@ END_IF;
 
 Alle für das Applikationsbeispiel \emph{Dosieranwendung} relevanten Funktionen wurden erfolgreich umgesetzt. Einschränkungen bestehen lediglich bei einzelnen Funktionen wie der Drehzahlmessung, die zusätzliche Eingänge am Inkrementalgeber erfordert und daher in dieser Architektur nicht vorgesehen ist.
 
-Tabelle~\ref{tab:fm350_vergleich} gibt eine Übersicht der implementierten und nicht implementierten Funktionen im Vergleich zur FM350-2. Dabei agieren \texttt{EnableDQ}, \texttt{Hold} und \texttt{StartDQ} als Software-Tore und stellen sicher, dass Zählimpulse zum Zähler gelangen oder gestoppt werden.
+Tabelle~\ref{tab:fm350_vergleich} gibt eine Übersicht der implementierten und nicht implementierten Funktionen im Vergleich zur FM350-2. Dabei agieren \texttt{EnableDQ}, \texttt{Hold} und \texttt{StartDQ} als Software-Tore und stellen sicher, dass Zählimpulse zum Zähler gelangen oder gestoppt werden. Die Umsetzung eines Hardware-Tores war aufgrund eines zusätzlich benötigten Eingangs nicht möglich.
+
 \begin{table}[H]
     \centering
     \begin{tabular}{|l|c|}
