@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.24)  27 SEP 2025 18:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.11.24)  28 SEP 2025 05:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1373,7 +1373,7 @@ Overfull \hbox (3.30925pt too wide) in paragraph at lines 102--110
  []
 
 [7]
-<Fotos/bildrail.png, id=147, 509.905pt x 274.02374pt>
+<Fotos/bildrail.png, id=149, 509.905pt x 274.02374pt>
 File: Fotos/bildrail.png Graphic file (type png)
 <use Fotos/bildrail.png>
 Package pdftex.def Info: Fotos/bildrail.png  used on input line 119.
@@ -1389,7 +1389,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 134.
  [8 <./Fotos/bildrail.png>]
-<Fotos/QuestaZeitdiagram.png, id=162, 406.51875pt x 40.35075pt>
+<Fotos/QuestaZeitdiagram.png, id=168, 406.51875pt x 40.35075pt>
 File: Fotos/QuestaZeitdiagram.png Graphic file (type png)
 <use Fotos/QuestaZeitdiagram.png>
 Package pdftex.def Info: Fotos/QuestaZeitdiagram.png  used on input line 166.
@@ -1410,12 +1410,12 @@ Overfull \hbox (2.90538pt too wide) in paragraph at lines 189--195
  []
 
 [10 <./Fotos/QuestaZeitdiagram.png>]
-<Fotos/Quadrature_Diagram.png, id=184, 501.875pt x 167.62625pt>
+<Fotos/Quadrature_Diagram.png, id=190, 501.875pt x 167.62625pt>
 File: Fotos/Quadrature_Diagram.png Graphic file (type png)
 <use Fotos/Quadrature_Diagram.png>
 Package pdftex.def Info: Fotos/Quadrature_Diagram.png  used on input line 210.
 (pdftex.def)             Requested size: 300.5292pt x 100.38213pt.
-<Fotos/EncoderWorkings.png, id=189, 242.70676pt x 136.71075pt>
+<Fotos/EncoderWorkings.png, id=195, 242.70676pt x 136.71075pt>
 File: Fotos/EncoderWorkings.png Graphic file (type png)
 <use Fotos/EncoderWorkings.png>
 Package pdftex.def Info: Fotos/EncoderWorkings.png  used on input line 219.
@@ -1442,7 +1442,7 @@ Overfull \hbox (11.99203pt too wide) in paragraph at lines 24--25
  []
 
 [13]
-<Fotos/fm350-2.png, id=217, 323.40825pt x 347.49825pt>
+<Fotos/fm350-2.png, id=223, 323.40825pt x 347.49825pt>
 File: Fotos/fm350-2.png Graphic file (type png)
 <use Fotos/fm350-2.png>
 Package pdftex.def Info: Fotos/fm350-2.png  used on input line 36.
@@ -1452,25 +1452,25 @@ Overfull \hbox (28.1014pt too wide) in paragraph at lines 65--66
 []\T1/lmr/m/n/12 Der Z�hl-be-reich ist fest auf 31 Bit vor-zei-chen-be-haf-tet ($\OMS/lmsy/m/n/12 ^^@\OT1/lmr/m/n/12 2 147 483 648$ \T1/lmr/m/n/12 bis $\OT1/lmr/m/n/12 +2 147 483 647$\T1/lmr/m/n/12 )
  []
 
-<Fotos/EndlosZähler.png, id=228, 278.2395pt x 93.951pt>
+<Fotos/EndlosZähler.png, id=234, 278.2395pt x 93.951pt>
 File: Fotos/EndlosZähler.png Graphic file (type png)
 <use Fotos/EndlosZähler.png>
 Package pdftex.def Info: Fotos/EndlosZähler.png  used on input line 71.
 (pdftex.def)             Requested size: 250.44313pt x 84.56516pt.
 [15 <./Fotos/EndlosZähler.png>]
-<Fotos/einmalzähler.png, id=239, 246.9225pt x 102.3825pt>
+<Fotos/einmalzähler.png, id=245, 246.9225pt x 102.3825pt>
 File: Fotos/einmalzähler.png Graphic file (type png)
 <use Fotos/einmalzähler.png>
 Package pdftex.def Info: Fotos/einmalzähler.png  used on input line 90.
 (pdftex.def)             Requested size: 250.44313pt x 103.84137pt.
  [16 <./Fotos/einmalzähler.png>]
-<Fotos/PeriodischZählen.png, id=250, 245.11575pt x 111.41624pt>
+<Fotos/PeriodischZählen.png, id=256, 245.11575pt x 111.41624pt>
 File: Fotos/PeriodischZählen.png Graphic file (type png)
 <use Fotos/PeriodischZählen.png>
 Package pdftex.def Info: Fotos/PeriodischZählen.png  used on input line 109.
 (pdftex.def)             Requested size: 292.17941pt x 132.81989pt.
  [17 <./Fotos/PeriodischZählen.png>]
-<Fotos/frequenzmesser.png, id=261, 278.2395pt x 94.55325pt>
+<Fotos/frequenzmesser.png, id=267, 278.2395pt x 94.55325pt>
 File: Fotos/frequenzmesser.png Graphic file (type png)
 <use Fotos/frequenzmesser.png>
 Package pdftex.def Info: Fotos/frequenzmesser.png  used on input line 133.
@@ -1480,7 +1480,7 @@ Overfull \hbox (14.43881pt too wide) in paragraph at lines 145--146
 []\T1/lmr/bx/n/12 Software-Tor (SW-Tor): \T1/lmr/m/n/12 Das Software-Tor wird durch das Steu-er-bit \T1/lmtt/m/n/12 SW_GATE
  []
 
-<Fotos/torfunktion.png, id=273, 286.671pt x 78.89474pt>
+<Fotos/torfunktion.png, id=279, 286.671pt x 78.89474pt>
 File: Fotos/torfunktion.png Graphic file (type png)
 <use Fotos/torfunktion.png>
 Package pdftex.def Info: Fotos/torfunktion.png  used on input line 173.
@@ -1495,18 +1495,18 @@ Overfull \hbox (0.52719pt too wide) in paragraph at lines 235--236
 \T1/lmr/m/n/12 Pro-zess-schnitt-stel-le so-wie der An-bin-dung an CPU und Pe-ri-phe-rie (vgl. Abb. [][]3.7[][]). 
  []
 
-<Fotos/frontbackend2.png, id=315, 634.16925pt x 250.536pt>
+<Fotos/frontbackend2.png, id=322, 634.16925pt x 250.536pt>
 File: Fotos/frontbackend2.png Graphic file (type png)
 <use Fotos/frontbackend2.png>
 Package pdftex.def Info: Fotos/frontbackend2.png  used on input line 239.
 (pdftex.def)             Requested size: 333.92206pt x 131.91946pt.
 [22 <./Fotos/frontbackend2.png>]
-<Fotos/frontbackend.png, id=327, 483.0045pt x 168.63pt>
+<Fotos/frontbackend.png, id=335, 483.0045pt x 168.63pt>
 File: Fotos/frontbackend.png Graphic file (type png)
 <use Fotos/frontbackend.png>
 Package pdftex.def Info: Fotos/frontbackend.png  used on input line 250.
 (pdftex.def)             Requested size: 333.92206pt x 116.58124pt.
-<Fotos/tmfastaufbau.png, id=336, 254.1495pt x 337.26pt>
+<Fotos/tmfastaufbau.png, id=345, 254.1495pt x 337.26pt>
 File: Fotos/tmfastaufbau.png Graphic file (type png)
 <use Fotos/tmfastaufbau.png>
 Package pdftex.def Info: Fotos/tmfastaufbau.png  used on input line 284.
@@ -1587,7 +1587,7 @@ Overfull \hbox (7.93956pt too wide) in paragraph at lines 294--297
  []
 
 [37] [38]
-<Fotos/ApplikationsBausteinTIA.png, id=560, 334.24875pt x 180.675pt>
+<Fotos/ApplikationsBausteinTIA.png, id=571, 334.24875pt x 180.675pt>
 File: Fotos/ApplikationsBausteinTIA.png Graphic file (type png)
 <use Fotos/ApplikationsBausteinTIA.png>
 Package pdftex.def Info: Fotos/ApplikationsBausteinTIA.png  used on input line 339.
@@ -1607,13 +1607,13 @@ Overfull \hbox (14.32729pt too wide) in paragraph at lines 413--414
 []\T1/lmr/m/n/12 Auch die Steuer- und Feed-back-schnitt-stel-len wer-den als Bit-fel-der (`std_logic_vector`)
  []
 
-<Fotos/logikelemente1.png, id=601, 627.5445pt x 231.86626pt>
+<Fotos/logikelemente1.png, id=612, 627.5445pt x 231.86626pt>
 File: Fotos/logikelemente1.png Graphic file (type png)
 <use Fotos/logikelemente1.png>
 Package pdftex.def Info: Fotos/logikelemente1.png  used on input line 417.
 (pdftex.def)             Requested size: 333.92206pt x 123.3803pt.
 [41 <./Fotos/logikelemente1.png>] [42] [43]
-<Fotos/Bild.png, id=623, 689.57625pt x 335.75438pt>
+<Fotos/Bild.png, id=634, 689.57625pt x 335.75438pt>
 File: Fotos/Bild.png Graphic file (type png)
 <use Fotos/Bild.png>
 Package pdftex.def Info: Fotos/Bild.png  used on input line 504.
@@ -1867,17 +1867,17 @@ Package rerunfilecheck Info: File `Bachelorarbeit.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 50649 strings out of 474486
- 1154235 string characters out of 5743754
+ 50651 strings out of 474486
+ 1154258 string characters out of 5743754
  1977542 words of memory out of 5000000
- 71722 multiletter control sequences out of 15000+600000
+ 71723 multiletter control sequences out of 15000+600000
  637729 words of font info for 98 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,20n,117p,10958b,2374s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmro12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb><C:/Users/janer/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtti10.pfb>
-Output written on Bachelorarbeit.pdf (55 pages, 1363538 bytes).
+Output written on Bachelorarbeit.pdf (55 pages, 1366001 bytes).
 PDF statistics:
- 975 PDF objects out of 1000 (max. 8388607)
- 310 named destinations out of 1000 (max. 500000)
+ 986 PDF objects out of 1000 (max. 8388607)
+ 311 named destinations out of 1000 (max. 500000)
  284 words of extra memory for PDF output out of 10000 (max. 10000000)
 

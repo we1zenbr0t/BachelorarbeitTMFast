@@ -85,7 +85,7 @@ Die SIMATIC S7-1500 Steuerung ist ein modular aufgebautes System, dessen Funktio
 
 Technologiebaugruppen bieten eine hardwarenahe Signalvorverarbeitung für schnelle Zähl- und Messaufgaben sowie präzise Positionserfassung mittels Inkremental- oder SSI-Absolutwertgebern. Bisherige Module wurden über Technologieobjekte oder direkt im Anwenderprogramm im TIA Portal parametriert und programmiert. Das aktuelle Portfolio beinhaltet unter anderem das TM NPU, TM Count 2x24 V, TM Posinput 2, TM Timer DIDQ 16x24 V und das TM PTO 4. Das TM NPU arbeitet mit einem trainierten neuronalen System und erlaubt den Anschluss verschiedener Sensoren über Gigabit-Ethernet oder USB 3.1. Die Zählerbaugruppe TM Count 2x24 V ist vielseitig einsetzbar für Zähl- und Messaufgaben sowie zur Positionserfassung über Inkrementalgeber. Das TM Posinput 2 Modul stellt zwei Zählkanäle für Differenzeingangssignale nach RS422 mit bis zu 1~MHz bereit und ermöglicht die Positionserfassung mit SSI-Absolutwertgebern. Der TM Timer DIDQ 16x24 V dient zeitkritischen Aufgaben, wie z. B. der präzisen Einhaltung von Reaktionszeiten. Das PTO 4 Modul unterstützt die Ansteuerung von Schrittmotoren und Servoantrieben mit PTI-Schnittstelle \cite{TmFast_progrmming_manual}.
 
-Das TM FAST Modul ist eine FPGA und dadurch freiprogrammierbar. Es ist bereits länger Bestandteil des Portfolios und wird kontinuierlich um neue Funktionen erweitert, die aus konkreten Kundenanwendungsfällen abgeleitet werden, wie zusätzliche Protokoll-, Zähl-, Trigger- und Preprocessing-Bausteine. Diese Funktionen werden als wiederverwendbare Funktionsblöcke bereitgestellt, wodurch bestehende Anforderungen schneller umgesetzt und zukünftige Anwendungsfälle flexibel ergänzt werden können \cite{tmfast_featurespec}.
+Das TM FAST Modul ist eine FPGA und dadurch freiprogrammierbar. Es ist bereits länger Bestandteil des Portfolios und wird kontinuierlich um neue Funktionen erweitert, die aus konkreten Kundenanwendungsfällen abgeleitet werden, wie zusätzliche Protokoll-, Zähl-, Trigger- und Preprocessing-Bausteine. Diese Funktionen werden als wiederverwendbare Funktionsblöcke bereitgestellt, wodurch bestehende Anforderungen schneller umgesetzt und zukünftige Anwendungsfälle flexibel ergänzt werden können \cite{tmfast_featurespec, kick2023}.
 
 \section{Software}
 
@@ -129,7 +129,7 @@ Für die azyklische Kommunikation stehen die TM~FAST User Data Records zur Verf�
 manuell oder über Funktionsbausteine beschrieben und gelesen werden können. 
 Die dafür bereitgestellte TIA-Bibliothek \texttt{LTMFAST} enthält unter anderem die Anweisungen 
 \texttt{LTMFAST ControlREC} (Ist für die Steuerung des TM~FAST zuständig), \texttt{UserReadREC} (Liest Daten aus dem TM~FAST), \texttt{UserWriteREC} (Schreibt Daten in den TM~FAST) und \texttt{AppDownload} (Lädt die Anwendung auf den TM~FAST) 
-\cite{siemensTIA}.  
+\cite{siemensTIA, kick2023}.  
 
 \subsection{Intel\textsuperscript{\textregistered} Quartus\textsuperscript{\textregistered} Prime}
 
@@ -145,7 +145,7 @@ voneinander zu entwickeln. Die Kompilation umfasst die Schritte Analyse/Synthese
 \begin{itemize}
     \item \textbf{Analyse und Synthese:} Überprüfung der logischen Konsistenz, Erzeugung von Zustandsautomaten, Flipflops und Logikzellen aus dem VHDL-Code, sowie Optimierung zur Ressourcenschonung.  
     \item \textbf{Fitter:} Zuweisung der Logikfunktionen zu den FPGA-Ressourcen unter Berücksichtigung von Timing- und Routing-Anforderungen.  
-    \item \textbf{Assembler:} Erzeugung der Ausgabedateien wie \texttt{.sof}, \texttt{.pof} oder \texttt{.rbf}, die zur Programmierung des FPGAs genutzt werden \cite{intelFPGA_handbook}.  
+    \item \textbf{Assembler:} Erzeugung der Ausgabedateien wie \texttt{.sof}, \texttt{.pof} oder \texttt{.rbf}, die zur Programmierung des FPGAs genutzt werden \cite{intelFPGA_handbook, kick2023}.  
 \end{itemize}
 
 \subsection{Questa-Intel\textsuperscript{\textregistered} FPGA}
@@ -153,13 +153,13 @@ voneinander zu entwickeln. Die Kompilation umfasst die Schritte Analyse/Synthese
 Zur Simulation von Hardwareentwürfen stehen zwei Versionen zur Verfügung: 
 die kostenpflichtige Questa-Intel\textsuperscript{\textregistered} FPGA sowie die Starter Edition. 
 Beide basieren auf der Siemens EDA Questa Core Software und bieten umfangreiche Funktionen 
-zur Simulation, Verifikation und zum Debugging von FPGA-Designs \cite{questa}.  
+zur Simulation, Verifikation und zum Debugging von FPGA-Designs \cite{questa, kick2023}.  
 
 Die Simulation erfolgt entweder direkt aus Quartus oder über Simulationsskripte in Questa. 
 Hierzu wird eine Testbench erstellt, die Eingabesignale bereitstellt und die resultierenden 
 Ausgangssignale überprüft. Typischerweise werden dabei Prozesse definiert, die z.\,B. ein Taktsignal 
 generieren oder Signalwechsel nachbilden. Abb.~\ref{fig:Zeitdiagramm} zeigt eine beispielhafte 
-Simulation zur Validierung einer Signum-Funktion \cite{questa}.  
+Simulation zur Validierung einer Signum-Funktion \cite{questa, kick2023}.  
 
 \begin{figure}[H]
     \centering
