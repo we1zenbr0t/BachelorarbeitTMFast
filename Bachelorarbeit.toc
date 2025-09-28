@@ -41,3 +41,6 @@
 \contentsline {chapter}{\numberline {5}Fazit und Ausblick}{46}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Kritische Reflexion und Herausforderungen}{47}{section.5.1}%
 \contentsline {section}{\numberline {5.2}Potenzielle Weiterentwicklungen und zukünftige Anwendungen}{47}{section.5.2}%
+\contentsline {chapter}{Abbildungsverzeichnis}{48}{section.5.2}%
+\contentsline {chapter}{Tabellenverzeichnis}{49}{section.5.2}%
+\contentsline {chapter}{Literaturverzeichnis}{50}{chapter*.53}%
